@@ -31,7 +31,7 @@ public class AuthorController {
 	}
 
 	@RequestMapping(value = "addAuthor", method = RequestMethod.POST)
-	public ModelAndView addBook(@ModelAttribute("insertAuthor") Authors authors) {
+	public ModelAndView ThemTacGia(@ModelAttribute("insertAuthor") Authors authors) {
 		int rs = authorImpl.insertAuthor(authors);
 		ModelAndView mv = new ModelAndView("admin/ThemTacGia");
 		
