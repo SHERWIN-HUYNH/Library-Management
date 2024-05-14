@@ -27,7 +27,7 @@
 						</a>
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 								<li><a href="<c:url value="muontra"/>">Mượn sách</a></li>
-								<li><a href="trasach.html">Trả sách</a></li>
+								<li><a href="<c:url value="traSach"/>">Trả sách</a></li>
 								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
@@ -68,7 +68,7 @@
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 								<li><a href="<c:url value="muontra"/>">Mượn sách</a></li>
-								<li><a href="trasach.html">Trả sách</a></li>
+								<li><a href="<c:url value="traSach"/>">Trả sách</a></li>
 								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
