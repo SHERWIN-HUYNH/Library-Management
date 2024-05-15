@@ -19,4 +19,13 @@ public class AuthorServiceImpl {
 	public int insertAuthor(Authors authors) {
 		return authorDao.InsertAuthor(authors);
 	}
+	public Authors getAuFromId(int id) {
+		return authorDao.GetAuFromId(id);
+	}
+	public int updateAuthor(int id , Authors authors) {
+		return authorDao.UpdateAuthor(id, authors);
+	}
+	public int deleteAuthor(int id) {
+		return authorDao.DeleteAuthor(id);
+	}
 }
