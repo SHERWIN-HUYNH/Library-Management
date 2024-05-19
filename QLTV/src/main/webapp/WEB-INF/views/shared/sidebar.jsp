@@ -38,7 +38,10 @@
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
-								<li><a href="index2.html">Danh sách mượn-trả</a></li>
+
+								<li><a href="index2.html">Tài khoản</a></li>
+								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+
 							</ul></li>
 						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
@@ -76,7 +79,10 @@
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
-								<li><a href="index2.html">Danh sách mượn-trả</a></li>
+
+								<li><a href="index2.html">Tài khoản</a></li>
+								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+
 							</ul></li>
 						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
