@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Đăng nhập</title>
+<title>Xác nhận OTP</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico in the root directory -->
@@ -48,7 +48,20 @@
 		<!-- Mainmenu-markup-start -->
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
-			<%@include file="/WEB-INF/views/shared/header.jsp"%>
+			<nav class="navbar">
+				<div class="container">
+					<div class="navbar-right in fade" id="mainmenu">
+						<ul class="nav navbar-nav nav-white text-uppercase">
+							<li class="active"><a href="index">Trang chủ</a></li>
+							<li><a href="#">Giới thiệu</a></li>
+							<li><a href="<c:url value="notification" />">Thông báo</a></li>
+							<li><a href="<c:url value="sach" />">Sách</a></li>
+							<li><a href="<c:url value="dang-nhap"/>">Đăng nhập</a> <li><a href="<c:url value="dang-ky"/>">Đăng ký</a>
+							
+						</ul>
+						</div>
+						</div>
+		</nav>
 		</div>
 		<div class="space-100"></div>
 		<!-- Mainmenu-markup-end -->
@@ -59,8 +72,8 @@
 				<div class="row wow fadeInUp">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
 						<div class="jumbotron">
-							<h1 class="text-white">Đăng nhập</h1>
-							<h1 class="text-white">${statusLG}</h1>
+							<h1 class="text-white">Xác nhận lại OTP</h1>
+							<h1 class="text-white">${status}</h1>
 						</div>
 						<div class="title-bar white">
 							<ul class="list-inline list-unstyled">
@@ -74,25 +87,15 @@
 				<div class="row wow fadeInUp" data-wow-delay="0.5s">
 					<div class="row">
 						<div class="col-xs-12 col-md-8 col-md-offset-4">
-							<form:form action="dang-nhap" method="POST" modelAttribute="user">
-								<div class="row">
-									<div class="col-xs-12 col-md-7">
-										<div class="form-group">
-											<form:label path="name">Tên đăng nhập</form:label>
-											<form:input type="text" class="form-control bg-none"
-												placeholder="Tên đăng nhập..." path="username" id="name" />
-											<span id="errorName" style="color: red;"></span>
-										</div>
-									</div>
-								</div>
+							<form action="VerifyPassword" method="POST"
+								onsubmit="return validateOtp()">
 								<div class="space-20"></div>
 								<div class="row">
 									<div class="col-xs-12 col-md-7">
 										<div class="form-group">
-											<form:label path="password">Password</form:label>
-											<form:input type="password" class="form-control bg-none"
-												placeholder="Mật khẩu..." path="password" id="password" />
-											<span id="errorPassword" style="color: red;"></span>
+											<label for="email">Enter your OTP</label>
+											<input name="otp" type="text" class="form-control bg-none"
+												placeholder="OTP..." id="otp" />
 										</div>
 									</div>
 								</div>
@@ -101,16 +104,12 @@
 									<div class="col-xs-12 col-sm-6"
 										style="display: flex; align-items: center; justify-content: space-between;">
 										<button id="btnDN" type="submit" class="btn btn-default">
-											Đăng nhập<i class="fa fa-long-arrow-right"></i>
+											Gửi<i class="fa fa-long-arrow-right"></i>
 										</button>
-										<div>
-											<a style="cursor: pointer; color: #fff;" href="<c:url value="ForgotPassword"/>">Forgot password
-												?</a>
-										</div>
 									</div>
 								</div>
 
-							</form:form>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -133,98 +132,20 @@
 	<script src="<c:url value="assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value="assets/js/main.js"/>"></script>
+	
 	<script type="text/javascript">
-		 $(document)
-				.ready(
-						function() {
-							$("#errorName").hide();
-							$("#errorPassword").hide();
+		var serverOtp = "${otp}";
 
-							$("#name")
-									.focusout(
-											function() {
-												if ($("#name").val().length <= 0) {
-													$("#errorName")
-															.html(
-																	"Bạn chưa nhập tên đăng nhập");
-													$("#errorName").show();hf
-												} else {
-													$("#errorName").hide();
-												}
-											});
-
-							$("#password").focusout(
-									function() {
-										if ($("#password").val().length <= 0) {
-											$("#errorPassword").html(
-													"Bạn chưa nhập mật khẩu");
-											$("#errorPassword").show();
-										} else {
-											$("#errorPassword").hide();
-										}
-									});
-
-							$('#btnDN')
-									.click(
-											function() {
-												 if {
-													if ($("#password").val().length <= 0) {
-														$("#errorPassword")
-																.html(
-																		"Bạn chưa nhập mật khẩu");
-														$("#errorPassword")
-																.show();
-													} else {
-														$("#errorPassword")
-																.hide();
-													}
-													if ($("#name").val().length <= 0) {
-														$("#errorName")
-																.html(
-																		"Bạn chưa nhập tên đăng nhập");
-														$("#errorName").show();
-													} else {
-														$("#errorName").hide();
-													}
-												}
-
-											});
-						}); 
-						
-						
-					/* 	const usernameInput = document.getElementById('username');
-						const passwordInput = document.getElementById('password');
-						const errorUsernameSpan = document.getElementById('errorUsername');
-						const errorPasswordSpan = document.getElementById('errorPassword');
-						const submitButton = document.getElementById('btnDN');
-
-						submitButton.addEventListener('click', validateForm);
-
-						function validateForm() {
-						  const username = usernameInput.value.trim();
-						  const password = passwordInput.value.trim();
-
-						  let isValid = true;
-
-						  if (username === '') {
-						    isValid = false;
-						    errorUsernameSpan.textContent = 'Tên đăng nhập không được bỏ trống';
-						  } else {
-						    errorUsernameSpan.textContent = '';
-						  }
-
-						  if (password === '') {
-						    isValid = false;
-						    errorPasswordSpan.textContent = 'Mật khẩu không được bỏ trống';
-						  } else {
-						    errorPasswordSpan.textContent = '';
-						  }
-
-						  if (!isValid) {
-						    event.preventDefault(); // Prevent form submission if there are errors
-						  }
-						} */
-	</script>
-</body>
+		function validateOtp() {
+			var userOtp = document.getElementById("otp").value;
+			if (userOtp === serverOtp) {
+				return true; // Cho phép submit form
+			} else {
+				alert("OTP không chính xác. Vui lòng thử lại.");
+				return false; // Ngăn không cho submit form
+			}
+		}
+	</script></
+							body>
 
 </html>

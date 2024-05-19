@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto'
 	rel='stylesheet'>
 <!-- Title Page-->
-<title>QUẢN LÝ THÔNG BÁO</title>
+<title>Quản Lý Tác Giả</title>
 
 <!-- Fontfaces CSS-->
 <link href="<c:url value="/assets/css/font-face.css"/>" rel="stylesheet"
@@ -87,76 +87,47 @@
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Sửa thông báo</strong>
+										<strong>Thêm tác giả</strong>
 									</div>
 									<div class="card-body card-block">
-										<form:form method="POST" action="/QLTV/SuaThongBao/${id}"
-											modelAttribute="selectedNoti">
+										<form:form action="addAuthor" method="POST"
+											modelAttribute="insertAuthor" class="form-horizontal">
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="title" class="form-control-label">Tên thông báo</form:label>
+													<form:label path="name" class="form-control-label">Tên
+														tác giả</form:label>
 												</div>
 												<div class="col-12 col-md-4">
-													<form:input type="text" path="title" class="form-control"
-														required="required" defaultValue="${selectedNoti.title}" />
+													<form:input path="name" id="nameAuthor" type="text"
+														class="form-control" />
+													<span id="nameAuthor_error" style="color: red;"></span>
+												</div>
+
+												<div class="col col-md-2">
+													<form:label path="image" class="form-control-label">Ảnh tác giả</form:label>
+												</div>
+												<div class="col-12 col-md-4">
+													<form:input path="image" id="imageAuthor" type="file"
+														class="form-control" />
+													<span id="imageAuthor_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="content" class="form-control-label">Nội dung</form:label>
+													<form:label path="description" class="form-control-label">Mô tả</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:textarea rows="5" id="txtNoiDung" name="content"
-														path="content" class="col-md-12 form-control"
-														style="border: solid 1px green;"
-														defaultValue="${selectedNoti.content}" />
+													<form:textarea path="description" id="descriptionAuthor"
+														class="col-md-12 form-control"
+														style="border: solid 1px gray;" />
+													<span id="descriptionAuthor_error" style="color: red;"></span>
 												</div>
 											</div>
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="image" class="form-control-label">Hình ảnh</form:label>
-												</div>
-												<div class="col-12 col-md-10">
-													<form:input type="file" path="image" class="form-control"
-														accept="image/*" defaultValue="${selectedNoti.image}" />
-
-												</div>
-											</div>
-
-											<button type="button" class="btn btn-primary btn-danger"
-												data-toggle="modal" data-target="#staticBackdrop">Sửa</button>
-
-											<div class="modal fade" id="staticBackdrop"
-												data-backdrop="static" data-keyboard="false" tabindex="-1"
-												aria-labelledby="staticBackdropLabel" aria-hidden="true"
-												style="z-index: 1055 !important">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="staticBackdropLabel1">Chú
-																ý</h5>
-															<button type="button" class="close" data-dismiss="modal"
-																aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>
-														<div class="modal-body">
-															<span class="text-danger"> Bạn có muốn chắc sửa
-																thể loại </span>
-														</div>
-														<div class="modal-footer">
-															<button type="button"
-																class="btn btn-warning  btn-secondary"
-																data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-															<button type="submit" class="btn btn-danger ">
-																 Sửa
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
+											<button id="author_form" type="submit" disabled = "disabled"
+												class="btn btn-success btn-sm">
+												<i class="fa fa-plus"></i> Thêm
+											</button>
 										</form:form>
-
 									</div>
 
 								</div>
@@ -207,7 +178,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-
+	<script src="<c:url value="assets/js/validate_author.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";

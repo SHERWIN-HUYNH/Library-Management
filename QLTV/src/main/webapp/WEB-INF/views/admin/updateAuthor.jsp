@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto'
 	rel='stylesheet'>
 <!-- Title Page-->
-<title>QUẢN LÝ THÔNG BÁO</title>
+<title>QUẢN LÝ TÁC GIẢ</title>
 
 <!-- Fontfaces CSS-->
 <link href="<c:url value="/assets/css/font-face.css"/>" rel="stylesheet"
@@ -87,44 +87,50 @@
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Sửa thông báo</strong>
+										<strong>Sửa tác giả</strong>
 									</div>
 									<div class="card-body card-block">
-										<form:form method="POST" action="/QLTV/SuaThongBao/${id}"
-											modelAttribute="selectedNoti">
+										<form:form method="post" action="/QLTV/updateAuthor/${id}"
+											modelAttribute="editAuthor">
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="title" class="form-control-label">Tên thông báo</form:label>
+													<form:label path="name" class="form-control-label">Tên tác giả</form:label>
 												</div>
 												<div class="col-12 col-md-4">
-													<form:input type="text" path="title" class="form-control"
-														required="required" defaultValue="${selectedNoti.title}" />
+													<form:input type="text" id="nameAuthor" path="name"
+														class="form-control" required="required"
+														defaultValue="${editAuthor.name}" />
+													<span id="nameAuthor_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="content" class="form-control-label">Nội dung</form:label>
+													<form:label path="description" class="form-control-label">Description</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:textarea rows="5" id="txtNoiDung" name="content"
-														path="content" class="col-md-12 form-control"
+													<form:textarea rows="5" name="description"
+														id="descriptionAuthor" path="description"
+														class="col-md-12 form-control"
 														style="border: solid 1px green;"
-														defaultValue="${selectedNoti.content}" />
+														defaultValue="${editAuthor.description}" />
+													<span id="descriptionAuthor_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="image" class="form-control-label">Hình ảnh</form:label>
+													<form:label path="image" class="form-control-label">Ảnh tác giả</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input type="file" path="image" class="form-control"
-														accept="image/*" defaultValue="${selectedNoti.image}" />
-
+													<form:input type="file" path="image" id="imageAuthor"
+														class="form-control" accept="image/*"
+														defaultValue="${editAuthor.image}" />
+													<span id="imageAuthor_error" style="color: red;"></span>
 												</div>
 											</div>
 
-											<button type="button" class="btn btn-primary btn-danger"
-												data-toggle="modal" data-target="#staticBackdrop">Sửa</button>
+											<button type="button" id="author_form"
+												class="btn btn-primary btn-danger" data-toggle="modal"
+												data-target="#staticBackdrop">Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"
 												data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -142,15 +148,14 @@
 														</div>
 														<div class="modal-body">
 															<span class="text-danger"> Bạn có muốn chắc sửa
-																thể loại </span>
+																tác giả? </span>
 														</div>
 														<div class="modal-footer">
 															<button type="button"
 																class="btn btn-warning  btn-secondary"
 																data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
 															<button type="submit" class="btn btn-danger ">
-																 Sửa
-															</button>
+																Sửa</button>
 														</div>
 													</div>
 												</div>
@@ -207,7 +212,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-
+	<script src="<c:url value="assets/js/validate_author.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";
