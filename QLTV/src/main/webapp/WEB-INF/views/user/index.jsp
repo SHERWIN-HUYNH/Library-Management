@@ -85,7 +85,7 @@
 						<div class="jumbotron">
 							<h1 class="text-white">
 								Có hơn
-								<c:out value="${listDauSach.size() + listCuonSach.size() }"></c:out>
+								<c:out value="${books.size()}"></c:out>
 								cuốn sách ở đây
 							</h1>
 							<p class="text-white">Đến với thư viện đa năng của chúng tôi
@@ -259,7 +259,7 @@
 			</div>
 			<div class="space-120"></div>
 			<div class="row text-center">
-				<c:forEach var="category" items="${categories}" end="7">
+				<c:forEach var="category" items="${categories}" end="8">
 					<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInLeft"
 						data-wow-delay="0.1s">
 						<div class="category-item well blue text-cetnr">

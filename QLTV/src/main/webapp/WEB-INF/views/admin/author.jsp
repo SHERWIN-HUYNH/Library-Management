@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 <!-- Required meta tags-->
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="au theme template">
@@ -98,103 +98,7 @@ to {
 
 <body class="animsition" style="animation-duration: 900ms; opacity: 1;">
 	<div class="page-wrapper">
-		<!-- HEADER MOBILE-->
-		<header class="header-mobile d-block d-lg-none">
-			<div class="header-mobile__bar">
-				<div class="container-fluid">
-					<div class="header-mobile-inner">
-						<a class="logo" href="index.html"> <img
-							src="<c:url value= "/assets/images/icon/logo.png"/>"
-							alt="CoolAdmin">
-						</a>
-						<button class="hamburger hamburger--slider" type="button">
-							<span class="hamburger-box"> <span class="hamburger-inner"></span>
-							</span>
-						</button>
-					</div>
-				</div>
-			</div>
-			<nav class="navbar-mobile">
-				<div class="container-fluid">
-					<ul class="navbar-mobile__list list-unstyled">
-						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fa-tachometer-alt"></i>Mượn-trả sách
-						</a>
-							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li><a href="Admin.html">Mượn sách</a></li>
-								<li><a href="trasach.html">Trả sách</a></li>
-								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
-							</ul></li>
-						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fas fa-table"></i>Quản lí
-						</a>
-							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li><a href="index.html">Nhân viên</a></li>
-								<li><a href="index2.html">Đọc giả</a></li>
-								<li><a href="index2.html">Thông báo</a></li>
-								<li><a href="index2.html">Đầu sách</a></li>
-								<li><a href="<c:url value = "/authors"/>">Tác giả</a></li>
-								<li><a href="index2.html">Thể loại</a></li>
-								<li><a href="index2.html">Tài khoản</a></li>
-								<li><a href="index2.html">Danh sách mượn-trả</a></li>
-							</ul></li>
-						<li><a href="table.html"> <i class="fas fa-chart-bar"></i>Thống
-								kê
-						</a></li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<!-- END HEADER MOBILE-->
-
-		<!-- MENU SIDEBAR-->
-		<aside class="menu-sidebar d-none d-lg-block">
-			<div class="logo">
-				<a href="#"> <img
-					src="<c:url value= "/assets/images/icon/logo.png"/>"
-					alt="Cool Admin">
-				</a>
-			</div>
-			<div class="menu-sidebar__content js-scrollbar1 ps">
-				<nav class="navbar-sidebar">
-					<ul class="list-unstyled navbar__list">
-						<li class="active has-sub"><a class="js-arrow" href="#">
-								<i class="fas fa-tachometer-alt"></i>Nghiệp vụ thư viện
-						</a>
-							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="Admin.html">Mượn sách</a></li>
-								<li><a href="trasach.html">Trả sách</a></li>
-								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
-							</ul></li>
-						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fas fa-table"></i>Quản lí
-						</a>
-							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="index.html">Nhân viên</a></li>
-								<li><a href="index2.html">Đọc giả</a></li>
-								<li><a href="index2.html">Thông báo</a></li>
-								<li><a href="<c:url value = "/dausach"/>">Đầu sách</a></li>
-								<li><a href="<c:url value = "/authors"/>">Tác giả</a></li>
-								<li><a href="index2.html">Thể loại</a></li>
-								<li><a href="index2.html">Tài khoản</a></li>
-								<li><a href="index2.html">Danh sách mượn-trả</a></li>
-							</ul></li>
-						<li><a href="table.html"> <i class="fas fa-chart-bar"></i>Thống
-								kê
-						</a></li>
-					</ul>
-				</nav>
-				<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-					<div class="ps__thumb-x" tabindex="0"
-						style="left: 0px; width: 0px;"></div>
-				</div>
-				<div class="ps__rail-y" style="top: 0px; right: 0px;">
-					<div class="ps__thumb-y" tabindex="0"
-						style="top: 0px; height: 0px;"></div>
-				</div>
-			</div>
-		</aside>
-		<!-- END MENU SIDEBAR-->
+		<%@include file="/WEB-INF/views/shared/sidebar.jsp"%>
 
 		<!-- PAGE CONTAINER-->
 		<div class="page-container">
