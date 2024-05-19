@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<nav class="navbar">
+		<nav class="navbar">
 				<div class="container">
 					<!--Toggle-button-->
 					<!--Active Reader-->
@@ -28,7 +28,7 @@
 												style="color: black"><i class="icofont icofont-user"></i></span>
 												${sessionScope.LoginReader.name}
 										</a></li>
-										<li><a href="UserChangePassword.jsp" style="color: black">
+										<li><a href="<c:url value="UserChangePassword"/>" style="color: black">
 												<span style="color: black"><i
 													class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
 										</a></li>
@@ -68,7 +68,7 @@
 												style="color: black"><i class="icofont icofont-user"
 													style="color: black"></i></span> ${sessionScope.loginAdmin.name}
 										</a></li>
-										<li><a href="UserChangePassword.jsp" style="color: black">
+										<li><a href="<c:url value="UserChangePassword"/>" style="color: black">
 												<span style="color: black"><i
 													class="icofont icofont-ui-password" style="color: black"></i></span>
 												Đổi mật khẩu

@@ -34,14 +34,14 @@
 								class="fas fas fa-table"></i>Quản lí
 						</a>
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li><a href="index.html">Nhân viên</a></li>
-								<li><a href="index2.html">Đọc giả</a></li>
 								<li><a href="<c:url value="ThemThongBao"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
+
 								<li><a href="index2.html">Tài khoản</a></li>
 								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+
 							</ul></li>
 						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
@@ -75,14 +75,14 @@
 								class="fas fas fa-table"></i>Quản lí
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="index.html">Nhân viên</a></li>
-								<li><a href="index2.html">Đọc giả</a></li>
 									<li><a href="<c:url value="ThongBaoQuanLy"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
+
 								<li><a href="index2.html">Tài khoản</a></li>
 								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+
 							</ul></li>
 						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
