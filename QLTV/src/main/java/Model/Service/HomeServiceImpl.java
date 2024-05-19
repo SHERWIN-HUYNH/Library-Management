@@ -70,6 +70,10 @@ public class HomeServiceImpl implements IHomeService{
 		return booksDtoDao.GetDataBooksDto();
 	}
 	
+	public BooksDto GetAllFromId(int id) {
+		return booksDtoDao.GetAllFromId(id);
+	}
+	
 	public List<Notification> GetDataNotification() {
 		return notificationDao.GetDataNotification();
 	}
@@ -89,5 +93,4 @@ public class HomeServiceImpl implements IHomeService{
 	public List<ChiTietMuonTra> getDataChiTietMuonTra() {
 		return ctmtDao.GetDataChiTietMuonTra();
 	}
-	
 }

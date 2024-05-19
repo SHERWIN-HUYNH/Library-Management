@@ -100,20 +100,26 @@ $(function(){
 			$("#username_error").hide();
 		}
 	}
-	function checkMail(){
-		if($("#mail").val().length == 0){
-			$("#mail_error").html("Vui lòng nhập vào mail");
-			mail_error = true;
-			$("#mail_error").show();
-		}else if(!($("#mail").text().includes("@")) && !($("#mail").text().includes("."))){
-			$("#mail_error").html("Vui lòng nhập đúng định dạng");
-			mail_error = true;
-			$("#mail_error").show();
-		}
-		else{
-			$("#mail_error").hide();
-			mail_error = false;
-		}
+	function checkMail() {
+	    var email = $("#mail").val();
+	    var mail_error = false;
+	    
+	    if(email.length == 0){
+	        $("#mail_error").html("Vui lòng nhập vào mail");
+	        mail_error = true;
+	        $("#mail_error").show();
+	    } else {
+	        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	        if(!emailPattern.test(email)){
+	            $("#mail_error").html("Vui lòng nhập đúng định dạng");
+	            mail_error = true;
+	            $("#mail_error").show();
+	        } else {
+	            $("#mail_error").hide();
+	            mail_error = false;
+	        }
+	    }
+	    return mail_error;
 	}
 	function checkPassword(){
 		if($("#password").val().length < 6 || $("#password_error").val().length > 15){

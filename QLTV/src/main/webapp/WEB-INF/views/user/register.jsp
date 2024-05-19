@@ -236,30 +236,17 @@
 							$("#emailerror").hide();
 						}
 					}
-
-					$("#register").click(
-							function() {
-								checkName();
-								checkEmail();
-								checkAddress();
-							
-								 function(result) {
-										if (result == "errorEmail") {
-											$("#addresserror").html(
-													"Email đã được sử dụng");
-											email_error = true;
-											$("#emailerror").show();
-										} else {
-											email_error = false;
-											$("#emailerror").hide();
-											alert("Đăng kí thành công");
-											location.reload();
-										}
-									});
-								}
-							});
-
+			
+					
 				});
+	</script>
+	<script type="text/javascript">
+		var message = "${message}";
+		if (message && message.trim().length > 0) {
+			// Display an alert with the message content
+			alert(message);
+		}
+		
 	</script>
 
 </body>

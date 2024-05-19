@@ -20,4 +20,16 @@ public class CategoryServiceImpl {
 	public int addCategory(Categories c) {
 		return categoryDao.addCategory(c);
 	}
+	
+	public int deleteCategory(int id) {
+		return categoryDao.deleteCategory(id);
+	}
+	
+	public Categories getCateFromId(int id) {
+		return categoryDao.getCateFromId(id);
+	}
+	
+	public int updateCategory(int id ,Categories c) {
+		return categoryDao.updateCategory(id, c);
+	}
 }
