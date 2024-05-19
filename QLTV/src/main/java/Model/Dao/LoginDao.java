@@ -23,6 +23,15 @@ public class LoginDao extends BaseDao{
 		        return reader.get(0); // Trả về đọc giả đầu tiên nếu có
 		    }
 	}
+	public Readers GetReaderByEmail(String email) {
+		  String sql = "SELECT * FROM reader WHERE email = ?"; 
+		  List<Readers> reader = _jdbcTemplate.query(sql, new ReadersMapper(), email);
+		  if (reader.isEmpty()) {
+		        return null;
+		    } else {
+		        return reader.get(0); 
+		    }
+	}
 	
 	public Admin GetAdminByAccount(String username,String password) {
 		String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
@@ -30,7 +39,7 @@ public class LoginDao extends BaseDao{
 		 if (user.isEmpty()) {
 		        return null;
 		    } else {
-		        return user.get(0); // Trả về người dùng đầu tiên nếu có
+		        return user.get(0); 
 		    }
 	}
 }

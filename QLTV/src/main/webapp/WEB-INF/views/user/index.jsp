@@ -516,5 +516,13 @@
 	<script src="<c:url value= "/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value= "/assets/js/main.js"/>"></script>
+	<script type="text/javascript">
+		var message = "${message}";
+		if (message && message.trim().length > 0) {
+			// Display an alert with the message content
+			alert(message);
+		}
+		
+	</script>
 </body>
 </html>

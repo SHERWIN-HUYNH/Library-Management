@@ -5,6 +5,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Model.Dao.ChangePasswordDao;
+import Model.Dao.ForgotPasswordDao;
 import Model.Dao.LoginDao;
 import Model.Dao.RegisterDao;
 import Model.Entity.Admin;
@@ -17,7 +19,10 @@ public class AccountServiceImpl implements IAccountService{
 	LoginDao loginDao = new LoginDao();
 	@Autowired
 	RegisterDao registerDao = new RegisterDao();
-	
+	@Autowired
+	ChangePasswordDao changePassword = new ChangePasswordDao();
+	@Autowired
+	ForgotPasswordDao forgotPassword = new ForgotPasswordDao();
 	// REGISTER
 	public int AddAccount(Readers reader) {
 		reader.setPassword(BCrypt.hashpw(reader.getPassword(),BCrypt.gensalt(12)));
@@ -45,5 +50,18 @@ public class AccountServiceImpl implements IAccountService{
 			return admin;
 		}
 		return null;
+	}
+	
+	// CHANGE PASSWORD
+	public int ChangePassword(String password, int id) {
+		return changePassword.ChangePassword(BCrypt.hashpw(password,BCrypt.gensalt(12)), id);
+	}
+	// CEHCK EMAIL EXISTED ? 
+	public int Checkemail(String email) {
+		return forgotPassword.CheckEmail(email);
+	}
+	public Readers CheckAccByEmail(String email) {
+		Readers reader = loginDao.GetReaderByEmail(email);
+		return reader;
 	}
 }

@@ -110,7 +110,6 @@
 														path="content" class="col-md-12 form-control"
 														style="border: solid 1px green;"
 														defaultValue="${selectedNoti.content}" />
-
 												</div>
 											</div>
 											<div class="row form-group">
