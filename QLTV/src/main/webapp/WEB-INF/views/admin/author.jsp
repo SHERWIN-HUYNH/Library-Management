@@ -120,14 +120,27 @@ to {
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Thêm tác giả</strong>
+										<strong>Quản lý tác giả</strong>
 									</div>
 									<div class="card-body card-block">
-										<input type="button" value="Thêm tác giả"
-											class="btn btn-primary"
-											onclick="location.href='${pageContext.request.contextPath}/addAuthor'">
+										<div class="row form-group">
+											<div class="col col-md-5">
+												<input type="button" value="Thêm tác giả"
+													class="btn btn-primary"
+													onclick="location.href='${pageContext.request.contextPath}/addAuthor'">
+											</div>
+											<div class="col-12 col-md-7">
+												<form action="${pageContext.request.contextPath}/authors/search" method="post">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Nhập tên tác giả" name="name"/>
+                                                        <div class="input-group-btn">
+                                                            <input type="submit" value="Search" class="btn btn-primary icofont icofont-search-alt-2">
+                                                        </div>
+                                                    </div>
+                                                </form>
+											</div>
+										</div>
 									</div>
-
 									<div class="col-12 col-md-12">
 										<div class="table-responsive table--no-card m-b-30">
 											<table style="width: 100%"

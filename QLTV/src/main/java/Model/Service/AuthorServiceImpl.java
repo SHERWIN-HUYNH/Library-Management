@@ -28,4 +28,7 @@ public class AuthorServiceImpl {
 	public int deleteAuthor(int id) {
 		return authorDao.DeleteAuthor(id);
 	}
+	public List<Authors> SearchAuthor(String name) {
+		return authorDao.searchAuthor(name);
+	}
 }
