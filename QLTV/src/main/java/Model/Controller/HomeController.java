@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import Model.Entity.SearchBook;
+
 @Controller
 public class HomeController extends BaseController {
 	@RequestMapping(value = { "/", "/trang-chu" })
@@ -14,6 +17,7 @@ public class HomeController extends BaseController {
 		_mvShare.addObject("categories", _HomeService.getDataCategories());
 		_mvShare.addObject("booksDto", _HomeService.GetDataBooksDto());
 		_mvShare.addObject("notifications", _HomeService.GetDataNotification());
+		_mvShare.addObject("search", new SearchBook());
 		_mvShare.setViewName("user/index");
 		return _mvShare;
 	}
@@ -24,6 +28,7 @@ public class HomeController extends BaseController {
 		mv.addObject("notifications", _HomeService.GetDataNotification());
 		return mv;
 	}
+
 	@RequestMapping(value = "/sach")
 	public ModelAndView Sach() {
 		ModelAndView mv = new ModelAndView("user/sach");
