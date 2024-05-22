@@ -29,7 +29,7 @@ public class BooksDtoDao extends BaseDao {
 	}
 
 	
-	public List<BooksDto> getDataSearchBookDto(String nameBook) {
+	public List<BooksDto> getDataSearchBookDto(String name) {
         List<BooksDto> list = new ArrayList<BooksDto>();
         String sql = "SELECT book.id as bookId,book.name AS bookName, book.image AS bookImage, book.amount AS bookAmount, "
                    + "book.dayCreated AS bookDayCreated, book.description AS bookDescription, "
@@ -39,7 +39,7 @@ public class BooksDtoDao extends BaseDao {
                    + "JOIN author ON book.authorId = author.id "
                    + "JOIN category ON book.categoryId = category.id "
                    + "WHERE book.name LIKE ? OR author.name LIKE ?";
-            list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + nameBook + "%", "%" + nameBook + "%");
+            list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%");
        
         return list;
     }

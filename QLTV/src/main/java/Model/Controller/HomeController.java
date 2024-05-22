@@ -10,6 +10,7 @@ import Model.Entity.SearchBook;
 
 @Controller
 public class HomeController extends BaseController {
+	
 	@RequestMapping(value = { "/", "/trang-chu" })
 	public ModelAndView Index() {
 		_mvShare.addObject("books", _HomeService.GetDataBooks());
