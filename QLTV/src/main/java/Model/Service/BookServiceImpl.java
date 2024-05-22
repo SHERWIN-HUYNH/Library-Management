@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Model.Dao.AddBookDao;
 import Model.Dao.AuthorDao;
+import Model.Dao.BooksDtoDao;
 import Model.Dao.CategoryDao;
 import Model.Dao.HomeDao;
 import Model.Dto.BooksDto;
@@ -28,6 +29,9 @@ public class BookServiceImpl {
 	@Autowired
 	private CategoryDao categoryDao;
 	
+	@Autowired
+	private BooksDtoDao bookDtoDao;
+	
 	public List<Books> GetDataBooks() {
 		return booksDao.GetDataBooks();
 	}
@@ -39,13 +43,21 @@ public class BookServiceImpl {
 	public List<Categories> getDataCategories() {
 		return categoryDao.GetDataCategories();
 	}
+	
 	public int insertBook(BooksDto books) {
 		return addbookDao.insertBook(books);
 	}
+	
 	public Authors GetAuthorByBook(Authors author) {
 		return addbookDao.GetAuthorByName(author);
 	}
+	
 	public int insertAuthor(Authors authors) {
 		return addbookDao.insertAuthor(authors);
 	}
+	
+	public List<BooksDto> GetDataSearchBookDto(String book) {
+		return bookDtoDao.getDataSearchBookDto(book);
+	}
+	
 }

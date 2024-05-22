@@ -62,8 +62,8 @@ public class BooksDto {
 	public String getBookDayCreated() {
 		return bookDayCreated;
 	}
-	public void setBookDayCreated(String bookDayCreated) {
-		this.bookDayCreated = bookDayCreated;
+	public void setBookDayCreated(String date) {
+		this.bookDayCreated = date;
 	}
 	public String getBookImage() {
 		return bookImage;

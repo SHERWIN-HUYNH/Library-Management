@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +86,7 @@
 						<div class="jumbotron">
 							<h1 class="text-white">
 								Có hơn
-								<c:out value="${listDauSach.size() + listCuonSach.size() }"></c:out>
+								<c:out value="${books.size()}"></c:out>
 								cuốn sách ở đây
 							</h1>
 							<p class="text-white">Đến với thư viện đa năng của chúng tôi
@@ -107,38 +108,26 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#book">Sách</a></li>
-									<li><a data-toggle="tab" href="#author">Tác giả</a></li>
+									<li class="active"><a data-toggle="tab" href="#book">Tìm kiếm sách</a></li>
 								</ul>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="book">
-										<form action="DauSachDanhSach" method="get">
+										<form:form action="timKiemSach" method="POST"
+											modelAttribute="search">
 											<div class="input-group">
-												<input type="text" class="form-control"
-													placeholder="Enter book name" name="txtSearch">
+												<form:input type="text" class="form-control"
+													placeholder="Nhập tên sách hoặc tác giả muốn tìm" path="bookName" name="txtSearch" />
 												<div class="input-group-btn">
 													<button type="submit" class="btn btn-primary">
 														<i class="icofont icofont-search-alt-2"></i>
 													</button>
 												</div>
 											</div>
-										</form>
+										</form:form>
 									</div>
-									<div class="tab-pane fade" id="author">
-										<form action="DauSachDanhSach" method="get">
-											<div class="input-group">
-												<input type="text" class="form-control"
-													placeholder="Enter author name" name="txtSearch">
-												<div class="input-group-btn">
-													<button type="submit" class="btn btn-primary">
-														<i class="icofont icofont-search-alt-2"></i>
-													</button>
-												</div>
-											</div>
-										</form>
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -259,7 +248,7 @@
 			</div>
 			<div class="space-120"></div>
 			<div class="row text-center">
-				<c:forEach var="category" items="${categories}" end="7">
+				<c:forEach var="category" items="${categories}" end="8">
 					<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInLeft"
 						data-wow-delay="0.1s">
 						<div class="category-item well blue text-cetnr">
@@ -516,5 +505,13 @@
 	<script src="<c:url value= "/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value= "/assets/js/main.js"/>"></script>
+	<script type="text/javascript">
+		var message = "${message}";
+		if (message && message.trim().length > 0) {
+			// Display an alert with the message content
+			alert(message);
+		}
+		
+	</script>
 </body>
 </html>

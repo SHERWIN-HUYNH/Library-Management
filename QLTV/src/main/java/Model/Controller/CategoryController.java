@@ -1,8 +1,10 @@
+
 package Model.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,6 +37,42 @@ public class CategoryController {
 		else {
 			mv.addObject("message", "Thêm thất bại");
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "deleteCategory/{categoryId}", method = RequestMethod.POST)
+	public ModelAndView deleteAuthor(@PathVariable int categoryId, Categories c) {
+		ModelAndView mv = new ModelAndView("admin/quanLyTheLoai");
+		int rs = category.deleteCategory(categoryId); 
+		if (rs == 1) {
+			mv.addObject("message", "Xóa thành công");
+			mv.addObject("categories",category.getDataCategories());
+			return new ModelAndView("redirect:/category"); 
+		} else {
+			mv.addObject("message", "Xóa thất bại");
+			mv.addObject("categories",category.getDataCategories());
+			return new ModelAndView("redirect:/category"); 
+		}
+	}
+	
+	@RequestMapping(value = "/editCategory/{categoryId}", method = RequestMethod.GET)
+	public ModelAndView editGet(@PathVariable int categoryId) {
+		ModelAndView mv = new ModelAndView("admin/SuaTheLoai");
+		mv.addObject("selectCategory", category.getCateFromId(categoryId));
+		mv.addObject("id", categoryId);
+		return mv;
+	}
+
+	@RequestMapping(value = "/editCategory/{categoryId}", method = RequestMethod.POST)
+	public ModelAndView editPost(@PathVariable int categoryId,
+			@ModelAttribute("selectCategory") Categories c) {
+		ModelAndView mv = new ModelAndView("admin/SuaTheLoai");
+		int rs = category.updateCategory(categoryId, c);
+		if (rs > 0) {
+			mv.addObject("message", "Sửa thành công");
+
+		} else
+			mv.addObject("message", "Sửa thất bại");
 		return mv;
 	}
 }

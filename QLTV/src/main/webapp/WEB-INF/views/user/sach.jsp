@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 
@@ -17,32 +18,30 @@
 
 <!-- Place favicon.ico in the root directory -->
 <link rel="apple-touch-icon"
-	href="<c:url value= "/assets/images/apple-touch-icon.png"/>">
+	href="<c:url value='/assets/images/apple-touch-icon.png'/>">
 <link rel="shortcut icon" type="image/ico"
-	href="<c:url value= "/assets/images/favicon.ico"/>">
+	href="<c:url value='/assets/images/favicon.ico'/>">
 
 <!-- Plugin-CSS -->
 <link rel="stylesheet"
-	href="<c:url value= "/assets/css/bootstrap.min.css"/>">
+	href="<c:url value='/assets/css/bootstrap.min.css'/>">
 <link rel="stylesheet"
-	href="<c:url value= "/assets/css/owl.carousel.min.css"/>">
-<link rel="stylesheet" href="<c:url value= "/assets/css/icofont.css"/>">
-<link rel="stylesheet" href="<c:url value= "/assets/css/animate.css"/>">
+	href="<c:url value='/assets/css/owl.carousel.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/assets/css/icofont.css'/>">
+<link rel="stylesheet" href="<c:url value='/assets/css/animate.css'/>">
 <link rel="stylesheet"
-	href="<c:url value= "/assets/css/cardslider.css"/>">
+	href="<c:url value='/assets/css/cardslider.css'/>">
 <link rel="stylesheet"
-	href="<c:url value= "/assets/css/responsiveslides.css"/>">
+	href="<c:url value='/assets/css/responsiveslides.css'/>">
 
 <!-- Main-Stylesheets -->
+<link rel="stylesheet" href="<c:url value='/assets/css/normalize.css'/>">
+<link rel="stylesheet" href="<c:url value='/assets/css/overright.css'/>">
+<link rel="stylesheet" href="<c:url value='/assets/css/theme.css'/>">
+<link rel="stylesheet" href="<c:url value='/assets/css/style.css'/>">
 <link rel="stylesheet"
-	href="<c:url value= "/assets/css/normalize.css"/>">
-<link rel="stylesheet"
-	href="<c:url value= "/assets/css/overright.css"/>">
-<link rel="stylesheet" href="<c:url value= "/assets/css/theme.css"/>">
-<link rel="stylesheet" href="<c:url value= "/assets/css/style.css"/>">
-<link rel="stylesheet"
-	href="<c:url value= "/assets/css/responsive.css"/>">
-<script src="<c:url value= "/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
+	href="<c:url value='/assets/css/responsive.css'/>">
+<script src="<c:url value='/assets/js/vendor/modernizr-2.8.3.min.js'/>"></script>
 
 </head>
 
@@ -50,7 +49,8 @@
 	<header class="relative" id="sc1">
 		<!-- Header-background-markup -->
 		<div class="overlay-bg relative">
-			<img src="<c:url value= "/assets/images/slide/slide1.jpg"/>" alt="">
+			<img src="<c:url value= "/assets/images/slide/slide1.jpg"/>"
+				alt="library">
 		</div>
 		<!-- Mainmenu-markup-start -->
 		<div class="mainmenu-area navbar-fixed-top affix-top" data-spy="affix"
@@ -64,52 +64,12 @@
 							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-
+						<!--Logo-->
+						<!-- <a href="#sc1" class="navbar-left show"><img src="images/logo.png" alt="library"></a> -->
 						<div class="space-10"></div>
 					</div>
-					<!--Toggle-button-->
-
-					<!--Active User-->
-					<div class="nav navbar-right">
-						<div class="active-user navbar-left active">
-							<ul class="list-unstyled">
-								<li><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown"> <img
-										src="<c:url value= "/assets/images/active_user.png"/>"
-										class="img-circle img-thumbnail" alt="library">
-								</a>
-									<ul class="dropdown-menu">
-										<li><a href="#"> <span><i
-													class="icofont icofont-user"></i></span> Thông tin cá nhân
-										</a></li>
-										<!-- <li>
-                                            <a href="#"> <span><i class="icofont icofont-notification"></i></span> Notifications</a>
-                                        </li> -->
-										<li><a href="#"> <span><i
-													class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
-										</a></li>
-										<li><a href="#"> <span><i
-													class="icofont icofont-read-book"></i></span> Sách của tôi
-										</a></li>
-										<li><a href="#"> <span><i
-													class="icofont icofont-logout"></i></span> Đăng xuất
-										</a></li>
-									</ul></li>
-							</ul>
-						</div>
-					</div>
 					<!--Mainmenu list-->
-					<div class="navbar-right in fade" id="mainmenu">
-						<ul class="nav navbar-nav nav-white text-uppercase">
-							<li><a href="<c:url value= "/"/>">Trang chủ</a></li>
-							<li><a href="#">Giới thiệu</a></li>
-							<li><a href="<c:url value= "/notification"/>">Thông báo</a>
-							</li>
-							<li class="active"><a href="<c:url value= "/sach"/>">Sách</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+					<%@include file="/WEB-INF/views/shared/header.jsp"%>
 			</nav>
 		</div>
 		<div class="space-100"></div>
@@ -145,46 +105,43 @@
 				<!-- Sidebar-Start -->
 				<div class="col-xs-12 col-md-2">
 					<aside>
-						<div class="sigle-sidebar">
+						<div class="single-sidebar">
 							<h4>
 								<i class="icofont icofont-listine-dots"></i> Danh mục
 							</h4>
 							<hr>
 							<ul class="list-unstyled menu-tip">
 								<c:forEach var="category" items="${categories}">
-									 <li><a href="#"><c:out value="${category.name}"/></a></li> 
+									<li><a href="#"><c:out value="${category.name}" /></a></li>
 								</c:forEach>
 							</ul>
 						</div>
 						<div class="space-20"></div>
-
 					</aside>
 				</div>
 				<!-- Sidebar-End -->
 				<div class="col-xs-12 col-md-10 pull-right">
 					<h4>Tìm kiếm</h4>
 					<div class="space-5"></div>
-					<form action="#">
+					<form:form action="${pageContext.request.contextPath}/timKiemSach"
+						method="POST" modelAttribute="search">
 						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Nhập tên sách hoặc tên tác giả">
+							<form:input type="text" class="form-control"
+								placeholder="Nhập tên sách muốn tìm" path="bookName"
+								id="tenSach" />
 							<div class="input-group-btn">
 								<button type="submit" class="btn btn-primary">
 									<i class="icofont icofont-search-alt-2"></i>
 								</button>
 							</div>
 						</div>
-					</form>
+					</form:form>
 					<div class="space-30"></div>
-					<div class="row">
+					 <div class="row">
 						<div class="pull-left col-xs-12 col-sm-5 col-md-6">
-							<!-- <p>Kết quả <a href="#" class="text-primary">"How To Be a Designer"</a></p> -->
-							<p>
-								<strong>6</strong> of <strong>76</strong> cuốn sách được tìm
-								thấy
-							</p>
+							<p><strong>${booksDto.size()}</strong> cuốn sách được tìm thấy</p>
 						</div>
-					</div>
+					</div> 
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
@@ -193,7 +150,10 @@
 								<div class="category-item well yellow">
 									<div class="media">
 										<div class="media-left">
-											<img src="<c:url value='/assets/images/book/${book.bookImage}'/>" class="media-object" style="width: 120px; height: 150px;" alt="">
+											<img
+												src="<c:url value='/assets/images/book/${book.bookImage}'/>"
+												class="media-object" style="width: 120px; height: 150px;"
+												alt="">
 										</div>
 										<div class="media-body">
 											<h4>${book.bookName}</h4>
@@ -201,43 +161,37 @@
 											<h6>Thể loại: ${book.categoryName}</h6>
 											<div class="space-10"></div>
 											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="books.html" class="text-primary">See the Book</a>
+											<a href="<c:url value = "/bookDetail/${book.bookId}"/>" class="text-primary">See the Book</a>
 										</div>
 									</div>
 								</div>
-							</div> 
+							</div>
 						</c:forEach>
-
-					
-					<div class="space-60"></div>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="shop-pagination pull-right">
-								<ul id="pagination-demo" class="pagination-sm pagination">
-									<li class="page-item first disabled"><a href="#"
-										class="page-link"><i class="icofont icofont-double-left"></i></a></li>
-									<li class="page-item prev disabled"><a href="#"
-										class="page-link"><i class="icofont icofont-simple-left"></i></a></li>
-									<li class="page-item active"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item"><a href="#" class="page-link">3</a></li>
-<!-- 									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a href="#" class="page-link">6</a></li>
-									<li class="page-item"><a href="#" class="page-link">7</a></li> -->
-									<li class="page-item next"><a href="#" class="page-link"><i
-											class="icofont icofont-simple-right"></i></a></li>
-									<li class="page-item last"><a href="#" class="page-link"><i
-											class="icofont icofont-double-right"></i></a></li>
-								</ul>
+						<div class="space-60"></div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="shop-pagination pull-right">
+									<ul id="pagination-demo" class="pagination-sm pagination">
+										<li class="page-item first disabled"><a href="#"
+											class="page-link"><i class="icofont icofont-double-left"></i></a></li>
+										<li class="page-item prev disabled"><a href="#"
+											class="page-link"><i class="icofont icofont-simple-left"></i></a></li>
+										<li class="page-item active"><a href="#"
+											class="page-link">1</a></li>
+										<li class="page-item"><a href="#" class="page-link">2</a></li>
+										<li class="page-item"><a href="#" class="page-link">3</a></li>
+										<li class="page-item next"><a href="#" class="page-link"><i
+												class="icofont icofont-simple-right"></i></a></li>
+										<li class="page-item last"><a href="#" class="page-link"><i
+												class="icofont icofont-double-right"></i></a></li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-		</div>
-		<div class="space-80"></div>
+			<div class="space-80"></div>
 	</section>
 	<!-- Footer-Area -->
 	<footer class="black-bg text-white">
@@ -245,8 +199,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
-					<a href="#"><img
-						src="<c:url value= "/assets/images/logo.png"/>" alt="library"></a>
+					<a href="#"><img src="<c:url value='/assets/images/logo.png'/>"
+						alt="library"></a>
 					<div class="space-20"></div>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
 						gravida, quam vitae est Sed non eros elementum nulla sodales
@@ -298,21 +252,20 @@
 	<!-- Footer-Area-End -->
 
 	<!-- Vandor-JS -->
-	<script src="<c:url value= "/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
-	<script src="<c:url value= "/assets/js/vendor/bootstrap.min.js"/>"></script>
+	<script src="<c:url value='/assets/js/vendor/jquery-1.12.4.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/vendor/bootstrap.min.js'/>"></script>
 	<!-- Plugin-JS -->
-	<script src="<c:url value= "/assets/js/owl.carousel.min.js"/>"></script>
-	<script src="<c:url value= "/assets/js/responsiveslides.min.js"/>"></script>
-	<script src="<c:url value= "/assets/js/jquery.cardslider.min.js"/>"></script>
-	<script src="<c:url value= "/assets/js/pagination.js"/>"></script>
-	<script src="<c:url value= "/assets/js/scrollUp.min.js"/>"></script>
-	<script src="<c:url value= "/assets/js/wow.min.js"/>"></script>
-	<script src="<c:url value= "/assetsjs/plugins.js"/>"></script>
+	<script src="<c:url value='/assets/js/owl.carousel.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/responsiveslides.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/jquery.cardslider.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/pagination.js'/>"></script>
+	<script src="<c:url value='/assets/js/scrollUp.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/wow.min.js'/>"></script>
+	<script src="<c:url value='/assets/js/plugins.js'/>"></script>
 	<!-- Active-JS -->
-	<script src="<c:url value= "/assetsjs/js/main.js"/>"></script>
+	<script src="<c:url value='/assets/js/main.js'/>"></script>
 	<a id="scrollUp" href="#top"
 		style="position: fixed; z-index: 2147483647; display: none;"><i
 		class="icofont icofont-long-arrow-up"></i></a>
-
 </body>
 </html>

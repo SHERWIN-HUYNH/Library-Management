@@ -13,8 +13,10 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico in the root directory -->
-<link rel="apple-touch-icon" href="<c:url value ="/assets/images/apple-touch-icon.png"/>">
-<link rel="shortcut icon" type="image/ico" href="<c:url value ="/assets/favicon.ico" />"/>
+<link rel="apple-touch-icon"
+	href="<c:url value ="/assets/images/apple-touch-icon.png"/>">
+<link rel="shortcut icon" type="image/ico"
+	href="<c:url value ="/assets/favicon.ico" />" />
 <!-- Plugin-CSS -->
 <link rel="stylesheet"
 	href="<c:url value= "/assets/css/bootstrap.min.css"/>">
@@ -46,34 +48,7 @@
 		<!-- Mainmenu-markup-start -->
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
-			<%-- <nav class="navbar">
-				<div class="container">
-					<div class="navbar-header">
-						<div class="space-10"></div>
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#mainmenu">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<!--Logo-->
-						<!-- <a href="#sc1" class="navbar-left show"><img src="images/logo.png" alt="library"></a> -->
-						<div class="space-10"></div>
-					</div>
-					<!--Mainmenu list-->
-					<div class="navbar-right in fade" id="mainmenu">
-						<ul class="nav navbar-nav nav-white text-uppercase">
-							<li><a href="<c:url value ="trang-chu"/>">Trang chủ</a></li>
-							<li><a href="#">Giới thiệu</a></li>
-							<li><a href="notification.html">Thông báo</a></li>
-							<li><a href="books.html">Sách</a></li>
-							<li class="active"><a
-								href="<c:url value ="dang-nhap" />">Đăng
-									nhập</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav> --%>
-			<%@include file ="/WEB-INF/views/shared/header.jsp" %>
+			<%@include file="/WEB-INF/views/shared/header.jsp"%>
 		</div>
 		<div class="space-100"></div>
 		<!-- Mainmenu-markup-end -->
@@ -85,7 +60,7 @@
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
 						<div class="jumbotron">
 							<h1 class="text-white">Đăng nhập</h1>
-							<h1 class="text-white"> ${statusLG}</h1>
+							<h1 class="text-white">${statusLG}</h1>
 						</div>
 						<div class="title-bar white">
 							<ul class="list-inline list-unstyled">
@@ -99,14 +74,13 @@
 				<div class="row wow fadeInUp" data-wow-delay="0.5s">
 					<div class="row">
 						<div class="col-xs-12 col-md-8 col-md-offset-4">
-							<form:form action="dang-nhap" method="POST" modelAttribute="user" >
+							<form:form action="dang-nhap" method="POST" modelAttribute="user">
 								<div class="row">
 									<div class="col-xs-12 col-md-7">
 										<div class="form-group">
-										<form:label path="name">Tên đăng nhập</form:label>
-											<form:input type="text"
-												class="form-control bg-none" placeholder="Tên đăng nhập..."
-												path="username" id="name"/>
+											<form:label path="name">Tên đăng nhập</form:label>
+											<form:input type="text" class="form-control bg-none"
+												placeholder="Tên đăng nhập..." path="username" id="name" />
 											<span id="errorName" style="color: red;"></span>
 										</div>
 									</div>
@@ -115,20 +89,24 @@
 								<div class="row">
 									<div class="col-xs-12 col-md-7">
 										<div class="form-group">
-										<form:label path="password">Password</form:label>
-											<form:input type="password"
-												class="form-control bg-none" placeholder="Mật khẩu..."
-												path="password" id="password"/>
+											<form:label path="password">Password</form:label>
+											<form:input type="password" class="form-control bg-none"
+												placeholder="Mật khẩu..." path="password" id="password" />
 											<span id="errorPassword" style="color: red;"></span>
 										</div>
 									</div>
 								</div>
 								<div class="space-20"></div>
 								<div class="row">
-									<div class="col-xs-12 col-sm-6">
+									<div class="col-xs-12 col-sm-6"
+										style="display: flex; align-items: center; justify-content: space-between;">
 										<button id="btnDN" type="submit" class="btn btn-default">
 											Đăng nhập<i class="fa fa-long-arrow-right"></i>
 										</button>
+										<div>
+											<a style="cursor: pointer; color: #fff;" href="<c:url value="ForgotPassword"/>">Forgot password
+												?</a>
+										</div>
 									</div>
 								</div>
 
