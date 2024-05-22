@@ -16,14 +16,15 @@ public class BooksDtoDao extends BaseDao {
 	
 	public List<BooksDto> GetDataBooksDto() {
 		List<BooksDto> list = new ArrayList<BooksDto>();
-		String sql = "SELECT  book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
+		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
 				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
-				+ "author.name as authorName, author.image as authorImage, author.description as authorDescription"
-				+ ", category.name as categoryName FROM book,author, category WHERE book.authorId=author.id "
+				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
+				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
 				+ "and book.categoryId = category.id";
 		list = _jdbcTemplate.query(sql, new BooksDtoMapper());
 		return list;
 	}
+
 	
 	 public List<BooksDto> getDataSearchBookDto(String nameBook) {
 	        List<BooksDto> list = new ArrayList<BooksDto>();
@@ -58,4 +59,14 @@ public class BooksDtoDao extends BaseDao {
 	        return list;
 	    }
 
+
+	public BooksDto GetAllFromId(int id) {
+		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
+				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
+				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
+				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
+				+ "AND book.categoryId = category.id AND book.id = ?";
+		BooksDto booksDto = _jdbcTemplate.queryForObject(sql, new BooksDtoMapper(), id);
+		return booksDto;
+	}
 }

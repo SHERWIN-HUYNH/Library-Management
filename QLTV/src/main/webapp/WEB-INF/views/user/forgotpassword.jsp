@@ -59,7 +59,7 @@
 				<div class="row wow fadeInUp">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
 						<div class="jumbotron">
-							<h1 class="text-white">Đăng nhập</h1>
+							<h1 class="text-white">QUÊN MẬT KHẨU</h1>
 							<h1 class="text-white">${statusLG}</h1>
 						</div>
 						<div class="title-bar white">
@@ -74,25 +74,15 @@
 				<div class="row wow fadeInUp" data-wow-delay="0.5s">
 					<div class="row">
 						<div class="col-xs-12 col-md-8 col-md-offset-4">
-							<form:form action="dang-nhap" method="POST" modelAttribute="user">
-								<div class="row">
-									<div class="col-xs-12 col-md-7">
-										<div class="form-group">
-											<form:label path="name">Tên đăng nhập</form:label>
-											<form:input type="text" class="form-control bg-none"
-												placeholder="Tên đăng nhập..." path="username" id="name" />
-											<span id="errorName" style="color: red;"></span>
-										</div>
-									</div>
-								</div>
+							<form action="ForgotPassword" method="POST" >
 								<div class="space-20"></div>
 								<div class="row">
 									<div class="col-xs-12 col-md-7">
 										<div class="form-group">
-											<form:label path="password">Password</form:label>
-											<form:input type="password" class="form-control bg-none"
-												placeholder="Mật khẩu..." path="password" id="password" />
-											<span id="errorPassword" style="color: red;"></span>
+											<label for="email">Your registered email</label>
+											<input name = "email" type="email" class="form-control bg-none"
+												placeholder="Email đăng kí..."  id="email" />
+											<span id="errorEmail" style="color: red;"></span>
 										</div>
 									</div>
 								</div>
@@ -101,16 +91,13 @@
 									<div class="col-xs-12 col-sm-6"
 										style="display: flex; align-items: center; justify-content: space-between;">
 										<button id="btnDN" type="submit" class="btn btn-default">
-											Đăng nhập<i class="fa fa-long-arrow-right"></i>
+											Gửi<i class="fa fa-long-arrow-right"></i>
 										</button>
-										<div>
-											<a style="cursor: pointer; color: #fff;" href="<c:url value="ForgotPassword"/>">Forgot password
-												?</a>
-										</div>
+										
 									</div>
 								</div>
 
-							</form:form>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -133,97 +120,14 @@
 	<script src="<c:url value="assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value="assets/js/main.js"/>"></script>
+	
 	<script type="text/javascript">
-		 $(document)
-				.ready(
-						function() {
-							$("#errorName").hide();
-							$("#errorPassword").hide();
-
-							$("#name")
-									.focusout(
-											function() {
-												if ($("#name").val().length <= 0) {
-													$("#errorName")
-															.html(
-																	"Bạn chưa nhập tên đăng nhập");
-													$("#errorName").show();hf
-												} else {
-													$("#errorName").hide();
-												}
-											});
-
-							$("#password").focusout(
-									function() {
-										if ($("#password").val().length <= 0) {
-											$("#errorPassword").html(
-													"Bạn chưa nhập mật khẩu");
-											$("#errorPassword").show();
-										} else {
-											$("#errorPassword").hide();
-										}
-									});
-
-							$('#btnDN')
-									.click(
-											function() {
-												 if {
-													if ($("#password").val().length <= 0) {
-														$("#errorPassword")
-																.html(
-																		"Bạn chưa nhập mật khẩu");
-														$("#errorPassword")
-																.show();
-													} else {
-														$("#errorPassword")
-																.hide();
-													}
-													if ($("#name").val().length <= 0) {
-														$("#errorName")
-																.html(
-																		"Bạn chưa nhập tên đăng nhập");
-														$("#errorName").show();
-													} else {
-														$("#errorName").hide();
-													}
-												}
-
-											});
-						}); 
-						
-						
-					/* 	const usernameInput = document.getElementById('username');
-						const passwordInput = document.getElementById('password');
-						const errorUsernameSpan = document.getElementById('errorUsername');
-						const errorPasswordSpan = document.getElementById('errorPassword');
-						const submitButton = document.getElementById('btnDN');
-
-						submitButton.addEventListener('click', validateForm);
-
-						function validateForm() {
-						  const username = usernameInput.value.trim();
-						  const password = passwordInput.value.trim();
-
-						  let isValid = true;
-
-						  if (username === '') {
-						    isValid = false;
-						    errorUsernameSpan.textContent = 'Tên đăng nhập không được bỏ trống';
-						  } else {
-						    errorUsernameSpan.textContent = '';
-						  }
-
-						  if (password === '') {
-						    isValid = false;
-						    errorPasswordSpan.textContent = 'Mật khẩu không được bỏ trống';
-						  } else {
-						    errorPasswordSpan.textContent = '';
-						  }
-
-						  if (!isValid) {
-						    event.preventDefault(); // Prevent form submission if there are errors
-						  }
-						} */
+		var message = "${message}";
+		if (message && message.trim().length > 0) {
+			// Display an alert with the message content
+			alert(message);
+		}
+		
 	</script>
 </body>
 

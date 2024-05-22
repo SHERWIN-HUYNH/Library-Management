@@ -161,7 +161,7 @@
 											<h6>Thể loại: ${book.categoryName}</h6>
 											<div class="space-10"></div>
 											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="books.html" class="text-primary">See the Book</a>
+											<a href="<c:url value = "/bookDetail/${book.bookId}"/>" class="text-primary">See the Book</a>
 										</div>
 									</div>
 								</div>
