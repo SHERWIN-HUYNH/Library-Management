@@ -144,19 +144,11 @@
 							</h4>
 							<hr>
 							<ul class="list-unstyled menu-tip">
-								<li><a href="#">Tất cả</a></li>
-								<li><a href="#">Tháng 1</a></li>
-								<li><a href="#">Tháng 2</a></li>
-								<li><a href="#">Tháng 3</a></li>
-								<li><a href="#">Tháng 4</a></li>
-								<li><a href="#">Tháng 5</a></li>
-								<li><a href="#">Tháng 6</a></li>
-								<li><a href="#">Tháng 7</a></li>
-								<li><a href="#">Tháng 8</a></li>
-								<li><a href="#">Tháng 9</a></li>
-								<li><a href="#">Tháng 10</a></li>
-								<li><a href="#">Tháng 11</a></li>
-								<li><a href="#">Tháng 12</a></li>
+								<li><a href="#" onclick="filterNotifications(0)">Tất cả</a></li>
+								<c:forEach var="month" begin="1" end="12">
+									<li><a href="#" onclick="filterNotifications(${month})">Tháng
+											${month}</a></li>
+								</c:forEach>
 							</ul>
 						</div>
 						<div class="space-20"></div>
@@ -170,6 +162,11 @@
 					<div class="row">
 						<div class="row event-list">
 							<div class="col-xs-12 col-md-7 col-md-offset-1">
+								<form id="notificationFilterForm"
+									action="<c:url value="/notification" />" method="POST"
+									style="display: none;">
+									<input type="hidden" id="selectedMonth" name="month" value="0">
+								</form>
 								<c:forEach var="notification" items="${notifications}">
 									<div class="event-item wow fadeInRight">
 										<h4 class="show tip-left">${notification.dayCreated}</h4>
@@ -198,7 +195,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="shop-pagination pull-right">
-								<ul id="pagination-demo" class="pagination-sm pagination">
+								<ul class="pagination-sm pagination">
 									<li class="page-item first"><a href="#" class="page-link">First</a></li>
 									<li class="page-item prev"><a href="#" class="page-link">Previous</a></li>
 									<li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -297,5 +294,11 @@
 	<script src="<c:url value= "/assets/js/plugins.js" />"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value= "/assets/js/main.js" />"></script>
+	<script>
+		function filterNotifications(month) {
+			document.getElementById('selectedMonth').value = month;
+			document.getElementById('notificationFilterForm').submit();
+		}
+	</script>
 </body>
 </html>
