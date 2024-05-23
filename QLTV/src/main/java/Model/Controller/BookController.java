@@ -65,4 +65,12 @@ public class BookController extends BaseController {
         return mv;
     }
 
+	@RequestMapping(value = "filterCategory/{categoryId}",method = RequestMethod.POST)
+	public ModelAndView filterCategory(@PathVariable int categoryId) {
+		ModelAndView mv = new ModelAndView("user/sach");
+		mv.addObject("categories", _HomeService.getDataCategories());
+		mv.addObject("booksDto", book.getDataFilterBookDto(categoryId));
+		mv.addObject("search", new SearchBook());
+		return mv;
+	}
 }

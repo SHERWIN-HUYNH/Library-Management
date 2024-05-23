@@ -43,6 +43,21 @@ public class BooksDtoDao extends BaseDao {
        
         return list;
     }
+	
+	public List<BooksDto> getDataFilterBookDto(int id) {
+        List<BooksDto> list = new ArrayList<BooksDto>();
+        String sql = "SELECT book.id as bookId,book.name AS bookName, book.image AS bookImage, book.amount AS bookAmount, "
+                   + "book.dayCreated AS bookDayCreated, book.description AS bookDescription, "
+                   + "author.id as authorId, author.name AS authorName, author.image AS authorImage, author.description AS authorDescription, "
+                   + "category.id as categoryId,category.name AS categoryName "
+                   + "FROM book "
+                   + "JOIN author ON book.authorId = author.id "
+                   + "JOIN category ON book.categoryId = category.id "
+                   + "WHERE category.id = ?";
+            list = _jdbcTemplate.query(sql, new BooksDtoMapper(),id);
+       
+        return list;
+    }
 
 
 	public BooksDto GetAllFromId(int id) {

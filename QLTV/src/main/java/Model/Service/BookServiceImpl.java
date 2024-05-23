@@ -60,4 +60,8 @@ public class BookServiceImpl {
 		return bookDtoDao.getDataSearchBookDto(book);
 	}
 	
+	public List<BooksDto> getDataFilterBookDto(int id) {
+		return bookDtoDao.getDataFilterBookDto(id);
+	}
+	
 }
