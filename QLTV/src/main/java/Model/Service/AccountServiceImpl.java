@@ -26,6 +26,9 @@ public class AccountServiceImpl implements IAccountService{
 	// REGISTER
 	public int AddAccount(Readers reader) {
 		reader.setPassword(BCrypt.hashpw(reader.getPassword(),BCrypt.gensalt(12)));
+		if(forgotPassword.CheckEmail(reader.getEmail()) == 1) {
+			return 3;
+		}
 		return registerDao.AddAccount(reader);
 	}
 	
