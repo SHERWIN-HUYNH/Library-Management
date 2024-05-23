@@ -127,7 +127,6 @@
 											</div>
 										</form:form>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -166,7 +165,7 @@
 					<div class="space-60"></div>
 					<div class="my-slider">
 						<ul>
-							<c:forEach var="author" items="${authors}">
+							<c:forEach var="author" items="${authors}" end ="4">
 								<li><img
 									src="<c:url value = "/assets/images/author/${author.image}"/>"
 									alt="library"></li>
@@ -287,7 +286,7 @@
 					<div class="book-list-photo">
 						<div class="book-list">
 							<!-- book list -->
-							<c:forEach var="bookDto" items="${booksDto}">
+							<c:forEach var="bookDto" items="${booksDto}" end = "4">
 								<div class="book_item">
 									<div class="book_item">
 										<img
@@ -323,7 +322,7 @@
 					<div class="book-content">
 						<!-- book details -->
 						<div class="book-details">
-							<c:forEach var="bookDto" items="${booksDto}">
+							<c:forEach var="bookDto" items="${booksDto}" end = "4">
 								<div class="book-details-item">
 									<h4 class="tip-left">Tiêu đề</h4>
 									<p class="lead">${bookDto.bookName}</p>
