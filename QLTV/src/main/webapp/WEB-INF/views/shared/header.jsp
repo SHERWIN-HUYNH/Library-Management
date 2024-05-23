@@ -47,7 +47,7 @@
 						<!--Mainmenu list-->
 						<div class="navbar-right in fade" id="mainmenu">
 							<ul class="nav navbar-nav nav-white text-uppercase">
-								<li class="active"><a href="index">Trang chủ</a></li>
+								<li class="active"><a href="<c:url value="trang-chu" />">Trang chủ</a></li>
 								<li><a href="#">Giới thiệu</a></li>
 								<li><a href="<c:url value="notification" />">Thông báo</a></li>
 								<li><a href="<c:url value="sach" />">Sách</a></li>
@@ -88,7 +88,7 @@
 						test="${sessionScope.LoginReader == null && sessionScope.loginAdmin == null}">
 						<div class="navbar-right in fade" id="mainmenu">
 							<ul class="nav navbar-nav nav-white text-uppercase">
-								<li class="active"><a href="index">Trang chủ</a></li>
+								<li class="active"><a href="<c:url value="trang-chu" />">Trang chủ</a></li>
 								<li><a href="#">Giới thiệu</a></li>
 								<li><a href="<c:url value="notification" />">Thông báo</a></li>
 								<li><a href="<c:url value="sach" />">Sách</a></li>

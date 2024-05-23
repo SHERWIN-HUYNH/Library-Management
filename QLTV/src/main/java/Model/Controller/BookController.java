@@ -1,20 +1,25 @@
 package Model.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Dto.BooksDto;
+import Model.Entity.SearchBook;
 import Model.Service.BookServiceImpl;
 
 
 @Controller
-public class BookController {
+public class BookController extends BaseController {
 	@Autowired
 	BookServiceImpl book = new BookServiceImpl();
+	
 	@RequestMapping(value = "dausach", method = RequestMethod.GET)
 	public ModelAndView sachQuanLy() {
 		ModelAndView mv = new ModelAndView("admin/DauSachQuanLy");
@@ -40,4 +45,24 @@ public class BookController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value = "/sach")
+	public ModelAndView Sach() {
+		ModelAndView mv = new ModelAndView("user/sach");
+		mv.addObject("books", _HomeService.GetDataBooks());
+		mv.addObject("categories", _HomeService.getDataCategories());
+		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
+		mv.addObject("search", new SearchBook());
+		return mv;
+	}
+	
+	@RequestMapping(value = "timKiemSach", method = RequestMethod.POST)
+    public ModelAndView timSach(@ModelAttribute("search") SearchBook search) {
+        ModelAndView mv = new ModelAndView("user/sach");
+        mv.addObject("categories", _HomeService.getDataCategories());
+        List<BooksDto> searchResults = book.GetDataSearchBookDto(search.getBookName());
+        mv.addObject("booksDto", searchResults);
+        return mv;
+    }
+
 }
