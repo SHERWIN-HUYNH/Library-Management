@@ -135,11 +135,12 @@ to {
 												<thead>
 													<tr class="col-sm-12">
 														<th>Mã Mượn</th>
-														<th>Sách&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Sách&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 														<th>Ngày Mượn</th>
 														<th>Ngày Hẹn Trả</th>
 														<th>Trạng Thái</th>
-														<th>Người đọc</th>
+														<th>Người
+															đọc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 														<th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
 													</tr>
 												</thead>

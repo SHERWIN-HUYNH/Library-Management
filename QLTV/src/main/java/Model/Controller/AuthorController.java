@@ -1,11 +1,15 @@
 package Model.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Authors;
@@ -78,4 +82,15 @@ public class AuthorController {
 		}
 		return mv;
 	}
+	
+	@PostMapping("/authors/search")
+    public ModelAndView searchAuthor(@RequestParam("name") String name) {
+        ModelAndView mv = new ModelAndView("admin/author");
+        
+        List<Authors> authors = authorImpl.SearchAuthor(name);
+        mv.addObject("authors", authors);
+        mv.addObject("name", name);
+        return mv;
+    }
+
 }

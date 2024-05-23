@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 
@@ -107,37 +108,24 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#book">Sách</a></li>
-									<li><a data-toggle="tab" href="#author">Tác giả</a></li>
+									<li class="active"><a data-toggle="tab" href="#book">Tìm kiếm sách</a></li>
 								</ul>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="book">
-										<form action="DauSachDanhSach" method="get">
+										<form:form action="timKiemSach" method="POST"
+											modelAttribute="search">
 											<div class="input-group">
-												<input type="text" class="form-control"
-													placeholder="Enter book name" name="txtSearch">
+												<form:input type="text" class="form-control"
+													placeholder="Nhập tên sách hoặc tác giả muốn tìm" path="bookName" name="txtSearch" />
 												<div class="input-group-btn">
 													<button type="submit" class="btn btn-primary">
 														<i class="icofont icofont-search-alt-2"></i>
 													</button>
 												</div>
 											</div>
-										</form>
-									</div>
-									<div class="tab-pane fade" id="author">
-										<form action="DauSachDanhSach" method="get">
-											<div class="input-group">
-												<input type="text" class="form-control"
-													placeholder="Enter author name" name="txtSearch">
-												<div class="input-group-btn">
-													<button type="submit" class="btn btn-primary">
-														<i class="icofont icofont-search-alt-2"></i>
-													</button>
-												</div>
-											</div>
-										</form>
+										</form:form>
 									</div>
 								</div>
 							</div>
@@ -177,7 +165,7 @@
 					<div class="space-60"></div>
 					<div class="my-slider">
 						<ul>
-							<c:forEach var="author" items="${authors}">
+							<c:forEach var="author" items="${authors}" end ="4">
 								<li><img
 									src="<c:url value = "/assets/images/author/${author.image}"/>"
 									alt="library"></li>
@@ -298,7 +286,7 @@
 					<div class="book-list-photo">
 						<div class="book-list">
 							<!-- book list -->
-							<c:forEach var="bookDto" items="${booksDto}">
+							<c:forEach var="bookDto" items="${booksDto}" end = "4">
 								<div class="book_item">
 									<div class="book_item">
 										<img
@@ -334,7 +322,7 @@
 					<div class="book-content">
 						<!-- book details -->
 						<div class="book-details">
-							<c:forEach var="bookDto" items="${booksDto}">
+							<c:forEach var="bookDto" items="${booksDto}" end = "4">
 								<div class="book-details-item">
 									<h4 class="tip-left">Tiêu đề</h4>
 									<p class="lead">${bookDto.bookName}</p>
