@@ -37,7 +37,6 @@ public class HomeController extends BaseController {
 		return mv;
 	}
 
-
 	@RequestMapping(value = "/bookDetail/{id}")
 	public ModelAndView BookDetail(@PathVariable int id ) {
 		ModelAndView mv = new ModelAndView("user/book_detail");
@@ -46,6 +45,4 @@ public class HomeController extends BaseController {
 		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
 		return mv;
 	}
-
-
 }

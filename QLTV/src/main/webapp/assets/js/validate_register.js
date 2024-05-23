@@ -3,44 +3,32 @@ $(function(){
 	$("#username_error").hide();
 	$("#mail_error").hide();
 	$("#password_error").hide();
-	$("#confirm_password_error").hide();
+
 
 	var name_error = false;
 	var username_error = false;
 	var mail_error = false;
 	var password_error = false;
-	var confirm_password_error = false;
-	var title_error =false;
-	var image_error = false;
-	var content_error = false ;
+
 	
-	$("#title").focusout(function(){
-		checkTitle();
-		toggleSubmitButton();
-	});
-	$("#image").focusout(function(){
-		checkImage();
-		toggleSubmitButton();
-	});
-	$("#content").focusout(function(){
-		checkContent();
-		toggleSubmitButton();
-	});
+
 	$("#name").focusout(function() {
 		checkName();
+		toggleSubmitButton();
 	});
 	$("#username").focusout(function() {
 		checkUsername();
+		toggleSubmitButton();
 	});
 	$("#mail").focusout(function() {
 		checkMail();
+		toggleSubmitButton();
 	});
 	$("#password").focusout(function() {
 		checkPassword();
+		toggleSubmitButton();
 	});
-	$("#confirm_password").focusout(function() {
-		checkConfirmPassword();
-	});
+	
 	function checkTitle(){
 		if($("#title").val().length == 0){
 			$("#title_error").html("Vui lòng nhập vào tiêu đề");
@@ -52,28 +40,7 @@ $(function(){
 			$("#title_error").hide();
 		}
 	}
-	function checkContent(){
-		if($("#content").val().length == 0){
-			$("#content_error").html("Vui lòng nhập vào nội dung");
-			name_error = true;
-			$("#content_error").show();     
-		}
-		else{
-			name_error = false;
-			$("#content_error").hide();
-		}
-	}
-	function checkImage(){
-		if($("#image").val().length == 0){
-			$("#image_error").html("Vui lòng nhập them anh");
-			name_error = true;
-			$("#image_error").show();     
-		}
-		else{
-			name_error = false;
-			$("#image_error").hide();
-		}
-	}
+
 	function checkName(){
 		if($("#name").val().length == 0){
 			$("#name_error").html("Vui lòng nhập vào họ tên");
@@ -132,27 +99,9 @@ $(function(){
 			$("#password_error").hide();
 		}
 	}
-	function checkConfirmPassword(){
-		if($("#confirm_password").text() != $("#password").text()){
-			$("#confirm_password_error").html("Password không giống nhau");
-			confirm_password_error = true;
-
-			$("#confirm_password_error").show();
-		}
-		else if($("#confirm_password").val().length == 0){
-			$("#confirm_password_error").html("Vui lòng nhập xác nhận mật khẩu");
-			confirm_password_error = true;
-
-			$("#confirm_password_error").show();
-
-		}
-		else{
-			confirm_password_error = false;
-			$("#confirm_password_error").hide();
-		}
-	}
+	
 	function toggleSubmitButton() {
-	    if (!title_error && !content_error && !image_error) {
+	    if (!name_error && !username_error && !mail_error && !password_error) {
 	        $("#register_form").prop("disabled", false);
 	    } else {
 	        $("#register_form").prop("disabled", true);
@@ -163,9 +112,8 @@ $(function(){
 		checkPassword();
 		checkMail();
 		checkUsername();
-		checkConfirmPassword();
 
-		if(name_error || username_error || mail_error || password_error || confirm_password_error){
+		if(name_error || username_error || mail_error || password_error ){
 			return false;
 		}
 		else{

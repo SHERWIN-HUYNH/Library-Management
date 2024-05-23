@@ -1,11 +1,16 @@
 package Model.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Notification;
@@ -27,11 +32,11 @@ public class NotificationController extends BaseController {
 		int rs = notificationImp.AddNotification(notification);
 		ModelAndView mv = new ModelAndView("admin/ThemThongBao");
 		if (rs > 0) {
-			mv.addObject("message", "THEM THANH CONG");
+			mv.addObject("message", "THÊM THÔNG BÁO THÀNH CÔNG");
 			mv.addObject("notifications", notificationImp.GetAllNotification());
 			return mv;
 		} else {
-			mv.addObject("message", "THEM THAT BAI");
+			mv.addObject("message", "THÊM THÔNG BÁO THÁT BẠI");
 			return mv;
 		}
 
@@ -82,4 +87,18 @@ public class NotificationController extends BaseController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "/notification", method = RequestMethod.POST)
+	public ModelAndView FilterNotification(@RequestParam(value = "month") int month) {
+	    ModelAndView mv = new ModelAndView("user/notification"); 
+
+	    List<Notification> notifications;
+	    if (month == 0) {
+	      notifications = notificationImp.GetAllNotification();
+	    } else {
+	      notifications = notificationImp.GetDataNotificationByMonth(month);
+	    }
+	    mv.addObject("notifications", notifications);
+	    return mv;
+	}	
 }
