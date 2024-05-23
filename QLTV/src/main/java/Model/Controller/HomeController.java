@@ -55,6 +55,4 @@ public class HomeController extends BaseController {
 		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
 		return mv;
 	}
-
-
 }

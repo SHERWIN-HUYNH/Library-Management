@@ -1,6 +1,7 @@
 package Model.Dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,12 @@ public class NotificationDao extends BaseDao{
 		list = _jdbcTemplate.query(sql, new NotificationMapper());
 		return list;
 	}
-
+	public List<Notification> GetDataNotificationByMonth(int month) {
+		List<Notification> list = new ArrayList<Notification>();
+		String sql = "SELECT * FROM notification WHERE MONTH(dayCreated) = ?";
+		list = _jdbcTemplate.query(sql, new NotificationMapper(), month);
+		return list;
+	}
 	public List<Notification> GetDataIdNotification() {
 		List<Notification> list = new ArrayList<Notification>();
 		String sql = "SELECT id FROM notification";

@@ -28,4 +28,7 @@ public class NotificationImpl implements INotificationService{
 	public int DeleteNotification(int id) {
 		return notificationDao.DeleteNotification(id);
 	}
+	public List<Notification> GetDataNotificationByMonth(int month) {
+		return notificationDao.GetDataNotificationByMonth(month);
+	}
 }

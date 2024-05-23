@@ -49,4 +49,12 @@ public class AuthorDao {
 	    rs = _jdbcTemplate.update(sql, id);
 	    return rs;
 	}
+	
+	public List<Authors> searchAuthor(String name) {
+	    String sql = "SELECT * FROM author WHERE name LIKE ?";
+	    String searchPattern = "%" + name + "%";
+	    List<Authors> authors = _jdbcTemplate.query(sql, new Object[]{searchPattern}, new AuthorsMapper());
+	    return authors;
+	}
+
 }
