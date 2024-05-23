@@ -32,11 +32,11 @@ public class NotificationController extends BaseController {
 		int rs = notificationImp.AddNotification(notification);
 		ModelAndView mv = new ModelAndView("admin/ThemThongBao");
 		if (rs > 0) {
-			mv.addObject("message", "THEM THANH CONG");
+			mv.addObject("message", "THÊM THÔNG BÁO THÀNH CÔNG");
 			mv.addObject("notifications", notificationImp.GetAllNotification());
 			return mv;
 		} else {
-			mv.addObject("message", "THEM THAT BAI");
+			mv.addObject("message", "THÊM THÔNG BÁO THÁT BẠI");
 			return mv;
 		}
 

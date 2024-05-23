@@ -125,7 +125,7 @@
 											</div>
 
 
-											<button type="submit" id="register_form" class="btn btn-success btn-sm">
+											<button type="submit" id="register_form" class="btn btn-success btn-sm" disabled>
 												<i class="fa fa-plus"></i> Thêm
 											</button>
 										</form:form>
@@ -176,7 +176,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_register.js"/>"></script>
+	<script src="<c:url value= "/assets/js/validate_notification.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";

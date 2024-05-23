@@ -148,7 +148,7 @@
 								<div class="space-20"></div>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
-										<button id="register_form" type="submit" class="btn btn-default">
+										<button id="register_form" type="submit" class="btn btn-default" disabled>
 											Đăng ký<i class="fa fa-long-arrow-right"></i>
 										</button>
 									</div>
@@ -201,44 +201,6 @@
 	<script src="<c:url value= "/assets/js/main_admin.js"/>"></script>
 	<script src="<c:url value= "/assets/js/validate_register.js"/>"></script>
 	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					$("#nameerror").hide();
-					
-					$("#emailerror").hide();
-
-					var name_error = false;
-					var email_error = false;
-					var phone_error = false;
-					var address_error = false;
-
-					function checkName() {
-						if ($("#fullname").val().length == 0) {
-							$("#nameerror").html("Vui lòng nhập vào họ tên");
-							name_error = true;
-							$("#nameerror").show();
-						} else {
-							name_error = false;
-							$("#nameerror").hide();
-						}
-
-					}
-
-				
-
-					function checkEmail() {
-						if ($("#email").val().length == 0) {
-							$("#addresserror").html("Vui lòng nhập vào email");
-							email_error = true;
-							$("#emailerror").show();
-						} else {
-							email_error = false;
-							$("#emailerror").hide();
-						}
-					}
-			
-					
-				});
 	</script>
 	<script type="text/javascript">
 		var message = "${message}";

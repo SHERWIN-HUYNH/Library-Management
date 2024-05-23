@@ -11,9 +11,9 @@
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
-	href="<c:url value="/assets/img/apple-touch-icon.png"/>">
+	href="<c:url value="./assets/images/apple-touch-icon.png"/>">
 <link rel="icon" type="image/png"
-	href="<c:url value="/assets/img/apple-touch-icon.png"/>">
+	href="<c:url value="./assets/images/apple-touch-icon.png"/>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>QUẢN LÝ THỐNG KÊ</title>
 <meta
@@ -21,91 +21,56 @@
 	name='viewport' />
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>" />
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
-	href="<c:url value="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>">
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link href="<c:url value="/assets/css/material-dashboard.css?v=2.1.1"/>"
+<link
+	href="<c:url value="/assets/css/material-dashboard.css?v=2.1.1"/>"
 	rel="stylesheet" />
 <!-- Fontfaces CSS-->
-<link href="<c:url value="/assets/css/font-face.css"/>" rel="stylesheet"
-	media="all">
+<link href="<c:url value= "/assets/css/font-face.css"/>"
+	rel="stylesheet" media="all">
+<link href='https://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet'>
 <link
-	href="<c:url value="/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" />"
+	href="<c:url value= "/assets/vendor/font-awesome-4.7/css/font-awesome.min.css"/>"
 	rel="stylesheet" media="all">
 <link
-	href="<c:url value="/assets/vendor/font-awesome-5/css/fontawesome-all.min.css" />"
+	href="<c:url value= "/assets/vendor/font-awesome-5/css/fontawesome-all.min.css"/>"
 	rel="stylesheet" media="all">
 <link
-	href="<c:url value="/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" />"
+	href="<c:url value= "/assets/vendor/mdi-font/css/material-design-iconic-font.min.css"/>"
 	rel="stylesheet" media="all">
-
 <!-- Bootstrap CSS-->
 <link
-	href="<c:url value="/assets/vendor/bootstrap-4.1/bootstrap.min.css"/>"
+	href="<c:url value= "/assets/vendor/bootstrap-4.1/bootstrap.min.css"/>"
 	rel="stylesheet" media="all">
 
 <!-- Vendor CSS-->
 <link
-	href="<c:url value="/assets/vendor/animsition/animsition.min.css" />"
+	href="<c:url value= "/assets/vendor/animsition/animsition.min.css"/>"
 	rel="stylesheet" media="all">
 <link
-	href="<c:url value="/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" />"
+	href="<c:url value= "/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"/>"
 	rel="stylesheet" media="all">
-<link href="<c:url value="/assets/vendor/wow/animate.css"/>"
-	rel="stylesheet" media="all">
-<link
-	href="<c:url value="/assets/vendor/css-hamburgers/hamburgers.min.css"/>"
-	rel="stylesheet" media="all">
-<link href="<c:url value="/assets/vendor/slick/slick.css"/>"
-	rel="stylesheet" media="all">
-<link href="<c:url value="/assets/vendor/select2/select2.min.css"/>"
+<link href="<c:url value= "/assets/vendor/wow/animate.css"/>"
 	rel="stylesheet" media="all">
 <link
-	href="<c:url value="/assets/vendor/perfect-scrollbar/perfect-scrollbar.css"/>"
+	href="<c:url value= "/assets/vendor/css-hamburgers/hamburgers.min.css"/>"
 	rel="stylesheet" media="all">
+<link href="<c:url value= "/assets/vendor/slick/slick.css"/>"
+	rel="stylesheet" media="all">
+<link href="<c:url value= "/assets/vendor/select2/select2.min.css"/>"
+	rel="stylesheet" media="all">
+<link
+	href="<c:url value= "/assets/vendor/perfect-scrollbar/perfect-scrollbar.css"/>"
+	rel="stylesheet" media="all">
+
 
 <!-- Main CSS-->
-<link href="<c:url value="/assets/css/theme_1.css" />" rel="stylesheet"
+<link href="<c:url value= "/assets/css/theme_1.css"/>" rel="stylesheet"
 	media="all">
-
-  <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
 </head>
 
 <body class="">
@@ -136,9 +101,6 @@
 				</ul>
 			</div>
 		</div>
-		<!-- BIEU DO  -->
-		  <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
 		<div class="main-panel">
 			<!-- Navbar -->
 			<nav
@@ -214,9 +176,9 @@
 									<div class="card-icon">
 										<i class="material-icons">content_copy</i>
 									</div>
-									<p class="card-category">Mức độ sử dụng</p>
+									<p class="card-category">Tổng số lượng sách</p>
 									<h3 class="card-title">
-										49/50 <small></small>
+										${bookAmount } <small></small>
 									</h3>
 								</div>
 								<div class="card-footer">
@@ -233,12 +195,12 @@
 									<div class="card-icon">
 										<i class="material-icons">store</i>
 									</div>
-									<p class="card-category">Mức độ download sách</p>
-									<h3 class="card-title">34,245</h3>
+									<p class="card-category">Số sách đang được mượn</p>
+									<h3 class="card-title">${borrowedBooksAmount }</h3>
 								</div>
 								<div class="card-footer">
 									<div class="stats">
-										<i class="material-icons">date_range</i> Last 24 Hours
+										<i class="material-icons">date_range</i> Trong tháng này
 									</div>
 								</div>
 							</div>
@@ -250,7 +212,7 @@
 										<i class="material-icons">info_outline</i>
 									</div>
 									<p class="card-category">Mức độ mượn sách</p>
-									<h3 class="card-title">75</h3>
+									<h3 class="card-title">${borrowedRate }</h3>
 								</div>
 								<div class="card-footer">
 									<div class="stats">
@@ -266,7 +228,7 @@
 										<i class="fa fa-twitter"></i>
 									</div>
 									<p class="card-category">Followers</p>
-									<h3 class="card-title">+245</h3>
+									<h3 class="card-title">+${readersAmount }</h3>
 								</div>
 								<div class="card-footer">
 									<div class="stats">
@@ -486,14 +448,12 @@
 	<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
 	<script src="<c:url value="/assets/js/plugins/jquery-jvectormap.js"/>"></script>
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="<c:url value="/assets/js/plugins/nouislider.min.js"/>" />
-	</script>
+	<script src="<c:url value="./assets/js/plugins/nouislider.min.js"/>"></script>
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<!-- Library for adding dinamically elements -->
-	<script src="<c:url value="/assets/js/plugins/arrive.min.js"/>" />
-	</script>
+	<script src="<c:url value="./assets/js/plugins/arrive.min.js"/>"></script>
 	<!--  Google Maps Plugin    -->
 
 	<script src="<c:url value="/assets/js/plugins/chartist.min.js"/>"></script>
@@ -503,6 +463,7 @@
 	<script src="<c:url value="/assets/js/material-dashboard.js?v=2.1.1"/>"
 		type="text/javascript"></script>
 	<script src="<c:url value="/assets/js/core/ThongKe.js"/>"></script>
+
 </body>
 
 </html>
