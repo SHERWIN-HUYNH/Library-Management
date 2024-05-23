@@ -115,19 +115,23 @@ to {
 					<h4>Tìm kiếm</h4>
 					<br>
 					<div class="space-5"></div>
-					<form:form
+					<form
 						action="${pageContext.request.contextPath}/timKiemPhieuTraSach"
-						method="POST" modelAttribute="search">
+						method="POST">
 						<div class="input-group">
-							<form:input type="text" class="form-control"
-								placeholder="Nhập tên người đọc muốn tìm" path="readerName"/>
+							<input type="text" class="form-control"
+								placeholder="Nhập tên người đọc muốn tìm" name="name" />
 							<div class="input-group-btn">
 								<input type="submit" value="Search"
 									class="btn btn-primary icofont icofont-search-alt-2">
 							</div>
 						</div>
-					</form:form>
+					</form>
 					<hr>
+					<p>
+						<strong>${ctmtDto.size()}</strong> phiếu được tìm thấy
+					</p>
+					<br>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-12 col-md-12">

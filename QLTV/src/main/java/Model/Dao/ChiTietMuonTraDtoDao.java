@@ -28,26 +28,26 @@ public class ChiTietMuonTraDtoDao {
 	
 	public List<ChiTietMuonTraDto> GetDataSearchChiTietMuonTraDto(String name) {
 		List<ChiTietMuonTraDto> list = new ArrayList<ChiTietMuonTraDto>();
-		String sql = "SELECT \r\n" + 
-				"    cmt.id AS ctmtId, \r\n" + 
-				"    cmt.bookId, \r\n" + 
-				"    cmt.ngayMuon AS ctmtNgayMuon,\r\n" + 
-				"    cmt.trangThai AS ctmtTrangThai,\r\n" + 
-				"    cmt.ngayTra AS ctmtNgayTra,\r\n" + 
-				"    cmt.amount AS ctmtAmount,\r\n" + 
-				"    b.name AS bookName,\r\n" + 
-				"    b.amount AS bookAmount,\r\n" + 
-				"    r.id AS readerId,\r\n" + 
-				"    r.name AS readerName\r\n" + 
-				"FROM \r\n" + 
-				"    chitietmuontra cmt\r\n" + 
-				"JOIN \r\n" + 
-				"    book b ON cmt.bookId = b.id\r\n" + 
-				"JOIN \r\n" + 
-				"    reader r ON cmt.readerId = r.id\r\n" + 
-				"WHERE \r\n" + 
-				"    cmt.trangThai = 0 \r\n" + 
-				"    AND r.name LIKE ?";
+		String sql = "SELECT " + 
+				"cmt.id AS ctmtId," + 
+				"cmt.bookId," + 
+				"cmt.ngayMuon AS ctmtNgayMuon," + 
+				"cmt.trangThai AS ctmtTrangThai," + 
+				"cmt.ngayTra AS ctmtNgayTra," + 
+				"cmt.amount AS ctmtAmount," + 
+				"b.name AS bookName," + 
+				"b.amount AS bookAmount," + 
+				"r.id AS readerId," + 
+				"r.name AS readerName " + 
+				"FROM " + 
+				"chitietmuontra cmt " + 
+				"JOIN " + 
+				"book b ON cmt.bookId = b.id " + 
+				"JOIN " + 
+				"reader r ON cmt.readerId = r.id " + 
+				"WHERE " + 
+				"cmt.trangThai = 0 " + 
+				"AND r.name LIKE ?";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(),"%"+ name +"%");
 		return list;
 	}
