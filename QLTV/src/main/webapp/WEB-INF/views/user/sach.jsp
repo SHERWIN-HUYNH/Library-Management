@@ -137,11 +137,13 @@
 						</div>
 					</form:form>
 					<div class="space-30"></div>
-					<!-- <div class="row">
+					<div class="row">
 						<div class="pull-left col-xs-12 col-sm-5 col-md-6">
-							<p><strong>6</strong> of <strong>76</strong> cuốn sách được tìm thấy</p>
+							<p>
+								<strong>${booksDto.size()}</strong> cuốn sách được tìm thấy
+							</p>
 						</div>
-					</div> -->
+					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
@@ -161,7 +163,8 @@
 											<h6>Thể loại: ${book.categoryName}</h6>
 											<div class="space-10"></div>
 											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="<c:url value = "/bookDetail/${book.bookId}"/>" class="text-primary">See the Book</a>
+											<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
+												class="text-primary">See the Book</a>
 										</div>
 									</div>
 								</div>
