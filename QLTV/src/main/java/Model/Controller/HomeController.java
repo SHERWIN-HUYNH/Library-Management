@@ -28,16 +28,6 @@ public class HomeController extends BaseController {
 		mv.addObject("notifications", _HomeService.GetDataNotification());
 		return mv;
 	}
-
-	@RequestMapping(value = "/sach")
-	public ModelAndView Sach() {
-		ModelAndView mv = new ModelAndView("user/sach");
-		mv.addObject("books", _HomeService.GetDataBooks());
-		mv.addObject("categories", _HomeService.getDataCategories());
-		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
-		return mv;
-	}
-
 	
 	@RequestMapping(value = "/dsMuonTra")
 	public ModelAndView dsMuonTra() {
@@ -45,7 +35,6 @@ public class HomeController extends BaseController {
 		mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
 		return mv;
 	}
-
 
 	@RequestMapping(value = "/bookDetail/{id}")
 	public ModelAndView BookDetail(@PathVariable int id ) {
