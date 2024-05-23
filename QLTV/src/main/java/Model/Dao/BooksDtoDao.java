@@ -26,38 +26,20 @@ public class BooksDtoDao extends BaseDao {
 	}
 
 	
-	 public List<BooksDto> getDataSearchBookDto(String nameBook) {
-	        List<BooksDto> list = new ArrayList<BooksDto>();
-	        String sql = "WITH BookAuthorCategory AS ("
-	                   + "    SELECT "
-	                   + "        book.name AS bookName, "
-	                   + "        book.image AS bookImage, "
-	                   + "        book.amount AS bookAmount, "
-	                   + "        book.dayCreated AS bookDayCreated, "
-	                   + "        book.description AS bookDescription, "
-	                   + "        author.name AS authorName, "
-	                   + "        author.image AS authorImage, "
-	                   + "        author.description AS authorDescription, "
-	                   + "        category.name AS categoryName "
-	                   + "    FROM "
-	                   + "        book "
-	                   + "    JOIN "
-	                   + "        author ON book.authorId = author.id "
-	                   + "    JOIN "
-	                   + "        category ON book.categoryId = category.id"
-	                   + ") "
-	                   + "SELECT * FROM BookAuthorCategory "
-	                   + "WHERE bookName LIKE ? OR authorName LIKE ?";
-	        
-	        try {
-	            list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + nameBook + "%", "%" + nameBook + "%");
-	        } catch (Exception e) {
-	            // Log the exception and handle it accordingly
-	            e.printStackTrace();
-	        }
-	        
-	        return list;
-	    }
+	public List<BooksDto> getDataSearchBookDto(String name) {
+        List<BooksDto> list = new ArrayList<BooksDto>();
+        String sql = "SELECT book.id as bookId,book.name AS bookName, book.image AS bookImage, book.amount AS bookAmount, "
+                   + "book.dayCreated AS bookDayCreated, book.description AS bookDescription, "
+                   + "author.id as authorId, author.name AS authorName, author.image AS authorImage, author.description AS authorDescription, "
+                   + "category.id as categoryId, category.name AS categoryName "
+                   + "FROM book "
+                   + "JOIN author ON book.authorId = author.id "
+                   + "JOIN category ON book.categoryId = category.id "
+                   + "WHERE book.name LIKE ? OR author.name LIKE ?";
+            list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%");
+       
+        return list;
+    }
 
 
 	public BooksDto GetAllFromId(int id) {
