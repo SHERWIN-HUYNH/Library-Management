@@ -17,7 +17,7 @@
 <meta name="keywords" content="au theme template">
 
 <!-- Title Page-->
-<title>Quản Lý Sách</title>
+<title>Quản Lý Tác Giả</title>
 
 <!-- Fontfaces CSS-->
 <link href="<c:url value= "/assets/css/font-face.css"/>"
