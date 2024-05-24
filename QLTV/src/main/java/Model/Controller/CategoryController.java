@@ -1,15 +1,19 @@
 
 package Model.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.Categories;
 import Model.Service.CategoryServiceImpl;
 
@@ -73,4 +77,13 @@ public class CategoryController {
 		}
 		return "redirect:/category";
 	}
+	
+	@RequestMapping(value ="searchCategory", method = RequestMethod.POST)
+	public ModelAndView searchReader(@RequestParam("name") String name) {
+		ModelAndView mv = new ModelAndView("admin/quanLyTheLoai");
+		mv.addObject("categories", category.GetDataSearchCategories(name));
+		mv.addObject("addCategory", new Categories());
+		return mv;
+	}
+
 }

@@ -117,6 +117,24 @@ ${message}
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-12 col-md-12">
+								<div class="col-12 col-md-12">
+									<form
+										action="${pageContext.request.contextPath}/searchCategory"
+										method="post">
+										<div class="input-group">
+											<input type="text" class="form-control"
+												placeholder="Nhập tên thể loại muốn tìm " name="name" />
+											<div class="input-group-btn">
+												<input type="submit" value="Search"
+													class="btn btn-primary icofont icofont-search-alt-2">
+											</div>
+										</div>
+									</form>
+								</div>
+								<hr>
+								<p>
+									<strong>${categories.size()}</strong> thể loại được tìm thấy
+								</p>
 								<div class="card">
 									<div class="card-header">
 										<strong>Thêm thể loại</strong>
@@ -131,16 +149,17 @@ ${message}
 														thể loại</form:label>
 												</div>
 												<div class="col-12 col-md-4">
-													<form:input path="name" id = "nameCategory" type="text" class="form-control" />
+													<form:input path="name" id="nameCategory" type="text"
+														class="form-control" />
 													<span id="nameCategory_error" style="color: red;"></span>
 												</div>
 											</div>
-											<button id = "register_form" type="submit" disabled class="btn btn-success btn-sm">
+											<button id="register_form" type="submit" disabled
+												class="btn btn-success btn-sm">
 												<i class="fa fa-check"></i> Thêm
 											</button>
 										</form:form>
 									</div>
-
 									<div class="col-12 col-md-12">
 										<div class="table-responsive table--no-card m-b-30">
 											<table style="width: 100%"
@@ -213,7 +232,7 @@ ${message}
 	</div>
 
 
-<!-- Jquery JS-->
+	<!-- Jquery JS-->
 
 	<script src="<c:url value="/assets/vendor/jquery-3.2.1.min.js"/>"></script>
 	<!-- Bootstrap JS-->

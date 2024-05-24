@@ -51,6 +51,7 @@ public class CategoryDao {
 		Categories c = _jdbcTemplate.queryForObject(sql, new CategoriesMapper(), id);
 		return c;
 	}
+	
 	public int updateCategory(int id ,Categories c) {
 		if (isCategoryExist(c.getName().trim()) || c.getName().trim().length() == 0) {
 			return -1;
@@ -59,5 +60,12 @@ public class CategoryDao {
 		String sql = "UPDATE category SET name = ? WHERE id = ?";
 		rs = _jdbcTemplate.update(sql, c.getName(),id);
 		return rs;
+	}
+	
+	public List<Categories> GetDataSearchCategories(String name) {
+		List<Categories> list = new ArrayList<Categories>();
+		String sql = "SELECT * FROM category WHERE name LIKE ?";
+		list = _jdbcTemplate.query(sql, new CategoriesMapper(),"%" + name.trim() + "%");
+		return list;
 	}
 }
