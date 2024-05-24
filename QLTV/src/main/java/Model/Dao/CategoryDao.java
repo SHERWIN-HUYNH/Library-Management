@@ -25,7 +25,7 @@ public class CategoryDao {
 	}
 	
 	public int addCategory(Categories c) {
-		if (isCategoryExist(c.getName())) {
+		if (isCategoryExist(c.getName().trim())) {
 			return -1;
 		}
 		StringBuffer sql = new StringBuffer();
@@ -52,6 +52,9 @@ public class CategoryDao {
 		return c;
 	}
 	public int updateCategory(int id ,Categories c) {
+		if (isCategoryExist(c.getName().trim()) || c.getName().trim().length() == 0) {
+			return -1;
+		}
 		int rs = 0;
 		String sql = "UPDATE category SET name = ? WHERE id = ?";
 		rs = _jdbcTemplate.update(sql, c.getName(),id);
