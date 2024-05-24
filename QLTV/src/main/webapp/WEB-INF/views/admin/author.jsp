@@ -130,14 +130,18 @@ to {
 													onclick="location.href='${pageContext.request.contextPath}/addAuthor'">
 											</div>
 											<div class="col-12 col-md-7">
-												<form action="${pageContext.request.contextPath}/authors/search" method="post">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Nhập tên tác giả" name="name"/>
-                                                        <div class="input-group-btn">
-                                                            <input type="submit" value="Search" class="btn btn-primary icofont icofont-search-alt-2">
-                                                        </div>
-                                                    </div>
-                                                </form>
+												<form
+													action="${pageContext.request.contextPath}/authors/search"
+													method="post">
+													<div class="input-group">
+														<input type="text" class="form-control"
+															placeholder="Nhập tên tác giả" name="name" />
+														<div class="input-group-btn">
+															<input type="submit" value="Search"
+																class="btn btn-primary icofont icofont-search-alt-2">
+														</div>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -167,7 +171,7 @@ to {
 															<td><c:out value="${author.id}" /></td>
 															<td><c:out value="${author.name}" /></td>
 															<td><img
-																src="<c:url value= "/assets/images/author/${author.image}"/>"></td>
+																src="<c:url value= "/assets/images/author/${author.image}"/>" class = "model-object" style ="width: 160px; height: 200px;" ></td>
 															<td><c:out value="${author.description}" /></td>
 															<td><a
 																style="display: inline-block; margin-right: 5px;"
@@ -193,7 +197,7 @@ to {
 																			</div>
 																			<div class="modal-body">
 																				<span class="text-danger"> Bạn có muốn xóa
-																					thông báo này </span>
+																					tác giả này </span>
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button"
