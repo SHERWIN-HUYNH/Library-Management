@@ -29,11 +29,11 @@ public class TraSachServiceImpl {
 		return ctmtsDao.updateTraSach(id, c);
 	}
 	
-	public List<ChiTietMuonTraDto> GetDataChiTietMuonTraDto(){
-		return ctmtDtoDao.GetDataChiTietMuonTraDto();
+	public List<ChiTietMuonTraDto> GetDataChiTietTraDto(){
+		return ctmtDtoDao.GetDataChiTietTraDto();
 	}
 	
-	public List<ChiTietMuonTraDto> GetDataSearchChiTietMuonTraDto(String name){
-		return ctmtDtoDao.GetDataSearchChiTietMuonTraDto(name);
+	public List<ChiTietMuonTraDto> GetDataSearchChiTietTraDto(String name){
+		return ctmtDtoDao.GetDataSearchChiTietTraDto(name);
 	}
 }

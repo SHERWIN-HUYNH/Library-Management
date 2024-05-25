@@ -123,10 +123,27 @@ to {
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-12 col-md-12">
+								<form
+									action="${pageContext.request.contextPath}/timKiemPhieuMuonTra"
+									method="POST">
+									<div class="input-group">
+										<input type="text" class="form-control"
+											placeholder="Nhập tên người đọc muốn tìm" name="name" />
+										<div class="input-group-btn">
+											<input type="submit" value="Search"
+												class="btn btn-primary icofont icofont-search-alt-2">
+										</div>
+									</div>
+								</form>
+								<hr>
+								<p>
+									<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm thấy
+								</p>
+								<br>
 								<div class="card">
 									<div class="card-header">
 										<strong>Danh Sách Mượn Trả</strong>
-									</div>								
+									</div>
 
 									<div class="col-12 col-md-12">
 										<div class="table-responsive table--no-card m-b-30">
@@ -140,26 +157,35 @@ to {
 														<th>Ngày Hẹn Trả</th>
 														<th>Trạng Thái</th>
 														<th>Mã người đọc</th>
-														<th>Sửa và Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="ctmt" items="${ctmts}">
+													<c:forEach var="ctmt" items="${ctmtDto}">
 														<tr>
-															<td><c:out value="${ctmt.getId()}" /></td>
-															<td><c:out value="${ctmt.getBookId()}" /></td>
-															<td><c:out value="${ctmt.getNgayMuon()}" /></td>
-															<td><c:out value="${ctmt.getNgayTra()}" /></td>
-															<td><c:out value="${ctmt.getTrangThai()}" /></td>
-															<td><c:out value="${ctmt.getReaderId()}" /></td>
+															<td><c:out value="${ctmt.ctmtId}" /></td>
+															<td><c:out value="${ctmt.bookName}" /></td>
+															<td><c:out value="${ctmt.ctmtNgayMuon}" /></td>
+															<td><c:out value="${ctmt.ctmtNgayTra}" /></td>
+															<td><c:choose>
+																	<c:when test="${ctmt.ctmtTrangThai == 0}">
+                                                                        Chưa trả
+                                                                    </c:when>
+																	<c:when test="${ctmt.ctmtTrangThai == 1}">
+                                                                        Đã trả
+                                                                    </c:when>
+																	<c:otherwise>
+                                                                        Unknown status
+                                                                    </c:otherwise>
+																</c:choose></td>
+															<td><c:out value="${ctmt.readerName}" /></td>
 
-															<td
+															<%-- <td
 																style="display: flex; justify-content: space-between; margin-top: 75px;"><a
 																class="btn btn-warning pull-left"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/edit?maMuonSach=<c:out value='${ctmt.getId()}' />&pages=<c:out value="${ngayTra}" />">Sửa</a>
+																href="/QuanLyThuVien/MuonTraSachChiTiet/edit?maMuonSach=<c:out value='${ctmt.getCtmtId()}' />&pages=<c:out value="${ngayTra}" />">Sửa</a>
 																<a class="btn btn-danger"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/delete?maMuonSach=<c:out value='${ctmt.getId()}' />&pages=<c:out value="${ngayTra}" />">Xóa</a>
-															</td>
+																href="/QuanLyThuVien/MuonTraSachChiTiet/delete?maMuonSach=<c:out value='${ctmt.getCtmtId()}' />&pages=<c:out value="${ngayTra}" />">Xóa</a>
+															</td> --%>
 														</tr>
 													</c:forEach>
 												</tbody>

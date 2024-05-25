@@ -23,7 +23,7 @@ public class TraSachController {
 	public ModelAndView traSach() {
 		ModelAndView mv = new ModelAndView("admin/TraSach");
 		mv.addObject("ctmts", traSach.getDataChiTietTra());
-		mv.addObject("ctmtDto", traSach.GetDataChiTietMuonTraDto());
+		mv.addObject("ctmtDto", traSach.GetDataChiTietTraDto());
 		return mv;
 	}
 	
@@ -46,7 +46,7 @@ public class TraSachController {
 	public ModelAndView searchReader(@RequestParam("name") String name) {
 		ModelAndView mv = new ModelAndView("admin/TraSach");
 		mv.addObject("ctmts", traSach.getDataChiTietTra());
-		List<ChiTietMuonTraDto> searchResults = traSach.GetDataSearchChiTietMuonTraDto(name);
+		List<ChiTietMuonTraDto> searchResults = traSach.GetDataSearchChiTietTraDto(name);
 		mv.addObject("ctmtDto", searchResults);
 		return mv;
 	}

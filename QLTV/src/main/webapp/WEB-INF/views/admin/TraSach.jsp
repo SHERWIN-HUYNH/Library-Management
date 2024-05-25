@@ -112,8 +112,6 @@ to {
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content--p30">
-					<h4>Tìm kiếm</h4>
-					<br>
 					<div class="space-5"></div>
 					<form
 						action="${pageContext.request.contextPath}/timKiemPhieuTraSach"
