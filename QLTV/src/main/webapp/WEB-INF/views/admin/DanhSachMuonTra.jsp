@@ -136,10 +136,17 @@ to {
 									</div>
 								</form>
 								<hr>
-								<p>
-									<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm thấy
-								</p>
-								<br>
+								<div class="row">
+									<p>
+										<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm
+										thấy
+									</p>
+									<div class="button-container" style = "margin-left: auto">
+										<a class="btn btn-success" href="<c:url value='muontra'/>">Thêm</a>
+										<a class="btn btn-info" href="<c:url value='traSach'/>">Trả
+											Sách</a>
+									</div>
+								</div>
 								<div class="card">
 									<div class="card-header">
 										<strong>Danh Sách Mượn Trả</strong>
