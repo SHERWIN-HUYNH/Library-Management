@@ -177,8 +177,8 @@
 		
 	</script>
 	<!-- Main JS-->
-	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value="assets/js/validate_author.js"/>"></script>
+	<script src="<c:url value="/assets/js/main_admin.js"/>"></script>
+	<script src="<c:url value="/assets/js/validate_author.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";
