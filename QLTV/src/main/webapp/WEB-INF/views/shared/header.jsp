@@ -20,29 +20,65 @@
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu" style="color: black">
-							<li><a href="<c:url value="userInfo"/>" style="color: black">
-									<span style="color: black"><i
-										class="icofont icofont-user"></i></span> Thông tin cá nhân
+              <li><a href="<c:url value="userInfo"/>" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"></i></span>
+									Thông tin cá nhân
 							</a></li>
-							<%-- <li><a href="UserProfile.jsp" style="color: black"> <span
-												style="color: black"><i class="icofont icofont-user"></i></span>
-												${sessionScope.LoginReader.name}
-										</a></li> --%>
+							<li><a href="<c:url value="userInfo"/>" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"></i></span>
+									${sessionScope.LoginReader.name}
+							</a></li>
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
 							</a></li>
-							<li><a href="<c:url value="userbook"/>" style="color: black"> <span style="color: black"><i
+              <li><a href="<c:url value="userbook"/>" style="color: black"> <span style="color: black"><i
 										class="icofont icofont-read-book"></i></span> Sách của tôi
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/DangXuat"
-								style="color: black"> <span style="color: black"><i
+							<li>
+								<%-- <a type="button"
+								href="${pageContext.request.contextPath}/DangXuat"
+								style="color: black" data-toggle="modal"
+								data-target="#staticBackdrop"> <span style="color: black"><i
 										class="icofont icofont-logout"></i></span> Đăng xuất
-							</a></li>
+
+							</a> --%>
+								<button type="button" class="btn btn-danger" data-toggle="modal"
+									data-target="#staticBackdrop" onclick="updateFormAction()">
+									<span style="color: black"><i
+										class="icofont icofont-logout"></i></span> Đăng xuất
+								</button> <!-- Modal -->
+								<div class="modal fade" id="staticBackdrop"
+									data-backdrop="static" data-keyboard="false" tabindex="-1"
+									aria-labelledby="staticBackdropLabel" aria-hidden="true"
+									style="z-index: 1055 !important">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<span class="text-danger"> Bạn có muốn xóa thông báo
+													này </span>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-warning  btn-secondary"
+													data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+												<form:form id="deleteForm" method="POST">
+													<button type="submit" class="btn btn-danger">Xóa</button>
+												</form:form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
 						</ul></li>
 				</ul>
 			</div>
-
 		</c:if>
 
 		<!--ACTIVE ADMIN-->
@@ -63,30 +99,37 @@
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="userInfo"/>" style="color: black">
-									<span style="color: black"><i
-										class="icofont icofont-user" style="color: black"></i></span> Thông
-									tin cá nhân
+							<li><a href="UserProfile.jsp" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"
+										style="color: black"></i></span> Thông tin cá nhân
 							</a></li>
-							<%-- <li><a href="UserProfile.jsp" style="color: black"> <span
-												style="color: black"><i class="icofont icofont-user"
-													style="color: black"></i></span> ${sessionScope.loginAdmin.name}
-										</a></li> --%>
+							<li><a href="UserProfile.jsp" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"
+										style="color: black"></i></span> ${sessionScope.loginAdmin.name}
+							</a></li>
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-ui-password" style="color: black"></i></span>
 									Đổi mật khẩu
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/DangXuat"
+							<li>
+								<%-- <a href="${pageContext.request.contextPath}/DangXuat"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-logout"></i></span> Đăng xuất
-							</a></li>
+							</a> --%>
+								<button type="button" class="btn btn-warning"
+									style="margin-left: 20px; padding: 10px;" data-toggle="modal"
+									data-target="#staticBackdrop" onclick="updateFormAction()">
+									<span style="color: black"><i
+										class="icofont icofont-logout"></i></span> Đăng xuất
+								</button>
+
+
+							</li>
 						</ul></li>
 				</ul>
 			</div>
 		</c:if>
-
-
 		<!--Mainmenu list-->
 		<c:if
 			test="${sessionScope.LoginReader == null && sessionScope.loginAdmin == null}">
@@ -104,3 +147,16 @@
 		</c:if>
 	</div>
 </nav>
+
+<script type="text/javascript">
+	var message = "${message}";
+	if (message && message.trim().length > 0) {
+		// Display an alert with the message content
+		alert(message);
+	}
+
+	function updateFormAction() {
+		var form = document.getElementById('deleteForm');
+		form.action = '${pageContext.request.contextPath}/DangXuat' + id;
+	}
+</script>
