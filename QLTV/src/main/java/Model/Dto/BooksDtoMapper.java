@@ -10,14 +10,14 @@ public class BooksDtoMapper implements RowMapper<BooksDto> {
 		BooksDto booksDto = new BooksDto();
 		booksDto.setBookId(rs.getInt("bookId"));
 		booksDto.setBookName(rs.getString("bookName"));
-        booksDto.setBookImage(rs.getString("bookImage"));
-        booksDto.setBookAmount(rs.getInt("bookAmount"));
-        booksDto.setBookDayCreated(rs.getString("bookDayCreated"));
-        booksDto.setBookDescription(rs.getString("bookDescription"));
-        booksDto.setAuthorName(rs.getString("authorName"));
-        booksDto.setAuthorImage(rs.getString("authorImage"));
-        booksDto.setAuthorDescription(rs.getString("authorDescription"));
-        booksDto.setCategoryName(rs.getString("categoryName"));
+	        booksDto.setBookImage(rs.getString("bookImage"));
+	        booksDto.setBookAmount(rs.getInt("bookAmount"));
+	        booksDto.setBookDayCreated(rs.getString("bookDayCreated"));
+	        booksDto.setBookDescription(rs.getString("bookDescription"));
+	        booksDto.setAuthorName(rs.getString("authorName"));
+	        booksDto.setAuthorImage(rs.getString("authorImage"));
+	        booksDto.setAuthorDescription(rs.getString("authorDescription"));
+	        booksDto.setCategoryName(rs.getString("categoryName"));
         
 		return booksDto;
 	}
