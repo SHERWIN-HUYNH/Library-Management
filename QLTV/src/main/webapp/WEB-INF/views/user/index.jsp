@@ -40,6 +40,7 @@
 <link rel="stylesheet"
 	href="<c:url value= "/assets/css/responsive.css"/>">
 <script src="<c:url value= "/assets/css/responsive.css"/>"></script>
+
 <style type="text/css" media="screen">
 </style>
 </head>
@@ -71,7 +72,34 @@
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
-			<%@include file ="/WEB-INF/views/shared/header.jsp" %>
+			<%@include file="/WEB-INF/views/shared/header.jsp"%>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+			data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true"
+			style="z-index: 1055 !important">
+			<div class="modal-dialog" style="width: 500px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<span class="text-danger"> Bạn có muốn xóa thông báo này </span>
+					</div>
+					<div class="modal-footer" style="display: flex;" >
+						<button type="button" class="btn btn-warning  btn-secondary"
+							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+						<form:form id="deleteForm" method="POST">
+							<button type="submit" class="btn btn-danger">Xóa</button>
+						</form:form>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="space-100"></div>
 
@@ -108,7 +136,8 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#book">Tìm kiếm sách</a></li>
+									<li class="active"><a data-toggle="tab" href="#book">Tìm
+											kiếm sách</a></li>
 								</ul>
 							</div>
 							<div class="panel-body">
@@ -118,7 +147,8 @@
 											modelAttribute="search">
 											<div class="input-group">
 												<form:input type="text" class="form-control"
-													placeholder="Nhập tên sách hoặc tác giả muốn tìm" path="bookName" name="txtSearch" />
+													placeholder="Nhập tên sách hoặc tác giả muốn tìm"
+													path="bookName" name="txtSearch" />
 												<div class="input-group-btn">
 													<button type="submit" class="btn btn-primary">
 														<i class="icofont icofont-search-alt-2"></i>
@@ -165,7 +195,7 @@
 					<div class="space-60"></div>
 					<div class="my-slider">
 						<ul>
-							<c:forEach var="author" items="${authors}" end ="4">
+							<c:forEach var="author" items="${authors}" end="4">
 								<li><img
 									src="<c:url value = "/assets/images/author/${author.image}"/>"
 									alt="library"></li>
@@ -286,7 +316,7 @@
 					<div class="book-list-photo">
 						<div class="book-list">
 							<!-- book list -->
-							<c:forEach var="bookDto" items="${booksDto}" end = "4">
+							<c:forEach var="bookDto" items="${booksDto}" end="4">
 								<div class="book_item">
 									<div class="book_item">
 										<img
@@ -322,7 +352,7 @@
 					<div class="book-content">
 						<!-- book details -->
 						<div class="book-details">
-							<c:forEach var="bookDto" items="${booksDto}" end = "4">
+							<c:forEach var="bookDto" items="${booksDto}" end="4">
 								<div class="book-details-item">
 									<h4 class="tip-left">Tiêu đề</h4>
 									<p class="lead">${bookDto.bookName}</p>
@@ -451,7 +481,6 @@
 			// Display an alert with the message content
 			alert(message);
 		}
-		
 	</script>
 </body>
 </html>
