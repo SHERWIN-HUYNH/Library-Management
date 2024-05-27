@@ -429,69 +429,10 @@
 		</div>
 		<div class="space-80"></div>
 	</section>
-
-	<footer class="black-bg text-white">
-		<div class="space-60"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-4">
-					<a href="#"><img
-						src="<c:url value= "/assets/images/logo.png"/>" alt="library"></a>
-					<div class="space-20"></div>
-					<p>Đến, đọc, tận hưởng.</p>
-					<div class="space-10"></div>
-					<ul class="list-inline list-unstyled social-list">
-						<li><a href="#"><i
-								class="icofont icofont-social-facebook"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-behance"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
-					</ul>
-					<div class="space-10"></div>
-					<ul class="list-unstyled list-inline tip yellow">
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-					<h4 class="text-white">Liên hệ</h4>
-					<div class="space-20"></div>
-					<table class="table border-none addr-dt">
-						<tr>
-							<td><i class="icofont icofont-social-google-map"></i></td>
-							<td><address>Số 1, Võ Văn Ngân, Thủ Đức, TP. Hồ
-									Chí Minh</address></td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-email"></i></td>
-							<td>susislibrary@domain.com</td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-phone"></i></td>
-							<td>+62 582 528 527 21</td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-globe-alt"></i></td>
-							<td><a href="www.susislibrary.com" target="_blank">www.susislibrary.com</a></td>
-						</tr>
-					</table>
-				</div>
-				<!-- <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-                    <h4 class="text-white">Useful Link</h4>
-                    <div class="space-20"></div>
-                    <ul class="list-unstyled menu-tip">
-                        <li><a href="books.jsp">Costumer Service</a></li>
-                        <li><a href="books.jsp">Help Desk</a></li>
-                        <li><a href="books.jsp">Forum</a></li>
-                        <li><a href="books.jsp">Staff Profile</a></li>
-                        <li><a href="books.jsp">Live Chat</a></li>
-                    </ul>
-                </div> -->
-			</div>
-		</div>
-		<div class="space-60"></div>
-	</footer>
+   <!-- Footer-Area -->
+	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
+	<!-- Footer-Area-End -->
+	<!-- Vandor-JS -->
 	<script src="<c:url value= "/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
 	<script src="<c:url value= "/assets/js/vendor/bootstrap.min.js"/>"></script>
 	<!-- Plugin-JS -->

@@ -197,62 +197,9 @@
 			<div class="space-80"></div>
 	</section>
 	<!-- Footer-Area -->
-	<footer class="black-bg text-white">
-		<div class="space-60"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-4">
-					<a href="#"><img src="<c:url value='/assets/images/logo.png'/>"
-						alt="library"></a>
-					<div class="space-20"></div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-						gravida, quam vitae est Sed non eros elementum nulla sodales
-						ullamcorper.</p>
-					<div class="space-10"></div>
-					<ul class="list-inline list-unstyled social-list">
-						<li><a href="#"><i
-								class="icofont icofont-social-facebook"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-behance"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
-					</ul>
-					<div class="space-10"></div>
-					<ul class="list-unstyled list-inline tip yellow">
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-					<h4 class="text-white">Liên hệ</h4>
-					<div class="space-20"></div>
-					<table class="table border-none addr-dt">
-						<tbody>
-							<tr>
-								<td><i class="icofont icofont-social-google-map"></i></td>
-								<td><address>3050 Universal Blvd #190 Fort
-										Lauderdale, FL, 33331, Sydney New York City</address></td>
-							</tr>
-							<tr>
-								<td><i class="icofont icofont-email"></i></td>
-								<td>susislibrary@domain.com</td>
-							</tr>
-							<tr>
-								<td><i class="icofont icofont-phone"></i></td>
-								<td>+62 582 528 527 21</td>
-							</tr>
-							<tr>
-								<td><i class="icofont icofont-globe-alt"></i></td>
-								<td><a href="www.susislibrary.html" target="_blank">www.susislibrary.com</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="space-60"></div>
-	</footer>
+	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
 	<!-- Footer-Area-End -->
+
 
 	<!-- Vandor-JS -->
 	<script src="<c:url value='/assets/js/vendor/jquery-1.12.4.min.js'/>"></script>
