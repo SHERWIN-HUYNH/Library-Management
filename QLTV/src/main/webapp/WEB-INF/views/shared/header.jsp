@@ -20,19 +20,20 @@
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu" style="color: black">
-							<li><a href="<c:url value="userInfo"/>" style="color: black">
-									<span style="color: black"><i
-										class="icofont icofont-user"></i></span> Thông tin cá nhân
+							<li><a href="<c:url value="userInfo"/>" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"></i></span>
+									Thông tin cá nhân
 							</a></li>
-							<%-- <li><a href="UserProfile.jsp" style="color: black"> <span
-												style="color: black"><i class="icofont icofont-user"></i></span>
-												${sessionScope.LoginReader.name}
-										</a></li> --%>
+							<li><a href="<c:url value="userInfo"/>" style="color: black"> <span
+									style="color: black"><i class="icofont icofont-user"></i></span>
+									${sessionScope.LoginReader.name}
+							</a></li>
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
 							</a></li>
-							<li><a href="<c:url value="userbook"/>" style="color: black"> <span style="color: black"><i
+							<li><a href="<c:url value="userbook"/>" style="color: black">
+									<span style="color: black"><i
 										class="icofont icofont-read-book"></i></span> Sách của tôi
 							</a></li>
 							<li><a href="${pageContext.request.contextPath}/DangXuat"
