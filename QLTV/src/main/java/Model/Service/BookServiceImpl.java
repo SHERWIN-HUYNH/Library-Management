@@ -55,7 +55,9 @@ public class BookServiceImpl {
 	public int insertAuthor(Authors authors) {
 		return addbookDao.insertAuthor(authors);
 	}
-	
+	public List<BooksDto> GetDataBooksDto() {
+		return bookDtoDao.GetDataBooksDto();
+	}
 	public List<BooksDto> GetDataSearchBookDto(String book) {
 		return bookDtoDao.getDataSearchBookDto(book);
 	}
