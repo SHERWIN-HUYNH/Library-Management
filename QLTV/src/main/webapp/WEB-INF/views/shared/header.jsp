@@ -13,6 +13,7 @@
 								<li><a href="#">Giới thiệu</a></li>
 								<li><a href="<c:url value="notification" />">Thông báo</a></li>
 								<li><a href="<c:url value="sach" />">Sách</a></li>
+								<li><a href="<c:url value="muonSachUser" />">Mượn Sách</a></li>
 								<li><a>${sessionScope.LoginReader.name}</a></li>
 								<li><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown"> <img

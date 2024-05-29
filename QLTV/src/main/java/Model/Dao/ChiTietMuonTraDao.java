@@ -1,5 +1,6 @@
 package Model.Dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,14 @@ public class ChiTietMuonTraDao {
 		StringBuffer sql = new StringBuffer();
 		 sql.append ( "INSERT INTO chitietmuontra(bookId,ngayMuon,ngayTra,readerId,amount) VALUES('"+ ct.getBookId()+"','"+ ct.getNgayMuon()+"','"+ ct.getNgayTra()+"','"+ct.getReaderId()+"','"+ct.getAmount()+"')");
 		int ctmt = _jdbcTemplate.update(sql.toString());
+		return ctmt;
+	}
+	
+	public int muonSachUser(ChiTietMuonTra ct, int i) {
+		String sql = "INSERT INTO chitietmuontra(bookId, ngayMuon, ngayTra, readerId, amount) VALUES (?, ?, ?, ?, ?)";
+	    LocalDate ngayMuon = LocalDate.now();
+	    LocalDate ngayTra = ngayMuon.plusDays(30);
+	    int ctmt = _jdbcTemplate.update(sql, ct.getBookId(), ngayMuon, ngayTra, i, ct.getAmount());
 		return ctmt;
 	}
 }

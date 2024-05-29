@@ -48,4 +48,7 @@ public class ChiTietMuonTraServicelmpl {
 		return ctmtDtoDao.GetDataSearchChiTietMuonTraDto(name);
 	}
 
+	public int muonSachUser(ChiTietMuonTra ct, int i) {
+		return ctmtsDao.muonSachUser(ct,i);
+	}
 }
