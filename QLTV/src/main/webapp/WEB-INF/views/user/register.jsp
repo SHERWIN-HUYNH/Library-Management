@@ -48,32 +48,6 @@
 		<!-- Mainmenu-markup-start -->
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
-			<%-- <nav class="navbar">
-				<div class="container">
-					<div class="navbar-header">
-						<div class="space-10"></div>
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#mainmenu">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<!--Logo-->
-						<!-- <a href="#sc1" class="navbar-left show"><img src="images/logo.png" alt="library"></a> -->
-						<div class="space-10"></div>
-					</div>
-					<!--Mainmenu list-->
-					<div class="navbar-right in fade" id="mainmenu">
-						<ul class="nav navbar-nav nav-white text-uppercase">
-							<li><a href="index">Trang chủ</a></li>
-							<li><a href="#">Giới thiệu</a></li>
-							<li><a href="notification.html">Thông báo</a></li>
-							<li><a href="books.html">Sách</a></li>
-							<li class="active"><a href="<c:url value ="dang-nhap" />">Đăng
-									nhập</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav> --%>
 			<%@include file ="/WEB-INF/views/shared/header.jsp" %>
 		</div>
 		<div class="space-100"></div>
