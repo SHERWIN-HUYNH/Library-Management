@@ -90,7 +90,7 @@
 										<strong>Thêm thông báo</strong>
 									</div>
 									<div class="card-body card-block">
-										<input type="button" value="Thêm thể loại"
+										<input type="button" value="Thêm thông báo"
 											class="btn btn-primary"
 											onclick="location.href='${pageContext.request.contextPath}/ThemThongBao'">
 									</div>
