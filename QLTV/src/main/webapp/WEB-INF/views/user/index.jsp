@@ -71,7 +71,7 @@
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
-			<%@include file ="/WEB-INF/views/shared/header.jsp" %>
+			<%@include file="/WEB-INF/views/shared/header.jsp"%>
 		</div>
 		<div class="space-100"></div>
 
@@ -108,7 +108,8 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#book">Tìm kiếm sách</a></li>
+									<li class="active"><a data-toggle="tab" href="#book">Tìm
+											kiếm sách</a></li>
 								</ul>
 							</div>
 							<div class="panel-body">
@@ -118,7 +119,8 @@
 											modelAttribute="search">
 											<div class="input-group">
 												<form:input type="text" class="form-control"
-													placeholder="Nhập tên sách hoặc tác giả muốn tìm" path="bookName" name="txtSearch" />
+													placeholder="Nhập tên sách hoặc tác giả muốn tìm"
+													path="bookName" name="txtSearch" />
 												<div class="input-group-btn">
 													<button type="submit" class="btn btn-primary">
 														<i class="icofont icofont-search-alt-2"></i>
@@ -165,7 +167,7 @@
 					<div class="space-60"></div>
 					<div class="my-slider">
 						<ul>
-							<c:forEach var="author" items="${authors}" end ="4">
+							<c:forEach var="author" items="${authors}" end="4">
 								<li><img
 									src="<c:url value = "/assets/images/author/${author.image}"/>"
 									alt="library"></li>
@@ -247,7 +249,7 @@
 			</div>
 			<div class="space-120"></div>
 			<div class="row text-center">
-				<c:forEach var="category" items="${categories}" end="8">
+				<c:forEach var="category" items="${categories}">
 					<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInLeft"
 						data-wow-delay="0.1s">
 						<div class="category-item well blue text-cetnr">
@@ -270,10 +272,12 @@
 			<div class="space-60"></div>
 			<div class="row">
 				<div class="col-xs-12 text-center">
-					<a href="DauSachDanhSach" class="btn btn-primary">Xem thêm</a>
+					<button class="btn btn-primary" id="show-more-categories">Xem
+						thêm</button>
 				</div>
 			</div>
-			<div class="space-80"></div>
+		</div>
+		<div class="space-80"></div>
 		</div>
 	</section>
 	<section class="relative fix" id="sc3">
@@ -286,7 +290,7 @@
 					<div class="book-list-photo">
 						<div class="book-list">
 							<!-- book list -->
-							<c:forEach var="bookDto" items="${booksDto}" end = "4">
+							<c:forEach var="bookDto" items="${booksDto}" end="4">
 								<div class="book_item">
 									<div class="book_item">
 										<img
@@ -322,7 +326,7 @@
 					<div class="book-content">
 						<!-- book details -->
 						<div class="book-details">
-							<c:forEach var="bookDto" items="${booksDto}" end = "4">
+							<c:forEach var="bookDto" items="${booksDto}" end="4">
 								<div class="book-details-item">
 									<h4 class="tip-left">Tiêu đề</h4>
 									<p class="lead">${bookDto.bookName}</p>
@@ -362,9 +366,10 @@
 										<li><i class="icofont icofont-star"></i></li>
 									</ul>
 									<div class="space-20"></div>
-									<a href="books.html" class="btn btn-primary hover-btn-default">Xem
-										sách</a> <a href="books.html"
-										class="btn btn-primary hover-btn-default">Đọc sau</a>
+										<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
+											class="btn btn-primary hover-btn-default">Xem sách</a>
+									<!-- <a href="books.html"
+										class="btn btn-primary hover-btn-default">Đọc sau</a> -->
 								</div>
 							</c:forEach>
 
@@ -429,7 +434,7 @@
 		</div>
 		<div class="space-80"></div>
 	</section>
-   <!-- Footer-Area -->
+	<!-- Footer-Area -->
 	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
 	<!-- Footer-Area-End -->
 	<!-- Vandor-JS -->
@@ -451,7 +456,37 @@
 			// Display an alert with the message content
 			alert(message);
 		}
-		
+	</script>
+	<script>
+		$(document).ready(function() {
+			// Initially hide all categories except the first 4
+			$('.category-item:gt(3)').hide();
+
+			// Check if "showMore" is stored in localStorage
+			const showMoreString = localStorage.getItem('showMore');
+			let showMore = false;
+			if (showMoreString === 'true') {
+				showMore = true;
+			}
+
+			// Set initial visibility based on localStorage
+			if (showMore) {
+				$('.category-item').show();
+			} else {
+				$('.category-item:gt(3)').hide();
+			}
+
+			$('#show-more-categories').click(function() {
+				// Toggle visibility of all categories
+				$('.category-item').toggle();
+
+				// Update localStorage value
+				localStorage.setItem('showMore', !showMore);
+
+				// Update internal state variable
+				showMore = !showMore;
+			});
+		});
 	</script>
 </body>
 </html>
