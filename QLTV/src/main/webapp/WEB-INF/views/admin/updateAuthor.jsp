@@ -128,9 +128,9 @@
 												</div>
 											</div>
 
-											<button type="button" id="author_form"
+											<button id="author_form" type="button"
 												class="btn btn-primary btn-danger" data-toggle="modal"
-												data-target="#staticBackdrop">Sửa</button>
+												data-target="#staticBackdrop" disabled = "disabled"> Chỉnh Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"
 												data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -211,8 +211,8 @@
 		
 	</script>
 	<!-- Main JS-->
-	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value="assets/js/validate_author.js"/>"></script>
+	<script src="<c:url value="/assets/js/main_admin.js"/>"></script>
+	<script src="<c:url value="/assets/js/validate_author.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";

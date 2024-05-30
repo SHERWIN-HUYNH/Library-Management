@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Entity.Authors;
 import Model.Service.AuthorServiceImpl;
@@ -35,17 +36,16 @@ public class AuthorController {
 	}
 
 	@RequestMapping(value = "addAuthor", method = RequestMethod.POST)
-	public ModelAndView ThemTacGia(@ModelAttribute("insertAuthor") Authors authors) {
+	public String ThemTacGia(@ModelAttribute("insertAuthor") Authors authors, RedirectAttributes redirectAttributes) {
 		int rs = authorImpl.insertAuthor(authors);
-		ModelAndView mv = new ModelAndView("admin/ThemTacGia");
-		
+//		ModelAndView mv = new ModelAndView("admin/ThemTacGia");
 		if (rs > 0) {
-			mv.addObject("message", "Thêm thành công");
-			mv.addObject("authors", authorImpl.getDataAuthor());
+			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			redirectAttributes.addFlashAttribute("authors", authorImpl.getDataAuthor());
 		} else {
-			mv.addObject("message", "Thêm thất bại");
+			redirectAttributes.addFlashAttribute("message", "Thêm thất bại");
 		}
-		return mv;
+		return "redirect:/authors";
 	}
 
 	@RequestMapping(value = "/updateAuthor/{id}", method = RequestMethod.GET)
@@ -57,16 +57,15 @@ public class AuthorController {
 	}
 
 	@RequestMapping(value = "/updateAuthor/{id}", method = RequestMethod.POST)
-	public ModelAndView updateAuthor(@PathVariable int id, @ModelAttribute("editAuthor") Authors authors) {
-		ModelAndView mv = new ModelAndView("admin/updateAuthor");
+	public String updateAuthor(@PathVariable int id, @ModelAttribute("editAuthor") Authors authors, RedirectAttributes redirectAttributes) {
+//		ModelAndView mv = new ModelAndView("admin/updateAuthor");
 		int rs = authorImpl.updateAuthor(id, authors);
 		if (rs > 0) {
-			mv.addObject("message", "SỬA TÁC GIẢ THÀNH CÔNG");
-
-		} else {
-			mv.addObject("message", "SỬA TÁC GIẢ THẤT BẠI");
-		}
-		return mv;
+            redirectAttributes.addFlashAttribute("message", "Sửa tác giả thành công");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Sửa tác giả thành công");
+        }
+        return "redirect:/authors";
 	}
 
 	@RequestMapping(value = "/deleteAuthor/{id}", method = RequestMethod.POST)
