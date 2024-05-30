@@ -25,8 +25,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link
-	href="<c:url value="/assets/css/material-dashboard.css?v=2.1.1"/>"
+<link href="<c:url value="/assets/css/material-dashboard.css?v=2.1.1"/>"
 	rel="stylesheet" />
 <!-- Fontfaces CSS-->
 <link href="<c:url value= "/assets/css/font-face.css"/>"
@@ -71,17 +70,58 @@
 <!-- Main CSS-->
 <link href="<c:url value= "/assets/css/theme_1.css"/>" rel="stylesheet"
 	media="all">
+<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	 google.charts.load("current", {packages:["corechart"]});
+     google.charts.setOnLoadCallback(drawChart);
+     // Lấy dữ liệu JSON từ controller
+     var jsonData = '${pieChart}';
+     var parsedData = JSON.parse(jsonData);
+     function drawChart() {
+        
+        
+         
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Category');
+         data.addColumn('number', 'Amount');
+			
+         // Thêm dữ liệu vào DataTable
+         for (var i = 0; i < parsedData.length; i++) {
+        	
+             data.addRow([parsedData[i].categoryName, parsedData[i].amount]);
+         }
+
+         var options = {
+             title: 'Số lượng sách theo thể loại',
+             is3D: true // Enable 3D effect
+         };
+
+         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+         chart.draw(data, options);
+         
+         
+       		
+     }
+     // TIM MIN MAX
+     var maxAndMinCategories = findMaxAndMinCategory(parsedData);
+     var maxCategory = maxAndMinCategories.maxCategory;
+     var minCategory = maxAndMinCategories.minCategory;
+     var maxAmount = maxAndMinCategories.maxAmount;
+     var minAmount = maxAndMinCategories.minAmount
+     
+     var max = document.getElementById('thongKeMax');
+     max.innerHTML = "Thể loại có số lượng sách nhiều nhất là: ";
+     var min = document.getElementById('thongKeMin');
+     min.innerHTML = "Thể loại có số lượng sách ít nhất là: " + minCategory + " với số lượng là " + minAmount;
+     
+	</script>
 </head>
 
 <body class="">
 	<div class="wrapper ">
 		<div class="sidebar" data-color="purple" data-background-color="white"
 			data-image="<c:url value="/assets/images/sidebar-1.jpg"/>">
-			<!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
 			<div class="logo">
 				<a class="logo"> <img
 					src="<c:url value="/assets/images/logo.png"/>" alt="CoolAdmin" />
@@ -240,14 +280,18 @@
 					</div>
 					<div class="row">
 
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-warning">
-									<div class="ct-chart" id="websiteViewsChart"></div>
+									<!-- <div class="ct-chart" id="websiteViewsChart"></div> -->
+									<!-- TEST CHART -->
+									<div id="piechart_3d" style="min-height: 500px"></div>
+
 								</div>
 								<div class="card-body">
-									<h4 class="card-title">Email Subscriptions</h4>
-									<p class="card-category">Last Campaign Performance</p>
+									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
+									<p class="card-category" id="thongKeMax"></p>
+									<p class="card-category" id="thongKeMin"></p>
 								</div>
 								<div class="card-footer">
 									<div class="stats">
@@ -257,7 +301,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-success">
 									<div class="ct-chart" id="dailySalesChart"></div>
@@ -278,23 +322,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="card card-chart">
-								<div class="card-header card-header-danger">
-									<div class="ct-chart" id="completedTasksChart"></div>
-								</div>
-								<div class="card-body">
-									<h4 class="card-title">Completed Tasks</h4>
-									<p class="card-category">Last Campaign Performance</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> campaign sent 2 days
-										ago
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 				<div class="row">
@@ -411,49 +439,7 @@
 		</div>
 	</div>
 
-	<!--   Core JS Files   -->
-	<script src="<c:url value="/assets/js/core/jquery.min.js"/>"></script>
-	<script src="<c:url value="/assets/js/core/popper.min.js"/>"></script>
-	<script
-		src="<c:url value="/assets/js/core/bootstrap-material-design.min.js"/>"></script>
-	<script
-		src="<c:url value="/assets/js/plugins/perfect-scrollbar.jquery.min.js"/>"></script>
-	<!-- Plugin for the momentJs  -->
-	<script src="<c:url value="/assets/js/plugins/moment.min.js"/>"></script>
-	<!--  Plugin for Sweet Alert -->
-	<script src="<c:url value="/assets/js/plugins/sweetalert2.js"/>"></script>
-	<!-- Forms Validations Plugin -->
-	<script
-		src="<c:url value="/assets/js/plugins/jquery.validate.min.js"/>"></script>
-	<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-	<script
-		src="<c:url value="/assets/js/plugins/jquery.bootstrap-wizard.js"/>"></script>
-	<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-	<script
-		src="<c:url value="/assets/js/plugins/bootstrap-selectpicker.js"/>"></script>
-	<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-	<script
-		src="<c:url value="/assets/js/plugins/bootstrap-datetimepicker.min.js"/>"></script>
-	<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-	<script
-		src="<c:url value="/assets/js/plugins/jquery.dataTables.min.js"/>"></script>
-	<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-	<script
-		src="<c:url value="/assets/js/plugins/bootstrap-tagsinput.js"/>"></script>
-	<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-	<script
-		src="<c:url value="/assets/js/plugins/jasny-bootstrap.min.js"/>"></script>
-	<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-	<script src="<c:url value="/assets/js/plugins/fullcalendar.min.js"/>"></script>
-	<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-	<script src="<c:url value="/assets/js/plugins/jquery-jvectormap.js"/>"></script>
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="<c:url value="./assets/js/plugins/nouislider.min.js"/>"></script>
-	<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-	<!-- Library for adding dinamically elements -->
-	<script src="<c:url value="./assets/js/plugins/arrive.min.js"/>"></script>
+
 	<!--  Google Maps Plugin    -->
 
 	<script src="<c:url value="/assets/js/plugins/chartist.min.js"/>"></script>
@@ -462,8 +448,11 @@
 	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 	<script src="<c:url value="/assets/js/material-dashboard.js?v=2.1.1"/>"
 		type="text/javascript"></script>
-	<script src="<c:url value="/assets/js/core/ThongKe.js"/>"></script>
+	<script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
 
+
+
+	
 </body>
 
 </html>

@@ -9,6 +9,8 @@ public class BooksDtoMapper implements RowMapper<BooksDto> {
 	public BooksDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		BooksDto booksDto = new BooksDto();
 		booksDto.setBookId(rs.getInt("bookId"));
+		booksDto.setAuthorId(rs.getInt("authorId"));
+		booksDto.setCategoryId(rs.getInt("categoryId"));
 		booksDto.setBookName(rs.getString("bookName"));
         booksDto.setBookImage(rs.getString("bookImage"));
         booksDto.setBookAmount(rs.getInt("bookAmount"));

@@ -90,7 +90,7 @@
 										<strong>Thêm tác giả</strong>
 									</div>
 									<div class="card-body card-block">
-										<form:form action="addAuthor" method="POST"
+										<form:form action="${pageContext.request.contextPath}/addAuthor" method="POST"
 											modelAttribute="insertAuthor" class="form-horizontal">
 											<div class="row form-group">
 												<div class="col col-md-2">
@@ -177,8 +177,8 @@
 		
 	</script>
 	<!-- Main JS-->
-	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value="assets/js/validate_author.js"/>"></script>
+	<script src="<c:url value="/assets/js/main_admin.js"/>"></script>
+	<script src="<c:url value="/assets/js/validate_author.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";
