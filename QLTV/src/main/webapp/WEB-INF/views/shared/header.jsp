@@ -20,13 +20,13 @@
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu" style="color: black">
-							<li><a href="UserProfile.jsp" style="color: black"> <span
+							<li><a href="<c:url value="userInfo"/>" style="color: black"> <span
 									style="color: black"><i class="icofont icofont-user"></i></span>
 									Thông tin cá nhân
 							</a></li>
-							<li><a href="UserProfile.jsp" style="color: black"> <span
-									style="color: black"><i class="icofont icofont-user"></i></span>
-									${sessionScope.LoginReader.name}
+							<li><a href="<c:url value="userbook"/>" style="color: black">
+									<span style="color: black"><i
+										class="icofont icofont-read-book"></i></span> Sách của tôi
 							</a></li>
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i
@@ -97,13 +97,9 @@
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="UserProfile.jsp" style="color: black"> <span
+							<li><a href="<c:url value="userInfo"/>" style="color: black"> <span
 									style="color: black"><i class="icofont icofont-user"
 										style="color: black"></i></span> Thông tin cá nhân
-							</a></li>
-							<li><a href="UserProfile.jsp" style="color: black"> <span
-									style="color: black"><i class="icofont icofont-user"
-										style="color: black"></i></span> ${sessionScope.loginAdmin.name}
 							</a></li>
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i

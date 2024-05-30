@@ -73,6 +73,8 @@
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
+<<<<<<< HEAD
+=======
 		</div>
 		<!-- Modal -->
 		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
@@ -100,6 +102,7 @@
 					</div>
 				</div>
 			</div>
+>>>>>>> aa11daf127033fc150687085aee9de75b17aea2e
 		</div>
 		<div class="space-100"></div>
 
@@ -277,7 +280,7 @@
 			</div>
 			<div class="space-120"></div>
 			<div class="row text-center">
-				<c:forEach var="category" items="${categories}" end="8">
+				<c:forEach var="category" items="${categories}">
 					<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInLeft"
 						data-wow-delay="0.1s">
 						<div class="category-item well blue text-cetnr">
@@ -300,10 +303,12 @@
 			<div class="space-60"></div>
 			<div class="row">
 				<div class="col-xs-12 text-center">
-					<a href="DauSachDanhSach" class="btn btn-primary">Xem thêm</a>
+					<button class="btn btn-primary" id="show-more-categories">Xem
+						thêm</button>
 				</div>
 			</div>
-			<div class="space-80"></div>
+		</div>
+		<div class="space-80"></div>
 		</div>
 	</section>
 	<section class="relative fix" id="sc3">
@@ -392,9 +397,10 @@
 										<li><i class="icofont icofont-star"></i></li>
 									</ul>
 									<div class="space-20"></div>
-									<a href="books.html" class="btn btn-primary hover-btn-default">Xem
-										sách</a> <a href="books.html"
-										class="btn btn-primary hover-btn-default">Đọc sau</a>
+										<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
+											class="btn btn-primary hover-btn-default">Xem sách</a>
+									<!-- <a href="books.html"
+										class="btn btn-primary hover-btn-default">Đọc sau</a> -->
 								</div>
 							</c:forEach>
 
@@ -459,69 +465,10 @@
 		</div>
 		<div class="space-80"></div>
 	</section>
-
-	<footer class="black-bg text-white">
-		<div class="space-60"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-4">
-					<a href="#"><img
-						src="<c:url value= "/assets/images/logo.png"/>" alt="library"></a>
-					<div class="space-20"></div>
-					<p>Đến, đọc, tận hưởng.</p>
-					<div class="space-10"></div>
-					<ul class="list-inline list-unstyled social-list">
-						<li><a href="#"><i
-								class="icofont icofont-social-facebook"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-social-behance"></i></a></li>
-						<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
-					</ul>
-					<div class="space-10"></div>
-					<ul class="list-unstyled list-inline tip yellow">
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-						<li><i class="icofont icofont-square"></i></li>
-					</ul>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-					<h4 class="text-white">Liên hệ</h4>
-					<div class="space-20"></div>
-					<table class="table border-none addr-dt">
-						<tr>
-							<td><i class="icofont icofont-social-google-map"></i></td>
-							<td><address>Số 1, Võ Văn Ngân, Thủ Đức, TP. Hồ
-									Chí Minh</address></td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-email"></i></td>
-							<td>susislibrary@domain.com</td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-phone"></i></td>
-							<td>+62 582 528 527 21</td>
-						</tr>
-						<tr>
-							<td><i class="icofont icofont-globe-alt"></i></td>
-							<td><a href="www.susislibrary.com" target="_blank">www.susislibrary.com</a></td>
-						</tr>
-					</table>
-				</div>
-				<!-- <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-                    <h4 class="text-white">Useful Link</h4>
-                    <div class="space-20"></div>
-                    <ul class="list-unstyled menu-tip">
-                        <li><a href="books.jsp">Costumer Service</a></li>
-                        <li><a href="books.jsp">Help Desk</a></li>
-                        <li><a href="books.jsp">Forum</a></li>
-                        <li><a href="books.jsp">Staff Profile</a></li>
-                        <li><a href="books.jsp">Live Chat</a></li>
-                    </ul>
-                </div> -->
-			</div>
-		</div>
-		<div class="space-60"></div>
-	</footer>
+	<!-- Footer-Area -->
+	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
+	<!-- Footer-Area-End -->
+	<!-- Vandor-JS -->
 	<script src="<c:url value= "/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
 	<script src="<c:url value= "/assets/js/vendor/bootstrap.min.js"/>"></script>
 	<!-- Plugin-JS -->
@@ -540,6 +487,39 @@
 			// Display an alert with the message content
 			alert(message);
 		}
+
+	</script>
+	<script>
+		$(document).ready(function() {
+			// Initially hide all categories except the first 4
+			$('.category-item:gt(3)').hide();
+
+			// Check if "showMore" is stored in localStorage
+			const showMoreString = localStorage.getItem('showMore');
+			let showMore = false;
+			if (showMoreString === 'true') {
+				showMore = true;
+			}
+
+			// Set initial visibility based on localStorage
+			if (showMore) {
+				$('.category-item').show();
+			} else {
+				$('.category-item:gt(3)').hide();
+			}
+
+			$('#show-more-categories').click(function() {
+				// Toggle visibility of all categories
+				$('.category-item').toggle();
+
+				// Update localStorage value
+				localStorage.setItem('showMore', !showMore);
+
+				// Update internal state variable
+				showMore = !showMore;
+			});
+		});
+
 	</script>
 </body>
 </html>

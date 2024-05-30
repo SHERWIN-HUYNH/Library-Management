@@ -6,43 +6,46 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="zxx">
+
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Sách</title>
+<title>Sách của tôi</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Place favicon.ico in the root directory -->
 <link rel="apple-touch-icon"
-	href="<c:url value='/assets/images/apple-touch-icon.png'/>">
+	href="<c:url value = "/assets/images/apple-touch-icon.png"/>">
 <link rel="shortcut icon" type="image/ico"
-	href="<c:url value='/assets/images/favicon.ico'/>">
+	href="<c:url value = "/assets/images/favicon.ico"/>" />
 
 <!-- Plugin-CSS -->
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/bootstrap.min.css'/>">
+	href="<c:url value = "/assets/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/owl.carousel.min.css'/>">
-<link rel="stylesheet" href="<c:url value='/assets/css/icofont.css'/>">
-<link rel="stylesheet" href="<c:url value='/assets/css/animate.css'/>">
+	href="<c:url value = "/assets/css/owl.carousel.min.css"/>">
+<link rel="stylesheet" href="<c:url value = "/assets/css/icofont.css"/>">
+<link rel="stylesheet" href="<c:url value = "/assets/css/animate.css"/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/cardslider.css'/>">
+	href="<c:url value = "/assets/css/cardslider.css"/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/responsiveslides.css'/>">
+	href="<c:url value = "/assets/css/responsiveslides.css"/>">
 
 <!-- Main-Stylesheets -->
-<link rel="stylesheet" href="<c:url value='/assets/css/normalize.css'/>">
-<link rel="stylesheet" href="<c:url value='/assets/css/overright.css'/>">
-<link rel="stylesheet" href="<c:url value='/assets/css/theme.css'/>">
-<link rel="stylesheet" href="<c:url value='/assets/css/style.css'/>">
 <link rel="stylesheet"
-	href="<c:url value='/assets/css/responsive.css'/>">
-<script src="<c:url value='/assets/js/vendor/modernizr-2.8.3.min.js'/>"></script>
-
+	href="<c:url value = "/assets/css/normalize.css"/>">
+<link rel="stylesheet"
+	href="<c:url value = "/assets/css/overright.css"/>">
+<link rel="stylesheet" href="<c:url value = "/assets/css/theme.css"/>">
+<link rel="stylesheet" href="<c:url value = "/assets/style.css"/>">
+<link rel="stylesheet"
+	href="<c:url value = "/assets/css/responsive.css"/>">
+<script
+	src="<c:url value = "/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
 </head>
 
 <body data-spy="scroll" data-target="#mainmenu" data-offset="50">
@@ -111,9 +114,11 @@
 							</h4>
 							<hr>
 							<ul class="list-unstyled menu-tip">
-								<c:forEach var="category" items="${categories}">
-									<li><a href="#"><c:out value="${category.name}" /></a></li>
-								</c:forEach>
+								<li><a class="active" href="<c:url value="userInfo"/>">Thông
+										tin cá nhân</a></li>
+								<li><a href="<c:url value="UserChangePassword"/>">Đổi
+										mật khẩu</a></li>
+								<li><a href="<c:url value="userbook"/>">Sách của tôi</a></li>
 							</ul>
 						</div>
 						<div class="space-20"></div>
@@ -123,12 +128,12 @@
 				<div class="col-xs-12 col-md-10 pull-right">
 					<h4>Tìm kiếm</h4>
 					<div class="space-5"></div>
-					<form:form action="${pageContext.request.contextPath}/timKiemSach"
-						method="POST" modelAttribute="search">
+					<form:form
+						action="${pageContext.request.contextPath}/searchBorrowedBook"
+						method="POST">
 						<div class="input-group">
-							<form:input type="text" class="form-control"
-								placeholder="Nhập tên sách muốn tìm" path="bookName"
-								id="tenSach" />
+							<input type="text" class="form-control"
+								placeholder="Nhập tên sách muốn tìm" name="searchKeyword">
 							<div class="input-group-btn">
 								<button type="submit" class="btn btn-primary">
 									<i class="icofont icofont-search-alt-2"></i>
@@ -138,34 +143,46 @@
 					</form:form>
 					<div class="space-30"></div>
 					<div class="row">
+						<!-- Total Books -->
 						<div class="pull-left col-xs-12 col-sm-5 col-md-6">
+							<c:set var="totalBooksBorrowed" value="0" />
+
+							<c:forEach var="ctmtDto" items="${ctmtDtos}">
+								<c:set var="totalBooksBorrowed"
+									value="${totalBooksBorrowed + ctmtDto.ctmtAmount}" />
+							</c:forEach>
 							<p>
-								<strong>${booksDto.size()}</strong> cuốn sách được tìm thấy
+								<strong>${totalBooksBorrowed}</strong> cuốn sách đã mượn
 							</p>
+
 						</div>
 					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
-						<c:forEach var="book" items="${booksDto}">
+						<c:forEach var="ctmtDto" items="${ctmtDtos}">
 							<div class="col-xs-12 col-md-6">
 								<div class="category-item well yellow">
 									<div class="media">
-										<div class="media-left">
-											<img
-												src="<c:url value='/assets/images/book/${book.bookImage}'/>"
-												class="media-object" style="width: 120px; height: 150px;"
-												alt="">
-										</div>
-										<div class="media-body">
-											<h4>${book.bookName}</h4>
-											<h6>Tác giả: ${book.authorName}</h6>
-											<h6>Thể loại: ${book.categoryName}</h6>
-											<div class="space-10"></div>
-											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
-												class="text-primary">See the Book</a>
-										</div>
+										<c:forEach var="book" items="${bookDtos}">
+											<c:if test="${ctmtDto.bookId == book.bookId}">
+												<div class="media-left">
+													<img
+														src="<c:url value='/assets/images/book/${book.bookImage}'/>"
+														class="media-object" style="width: 120px; height: 150px;"
+														alt="">
+												</div>
+												<div class="media-body">
+													<h4>${book.bookName}</h4>
+													<h6>Tác giả: ${book.authorName}</h6>
+													<h6>Thể loại: ${book.categoryName}</h6>
+													<div class="space-10"></div>
+													<p>Đọc để hiểu, thư giãn tâm hồn</p>
+													<a href="<c:url value="/bookDetail/${book.bookId}"/>"
+														class="text-primary">See the Book</a>
+												</div>
+											</c:if>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -200,7 +217,6 @@
 	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
 	<!-- Footer-Area-End -->
 
-
 	<!-- Vandor-JS -->
 	<script src="<c:url value='/assets/js/vendor/jquery-1.12.4.min.js'/>"></script>
 	<script src="<c:url value='/assets/js/vendor/bootstrap.min.js'/>"></script>
@@ -218,4 +234,5 @@
 		style="position: fixed; z-index: 2147483647; display: none;"><i
 		class="icofont icofont-long-arrow-up"></i></a>
 </body>
+
 </html>
