@@ -56,9 +56,16 @@ public class AccountServiceImpl implements IAccountService{
 	}
 	
 	// CHANGE PASSWORD
-	public int ChangePassword(String password, int id) {
-		return changePassword.ChangePassword(BCrypt.hashpw(password,BCrypt.gensalt(12)), id);
+	public int ChangePassword(String password, int id,String role) {
+		if(role.equals("reader"))
+			return changePassword.ChangePassword(BCrypt.hashpw(password,BCrypt.gensalt(12)), id,role);
+		else 
+			return changePassword.ChangePassword(password, id,role);
 	}
+	public int checkOldPassword(String password, String role) {
+		return changePassword.checkOldPassword(password, role);
+	}
+	
 	// CEHCK EMAIL EXISTED ? 
 	public int Checkemail(String email) {
 		return forgotPassword.CheckEmail(email);
