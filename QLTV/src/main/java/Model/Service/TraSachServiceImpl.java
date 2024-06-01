@@ -32,4 +32,8 @@ public class TraSachServiceImpl {
 	public List<ChiTietMuonTraDto> GetDataChiTietMuonTraDto(){
 		return ctmtDtoDao.GetDataChiTietMuonTraDto();
 	}
+	
+	public List<ChiTietMuonTraDto> GetDataSearchChiTietMuonTraDto(String name){
+		return ctmtDtoDao.GetDataSearchChiTietMuonTraDto(name);
+	}
 }
