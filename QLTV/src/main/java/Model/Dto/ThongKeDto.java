@@ -24,6 +24,7 @@ public class ThongKeDto {
 	public void setSoluongMuon(int soluongMuon) {
 		this.soluongMuon = soluongMuon;
 	}
+
 	public String getCategoryName() {
 		return categoryName;
 	}

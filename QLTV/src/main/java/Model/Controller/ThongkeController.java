@@ -1,4 +1,7 @@
 package Model.Controller;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,8 +26,9 @@ public class ThongkeController extends BaseController {
 	@Autowired
 	ThongKeServiceImpl thongke = new ThongKeServiceImpl();
 
-	@RequestMapping(value = "thongke")
-	public ModelAndView ThongKe() throws JsonProcessingException {
+	
+	@RequestMapping(value="thongke")
+	public ModelAndView ThongKe() {
 		ModelAndView mv = new ModelAndView("admin/ThongKe");
 		mv.addObject("borrowedRate", thongke.MatDo());
 		mv.addObject("borrowedBooksAmount", thongke.SoSachDangMuon());
@@ -44,19 +48,26 @@ public class ThongkeController extends BaseController {
 
 		LinkedHashMap<String, String> treeMap = thongke.ColumnChart();
 		ObjectMapper barchart = new ObjectMapper();
-		String jsonBarchart = barchart.writeValueAsString(treeMap);
-		mv.addObject("listReceipt", jsonBarchart);
-			
-		List<ThongKeDto> dataPieChart = thongke.DataPieChart();
-		ObjectMapper mapper = new ObjectMapper();
-		String json;
+		String jsonBarchart ;
 		try {
-			json = mapper.writeValueAsString(dataPieChart);
-			mv.addObject("pieChart", json);
-		} catch (JsonProcessingException e) {
+			jsonBarchart = barchart.writeValueAsString(treeMap);
+			mv.addObject("listReceipt", jsonBarchart);
+		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		
+		 List<ThongKeDto> dataList = thongke.DataPieChart();
+		 ObjectMapper mapper = new ObjectMapper();
+	        String json;
+			try {
+				json = mapper.writeValueAsString(dataList);
+				mv.addObject("pieChart", json);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
 
 		return mv;
 	}

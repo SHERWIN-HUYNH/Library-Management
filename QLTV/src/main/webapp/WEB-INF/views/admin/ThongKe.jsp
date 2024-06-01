@@ -70,6 +70,7 @@
 <!-- Main CSS-->
 <link href="<c:url value= "/assets/css/theme_1.css"/>" rel="stylesheet"
 	media="all">
+
 <script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -104,33 +105,35 @@
 		chart.draw(data, options);
 
 	}
-	
+
 	google.charts.setOnLoadCallback(drawColumnChart);
 
 	function drawColumnChart() {
 		var jsonData = '${listReceipt}';
-        var parsedData = JSON.parse(jsonData);
+		var parsedData = JSON.parse(jsonData);
 
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Month');
-        data.addColumn('number', 'Số lượng');
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Month');
+		data.addColumn('number', 'Số lượng');
 
-        for (var month in parsedData) {
-            data.addRow([month, parseInt(parsedData[month])]);
-        }
+		for ( var month in parsedData) {
+			data.addRow([ month, parseInt(parsedData[month]) ]);
+		}
 
-        var options = {
-            title: 'THỐNG KÊ SỐ SÁCH ĐƯỢC MƯỢN THEO TỪNG THÁNG',
-            vAxis: {
-                title: 'Tổng số sách',
-                format: '#'
-              }
-        };
+		var options = {
+			title : 'THỐNG KÊ SỐ SÁCH ĐƯỢC MƯỢN THEO TỪNG THÁNG',
+			vAxis : {
+				title : 'Tổng số sách',
+				format : '#'
+			}
+		};
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
-        chart.draw(data, options);
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('columnchart'));
+		chart.draw(data, options);
 	}
 </script>
+
 </head>
 
 <body class="">
@@ -294,7 +297,9 @@
 						</div>
 					</div>
 					<div class="row">
+
 						<!-- PIE CHART -->
+
 						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-warning">
@@ -304,6 +309,7 @@
 
 								</div>
 								<div class="card-body">
+
 									<h4 class="card-title">Thống kê tỉ lệ sách theo từng thể
 										loại</h4>
 									<p class="card-category" id="thongKeMax">
@@ -315,27 +321,36 @@
 										với số lượng là <b>${categoryMinAmount}</b>
 									</p>
 
+
+									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
+									<p class="card-category" id="thongKeMax"></p>
+									<p class="card-category" id="thongKeMin"></p>
+
 								</div>
 								<div class="card-footer">
-									<div class="stats">
-										
-									</div>
+									<div class="stats"></div>
 								</div>
 							</div>
 						</div>
+
 						<!-- COLUMN CHART  -->
+
 						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-success">
-									
+
 									<div id="columnchart" style="min-height: 500px"></div>
-								</div> 
+								</div>
 								<div class="card-body">
-									<p>Thể loại sách được quan tâm nhất <b>${mostFavoriteCategoryName}</b> với <b>${mostFavoriteCategoryAmount}</b> lượt mượn</p>
+									<p>
+										Thể loại sách được quan tâm nhất <b>${mostFavoriteCategoryName}</b>
+										với <b>${mostFavoriteCategoryAmount}</b> lượt mượn
+									</p>
 								</div>
 								<div class="card-footer">
 									<div class="stats">
-										
+										<i class="material-icons">access_time</i> updated 4 minutes
+										ago
 									</div>
 								</div>
 							</div>
@@ -466,6 +481,8 @@
 	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 	<script src="<c:url value="/assets/js/material-dashboard.js?v=2.1.1"/>"
 		type="text/javascript"></script>
+	<script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
+
 </body>
 
 </html>

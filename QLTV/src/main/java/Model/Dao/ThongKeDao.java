@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 import Model.Dto.ColumnChartMapper;
+=======
+
+>>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
 import Model.Dto.ThongKeDto;
 import Model.Dto.ThongKeDtoMapper;
 
@@ -48,13 +52,13 @@ public class ThongKeDao extends BaseDao {
 		return count1 != null ? count1 : 0;
 	}
 
-	public List<ThongKeDto> GetDataPieChart() {
+
+	public List<ThongKeDto> GetDataPieChart(){
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
 		String sql = "SELECT c.name as categoryName, COUNT(DISTINCT b.id) AS amount FROM category c LEFT JOIN book b ON b.categoryId = c.id GROUP BY c.id, c.name;";
 		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
 		return list;
 	}
-
 	public List<ThongKeDto> TheLoaiMax() {
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
 		String sql = "SELECT  category.name as categoryName, COUNT(book.id) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount DESC LIMIT 1;";
@@ -83,5 +87,6 @@ public class ThongKeDao extends BaseDao {
 		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
 		return list;
 	}
+
 
 }
