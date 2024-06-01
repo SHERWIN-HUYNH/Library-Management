@@ -226,31 +226,22 @@ to {
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														<th>Mã Sách</th>
-														<th>Tên Sách&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														
+														<th>Tên Sách</th>
 														<th>Số lượng</th>
 														<th>Thể loại&nbsp;&nbsp;&nbsp;</th>
-														<th>Mô tả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														
 														<th>Tác giả</th>
 														<th>Ngày xuất bản</th>
 														<th>Ảnh bìa</th>
-														<th>Ảnh tác giả</th>
+														
 														<th>Sửa và Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="book" items="${books}">
 														<tr>
-															<td><c:out value="${book.id}" /></td>
+															
 															<td><c:out value="${book.name}" /></td>
 															<td><c:out value="${book.amount }"></c:out></td>
 															<c:forEach var="category" items="${categories }">
@@ -258,19 +249,19 @@ to {
 																	<td><c:out value="${category.name}" /></td>
 																</c:if>
 															</c:forEach>
-															<td><c:out value="${book.description}" /></td>
+															
 															<c:forEach var="author" items="${authors}">
 																<c:if test="${author.id == book.authorId }">
 																	<td><c:out value="${author.name}" /></td>
 																</c:if>
 															</c:forEach>
 															<td><c:out value="${book.dayCreated}" /></td>
-															<td><c:out value="${book.image}" /></td>
-															<c:forEach var="author" items="${authors}">
+															<td><img src="<c:url value="/assets/images/book/${book.image}"/>" alt="Bìa sách"></td>
+															<%-- <c:forEach var="author" items="${authors}">
 																<c:if test="${author.id == book.authorId }">
 																	<td><c:out value="${author.image}" /></td>
 																</c:if>
-															</c:forEach>
+															</c:forEach> --%>
 
 															<td
 																style="display: flex; justify-content: space-between; gap: 10px; margin-top: 75px;"><a
@@ -285,9 +276,9 @@ to {
 											</table>
 										</div>
 										<div class="card-footer">
-											<button type="submit" class="btn btn-primary btn-sm">
+											<!-- <button type="submit" class="btn btn-primary btn-sm">
 												<i class="fa fa-check"></i> Hoàn tất
-											</button>
+											</button> -->
 										</div>
 
 									</div>

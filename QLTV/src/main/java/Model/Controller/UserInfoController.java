@@ -60,9 +60,9 @@ public class UserInfoController {
 				userInfoService.updateAdminInfo(sessionAdmin.getId(), updatedAdmin);
 				session.setAttribute("loginAdmin", updatedAdmin);
 			}
-			redirectAttributes.addFlashAttribute("message", "Sửa thông tin thành công!");
+			redirectAttributes.addFlashAttribute("messages", "Sửa thông tin thành công!");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", "Sửa thông tin thất bại!");
+			redirectAttributes.addFlashAttribute("messages", "Sửa thông tin thất bại!");
 		}
 
 		return new ModelAndView("redirect:/userInfo");

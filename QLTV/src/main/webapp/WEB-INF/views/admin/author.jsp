@@ -154,7 +154,8 @@ to {
 														<th>Mã tác giả</th>
 														<th>Tên tác giả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-														<th>Ảnh tác giả</th>
+														<th>Ảnh tác
+															giả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 														<th>Mô tả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -171,7 +172,9 @@ to {
 															<td><c:out value="${author.id}" /></td>
 															<td><c:out value="${author.name}" /></td>
 															<td><img
-																src="<c:url value= "/assets/images/author/${author.image}"/>" class = "model-object" style ="width: 160px; height: 200px;" ></td>
+																src="<c:url value= "/assets/images/author/${author.image}"/>"
+																class="model-object"
+																style="width: 250px; height: 275px;"></td>
 															<td><c:out value="${author.description}" /></td>
 															<td><a
 																style="display: inline-block; margin-right: 5px;"
