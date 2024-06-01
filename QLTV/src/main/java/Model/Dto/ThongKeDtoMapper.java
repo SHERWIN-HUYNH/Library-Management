@@ -8,7 +8,7 @@ public class ThongKeDtoMapper  implements RowMapper<ThongKeDto> {
 	public ThongKeDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ThongKeDto thongke = new ThongKeDto();
 		thongke.setCategoryName(rs.getString("categoryName"));
-		thongke.setAmount(rs.getInt("amount"));		   
+		thongke.setAmount(rs.getInt("amount"));
 		return thongke;
 	}
 }

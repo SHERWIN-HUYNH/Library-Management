@@ -145,7 +145,6 @@
 				return false; // Ngăn không cho submit form
 			}
 		}
-	</script></
-							body>
+	</script>
 
 </html>

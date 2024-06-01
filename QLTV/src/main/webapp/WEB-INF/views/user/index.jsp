@@ -74,8 +74,7 @@
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
-<<<<<<< HEAD
-=======
+
 		</div>
 		<!-- Modal -->
 		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
@@ -92,18 +91,20 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn xóa thông báo này </span>
+						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+
 					</div>
 					<div class="modal-footer" style="display: flex;" >
 						<button type="button" class="btn btn-warning  btn-secondary"
 							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" method="POST">
-							<button type="submit" class="btn btn-danger">Xóa</button>
+						<form:form id="deleteForm" action="DangXuat" method="POST">
+							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+
 						</form:form>
 					</div>
 				</div>
 			</div>
->>>>>>> aa11daf127033fc150687085aee9de75b17aea2e
+
 		</div>
 		<div class="space-100"></div>
 
@@ -520,7 +521,14 @@
 				showMore = !showMore;
 			});
 		});
+<<<<<<< HEAD
+		function updateFormAction() {
+			var form = document.getElementById('deleteForm');
+			form.action = '${pageContext.request.contextPath}/DangXuat' + id;
+		}
+=======
 
+>>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
 	</script>
 </body>
 </html>

@@ -54,4 +54,9 @@ public class BooksDtoDao extends BaseDao {
 		BooksDto booksDto = _jdbcTemplate.queryForObject(sql, new BooksDtoMapper(), id);
 		return booksDto;
 	}
+	
+	/*
+	 * public int BookAmount(int i){ List<Integer> list=new ArrayList<Integer>();
+	 * String sql = "SELECT amount FROM book WHERE id = ?"; list return list; }
+	 */
 }

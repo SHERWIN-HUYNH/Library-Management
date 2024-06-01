@@ -108,7 +108,7 @@ to {
 		<!-- PAGE CONTAINER-->
 		<div class="page-container">
 			<!-- HEADER DESKTOP-->
-			<header class="header-desktop">
+			<header class="header-desktop" style="z-index:999;">
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap"></div>
@@ -125,7 +125,7 @@ to {
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Mượn sách</strong>
+										<strong>Lập phiếu mượn</strong>
 									</div>
 									<div class="card-body card-block">
 										<form:form action="muontra" method="post"
@@ -138,25 +138,24 @@ to {
 												</div>
 												<div class="col-12 col-md-9">
 													<form:input type="date" class="form-control"
-														path="ngayMuon" />
-
+														path="ngayMuon" id="ngayMuon"/>
+													<span id="ngayMuon_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-3">
 													<label for="appointment_date_input"
 														class="form-control-label">Ngày trả</label>
+														
 												</div>
 												<div class="col-12 col-md-9">
-													<form:input type="date" class="form-control" path="ngayTra" />
-
-
-
+													<form:input type="date" class="form-control" path="ngayTra" id="ngayTra"/>
+													<span id="ngayTra_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-3">
-													<label for="readerId" class="form-control-label">Mã
+													<label for="readerId" class="form-control-label">
 														Người Đọc</label>
 												</div>
 												<div class="col-12 col-md-9">
@@ -166,20 +165,22 @@ to {
 															<option value="${reader.getId()}">${reader.getId()}</option>
 														</c:forEach>
 													</form:select>
+													<span id="reader_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-3">
 													<label path="bookId" for="book_num_input"
-														class="form-control-label">Mã sách</label>
+														class="form-control-label">Tên sách</label>
 												</div>
 												<div class="col-12 col-md-9">
 													<form:select path="bookId" name="selectBookId"
 														id="selectBookId" class="form-control">
 														<c:forEach var="book" items="${books}">
-															<option value="${book.getId()}">${book.getId()}</option>
+															<option value="${book.getId()}" data-amount="${book.getAmount()}">${book.getName()}</option>
 														</c:forEach>
 													</form:select>
+													<span id="book_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
@@ -188,18 +189,19 @@ to {
 														lượng</label>
 												</div>
 												<div class="col-12 col-md-9">
-													<form:input type="number" name="numberSoLuong"
+													<form:input type="number" name="numberSoLuong" id="numberSoLuong"
 														class="form-control" step="1" required="required"
-														pattern="[0-9]" title="" min="1" path="amount" />
+														pattern="[0-9]" title="" min="1"  path="amount" />
+														<span id="amount_error" style="color: red;"></span>
 												</div>
 											</div>
-											<form:button type="submit" class="btn btn-success btn-sm">
+											<button type="submit" class="btn btn-success btn-sm" id="register_form" disabled>
 												<i class="fa fa-check"></i> Thêm
-											</form:button>
+											</button>
 										</form:form>
 									</div>
 
-									<div class="col-12 col-md-12">
+								<%-- 	<div class="col-12 col-md-12">
 										<div class="table-responsive table--no-card m-b-30">
 											<table style="width: 100%"
 												class="table  table-borderless table-striped table-earning">
@@ -242,7 +244,7 @@ to {
 											</button>
 										</div> -->
 
-									</div>
+									</div> --%>
 								</div>
 							</div>
 						</div>
@@ -292,14 +294,44 @@ to {
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value= "/assets/js/main_admin.js"/>"></script>
+	<script src="<c:url value= "/assets/js/validate_ctmuon.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/assets/vendor/jquery-ui-1.13.3.custom"/>"></script>
 	<script type="text/javascript">
 		var message = "${message}";
 		if (message && message.trim().length > 0) {
-			// Display an alert with the message content
 			alert(message);
 		}
+		
+		 document.addEventListener("DOMContentLoaded", function() {
+		        const bookSelect = document.getElementById("selectBookId");
+		        const amountInput = document.getElementById("numberSoLuong");
+
+		        bookSelect.addEventListener("change", function() {
+		            const selectedOption = bookSelect.options[bookSelect.selectedIndex];
+		            const maxAmount = selectedOption.getAttribute("data-amount");
+		            if (maxAmount) {
+		                amountInput.setAttribute("max", maxAmount);
+		                console.log("Max attribute set to:", amountInput.getAttribute("max"));
+		            } else {
+		                console.error("Failed to retrieve max amount.");
+		            }
+		        });
+		        const event = new Event('change');
+		        bookSelect.dispatchEvent(event);
+		        
+		       
+		    });
+		 document.getElementById('ngayMuon').addEventListener('change', function() {
+		        var ngayMuon = new Date(this.value);
+		        var ngayTra = new Date(ngayMuon.getTime() + 30 * 24 * 60 * 60 * 1000);
+		        var dd = String(ngayTra.getDate()).padStart(2, '0');
+		        var mm = String(ngayTra.getMonth() + 1).padStart(2, '0'); 
+		        var yyyy = ngayTra.getFullYear();
+		        var formattedNgayTra = yyyy + '-' + mm + '-' + dd;
+		        document.getElementById('ngayTra').value = formattedNgayTra;
+		    });
+		
 	</script>
 </body>
 </html>
