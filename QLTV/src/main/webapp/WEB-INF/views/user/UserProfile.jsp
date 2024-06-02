@@ -193,7 +193,7 @@
 	<!-- Active-JS -->
 	<script src="<c:url value="assets/js/validate_userprofile.js"/>"></script>
 	<script type="text/javascript">
-		var message = "${message}";
+		var message = "${messages}";
 		if (message && message.trim().length > 0) {
 			// Display an alert with the message content
 			alert(message);

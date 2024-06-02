@@ -154,7 +154,8 @@ to {
 														<th>Mã tác giả</th>
 														<th>Tên tác giả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-														<th>Ảnh tác giả</th>
+														<th>Ảnh tác
+															giả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 														<th>Mô tả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -166,12 +167,14 @@ to {
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="author" items="${authors}">
+													<c:forEach var="author" items="${pagination.content}">
 														<tr>
 															<td><c:out value="${author.id}" /></td>
 															<td><c:out value="${author.name}" /></td>
 															<td><img
-																src="<c:url value= "/assets/images/author/${author.image}"/>" class = "model-object" style ="width: 160px; height: 200px;" ></td>
+																src="<c:url value= "/assets/images/author/${author.image}"/>"
+																class="media-object author-photo"
+																style="width: 200px; height: 230px;"></td>
 															<td><c:out value="${author.description}" /></td>
 															<td><a
 																style="display: inline-block; margin-right: 5px;"
@@ -215,10 +218,40 @@ to {
 												</tbody>
 											</table>
 										</div>
+										<!-- Pagination -->
 										<div class="card-footer">
-											<!-- <button type="submit" class="btn btn-primary btn-sm">
-												<i class="fa fa-check"></i> Hoàn tất
-											</button> -->
+											<div class="text-center">
+												<ul class="pagination justify-content-center">
+													<li
+														class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
+														<a class="page-link"
+														href="${pageContext.request.contextPath}/authors/page?page=1">First</a>
+													</li>
+													<li
+														class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
+														<a class="page-link"
+														href="${pageContext.request.contextPath}/authors/page?page=${pagination.currentPage - 1}">Previous</a>
+													</li>
+													<c:forEach var="pageNumber" begin="1"
+														end="${pagination.totalPages}">
+														<li
+															class="page-item ${pagination.currentPage == pageNumber ? 'active' : ''}">
+															<a class="page-link"
+															href="${pageContext.request.contextPath}/authors/page?page=${pageNumber}">${pageNumber}</a>
+														</li>
+													</c:forEach>
+													<li
+														class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
+														<a class="page-link"
+														href="${pageContext.request.contextPath}/authors/page?page=${pagination.currentPage + 1}">Next</a>
+													</li>
+													<li
+														class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
+														<a class="page-link"
+														href="${pageContext.request.contextPath}/authors/page?page=${pagination.totalPages}">Last</a>
+													</li>
+												</ul>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -227,9 +260,9 @@ to {
 					</div>
 				</div>
 			</div>
-			<!-- END MAIN CONTENT-->
-			<!-- END PAGE CONTAINER-->
 		</div>
+		<!-- END MAIN CONTENT-->
+		<!-- END PAGE CONTAINER-->
 	</div>
 
 
@@ -280,5 +313,6 @@ to {
 					+ id;
 		}
 	</script>
+
 </body>
 </html>

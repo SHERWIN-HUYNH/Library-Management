@@ -70,6 +70,7 @@
 					</div>
 					<!--Mainmenu list-->
 					<%@include file="/WEB-INF/views/shared/header.jsp"%>
+					</div>
 			</nav>
 		</div>
 		<div class="space-100"></div>
