@@ -173,8 +173,13 @@ to {
 															<td><c:out value="${author.name}" /></td>
 															<td><img
 																src="<c:url value= "/assets/images/author/${author.image}"/>"
+<<<<<<< HEAD
 																class="media-object author-photo"
 																style="width: 200px; height: 230px;"></td>
+=======
+																class="model-object"
+																style="width: 250px; height: 275px;"></td>
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 															<td><c:out value="${author.description}" /></td>
 															<td><a
 																style="display: inline-block; margin-right: 5px;"

@@ -28,11 +28,19 @@
 									<span style="color: black"><i
 										class="icofont icofont-read-book"></i></span> Sách của tôi
 							</a></li>
+<<<<<<< HEAD
+=======
+							<li><a href="<c:url value="userbook"/>" style="color: black">
+									<span style="color: black"><i
+										class="icofont icofont-read-book"></i></span> Sách của tôi
+							</a></li>
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 							<li><a href="<c:url value="UserChangePassword"/>"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
 							</a></li>
 							<li>
+<<<<<<< HEAD
 								<%-- <a type="button"
 								href="${pageContext.request.contextPath}/DangXuat"
 								style="color: black" data-toggle="modal"
@@ -76,8 +84,20 @@
 						</ul></li>
 				</ul>
 			</div>
+=======
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 
-		</c:if>
+								<button type="button" class="btn btn-warning"
+									style="margin-left: 20px; padding: 10px;" data-toggle="modal"
+									data-target="#staticBackdrop" onclick="updateFormAction()">
+									<span style="color: black"><i
+										class="icofont icofont-logout"></i></span> Đăng xuất
+								</button>
+							</li>
+						</ul></li>
+					</ul>
+				</div>
+			</c:if>
 
 		<!--ACTIVE ADMIN-->
 		<c:if test="${sessionScope.loginAdmin != null}">
@@ -107,6 +127,7 @@
 									Đổi mật khẩu
 							</a></li>
 							<li>
+<<<<<<< HEAD
 								<%-- <a href="${pageContext.request.contextPath}/DangXuat"
 								style="color: black"> <span style="color: black"><i
 										class="icofont icofont-logout"></i></span> Đăng xuất
@@ -116,6 +137,15 @@
 									data-target="#staticBackdrop" onclick="updateFormAction()">
 									<span style="color: black"><i
 										class="icofont icofont-logout"></i></span> Đăng xuất
+=======
+
+								<button type="button" class="btn btn-warning"
+									style="margin-left: 20px; padding: 10px;" data-toggle="modal"
+									data-target="#staticBackdrop" onclick="updateFormAction()">
+									<span style="color: black"><i
+										class="icofont icofont-logout"></i></span> Đăng xuất
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 								</button>
 
 							</li>

@@ -33,10 +33,20 @@ public class MuonTraController extends BaseController {
 		mv.addObject("readers", _HomeService.GetDataReader());
 		mv.addObject("books", _HomeService.GetDataBooks());
 		int rs = chitietmuontra.insertMuonTra(ct);
+		System.out.println("Values");
+		System.out.println(ct.getBookId());
+		System.out.println(ct.getReaderId());
+		System.out.println(ct.getAmount());
 		if (rs > 0) {
 			mv.addObject("message", "Thêm thành công !");
 			mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
-		} else {
+		} else if (rs == -2){
+			mv.addObject("message", "Reader này đã mượn quá 5 quyển sách!");
+			mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
+		}else if(rs ==-3) {
+			mv.addObject("message", "So luong sach cap nhat khong thanh cong !");
+		}
+		else {
 			mv.addObject("message", "Thêm thất bại !");
 		}
 		return mv;

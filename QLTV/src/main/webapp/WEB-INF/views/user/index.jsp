@@ -74,7 +74,11 @@
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
+<<<<<<< HEAD
 			<<<<<<< HEAD =======
+=======
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 		</div>
 		<!-- Modal -->
 		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
@@ -91,6 +95,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
+<<<<<<< HEAD
 						<span class="text-danger"> Bạn có muốn xóa thông báo này </span>
 					</div>
 					<div class="modal-footer" style="display: flex;">
@@ -98,11 +103,26 @@
 							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
 						<form:form id="deleteForm" method="POST">
 							<button type="submit" class="btn btn-danger">Xóa</button>
+=======
+						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+
+					</div>
+					<div class="modal-footer" style="display: flex;" >
+						<button type="button" class="btn btn-warning  btn-secondary"
+							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+						<form:form id="deleteForm" action="DangXuat" method="POST">
+							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 						</form:form>
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			>>>>>>> aa11daf127033fc150687085aee9de75b17aea2e
+=======
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 		</div>
 		<div class="space-100"></div>
 
@@ -398,8 +418,13 @@
 										<li><i class="icofont icofont-star"></i></li>
 									</ul>
 									<div class="space-20"></div>
+<<<<<<< HEAD
 									<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
 										class="btn btn-primary hover-btn-default">Xem sách</a>
+=======
+										<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
+											class="btn btn-primary hover-btn-default">Xem sách</a>
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 									<!-- <a href="books.html"
 										class="btn btn-primary hover-btn-default">Đọc sau</a> -->
 								</div>
@@ -488,6 +513,7 @@
 			// Display an alert with the message content
 			alert(message);
 		}
+<<<<<<< HEAD
 	</script>
 	<script>
 		$(document).ready(function() {
@@ -495,12 +521,23 @@
 			$('.category-item:gt(3)').hide();
 
 			// Check localStorage for the initial state of "showMore"
+=======
+
+	</script>
+	<script>
+		$(document).ready(function() {
+			// Initially hide all categories except the first 4
+			$('.category-item:gt(3)').hide();
+
+			// Check if "showMore" is stored in localStorage
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 			const showMoreString = localStorage.getItem('showMore');
 			let showMore = false;
 			if (showMoreString === 'true') {
 				showMore = true;
 			}
 
+<<<<<<< HEAD
 			// Set initial display based on localStorage
 			if (showMore) {
 				$('.category-item').show();
@@ -522,12 +559,37 @@
 				}
 
 				// Update localStorage
+=======
+			// Set initial visibility based on localStorage
+			if (showMore) {
+				$('.category-item').show();
+			} else {
+				$('.category-item:gt(3)').hide();
+			}
+
+			$('#show-more-categories').click(function() {
+				// Toggle visibility of all categories
+				$('.category-item').toggle();
+
+				// Update localStorage value
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 				localStorage.setItem('showMore', !showMore);
 
 				// Update internal state variable
 				showMore = !showMore;
 			});
 		});
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		function updateFormAction() {
+			var form = document.getElementById('deleteForm');
+			form.action = '${pageContext.request.contextPath}/DangXuat' + id;
+		}
+=======
+
+>>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 	</script>
 </body>
 </html>

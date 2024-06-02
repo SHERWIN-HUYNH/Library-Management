@@ -2,6 +2,19 @@ package Model.Controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +25,13 @@ import Model.Dto.ThongKeDto;
 import Model.Service.ThongKeServiceImpl;
 
 @Controller
-public class ThongkeController extends BaseController{
+public class ThongkeController extends BaseController {
 	@Autowired
 	ThongKeServiceImpl thongke = new ThongKeServiceImpl();
+<<<<<<< HEAD
+=======
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 	
 	@RequestMapping(value="thongke")
 	public ModelAndView ThongKe() {
@@ -23,6 +40,32 @@ public class ThongkeController extends BaseController{
 		mv.addObject("borrowedBooksAmount", thongke.SoSachDangMuon());
 		mv.addObject("bookAmount", thongke.TongSoSach());
 		mv.addObject("readersAmount", thongke.SoluongReader());
+<<<<<<< HEAD
+=======
+		mv.addObject("categoryMax", thongke.TheLoaiMax());
+
+		List<ThongKeDto> categoryMax = thongke.TheLoaiMax();
+		List<ThongKeDto> categoryMin = thongke.TheLoaiMin();
+		List<ThongKeDto> favoriteCategory = thongke.mostFavoriteCategory();
+		mv.addObject("categoryMaxName", categoryMax.get(0).getCategoryName());
+		mv.addObject("categoryMaxAmount", categoryMax.get(0).getAmount());
+		mv.addObject("categoryMinName", categoryMin.get(0).getCategoryName());
+		mv.addObject("categoryMinAmount", categoryMin.get(0).getAmount());
+		mv.addObject("mostFavoriteCategoryAmount", favoriteCategory.get(0).getAmount());
+		mv.addObject("mostFavoriteCategoryName", favoriteCategory.get(0).getCategoryName());
+
+		LinkedHashMap<String, String> treeMap = thongke.ColumnChart();
+		ObjectMapper barchart = new ObjectMapper();
+		String jsonBarchart ;
+		try {
+			jsonBarchart = barchart.writeValueAsString(treeMap);
+			mv.addObject("listReceipt", jsonBarchart);
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 		 List<ThongKeDto> dataList = thongke.DataPieChart();
 		 ObjectMapper mapper = new ObjectMapper();
 	        String json;
@@ -34,6 +77,10 @@ public class ThongkeController extends BaseController{
 				e.printStackTrace();
 			}
 	        
+<<<<<<< HEAD
+=======
+
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 		return mv;
 	}
 }

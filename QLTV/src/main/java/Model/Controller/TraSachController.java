@@ -1,13 +1,16 @@
 package Model.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.ChiTietMuonTra;
 import Model.Service.TraSachServiceImpl;
 
@@ -38,5 +41,15 @@ public class TraSachController {
 			return new ModelAndView("redirect:/traSach"); 
 		}
 	}
+	
+	@RequestMapping(value ="timKiemPhieuTraSach", method = RequestMethod.POST)
+	public ModelAndView searchReader(@RequestParam("name") String name) {
+		ModelAndView mv = new ModelAndView("admin/TraSach");
+		mv.addObject("ctmts", traSach.getDataChiTietTra());
+		List<ChiTietMuonTraDto> searchResults = traSach.GetDataSearchChiTietMuonTraDto(name);
+		mv.addObject("ctmtDto", searchResults);
+		return mv;
+	}
+
 	
 }
