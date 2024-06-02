@@ -94,7 +94,7 @@
 						<span class="text-danger"> Bạn có muốn đăng xuất </span>
 
 					</div>
-					<div class="modal-footer" style="display: flex;" >
+					<div class="modal-footer" style="display: flex;">
 						<button type="button" class="btn btn-warning  btn-secondary"
 							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
 						<form:form id="deleteForm" action="DangXuat" method="POST">
@@ -311,7 +311,6 @@
 			</div>
 		</div>
 		<div class="space-80"></div>
-		</div>
 	</section>
 	<section class="relative fix" id="sc3">
 		<div class="overlay-bg blue">
@@ -399,8 +398,8 @@
 										<li><i class="icofont icofont-star"></i></li>
 									</ul>
 									<div class="space-20"></div>
-										<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
-											class="btn btn-primary hover-btn-default">Xem sách</a>
+									<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
+										class="btn btn-primary hover-btn-default">Xem sách</a>
 									<!-- <a href="books.html"
 										class="btn btn-primary hover-btn-default">Đọc sau</a> -->
 								</div>
@@ -489,46 +488,51 @@
 			// Display an alert with the message content
 			alert(message);
 		}
-
 	</script>
 	<script>
 		$(document).ready(function() {
-			// Initially hide all categories except the first 4
+			// Hide all categories except the first 4
 			$('.category-item:gt(3)').hide();
 
-			// Check if "showMore" is stored in localStorage
+			// Check localStorage for the initial state of "showMore"
 			const showMoreString = localStorage.getItem('showMore');
 			let showMore = false;
 			if (showMoreString === 'true') {
 				showMore = true;
 			}
 
-			// Set initial visibility based on localStorage
+			// Set initial display based on localStorage
 			if (showMore) {
 				$('.category-item').show();
+				$('#show-more-categories').text('Thu gọn');
 			} else {
 				$('.category-item:gt(3)').hide();
+				$('#show-more-categories').text('Xem thêm');
 			}
 
 			$('#show-more-categories').click(function() {
-				// Toggle visibility of all categories
-				$('.category-item').toggle();
+				if (showMore) {
+					// Hide all categories except the first 4
+					$('.category-item:gt(3)').hide();
+					$('#show-more-categories').text('Xem thêm');
+				} else {
+					// Show all categories
+					$('.category-item').show();
+					$('#show-more-categories').text('Thu gọn');
+				}
 
-				// Update localStorage value
+				// Update localStorage
 				localStorage.setItem('showMore', !showMore);
 
 				// Update internal state variable
 				showMore = !showMore;
 			});
 		});
-<<<<<<< HEAD
+
 		function updateFormAction() {
 			var form = document.getElementById('deleteForm');
 			form.action = '${pageContext.request.contextPath}/DangXuat' + id;
 		}
-=======
-
->>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
 	</script>
 </body>
 </html>

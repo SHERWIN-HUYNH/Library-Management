@@ -1,3 +1,4 @@
+
 package Model.Dao;
 
 import java.text.DecimalFormat;
@@ -8,11 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
 import Model.Dto.ColumnChartMapper;
-=======
 
->>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
 import Model.Dto.ThongKeDto;
 import Model.Dto.ThongKeDtoMapper;
 

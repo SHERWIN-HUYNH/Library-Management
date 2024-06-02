@@ -70,6 +70,54 @@
 <!-- Main CSS-->
 <link href="<c:url value= "/assets/css/theme_1.css"/>" rel="stylesheet"
 	media="all">
+<<<<<<< HEAD
+<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	 google.charts.load("current", {packages:["corechart"]});
+     google.charts.setOnLoadCallback(drawChart);
+     // Lấy dữ liệu JSON từ controller
+     var jsonData = '${pieChart}';
+     var parsedData = JSON.parse(jsonData);
+     function drawChart() {
+        
+        
+         
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Category');
+         data.addColumn('number', 'Amount');
+			
+         // Thêm dữ liệu vào DataTable
+         for (var i = 0; i < parsedData.length; i++) {
+        	
+             data.addRow([parsedData[i].categoryName, parsedData[i].amount]);
+         }
+
+         var options = {
+             title: 'Số lượng sách theo thể loại',
+             is3D: true // Enable 3D effect
+         };
+
+         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+         chart.draw(data, options);
+         
+         
+       		
+     }
+     // TIM MIN MAX
+     var maxAndMinCategories = findMaxAndMinCategory(parsedData);
+     var maxCategory = maxAndMinCategories.maxCategory;
+     var minCategory = maxAndMinCategories.minCategory;
+     var maxAmount = maxAndMinCategories.maxAmount;
+     var minAmount = maxAndMinCategories.minAmount
+     
+     var max = document.getElementById('thongKeMax');
+     max.innerHTML = "Thể loại có số lượng sách nhiều nhất là: ";
+     var min = document.getElementById('thongKeMin');
+     min.innerHTML = "Thể loại có số lượng sách ít nhất là: " + minCategory + " với số lượng là " + minAmount;
+     
+	</script>
+=======
 
 <script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
 <script type="text/javascript"
@@ -134,6 +182,7 @@
 	}
 </script>
 
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 </head>
 
 <body class="">
@@ -298,8 +347,11 @@
 					</div>
 					<div class="row">
 
+<<<<<<< HEAD
+=======
 						<!-- PIE CHART -->
 
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-warning">
@@ -309,6 +361,11 @@
 
 								</div>
 								<div class="card-body">
+<<<<<<< HEAD
+									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
+									<p class="card-category" id="thongKeMax"></p>
+									<p class="card-category" id="thongKeMin"></p>
+=======
 
 									<h4 class="card-title">Thống kê tỉ lệ sách theo từng thể
 										loại</h4>
@@ -326,15 +383,19 @@
 									<p class="card-category" id="thongKeMax"></p>
 									<p class="card-category" id="thongKeMin"></p>
 
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 								</div>
 								<div class="card-footer">
 									<div class="stats"></div>
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
+=======
 
 						<!-- COLUMN CHART  -->
 
+>>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 						<div class="col-md-6">
 							<div class="card card-chart">
 								<div class="card-header card-header-success">
@@ -483,6 +544,9 @@
 		type="text/javascript"></script>
 	<script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
 
+
+
+	
 </body>
 
 </html>
