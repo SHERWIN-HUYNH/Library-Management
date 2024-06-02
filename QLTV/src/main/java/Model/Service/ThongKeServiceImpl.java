@@ -1,12 +1,9 @@
 package Model.Service;
 
-<<<<<<< HEAD
-=======
 
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +42,6 @@ public class ThongKeServiceImpl {
 	public List<ThongKeDto> DataPieChart() {
 		return thongke.GetDataPieChart() ;
 	}
-<<<<<<< HEAD
-	
-=======
 	public List<ThongKeDto> TheLoaiMax() {
 		return thongke.TheLoaiMax();
 	}
@@ -77,5 +71,4 @@ public class ThongKeServiceImpl {
 		return thongke.mostFavoriteCategory();
 	}
 
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 }

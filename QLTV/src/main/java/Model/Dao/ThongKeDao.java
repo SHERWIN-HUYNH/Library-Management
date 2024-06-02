@@ -1,3 +1,4 @@
+
 package Model.Dao;
 
 import java.text.DecimalFormat;
@@ -8,15 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
 import Model.Dto.ColumnChartMapper;
-=======
 
->>>>>>> 65bbf3a69c404d9a9503f6b002063a0e1e6ae8f6
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 import Model.Dto.ThongKeDto;
 import Model.Dto.ThongKeDtoMapper;
 
@@ -56,18 +50,13 @@ public class ThongKeDao extends BaseDao {
 		return count1 != null ? count1 : 0;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 	public List<ThongKeDto> GetDataPieChart(){
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
 		String sql = "SELECT c.name as categoryName, COUNT(DISTINCT b.id) AS amount FROM category c LEFT JOIN book b ON b.categoryId = c.id GROUP BY c.id, c.name;";
 		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
 		return list;
 	}
-<<<<<<< HEAD
-=======
 	public List<ThongKeDto> TheLoaiMax() {
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
 		String sql = "SELECT  category.name as categoryName, COUNT(book.id) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount DESC LIMIT 1;";
@@ -97,6 +86,5 @@ public class ThongKeDao extends BaseDao {
 		return list;
 	}
 
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 
 }

@@ -3,9 +3,6 @@ package Model.Dto;
 public class ThongKeDto {
 	private String categoryName;
 	private int amount;
-<<<<<<< HEAD
-	
-=======
 	private String year;
 	private String month;
 	private int soluongMuon;
@@ -28,7 +25,6 @@ public class ThongKeDto {
 		this.soluongMuon = soluongMuon;
 	}
 
->>>>>>> c459af3c72fde7cd415bb0b9e1609d004b241ab1
 	public String getCategoryName() {
 		return categoryName;
 	}

@@ -36,7 +36,7 @@
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 								<li><a href="<c:url value="ThemThongBao"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
-								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
+								<li><a href="<c:url value="authors/page"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>
@@ -77,7 +77,7 @@
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 									<li><a href="<c:url value="ThongBaoQuanLy"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
-								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
+								<li><a href="<c:url value="authors/page"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>
