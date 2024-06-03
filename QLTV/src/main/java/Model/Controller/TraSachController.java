@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.ChiTietMuonTra;
@@ -28,17 +29,17 @@ public class TraSachController {
 	}
 	
 	@RequestMapping(value = "updateTraSach/{id}", method = RequestMethod.POST)
-	public ModelAndView deleteAuthor(@PathVariable int id, ChiTietMuonTra c) {
+	public String deleteAuthor(@PathVariable int id,RedirectAttributes re) {
 		ModelAndView mv = new ModelAndView("admin/TraSach");
-		int rs = traSach.updateTraSach(id, c); 
+		int rs = traSach.updateTraSach(id); 
 		if (rs == 1) {
-			mv.addObject("message", "Trả sách thành công");
+			re.addFlashAttribute("message", "Trả sách thành công");
 			mv.addObject("ctmts",traSach.getDataChiTietTra());
-			return new ModelAndView("redirect:/traSach"); 
+			return "redirect:/traSach"; 
 		} else {
-			mv.addObject("message", "Lỗi trả sách");
+			re.addFlashAttribute("message", "Lỗi trả sách");
 			mv.addObject("ctmts",traSach.getDataChiTietTra());
-			return new ModelAndView("redirect:/traSach"); 
+			return "redirect:/traSach"; 
 		}
 	}
 	

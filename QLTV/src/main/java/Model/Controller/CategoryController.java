@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Entity.Categories;
 import Model.Service.CategoryServiceImpl;
@@ -26,32 +28,32 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value ="category", method = RequestMethod.POST)
-	public ModelAndView addBook(@ModelAttribute("addCategory") Categories c) {
+	public String addBook(@ModelAttribute("addCategory") Categories c,RedirectAttributes re) {
 		ModelAndView mv = new ModelAndView("admin/quanLyTheLoai");
 		mv.addObject("categories", category.getDataCategories());
 		int rs = category.addCategory(c);
 		if (rs > 0) {
-			mv.addObject("message", "Thêm thành công");
+			re.addFlashAttribute("message", "Thêm thể loại thành công");
 			mv.addObject("categories", category.getDataCategories());
 		}
 		else {
-			mv.addObject("message", "Thêm thất bại");
+			re.addFlashAttribute("message", "Thêm thể loại thất bại");
 		}
-		return mv;
+		return  "redirect:/category";
 	}
 	
 	@RequestMapping(value = "deleteCategory/{categoryId}", method = RequestMethod.POST)
-	public ModelAndView deleteAuthor(@PathVariable int categoryId, Categories c) {
+	public String deleteAuthor(@PathVariable int categoryId, Categories c, RedirectAttributes re) {
 		ModelAndView mv = new ModelAndView("admin/quanLyTheLoai");
 		int rs = category.deleteCategory(categoryId); 
 		if (rs == 1) {
-			mv.addObject("message", "Xóa thành công");
+			re.addFlashAttribute("message", "Xóa thể loại thành công");
 			mv.addObject("categories",category.getDataCategories());
-			return new ModelAndView("redirect:/category"); 
+			return "redirect:/category"; 
 		} else {
-			mv.addObject("message", "Xóa thất bại");
+			re.addFlashAttribute("message", "Xóa thể loại thất bại");
 			mv.addObject("categories",category.getDataCategories());
-			return new ModelAndView("redirect:/category"); 
+			return "redirect:/category"; 
 		}
 	}
 	
@@ -64,15 +66,21 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/editCategory/{categoryId}", method = RequestMethod.POST)
-	public ModelAndView editPost(@PathVariable int categoryId,
-			@ModelAttribute("selectCategory") Categories c) {
-		ModelAndView mv = new ModelAndView("admin/SuaTheLoai");
+	public String editPost(@PathVariable int categoryId, @ModelAttribute("selectCategory") Categories c, RedirectAttributes re) {
 		int rs = category.updateCategory(categoryId, c);
 		if (rs > 0) {
-			mv.addObject("message", "Sửa thành công");
-
-		} else
-			mv.addObject("message", "Sửa thất bại");
+			re.addFlashAttribute("message", "Sửa thể loại thành công");
+		} else {
+			re.addFlashAttribute("message", "Sửa thể loại thất bại");		
+		}
+		return "redirect:/category";
+	}
+	
+	@RequestMapping(value ="searchCategory", method = RequestMethod.POST)
+	public ModelAndView searchReader(@RequestParam("name") String name) {
+		ModelAndView mv = new ModelAndView("admin/quanLyTheLoai");
+		mv.addObject("categories", category.GetDataSearchCategories(name));
+		mv.addObject("addCategory", new Categories());
 		return mv;
 	}
 }

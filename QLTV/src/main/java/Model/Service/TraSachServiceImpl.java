@@ -25,8 +25,8 @@ public class TraSachServiceImpl {
 		return ctmtsDao.getCTMTFromId(id);
 	}
 	
-	public int updateTraSach(int id ,ChiTietMuonTra c) {
-		return ctmtsDao.updateTraSach(id, c);
+	public int updateTraSach(int id ) {
+		return ctmtsDao.updateTraSach(id);
 	}
 	
 	public List<ChiTietMuonTraDto> GetDataChiTietMuonTraDto(){

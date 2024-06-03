@@ -112,8 +112,6 @@ to {
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content--p30">
-					<h4>Tìm kiếm</h4>
-					<br>
 					<div class="space-5"></div>
 					<form
 						action="${pageContext.request.contextPath}/timKiemPhieuTraSach"
@@ -148,8 +146,10 @@ to {
 													<tr class="col-sm-12">
 														<th>Mã Mượn</th>
 														<th>Sách</th>
+														<th>Số Lượng</th>
 														<th>Ngày Mượn</th>
 														<th>Ngày Hẹn Trả</th>
+														
 														<th>Trạng Thái</th>
 														<th>Người đọc</th>
 														<th></th>
@@ -160,6 +160,7 @@ to {
 														<tr>
 															<td><c:out value="${ctmt.ctmtId}" /></td>
 															<td><c:out value="${ctmt.bookName}" /></td>
+															<td><c:out value="${ctmt.ctmtAmount}" /></td>
 															<td><c:out value="${ctmt.ctmtNgayMuon}" /></td>
 															<td><c:out value="${ctmt.ctmtNgayTra}" /></td>
 															<td><c:choose>

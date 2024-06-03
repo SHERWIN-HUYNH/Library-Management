@@ -29,13 +29,6 @@ public class HomeController extends BaseController {
 		mv.addObject("notifications", _HomeService.GetDataNotification());
 		return mv;
 	}
-	
-	@RequestMapping(value = "/dsMuonTra")
-	public ModelAndView dsMuonTra() {
-		ModelAndView mv = new ModelAndView("admin/DanhSachMuonTra");
-		mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
-		return mv;
-	}
 
 	@RequestMapping(value = "/bookDetail/{id}")
 	public ModelAndView BookDetail(@PathVariable int id ) {
