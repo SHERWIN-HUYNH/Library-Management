@@ -113,7 +113,7 @@
 							<hr>
 							<ul class="list-unstyled menu-tip">
 								<c:forEach var="category" items="${categories}">
-									<li><a href="#"><c:out value="${category.name}" /></a></li>
+									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -148,6 +148,11 @@
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
+					<form id="categoryFilterForm"
+							action="<c:url value='/filterCategory' />" method="POST"
+							style="display: none;">
+							<input type="hidden" id="selectedId" name="categoryId">
+						</form>
 						<c:forEach var="book" items="${booksDto}">
 							<div class="col-xs-12 col-md-6">
 								<div class="category-item well yellow">
@@ -215,6 +220,20 @@
 	<script src="<c:url value='/assets/js/plugins.js'/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value='/assets/js/main.js'/>"></script>
+	<script type="text/javascript">
+	var message = "${message}";
+	 if (message && message.trim().length > 0) {
+        // Display an alert with the message content
+        alert(message);
+    }
+	 
+	 function filterCategory(id) {
+		    var form = document.getElementById('categoryFilterForm');
+		    document.getElementById('selectedId').value = id;
+		    form.action = '${pageContext.request.contextPath}/filterCategory/' + id;
+		    form.submit();
+		}
+	</script>
 	<a id="scrollUp" href="#top"
 		style="position: fixed; z-index: 2147483647; display: none;"><i
 		class="icofont icofont-long-arrow-up"></i></a>
