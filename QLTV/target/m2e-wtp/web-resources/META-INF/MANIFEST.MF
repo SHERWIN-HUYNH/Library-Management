@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Administrator
+=======
+Built-By: Huynh Chi Trung
+>>>>>>> aee4f02033b782933eb2d23b68d85fa2f04d3d8b
 Build-Jdk: 1.8.0_191
 Created-By: Maven Integration for Eclipse
 
