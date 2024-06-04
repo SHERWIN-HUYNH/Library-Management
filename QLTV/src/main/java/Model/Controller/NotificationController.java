@@ -1,11 +1,8 @@
 package Model.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Notification;
+import Model.Entity.Pagination;
 import Model.Service.NotificationImpl;
 
 @Controller
@@ -27,6 +25,7 @@ public class NotificationController extends BaseController {
 		mv.addObject("notification", new Notification());
 		return mv;
 	}
+
 	@RequestMapping(value = "ThemThongBao", method = RequestMethod.POST)
 	public ModelAndView ThemThongBao(@ModelAttribute("notification") Notification notification) {
 		int rs = notificationImp.AddNotification(notification);
@@ -49,7 +48,6 @@ public class NotificationController extends BaseController {
 		return _mvShare;
 	}
 
-	
 	@RequestMapping(value = "/SuaThongBao/{id}", method = RequestMethod.GET)
 	public ModelAndView SuaThongBaoGet(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("admin/SuaThongBao");
@@ -76,29 +74,65 @@ public class NotificationController extends BaseController {
 	@RequestMapping(value = "/XoaThongBao/{id}", method = RequestMethod.POST)
 	public ModelAndView XoaThongBao(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("admin/ThongBaoQuanLy");
-		
+
 		int rs = notificationImp.DeleteNotification(id);
 		mv.addObject("notifications", notificationImp.GetAllNotification());
 		if (rs > 0) {
 			mv.addObject("message", "Xoá thành công");
-			
+
 		} else
 			mv.addObject("message", "Xoá thất bại");
-		
+
 		return mv;
 	}
-	
-	@RequestMapping(value = "/notification", method = RequestMethod.POST)
-	public ModelAndView FilterNotification(@RequestParam(value = "month") int month) {
-	    ModelAndView mv = new ModelAndView("user/notification"); 
 
-	    List<Notification> notifications;
-	    if (month == 0) {
-	      notifications = notificationImp.GetAllNotification();
-	    } else {
-	      notifications = notificationImp.GetDataNotificationByMonth(month);
-	    }
-	    mv.addObject("notifications", notifications);
-	    return mv;
-	}	
+	// User
+	@RequestMapping(value = "/notification/page")
+	public ModelAndView ThongBao() {
+		ModelAndView mv = new ModelAndView("user/notification");
+		mv.addObject("notifications", _HomeService.GetDataNotification());
+		return mv;
+	}
+
+	@RequestMapping(value = "/notification/page", method = RequestMethod.GET)
+	public String ThongBao(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "2") int pageSize,
+			@RequestParam(defaultValue = "0") int month, Model model) {
+
+		System.out.println("Received request for page: " + page + ", pageSize: " + pageSize + ", month: " + month);
+
+		Pagination<Notification> pagination;
+		if (month == 0) {
+			pagination = notificationImp.getAllByPage(page, pageSize);
+		} else {
+			pagination = notificationImp.getNotificationsByPageAndMonth(page, pageSize, month);
+		}
+
+		System.out.println("Total pages: " + pagination.getTotalPages());
+
+		// Nếu tháng đó hiện chưa có thông báo nào
+		if (pagination.getContent().isEmpty()) {
+			model.addAttribute("message", "Tháng này hiện tại không có thông báo nào");
+			model.addAttribute("selectedMonth", month);
+			return "user/notification";
+		}
+
+		// Redirect to first page if page number is less than 1
+		if (page < 1) {
+			System.out.println("Redirecting to page 1");
+			return "redirect:/notification/page?page=1&month=" + month;
+		}
+
+		// Redirect to the last page if the requested page number is greater than total
+		// pages
+		if (page > pagination.getTotalPages()) {
+			System.out.println("Redirecting to last page: " + pagination.getTotalPages());
+			return "redirect:/notification/page?page=" + pagination.getTotalPages() + "&month=" + month;
+		}
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("selectedMonth", month);
+
+		return "user/notification";
+	}
+
 }

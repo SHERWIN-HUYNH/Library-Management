@@ -151,7 +151,7 @@ to {
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														<th>Mã tác giả</th>
+														<th>Id</th>
 														<th>Tên tác giả&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 														<th>Ảnh tác
@@ -222,7 +222,7 @@ to {
 										<!-- Pagination -->
 										<div class="card-footer">
 											<div class="text-center">
-												<ul class="pagination justify-content-center">
+												<ul class="pagination pull-right">
 													<li
 														class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 														<a class="page-link"
