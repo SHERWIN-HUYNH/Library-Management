@@ -22,14 +22,6 @@ public class HomeController extends BaseController {
 		_mvShare.setViewName("user/index");
 		return _mvShare;
 	}
-
-	@RequestMapping(value = "/notification")
-	public ModelAndView ThongBao() {
-		ModelAndView mv = new ModelAndView("user/notification");
-		mv.addObject("notifications", _HomeService.GetDataNotification());
-		return mv;
-	}
-
 	@RequestMapping(value = "/bookDetail/{id}")
 	public ModelAndView BookDetail(@PathVariable int id ) {
 		ModelAndView mv = new ModelAndView("user/book_detail");
