@@ -87,27 +87,33 @@ public class MuonTraController extends BaseController {
 	}
 
 	@RequestMapping(value = "muonSachUser", method = RequestMethod.POST)
-	public String muonSach(@ModelAttribute("insert") ChiTietMuonTra ct, HttpSession session, RedirectAttributes re)
-			throws ParseException {
-		ModelAndView mv = new ModelAndView("user/MuonSachUser");
-		mv.addObject("books", _HomeService.GetDataBooks());
-
-		// Retrieve the logged-in reader from the session
-		Readers loggedReader = (Readers) session.getAttribute("LoginReader");
-		if (loggedReader == null) {
-			mv.addObject("message", "Mượn sách thất bại: Bạn chưa đăng nhập!");
-			return "redirect:/muonSachUser";
-		}
-		int rs = chitietmuontra.muonSachUser(ct, loggedReader.getId());
-		if (rs == 1) {
-			re.addFlashAttribute("message", "Mượn sách thành công!");
-		} else if (rs == -2) {
-			re.addFlashAttribute("message", "Mượn sách thất bại!Bạn hãy trả sách để mượn tiếp!");
-		} else {
-			re.addFlashAttribute("message", "Mượn sách thất bại!");
-		}
-		mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
-
-		return "redirect:/muonSachUser";
+	public ModelAndView muonSach(@ModelAttribute("insert") ChiTietMuonTra ct, HttpSession session) throws ParseException {
+	    ModelAndView mv = new ModelAndView("user/MuonSachUser");
+	    mv.addObject("books", _HomeService.GetDataBooks());
+	    
+	    // Retrieve the logged-in reader from the session
+	    Readers loggedReader = (Readers) session.getAttribute("LoginReader");
+	    if (loggedReader == null) {
+	        mv.addObject("message", "Mượn sách thất bại: Bạn chưa đăng nhập!");
+	        return mv;
+	    }
+	    
+	    try {
+	        int rs = chitietmuontra.muonSachUser(ct,loggedReader.getId());
+	        if (rs == 1) {
+	            mv.addObject("message", "Mượn sách thành công!");
+	        } 
+	        else if(rs == -2) {
+	        	mv.addObject("message", "Mượn sách thất bại!Bạn hãy trả sách để mượn tiếp!");
+	        }
+	        else {
+	            mv.addObject("message", "Mượn sách thất bại!");
+	        }
+	        mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
+	    } catch (Exception e) {
+	        mv.addObject("message", "Mượn sách thất bại: " + e.getMessage());
+	    }
+	    
+	    return mv;
 	}
 }
