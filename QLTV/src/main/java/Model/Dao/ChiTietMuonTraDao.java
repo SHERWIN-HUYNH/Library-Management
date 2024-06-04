@@ -7,9 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import Model.Dto.BooksDtoMapper;
 import Model.Entity.Books;
 import Model.Entity.BooksMapper;
 import Model.Entity.ChiTietMuonTra;
@@ -33,7 +31,7 @@ public class ChiTietMuonTraDao {
 		-2: Vuot so luong muon*/
 		String sql = "SELECT amount FROM book WHERE id = ?"; // dem so sách còn lại
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
-		String sql0 = "SELECT COUNT(id) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
+		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
 		if (daMuon > 5) {
 			return -2;
