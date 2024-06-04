@@ -8,11 +8,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
+import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ColumnChartMapper;
-
 import Model.Dto.ThongKeDto;
 import Model.Dto.ThongKeDtoMapper;
+import Model.Entity.Authors;
+import Model.Entity.ThongKeAuthorMapper;
+import Model.Entity.ThongKeReaderMapper;
+
 
 @Repository
 public class ThongKeDao extends BaseDao {
@@ -86,5 +89,50 @@ public class ThongKeDao extends BaseDao {
 		return list;
 	}
 
+	public List<ThongKeDto> leastFavoriteCategory(){
+		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
+		String sql = "SELECT  c.name AS categoryName, COUNT(*) AS amount FROM category c JOIN book b ON c.id =b.categoryId JOIN chitietmuontra cm ON b.id = cm.bookId GROUP BY c.id, c.name ORDER BY amount ASC LIMIT 1;";
+		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
+		return list;
+	}
+	public List<ChiTietMuonTraDto> thongKeReader(){
+		List<ChiTietMuonTraDto> list = new ArrayList<ChiTietMuonTraDto>();
+		String sql = "SELECT \r\n" + 
+				"    r.id AS readerId, \r\n" + 
+				"    r.name as readerName, \r\n" + 
+				"    SUM(ct.amount) AS bookAmount,\r\n" + 
+				"    SUM(CASE WHEN ct.trangThai = 0 THEN ct.amount ELSE 0 END) AS ctmtAmount\r\n" + 
+				"FROM \r\n" + 
+				"    reader r \r\n" + 
+				"JOIN \r\n" + 
+				"    chitietmuontra ct ON r.id = ct.readerId \r\n" + 
+				"GROUP BY \r\n" + 
+				"    r.id, r.name;\r\n" + 
+				"" ;
+		list = _jdbcTemplate.query(sql, new ThongKeReaderMapper());
+		return list;
+	}
+	
+	public List<Authors> thongkeTacgia(){
+		List<Authors> list = new ArrayList<Authors>();
+		String sql = "SELECT\r\n" + 
+				"    a.id AS id,\r\n" + 
+				"    a.name AS name,\r\n" + 
+				"    b.name AS bookname,\r\n" + 
+				"    COUNT(ctm.id) AS amount\r\n" + 
+				"FROM\r\n" + 
+				"    chitietmuontra ctm\r\n" + 
+				"JOIN\r\n" + 
+				"    book b ON ctm.bookId = b.id\r\n" + 
+				"JOIN\r\n" + 
+				"    author a ON b.authorId = a.id\r\n" + 
+				"GROUP BY\r\n" + 
+				"    a.id, a.name\r\n" + 
+				"ORDER BY\r\n" + 
+				"    amount DESC\r\n" + 
+				"LIMIT 1;";
+		list = _jdbcTemplate.query(sql, new ThongKeAuthorMapper());
+		return list;
+	}
 
 }
