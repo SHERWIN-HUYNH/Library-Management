@@ -18,7 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ThongKeDto;
+import Model.Entity.Authors;
+import Model.Entity.Readers;
 import Model.Service.ThongKeServiceImpl;
 
 @Controller
@@ -39,13 +42,19 @@ public class ThongkeController extends BaseController {
 		List<ThongKeDto> categoryMax = thongke.TheLoaiMax();
 		List<ThongKeDto> categoryMin = thongke.TheLoaiMin();
 		List<ThongKeDto> favoriteCategory = thongke.mostFavoriteCategory();
+		List<ThongKeDto> leastfavoriteCategory = thongke.leastFavoriteCategory();
+		List<ChiTietMuonTraDto> readers = thongke.readersInfor();
+		List<Authors> authors = thongke.authorInfor();
 		mv.addObject("categoryMaxName", categoryMax.get(0).getCategoryName());
 		mv.addObject("categoryMaxAmount", categoryMax.get(0).getAmount());
 		mv.addObject("categoryMinName", categoryMin.get(0).getCategoryName());
 		mv.addObject("categoryMinAmount", categoryMin.get(0).getAmount());
 		mv.addObject("mostFavoriteCategoryAmount", favoriteCategory.get(0).getAmount());
 		mv.addObject("mostFavoriteCategoryName", favoriteCategory.get(0).getCategoryName());
-
+		mv.addObject("leastFavoriteCategoryAmount", leastfavoriteCategory.get(0).getAmount());
+		mv.addObject("leastFavoriteCategoryName", leastfavoriteCategory.get(0).getCategoryName());
+		mv.addObject("readers", readers);
+		mv.addObject("authors", authors);
 		LinkedHashMap<String, String> treeMap = thongke.ColumnChart();
 		ObjectMapper barchart = new ObjectMapper();
 		String jsonBarchart ;
