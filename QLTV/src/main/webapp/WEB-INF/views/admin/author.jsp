@@ -222,7 +222,7 @@ to {
 										<!-- Pagination -->
 										<div class="card-footer">
 											<div class="text-center">
-												<ul class="pagination justify-content-center">
+												<ul class="pagination pull-right">
 													<li
 														class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 														<a class="page-link"
