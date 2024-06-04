@@ -70,7 +70,6 @@
 					</div>
 					<!--Mainmenu list-->
 					<%@include file="/WEB-INF/views/shared/header.jsp"%>
-					</div>
 			</nav>
 		</div>
 		<div class="space-100"></div>
@@ -107,7 +106,7 @@
 				<div class="col-xs-12 col-md-2">
 					<aside>
 						<div class="single-sidebar">
-							<h4>
+							<%-- <h4>
 								<i class="icofont icofont-listine-dots"></i> Danh mục
 							</h4>
 							<hr>
@@ -115,87 +114,69 @@
 								<c:forEach var="category" items="${categories}">
 									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
-							</ul>
+							</ul> --%>
 						</div>
 						<div class="space-20"></div>
 					</aside>
 				</div>
 				<!-- Sidebar-End -->
 				<div class="col-xs-12 col-md-10 pull-right">
-					<h4>Tìm kiếm</h4>
-					<div class="space-5"></div>
-					<form:form action="${pageContext.request.contextPath}/timKiemSach"
-						method="POST" modelAttribute="search">
-						<div class="input-group">
-							<form:input type="text" class="form-control"
-								placeholder="Nhập tên sách muốn tìm" path="bookName"
-								id="tenSach" />
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									<i class="icofont icofont-search-alt-2"></i>
-								</button>
-							</div>
-						</div>
-					</form:form>
-					<div class="space-30"></div>
-					<div class="row">
-						<div class="pull-left col-xs-12 col-sm-5 col-md-6">
-							<p>
-								<strong>${booksDto.size()}</strong> cuốn sách được tìm thấy
-							</p>
-						</div>
-					</div>
+					<p>
+						Bạn hãy trả sách trong vòng <strong>30</strong> ngày sau khi mượn
+						nhé! Chúc bạn có những trải nghiệm thật thú vị với sách của chúng
+						tôi!
+					</p>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
-					<form id="categoryFilterForm"
-							action="<c:url value='/filterCategory' />" method="POST"
-							style="display: none;">
-							<input type="hidden" id="selectedId" name="categoryId">
-						</form>
-						<c:forEach var="book" items="${booksDto}">
-							<div class="col-xs-12 col-md-6">
-								<div class="category-item well yellow">
-									<div class="media">
-										<div class="media-left">
-											<img
-												src="<c:url value='/assets/images/book/${book.bookImage}'/>"
-												class="media-object" style="width: 120px; height: 150px;"
-												alt="">
-										</div>
-										<div class="media-body">
-											<h4>${book.bookName}</h4>
-											<h6>Tác giả: ${book.authorName}</h6>
-											<h6>Thể loại: ${book.categoryName}</h6>
-											<div class="space-10"></div>
-											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
-												class="text-primary">See the Book</a>
-										</div>
+						<div class="card-body card-block">
+							<form:form action="muonSachUser" method="post"
+								modelAttribute="insert" class="form-horizontal">
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label path="bookId" for="book_num_input"
+											class="form-control-label">Tên Sách</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<form:select path="bookId" name="selectBookId"
+											id="selectBookId" class="form-control">
+											<c:forEach var="book" items="${books}">
+												<option value="${book.getId()}">${book.getName()}</option>
+											</c:forEach>
+										</form:select>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
-						<div class="space-60"></div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="shop-pagination pull-right">
-									<ul id="pagination-demo" class="pagination-sm pagination">
-										<li class="page-item first disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-double-left"></i></a></li>
-										<li class="page-item prev disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-simple-left"></i></a></li>
-										<li class="page-item active"><a href="#"
-											class="page-link">1</a></li>
-										<li class="page-item"><a href="#" class="page-link">2</a></li>
-										<li class="page-item"><a href="#" class="page-link">3</a></li>
-										<li class="page-item next"><a href="#" class="page-link"><i
-												class="icofont icofont-simple-right"></i></a></li>
-										<li class="page-item last"><a href="#" class="page-link"><i
-												class="icofont icofont-double-right"></i></a></li>
-									</ul>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="amounts_input" class="form-control-label">Số
+											lượng</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<form:input type="number" name="numberSoLuong"
+											class="form-control" step="1" required="required"
+											pattern="[1-5]" title="" min="1" path="amount" />
+									</div>
 								</div>
-							</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="readerId" class="form-control-label">Mã
+											Người Đọc</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<form:input type="text" path="readerId" name="name"
+											class="form-control"  readonly="readonly" 
+											value="${sessionScope.LoginReader.id}" />
+									</div>
+								</div>
+								<button type="submit" class="btn btn-success btn-sm">
+									<i class="fa fa-check"></i> Mượn Sách
+								</button>
+							</form:form>
+							<hr>
+							<p>
+								Chúng tôi sẽ giao sách đến cho bạn sau <strong>1-2</strong>
+								ngày.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -203,9 +184,62 @@
 			<div class="space-80"></div>
 	</section>
 	<!-- Footer-Area -->
-	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
+	<footer class="black-bg text-white">
+		<div class="space-60"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<a href="#"><img src="<c:url value='/assets/images/logo.png'/>"
+						alt="library"></a>
+					<div class="space-20"></div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+						gravida, quam vitae est Sed non eros elementum nulla sodales
+						ullamcorper.</p>
+					<div class="space-10"></div>
+					<ul class="list-inline list-unstyled social-list">
+						<li><a href="#"><i
+								class="icofont icofont-social-facebook"></i></a></li>
+						<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
+						<li><a href="#"><i class="icofont icofont-social-behance"></i></a></li>
+						<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
+					</ul>
+					<div class="space-10"></div>
+					<ul class="list-unstyled list-inline tip yellow">
+						<li><i class="icofont icofont-square"></i></li>
+						<li><i class="icofont icofont-square"></i></li>
+						<li><i class="icofont icofont-square"></i></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
+					<h4 class="text-white">Liên hệ</h4>
+					<div class="space-20"></div>
+					<table class="table border-none addr-dt">
+						<tbody>
+							<tr>
+								<td><i class="icofont icofont-social-google-map"></i></td>
+								<td><address>3050 Universal Blvd #190 Fort
+										Lauderdale, FL, 33331, Sydney New York City</address></td>
+							</tr>
+							<tr>
+								<td><i class="icofont icofont-email"></i></td>
+								<td>susislibrary@domain.com</td>
+							</tr>
+							<tr>
+								<td><i class="icofont icofont-phone"></i></td>
+								<td>+62 582 528 527 21</td>
+							</tr>
+							<tr>
+								<td><i class="icofont icofont-globe-alt"></i></td>
+								<td><a href="www.susislibrary.html" target="_blank">www.susislibrary.com</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="space-60"></div>
+	</footer>
 	<!-- Footer-Area-End -->
-
 
 	<!-- Vandor-JS -->
 	<script src="<c:url value='/assets/js/vendor/jquery-1.12.4.min.js'/>"></script>
@@ -221,17 +255,18 @@
 	<!-- Active-JS -->
 	<script src="<c:url value='/assets/js/main.js'/>"></script>
 	<script type="text/javascript">
-	var message = "${message}";
-	 if (message && message.trim().length > 0) {
-        // Display an alert with the message content
-        alert(message);
-    }
-	 
-	 function filterCategory(id) {
-		    var form = document.getElementById('categoryFilterForm');
-		    document.getElementById('selectedId').value = id;
-		    form.action = '${pageContext.request.contextPath}/filterCategory/' + id;
-		    form.submit();
+		var message = "${message}";
+		if (message && message.trim().length > 0) {
+			// Display an alert with the message content
+			alert(message);
+		}
+
+		function filterCategory(id) {
+			var form = document.getElementById('categoryFilterForm');
+			document.getElementById('selectedId').value = id;
+			form.action = '${pageContext.request.contextPath}/filterCategory/'
+					+ id;
+			form.submit();
 		}
 	</script>
 	<a id="scrollUp" href="#top"

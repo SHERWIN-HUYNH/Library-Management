@@ -32,4 +32,8 @@ public class CategoryServiceImpl {
 	public int updateCategory(int id ,Categories c) {
 		return categoryDao.updateCategory(id, c);
 	}
+	
+	public List<Categories> GetDataSearchCategories(String name){
+		return categoryDao.GetDataSearchCategories(name);
+	}
 }

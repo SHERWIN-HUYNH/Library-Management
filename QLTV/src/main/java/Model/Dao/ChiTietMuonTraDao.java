@@ -1,5 +1,6 @@
 package Model.Dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import Model.Dto.BooksDtoMapper;
+import Model.Entity.Books;
+import Model.Entity.BooksMapper;
 import Model.Entity.ChiTietMuonTra;
 import Model.Entity.MapperChiTietMuonTra;
 
@@ -51,4 +53,41 @@ public class ChiTietMuonTraDao {
 		
 	}
 	
+	public Books timBookTheoId(int id) {
+		String sql ="SELECT * FROM book WHERE id = ?";
+		Books b = _jdbcTemplate.queryForObject(sql, new Object[]{id}, new BooksMapper());
+		return b;
+	}
+	
+	public int updateAmount(int id,int amount) {
+		String sql = "UPDATE book set amount = ? where book.id = ?";
+		Books b = timBookTheoId(id);
+		int temp = b.getAmount() - amount;
+		if(temp <= 0) {
+			return 0;
+		}
+		else {
+			int ctmt = _jdbcTemplate.update(sql, temp,id);
+			return ctmt;
+		}
+	}
+	
+    public int muonSachUser(ChiTietMuonTra ct, int readerId) {
+		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
+		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
+		if (daMuon + ct.getAmount() > 5) {
+			return -2;
+		}
+        String sqlInsert = "INSERT INTO chitietmuontra(bookId, ngayMuon, ngayTra, readerId, amount) VALUES (?, ?, ?, ?, ?)";
+        LocalDate ngayMuon = LocalDate.now();
+        LocalDate ngayTra = ngayMuon.plusDays(30);
+
+        int ctmtInsert = _jdbcTemplate.update(sqlInsert, ct.getBookId(), ngayMuon, ngayTra, readerId, ct.getAmount());
+        if (ctmtInsert == 0) {
+            return -1;
+        }
+
+        int ctmtUpdate = updateAmount(ct.getBookId(), ct.getAmount());
+        return ctmtUpdate;
+    }
 }

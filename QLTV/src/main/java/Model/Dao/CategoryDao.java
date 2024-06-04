@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import Model.Entity.Categories;
 import Model.Entity.CategoriesMapper;
-import Model.Entity.Notification;
-import Model.Entity.NotificationMapper;
 
 @Repository
 public class CategoryDao {
@@ -25,7 +23,7 @@ public class CategoryDao {
 	}
 	
 	public int addCategory(Categories c) {
-		if (isCategoryExist(c.getName())) {
+		if (isCategoryExist(c.getName().trim())) {
 			return -1;
 		}
 		StringBuffer sql = new StringBuffer();
@@ -51,10 +49,21 @@ public class CategoryDao {
 		Categories c = _jdbcTemplate.queryForObject(sql, new CategoriesMapper(), id);
 		return c;
 	}
+	
 	public int updateCategory(int id ,Categories c) {
+		if (isCategoryExist(c.getName().trim()) || c.getName().trim().length() == 0) {
+			return -1;
+		}
 		int rs = 0;
 		String sql = "UPDATE category SET name = ? WHERE id = ?";
 		rs = _jdbcTemplate.update(sql, c.getName(),id);
 		return rs;
+	}
+	
+	public List<Categories> GetDataSearchCategories(String name) {
+		List<Categories> list = new ArrayList<Categories>();
+		String sql = "SELECT * FROM category WHERE name LIKE ?";
+		list = _jdbcTemplate.query(sql, new CategoriesMapper(),"%" + name.trim() + "%");
+		return list;
 	}
 }

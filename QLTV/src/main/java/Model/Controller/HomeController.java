@@ -22,13 +22,7 @@ public class HomeController extends BaseController {
 		_mvShare.setViewName("user/index");
 		return _mvShare;
 	}
-	
-	@RequestMapping(value = "/dsMuonTra")
-	public ModelAndView dsMuonTra() {
-		ModelAndView mv = new ModelAndView("admin/DanhSachMuonTra");
-		mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
-		return mv;
-	}
+
 
 	@RequestMapping(value = "/bookDetail/{id}")
 	public ModelAndView BookDetail(@PathVariable int id ) {
