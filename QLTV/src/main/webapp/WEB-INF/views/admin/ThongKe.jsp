@@ -84,6 +84,53 @@
 	media="all">
 <link rel="stylesheet" href="<c:url value= "/assets/css/theme.css"/>">
 <script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	 google.charts.load("current", {packages:["corechart"]});
+     google.charts.setOnLoadCallback(drawChart);
+     // Lấy dữ liệu JSON từ controller
+     var jsonData = '${pieChart}';
+     var parsedData = JSON.parse(jsonData);
+     function drawChart() {
+        
+        
+         
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Category');
+         data.addColumn('number', 'Amount');
+			
+         // Thêm dữ liệu vào DataTable
+         for (var i = 0; i < parsedData.length; i++) {
+        	
+             data.addRow([parsedData[i].categoryName, parsedData[i].amount]);
+         }
+
+         var options = {
+             title: 'Số lượng sách theo thể loại',
+             is3D: true // Enable 3D effect
+         };
+
+         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+         chart.draw(data, options);
+         
+         
+       		
+     }
+     // TIM MIN MAX
+     var maxAndMinCategories = findMaxAndMinCategory(parsedData);
+     var maxCategory = maxAndMinCategories.maxCategory;
+     var minCategory = maxAndMinCategories.minCategory;
+     var maxAmount = maxAndMinCategories.maxAmount;
+     var minAmount = maxAndMinCategories.minAmount
+     
+     var max = document.getElementById('thongKeMax');
+     max.innerHTML = "Thể loại có số lượng sách nhiều nhất là: ";
+     var min = document.getElementById('thongKeMin');
+     min.innerHTML = "Thể loại có số lượng sách ít nhất là: " + minCategory + " với số lượng là " + minAmount;
+     
+	</script>
+
+<script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	google.charts.load("current", {
@@ -144,7 +191,9 @@
 		chart.draw(data, options);
 	}
 </script>
+
 <link rel="stylesheet" href="<c:url value= "/assets/css/theme.css"/>">
+
 </head>
 
 <body class="">
@@ -229,6 +278,62 @@
 				<div class="row wow fadeInUp" data-wow-delay="0.5s">
 					<div
 						class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ">
+
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="card card-chart">
+								<div class="card-header card-header-warning">
+									<!-- <div class="ct-chart" id="websiteViewsChart"></div> -->
+									<!-- TEST CHART -->
+									<div id="piechart_3d" style="min-height: 500px"></div>
+								</div>
+								<div class="card-body">
+									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
+									<h4 class="card-title">Thống kê tỉ lệ sách theo từng thể
+										loại</h4>
+									<p class="card-category" id="thongKeMax">
+										Thể loại sách có số lương sách nhiều nhất là <b>${categoryMaxName}</b>
+										với số lượng là <b>${categoryMaxAmount}</b>
+									</p>
+									<p class="card-category" id="thongKeMin">
+										Thể loại sách có số lương sách nhiều nhất là <b>${categoryMinName}</b>
+										với số lượng là <b>${categoryMinAmount}</b>
+									</p>
+
+
+									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
+									<p class="card-category" id="thongKeMax"></p>
+									<p class="card-category" id="thongKeMin"></p>
+
+								</div>
+								<div class="card-footer">
+									<div class="stats"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="card card-chart">
+								<div class="card-header card-header-success">
+
+									<div id="columnchart" style="min-height: 500px"></div>
+								</div>
+								<div class="card-body">
+									<p>
+										Thể loại sách được quan tâm nhất <b>${mostFavoriteCategoryName}</b>
+										với <b>${mostFavoriteCategoryAmount}</b> lượt mượn
+									</p>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">access_time</i> updated 4 minutes
+										ago
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 					</div>
 				</div>
@@ -481,6 +586,7 @@
 	<script src="<c:url value= "/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value= "/assets/js/main.js"/>"></script>
+
 </body>
 
 </html>

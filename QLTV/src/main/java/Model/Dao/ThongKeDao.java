@@ -1,3 +1,4 @@
+
 package Model.Dao;
 
 import java.text.DecimalFormat;
@@ -6,19 +7,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
-
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ColumnChartMapper;
-
 import Model.Dto.ThongKeDto;
 import Model.Dto.ThongKeDtoMapper;
 import Model.Entity.Authors;
-import Model.Entity.AuthorsMapper;
-import Model.Entity.ChiTietMuonTraDtoMapper;
-import Model.Entity.Readers;
-import Model.Entity.ReadersMapper;
 import Model.Entity.ThongKeAuthorMapper;
 import Model.Entity.ThongKeReaderMapper;
 

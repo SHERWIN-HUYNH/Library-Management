@@ -96,3 +96,10 @@ input:-webkit-autofill:focus {
 .dropdown-menu li a{
 	color:black !important;
 }
+
+.fixed-pagination {
+            position: fixed;
+            bottom: 20px; /* Adjust this value as needed */
+            right: 20px; /* Adjust this value as needed */
+            z-index: 1000; /* Ensure it stays above other content */
+}

@@ -8,7 +8,7 @@
 			<div class="header-mobile__bar">
 				<div class="container-fluid">
 					<div class="header-mobile-inner">
-						<a class="logo" href="<c:url value="trang-chu"/>"> <img
+						<a class="logo" href="<c:url value="/trang-chu"/>"> <img
 							src="<c:url value= "/assets/images/icon/logo.png"/>"
 							alt="CoolAdmin">
 						</a>
@@ -36,7 +36,7 @@
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 								<li><a href="<c:url value="ThemThongBao"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
-								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
+								<li><a href="<c:url value="/authors/page"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>
@@ -55,7 +55,7 @@
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar d-none d-lg-block">
 			<div class="logo">
-				<a href="<c:url value="trang-chu"/>"> <img
+				<a href="<c:url value="/trang-chu"/>"> <img
 					src="<c:url value= "/assets/images/icon/logo.png"/>"
 					alt="Cool Admin">
 				</a>
@@ -77,7 +77,7 @@
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 									<li><a href="<c:url value="ThongBaoQuanLy"/>">Thông báo</a></li>
 								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
-								<li><a href="<c:url value="authors"/>">Tác giả</a></li>
+								<li><a href="<c:url value="/authors/page"/>">Tác giả</a></li>
 								<li><a href="<c:url value="category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>

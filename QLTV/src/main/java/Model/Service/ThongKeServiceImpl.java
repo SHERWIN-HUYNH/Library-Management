@@ -73,6 +73,7 @@ public class ThongKeServiceImpl {
 	public List<ThongKeDto> mostFavoriteCategory(){
 		return thongke.mostFavoriteCategory();
 	}
+
 	public List<ThongKeDto> leastFavoriteCategory(){
 		return thongke.leastFavoriteCategory();
 	}
@@ -84,3 +85,4 @@ public class ThongKeServiceImpl {
 		return thongke.thongkeTacgia();
 	}
 }
+
