@@ -169,15 +169,17 @@
 												<div class="media-left">
 													<img
 														src="<c:url value='/assets/images/book/${book.bookImage}'/>"
-														class="media-object" style="width: 120px; height: 150px;"
+														class="media-object" style="width: 150px; height: 200px;"
 														alt="">
 												</div>
 												<div class="media-body">
 													<h4>${book.bookName}</h4>
 													<h6>Tác giả: ${book.authorName}</h6>
 													<h6>Thể loại: ${book.categoryName}</h6>
+													<h6>Số lượng: ${ctmtDto.ctmtAmount}</h6>
+													<h6>Ngày mượn: ${ctmtDto.ctmtNgayMuon}</h6>
+													<h6>Ngày hẹn trả: ${ctmtDto.ctmtNgayTra}</h6>
 													<div class="space-10"></div>
-													<p>Đọc để hiểu, thư giãn tâm hồn</p>
 													<a href="<c:url value="/bookDetail/${book.bookId}"/>"
 														class="text-primary">See the Book</a>
 												</div>
@@ -188,27 +190,6 @@
 							</div>
 						</c:forEach>
 						<div class="space-60"></div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="shop-pagination pull-right">
-									<ul id="pagination-demo" class="pagination-sm pagination">
-										<li class="page-item first disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-double-left"></i></a></li>
-										<li class="page-item prev disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-simple-left"></i></a></li>
-										<li class="page-item active"><a href="#"
-											class="page-link">1</a></li>
-										<li class="page-item"><a href="#" class="page-link">2</a></li>
-										<li class="page-item"><a href="#" class="page-link">3</a></li>
-										<li class="page-item next"><a href="#" class="page-link"><i
-												class="icofont icofont-simple-right"></i></a></li>
-										<li class="page-item last"><a href="#" class="page-link"><i
-												class="icofont icofont-double-right"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="space-80"></div>
