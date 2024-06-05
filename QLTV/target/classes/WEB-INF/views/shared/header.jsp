@@ -15,10 +15,8 @@
 					<li><a href="<c:url value="/notification/page" />">Thông
 							báo</a></li>
 					<li><a href="<c:url value="/sach" />">Sách</a></li>
-<<<<<<< HEAD
+
 					<li><a href="<c:url value="/muonSachUser" />">Mượn Sách</a></li>
-=======
->>>>>>> 5f2be44ec759074c7df04847b471124cb74ab6ac
 					<li><a>${sessionScope.LoginReader.name}</a></li>
 					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="<c:url value="assets/images/active_user.png" />"
