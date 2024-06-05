@@ -20,7 +20,7 @@
 
 					<li><a>${sessionScope.LoginReader.name}</a></li>
 					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="<c:url value="assets/images/active_user.png" />"
+							<img src="<c:url value="/assets/images/active_user.png" />"
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu" style="color: black">

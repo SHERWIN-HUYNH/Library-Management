@@ -44,7 +44,7 @@
 			<img src="<c:url value='/assets/images/slide/slide1.jpg' />" alt="">
 		</div>
 		<!-- Mainmenu-markup-start -->
-		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
+		<div class="mainmenu-area navbar-fixed-top affix-top" data-spy="affix"
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
@@ -93,9 +93,7 @@
 						<div class="space-20"></div>
 					</aside>
 				</div>
-				<div class="col-xs-12 col-md-10 pull-right">
-					<div class="space-30"></div>
-					<hr>
+				<div class="col-xs-12 col-md-9 pull-right">
 					<div class="space-20"></div>
 					<div class="row">
 						<div class="row event-list">
