@@ -116,17 +116,6 @@
          
        		
      }
-     // TIM MIN MAX
-     var maxAndMinCategories = findMaxAndMinCategory(parsedData);
-     var maxCategory = maxAndMinCategories.maxCategory;
-     var minCategory = maxAndMinCategories.minCategory;
-     var maxAmount = maxAndMinCategories.maxAmount;
-     var minAmount = maxAndMinCategories.minAmount
-     
-     var max = document.getElementById('thongKeMax');
-     max.innerHTML = "Thể loại có số lượng sách nhiều nhất là: ";
-     var min = document.getElementById('thongKeMin');
-     min.innerHTML = "Thể loại có số lượng sách ít nhất là: " + minCategory + " với số lượng là " + minAmount;
      
 	</script>
 
@@ -222,7 +211,7 @@
 		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
-			<%@include file="/WEB-INF/views/shared/headerAdmin.jsp"%>
+			<%@include file="/WEB-INF/views/shared/headerThongKe.jsp"%>
 
 		</div>
 		<!-- Modal -->
@@ -299,7 +288,7 @@
 						<div class="card-footer">
 							<div class="stats">
 								<i class="material-icons text-danger"></i> <a
-									href="<c:url value="/sach"/>">Get More Space...</a>
+									href="<c:url value="/sach"/>">Xem sách...</a>
 							</div>
 						</div>
 					</div>

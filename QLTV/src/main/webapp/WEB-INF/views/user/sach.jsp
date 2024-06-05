@@ -53,7 +53,7 @@
 				alt="library">
 		</div>
 		<!-- Mainmenu-markup-start -->
-		<div class="mainmenu-area navbar-fixed-top affix-top" data-spy="affix"
+		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
 			<nav class="navbar">
 				<div class="container">
@@ -70,7 +70,7 @@
 					</div>
 					<!--Mainmenu list-->
 					<%@include file="/WEB-INF/views/shared/header.jsp"%>
-					</div>
+				</div>
 			</nav>
 		</div>
 		<div class="space-100"></div>
@@ -141,66 +141,95 @@
 					<div class="row">
 						<div class="pull-left col-xs-12 col-sm-5 col-md-6">
 							<p>
-								<strong>${booksDto.size()}</strong> cuốn sách được tìm thấy
+								<strong>${pagination.totalItems}</strong> cuốn sách được tìm
+								thấy
 							</p>
 						</div>
 					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
-					<form id="categoryFilterForm"
-							action="<c:url value='/filterCategory' />" method="POST"
+						<form id="categoryFilterForm"
+							action="<c:url value="/filterCategory/page" />" method="GET"
 							style="display: none;">
 							<input type="hidden" id="selectedId" name="categoryId">
 						</form>
-						<c:forEach var="book" items="${booksDto}">
-							<div class="col-xs-12 col-md-6">
-								<div class="category-item well yellow">
-									<div class="media">
-										<div class="media-left">
-											<img
-												src="<c:url value='/assets/images/book/${book.bookImage}'/>"
-												class="media-object" style="width: 120px; height: 150px;"
-												alt="">
-										</div>
-										<div class="media-body">
-											<h4>${book.bookName}</h4>
-											<h6>Tác giả: ${book.authorName}</h6>
-											<h6>Thể loại: ${book.categoryName}</h6>
-											<div class="space-10"></div>
-											<p>Đọc để hiểu, thư giãn tâm hồn</p>
-											<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
-												class="text-primary">See the Book</a>
+
+						<c:if test="${empty pagination.content}">
+							<div class="alert alert-info">${message}</div>
+						</c:if>
+						<c:if test="${not empty pagination.content}">
+							<c:forEach var="book" items="${pagination.content}">
+								<div class="col-xs-12 col-md-6">
+									<div class="category-item well yellow">
+										<div class="media">
+											<div class="media-left">
+												<img
+													src="<c:url value='/assets/images/book/${book.bookImage}'/>"
+													class="media-object" style="width: 120px; height: 150px;"
+													alt="">
+											</div>
+											<div class="media-body">
+												<h4>${book.bookName}</h4>
+												<h6>Tác giả: ${book.authorName}</h6>
+												<h6>Thể loại: ${book.categoryName}</h6>
+												<div class="space-10"></div>
+												<p>Đọc để hiểu, thư giãn tâm hồn</p>
+												<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
+													class="text-primary">See the Book</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
-						<div class="space-60"></div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="shop-pagination pull-right">
-									<ul id="pagination-demo" class="pagination-sm pagination">
-										<li class="page-item first disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-double-left"></i></a></li>
-										<li class="page-item prev disabled"><a href="#"
-											class="page-link"><i class="icofont icofont-simple-left"></i></a></li>
-										<li class="page-item active"><a href="#"
-											class="page-link">1</a></li>
-										<li class="page-item"><a href="#" class="page-link">2</a></li>
-										<li class="page-item"><a href="#" class="page-link">3</a></li>
-										<li class="page-item next"><a href="#" class="page-link"><i
-												class="icofont icofont-simple-right"></i></a></li>
-										<li class="page-item last"><a href="#" class="page-link"><i
-												class="icofont icofont-double-right"></i></a></li>
-									</ul>
-								</div>
+							</c:forEach>
+						</c:if>
+					</div>
+					<div class="space-60"></div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="text-center">
+								<ul class="pagination justify-content-center"
+									style="position: relative; right: 20px; bottom: 20px; z-index: 1000;">
+									<li
+										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
+										<a class="page-link"
+										href="<c:url value='/filterCategory/page'/>?page=1&amp;categoryId=${selectedId}">First</a>
+									</li>
+
+									<li
+										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
+										<a class="page-link"
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage - 1}&amp;categoryId=${selectedId}">Previous</a>
+									</li>
+
+									<c:forEach var="pageNumber" begin="1"
+										end="${pagination.totalPages}">
+										<li
+											class="page-item ${pagination.currentPage == pageNumber ? 'active' : ''}">
+											<a class="page-link"
+											href="<c:url value='/filterCategory/page'/>?page=${pageNumber}&amp;categoryId=${selectedId}">${pageNumber}</a>
+										</li>
+									</c:forEach>
+
+									<li
+										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
+										<a class="page-link"
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage + 1}&amp;categoryId=${selectedId}">Next</a>
+									</li>
+
+									<li
+										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
+										<a class="page-link"
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.totalPages}&amp;categoryId=${selectedId}">Last</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="space-80"></div>
+		</div>
+		<div class="space-80"></div>
 	</section>
 	<!-- Footer-Area -->
 	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
@@ -230,7 +259,7 @@
 	 function filterCategory(id) {
 		    var form = document.getElementById('categoryFilterForm');
 		    document.getElementById('selectedId').value = id;
-		    form.action = '${pageContext.request.contextPath}/filterCategory/' + id;
+		    form.action = '${pageContext.request.contextPath}/filterCategory/page?page=1&categoryId=' + id;
 		    form.submit();
 		}
 	</script>
