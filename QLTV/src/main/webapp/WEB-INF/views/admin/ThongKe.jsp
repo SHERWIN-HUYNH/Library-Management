@@ -275,69 +275,7 @@
 						<div class="space-40"></div>
 					</div>
 				</div>
-				<div class="row wow fadeInUp" data-wow-delay="0.5s">
-					<div
-						class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ">
-
-					<div class="row">
-
-						<div class="col-md-6">
-							<div class="card card-chart">
-								<div class="card-header card-header-warning">
-									<!-- <div class="ct-chart" id="websiteViewsChart"></div> -->
-									<!-- TEST CHART -->
-									<div id="piechart_3d" style="min-height: 500px"></div>
-								</div>
-								<div class="card-body">
-									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
-									<h4 class="card-title">Thống kê tỉ lệ sách theo từng thể
-										loại</h4>
-									<p class="card-category" id="thongKeMax">
-										Thể loại sách có số lương sách nhiều nhất là <b>${categoryMaxName}</b>
-										với số lượng là <b>${categoryMaxAmount}</b>
-									</p>
-									<p class="card-category" id="thongKeMin">
-										Thể loại sách có số lương sách nhiều nhất là <b>${categoryMinName}</b>
-										với số lượng là <b>${categoryMinAmount}</b>
-									</p>
-
-
-									<h4 class="card-title">Thống kê số sách theo thể loại</h4>
-									<p class="card-category" id="thongKeMax"></p>
-									<p class="card-category" id="thongKeMin"></p>
-
-								</div>
-								<div class="card-footer">
-									<div class="stats"></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="card card-chart">
-								<div class="card-header card-header-success">
-
-									<div id="columnchart" style="min-height: 500px"></div>
-								</div>
-								<div class="card-body">
-									<p>
-										Thể loại sách được quan tâm nhất <b>${mostFavoriteCategoryName}</b>
-										với <b>${mostFavoriteCategoryAmount}</b> lượt mượn
-									</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> updated 4 minutes
-										ago
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
+				
 		</div>
 		<div class="space-100"></div>
 		<!-- Header-jumbotron-end -->
