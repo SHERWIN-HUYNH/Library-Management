@@ -14,6 +14,7 @@ import Model.Dto.BooksDto;
 import Model.Entity.Authors;
 import Model.Entity.Books;
 import Model.Entity.Categories;
+import Model.Entity.Pagination;
 
 @Service
 public class BookServiceImpl {
@@ -58,8 +59,17 @@ public class BookServiceImpl {
 	public List<BooksDto> GetDataBooksDto() {
 		return bookDtoDao.GetDataBooksDto();
 	}
-	public List<BooksDto> GetDataSearchBookDto(String book) {
-		return bookDtoDao.getDataSearchBookDto(book);
+	public Pagination<BooksDto> getDataSearchBookDto(String name, int pageNo, int pageSize) {
+		return bookDtoDao.getDataSearchBookDto(name, pageNo, pageSize);
 	}
 	
+//	public List<BooksDto> getDataFilterBookDto(int id) {
+//		return bookDtoDao.getDataFilterBookDto(id);
+//	}
+	public Pagination<BooksDto> getPaginationBooks(int pageNo, int pageSize) {
+		return bookDtoDao.getPaginationBooks(pageNo, pageSize);
+	}
+	public Pagination<BooksDto> getBooksByCategory(int pageNo, int pageSize, int id) {
+		return bookDtoDao.getBooksByCategory(pageNo, pageSize, id);
+	}
 }

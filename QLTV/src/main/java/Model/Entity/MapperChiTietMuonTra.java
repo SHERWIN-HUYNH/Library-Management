@@ -15,6 +15,7 @@ public class MapperChiTietMuonTra implements RowMapper<ChiTietMuonTra> {
 		ct.setTrangThai(rs.getInt("trangThai"));
 		ct.setNgayTra(rs.getString("ngayTra"));
 		ct.setReaderId(rs.getInt("readerId"));
+		ct.setAmount(rs.getInt("amount"));
 		return ct;
 	}
 

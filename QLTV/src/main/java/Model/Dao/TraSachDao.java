@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import Model.Entity.Books;
+import Model.Entity.BooksMapper;
 import Model.Entity.ChiTietMuonTra;
 import Model.Entity.MapperChiTietMuonTra;
 
@@ -28,12 +30,33 @@ public class TraSachDao {
 		ChiTietMuonTra c = _jdbcTemplate.queryForObject(sql, new MapperChiTietMuonTra(), id);
 		return c;
 	}
+	public Books timBookTheoId(int id) {
+		String sql ="SELECT * FROM book WHERE id = ?";
+		Books b = _jdbcTemplate.queryForObject(sql, new Object[]{id}, new BooksMapper());
+		return b;
+	}
 	
-	public int updateTraSach(int id ,ChiTietMuonTra c) {
-		int rs = 0;
+	public int updateAmountTra(int id,int amount) {
+		String sql = "UPDATE book SET amount = ? WHERE id = ?";
+		Books b = timBookTheoId(id);
+		int temp = b.getAmount() + amount;
+		int ctmt = _jdbcTemplate.update(sql, temp,id);
+		return ctmt;
+	}
+	
+	public int updateTraSach(int id) {
 		String sql = "UPDATE chitietmuontra SET ngayTra = ?,trangThai = 1 WHERE id = ?";
 		LocalDate ngayTra = LocalDate.now();
-		rs = _jdbcTemplate.update(sql,ngayTra,id);
+		int rs = _jdbcTemplate.update(sql,ngayTra,id);
+		if (rs == 0) {
+			return - 1;
+        }
+		ChiTietMuonTra c = getCTMTFromId(id);
+		rs = updateAmountTra(c.getBookId(), c.getAmount());
+		if (rs == 0) {
+           return -1 ;
+        }
 		return rs;
+
 	}
 }

@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Model.Dao.ThongKeDao;
+import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ThongKeDto;
+import Model.Entity.Authors;
+import Model.Entity.Readers;
 
 @Service
 public class ThongKeServiceImpl {
@@ -71,4 +74,15 @@ public class ThongKeServiceImpl {
 		return thongke.mostFavoriteCategory();
 	}
 
+	public List<ThongKeDto> leastFavoriteCategory(){
+		return thongke.leastFavoriteCategory();
+	}
+	
+	public List<ChiTietMuonTraDto> readersInfor(){
+		return thongke.thongKeReader();
+	}
+	public List<Authors> authorInfor(){
+		return thongke.thongkeTacgia();
+	}
 }
+
