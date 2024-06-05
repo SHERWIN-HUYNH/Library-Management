@@ -93,7 +93,7 @@
 						<div class="space-20"></div>
 					</aside>
 				</div>
-				<div class="col-xs-12 col-md-9 pull-right">
+				<div class="col-xs-12 col-md-10 pull-right">
 					<div class="space-30"></div>
 					<hr>
 					<div class="space-20"></div>
@@ -140,7 +140,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="text-center">
-								<ul class="pagination pull-right fixed-pagination">
+								<ul class="pagination pull-right">
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"

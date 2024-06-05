@@ -456,7 +456,7 @@
 						<div class="space-20"></div>
 					</c:forEach>
 					<div class="fix">
-						<a href="<c:url value ="/notification"/>"
+						<a href="<c:url value ="/notification/page"/>"
 							class="btn btn-default pull-right hover-btn-primary">Xem thêm
 							<span><i class="icofont icofont-long-arrow-right"></i></span>
 						</a>
