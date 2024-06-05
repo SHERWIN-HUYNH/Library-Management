@@ -95,7 +95,7 @@ to {
 </style>
 </head>
 
-${message}
+
 <body class="animsition" style="animation-duration: 900ms; opacity: 1;">
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/shared/sidebar.jsp"%>
