@@ -49,7 +49,7 @@ public class MuonTraController extends BaseController {
 			mv.addObject("message", "Thêm thành công !");
 			mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
 		} else if (rs == -2) {
-			mv.addObject("message", "Reader này đã mượn quá 5 quyển sách!");
+			mv.addObject("message", "Không thể mượn quá 5 quyển sách!");
 			mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
 		} else if (rs == -3) {
 			mv.addObject("message", "So luong sach cap nhat khong thanh cong !");
@@ -105,6 +105,9 @@ public class MuonTraController extends BaseController {
 	        } 
 	        else if(rs == -2) {
 	        	mv.addObject("message", "Mượn sách thất bại!Bạn hãy trả sách để mượn tiếp!");
+	        }
+	        else if (rs == -3) {
+				mv.addObject("message", "Số lượng sách cập nhật thất bại !");
 	        }
 	        else {
 	            mv.addObject("message", "Mượn sách thất bại!");

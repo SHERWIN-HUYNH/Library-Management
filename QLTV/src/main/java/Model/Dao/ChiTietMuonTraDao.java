@@ -33,7 +33,7 @@ public class ChiTietMuonTraDao {
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
 		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
-		if (daMuon > 5) {
+		if ((daMuon + ct.getAmount()) > 5) {
 			return -2;
 		} else if( amount >= ct.getAmount()) { 
 			String sql1 = "UPDATE book SET amount =  ? WHERE id = ?"; // cập nhật lại số lượng sách còn lại
@@ -73,21 +73,30 @@ public class ChiTietMuonTraDao {
 	}
 	
     public int muonSachUser(ChiTietMuonTra ct, int readerId) {
+    	String sql = "SELECT amount FROM book WHERE id = ?"; // dem so sách còn lại
+		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
 		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
+		if (daMuon == null) {
+	        daMuon = 0; 
+	    }
 		if (daMuon + ct.getAmount() > 5) {
 			return -2;
 		}
-        String sqlInsert = "INSERT INTO chitietmuontra(bookId, ngayMuon, ngayTra, readerId, amount) VALUES (?, ?, ?, ?, ?)";
-        LocalDate ngayMuon = LocalDate.now();
-        LocalDate ngayTra = ngayMuon.plusDays(30);
+		else if(amount >= ct.getAmount() ) {
+			String sql1 = "UPDATE book SET amount =  ? WHERE id = ?"; // cập nhật lại số lượng sách còn lại
+			int soluong = amount - ct.getAmount();
+			int rs1 = _jdbcTemplate.update(sql1,soluong,ct.getBookId());
+			if(rs1 < 0) {
+				return -3;
+			}
+			String sqlInsert = "INSERT INTO chitietmuontra(bookId, ngayMuon, ngayTra, readerId, amount) VALUES (?, ?, ?, ?, ?)";
+	        LocalDate ngayMuon = LocalDate.now();
+	        LocalDate ngayTra = ngayMuon.plusDays(30);
 
-        int ctmtInsert = _jdbcTemplate.update(sqlInsert, ct.getBookId(), ngayMuon, ngayTra, readerId, ct.getAmount());
-        if (ctmtInsert == 0) {
-            return -1;
-        }
-
-        int ctmtUpdate = updateAmount(ct.getBookId(), ct.getAmount());
-        return ctmtUpdate;
+	        int ctmtInsert = _jdbcTemplate.update(sqlInsert, ct.getBookId(), ngayMuon, ngayTra, readerId, ct.getAmount());
+	        return ctmtInsert;
+		}
+        return -1;
     }
 }

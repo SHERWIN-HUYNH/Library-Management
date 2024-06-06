@@ -131,32 +131,35 @@ to {
 										</div>
 									</form>
 								</div>
+								<div class="col-12 col-md-12">
+									<p>
+										<strong>${categories.size()}</strong> thể loại được tìm thấy
+									</p>
+								</div>
 								<hr>
-								<p>
-									<strong>${categories.size()}</strong> thể loại được tìm thấy
-								</p>
+
 								<div class="card">
 									<div class="card-header"></div>
 									<div class="card-body card-block">
-											<form:form action="category" method="post"
-												modelAttribute="addCategory" class="form-horizontal">
-												<div class="row form-group">
-													<div class="col col-md-2">
-														<form:label path="" class="form-control-label">Tên
+										<form:form action="category" method="post"
+											modelAttribute="addCategory" class="form-horizontal">
+											<div class="row form-group">
+												<div class="col col-md-2">
+													<form:label path="" class="form-control-label">Tên
 														thể loại</form:label>
-													</div>
-													<div class="col-12 col-md-9">
-														<form:input path="name" id="nameCategory" type="text"
-															class="form-control" />
-														<span id="nameCategory_error" style="color: red;"></span>
-													</div>
-												
+												</div>
+												<div class="col-12 col-md-9">
+													<form:input path="name" id="nameCategory" type="text"
+														class="form-control" />
+													<span id="nameCategory_error" style="color: red;"></span>
+												</div>
+
 												<button id="register_form" type="submit" disabled
 													class="btn btn-success btn-sm">
 													<i class="fa fa-check"></i> Thêm
 												</button>
-												</div>
-											</form:form>
+											</div>
+										</form:form>
 									</div>
 									<div class="col-12 col-md-12">
 										<div class="table-responsive table--no-card m-b-30">
@@ -165,7 +168,7 @@ to {
 												<thead>
 													<tr class="col-sm-12">
 														<th>Mã thể loại</th>
-														<th>Tên thể loại </th>
+														<th>Tên thể loại</th>
 														<th>Sửa và Xóa</th>
 													</tr>
 												</thead>
@@ -177,7 +180,7 @@ to {
 															<td
 																style="display: flex; justify-content: space-between; gap: 10px; margin-top: 50px;"><a
 																class="btn btn-warning pull-left"
-																href="<c:url value='editCategory/${category.id}'/>">Sửa</a>
+																href="<c:url value='/editCategory/${category.id}'/>">Sửa</a>
 																<button type="button" class="btn btn-danger"
 																	data-toggle="modal" data-target="#staticBackdrop"
 																	onclick="updateFormAction(${category.id})">Xoá</button>

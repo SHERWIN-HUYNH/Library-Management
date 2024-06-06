@@ -136,15 +136,17 @@ to {
 									</div>
 								</form>
 								<hr>
-								<div class="row">
-									<p>
-										<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm
-										thấy
-									</p>
-									<div class="button-container" style = "margin-left: auto">
-										<a class="btn btn-success" href="<c:url value='muontra'/>">Thêm</a>
-										<a class="btn btn-info" href="<c:url value='traSach'/>">Trả
-											Sách</a>
+								<div class="col-sm-12 col-md-12">
+									<div class="row">
+										<p>
+											<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm
+											thấy
+										</p>
+										<div class="button-container" style="margin-left: auto">
+											<a class="btn btn-success" href="<c:url value='/muontra'/>">Thêm</a>
+											<a class="btn btn-info" href="<c:url value='/traSach'/>">Trả
+												Sách</a>
+										</div>
 									</div>
 								</div>
 								<div class="card">
@@ -186,26 +188,12 @@ to {
                                                                         Unknown status
                                                                     </c:otherwise>
 																</c:choose></td>
-															<td><c:out value="${ctmt.readerName}" /></td>
-
-															<%-- <td
-																style="display: flex; justify-content: space-between; margin-top: 75px;"><a
-																class="btn btn-warning pull-left"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/edit?maMuonSach=<c:out value='${ctmt.getCtmtId()}' />&pages=<c:out value="${ngayTra}" />">Sửa</a>
-																<a class="btn btn-danger"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/delete?maMuonSach=<c:out value='${ctmt.getCtmtId()}' />&pages=<c:out value="${ngayTra}" />">Xóa</a>
-															</td> --%>
+															<td><c:out value="${ctmt.readerId}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
 										</div>
-										<!-- <div class="card-footer">
-											<button type="submit" class="btn btn-primary btn-sm">
-												<i class="fa fa-check"></i> Hoàn tất
-											</button>
-										</div> -->
-
 									</div>
 								</div>
 							</div>
@@ -258,7 +246,5 @@ to {
 	<script src="<c:url value= "/assets/js/main_admin.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/assets/vendor/jquery-ui-1.13.3.custom"/>"></script>
-
-	</script>
 </body>
 </html>
