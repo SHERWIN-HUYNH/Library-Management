@@ -35,7 +35,7 @@ public class AccountServiceImpl implements IAccountService{
 	// LOGIN
 	public Readers CheckAccount(Readers reader) {
 		String password = reader.getPassword();
-		reader = loginDao.GetReaderByAccount(reader);
+		reader = loginDao.GetReaderByAccount(reader.getUsername());
 		if(reader != null)
 		{
 			if(BCrypt.checkpw(password, reader.getPassword()))
@@ -62,8 +62,8 @@ public class AccountServiceImpl implements IAccountService{
 		else 
 			return changePassword.ChangePassword(password, id,role);
 	}
-	public int checkOldPassword(String password, String role) {
-		return changePassword.checkOldPassword(password, role);
+	public int checkOldPassword(String password, String role,String username) {
+		return changePassword.checkOldPassword(password, role, username);
 	}
 	
 	// CEHCK EMAIL EXISTED ? 

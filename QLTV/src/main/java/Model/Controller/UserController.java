@@ -107,13 +107,16 @@ public class UserController extends BaseController {
         Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
         String role = "";
         int id ;
+        String username = "";
         if(loginAdmin != null) {
         	id = loginAdmin.getId();
         	role = "admin";
+        	username = loginAdmin.getUsername();
         }
         else {
         	id = loginReader.getId();
         	role = "reader";
+        	username = loginReader.getUsername();
         }
         // TEST INPUT
         if(oldPassword.equals(newPassword)) {
@@ -124,7 +127,7 @@ public class UserController extends BaseController {
         	mv.addObject("message", "MẬT KHẨU KHÔNG TRÙNG KHỚP");
         	return mv;
        }
-        if(accountService.checkOldPassword(oldPassword, role) == 0) {
+        if(accountService.checkOldPassword(oldPassword, role,username) == 0) {
         	mv.addObject("message", "MẬT KHẨU CŨ KHÔNG CHÍNH XÁC");
    			return mv;
         }
