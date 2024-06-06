@@ -12,7 +12,7 @@
 					style="display: flex; align-items: center;">
 					<li class="active"><a href="<c:url value="/trang-chu" />">Trang
 							chủ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="#gioithieu">Giới thiệu</a></li>
 					<li><a href="<c:url value="/notification/page" />">Thông
 							báo</a></li>
 					<li><a href="<c:url value="/sach" />">Sách</a></li>
@@ -58,7 +58,7 @@
 				<ul class="nav navbar-nav nav-white text-uppercase">
 					<li class="active"><a href="<c:url value="/trang-chu" />">Trang
 							chủ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="#gioithieu">Giới thiệu</a></li>
 					<li><a href="<c:url value="/notification/page" />">Thông
 							báo</a></li>
 					<li><a href="<c:url value="sach" />">Sách</a></li>
@@ -104,7 +104,7 @@
 				<ul class="nav navbar-nav nav-white text-uppercase">
 					<li class="active"><a href="<c:url value="/trang-chu" />">Trang
 							chủ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="#gioithieu">Giới thiệu</a></li>
 					<li><a href="<c:url value="/notification/page" />">Thông
 							báo</a></li>
 					<li><a href="<c:url value="/sach" />">Sách</a></li>

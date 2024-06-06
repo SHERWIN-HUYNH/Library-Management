@@ -33,7 +33,7 @@ public class ChiTietMuonTraDao {
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
 		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
-		if (daMuon > 5) {
+		if ((daMuon + ct.getAmount()) > 5) {
 			return -2;
 		} else if( amount >= ct.getAmount()) { 
 			String sql1 = "UPDATE book SET amount =  ? WHERE id = ?"; // cập nhật lại số lượng sách còn lại
