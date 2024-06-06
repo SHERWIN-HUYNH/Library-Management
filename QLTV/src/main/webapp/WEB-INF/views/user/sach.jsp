@@ -218,39 +218,43 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="text-center">
-								<ul class="pagination justify-content-center"
-									style="position: relative; right: 20px; bottom: 20px; z-index: 1000;">
+								<ul class="pagination justify-content-center">
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/filterCategory/page'/>?page=1&amp;categoryId=${selectedId}">First</a>
+										href="<c:url value='/filterCategory/page'/>?page=1&amp;categoryId=${selectedId}"
+										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">
+											First </a>
 									</li>
-
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage - 1}&amp;categoryId=${selectedId}">Previous</a>
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage - 1}&amp;categoryId=${selectedId}"
+										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">
+											Previous </a>
 									</li>
-
 									<c:forEach var="pageNumber" begin="1"
 										end="${pagination.totalPages}">
 										<li
 											class="page-item ${pagination.currentPage == pageNumber ? 'active' : ''}">
 											<a class="page-link"
-											href="<c:url value='/filterCategory/page'/>?page=${pageNumber}&amp;categoryId=${selectedId}">${pageNumber}</a>
+											href="<c:url value='/filterCategory/page'/>?page=${pageNumber}&amp;categoryId=${selectedId}">
+												${pageNumber} </a>
 										</li>
 									</c:forEach>
-
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage + 1}&amp;categoryId=${selectedId}">Next</a>
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.currentPage + 1}&amp;categoryId=${selectedId}"
+										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">
+											Next </a>
 									</li>
-
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/filterCategory/page'/>?page=${pagination.totalPages}&amp;categoryId=${selectedId}">Last</a>
+										href="<c:url value='/filterCategory/page'/>?page=${pagination.totalPages}&amp;categoryId=${selectedId}"
+										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">
+											Last </a>
 									</li>
 								</ul>
 							</div>

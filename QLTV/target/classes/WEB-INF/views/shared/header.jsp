@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav class="navbar">
 	<div class="container">
 		<!--Toggle-button-->
@@ -20,7 +21,7 @@
 
 					<li><a>${sessionScope.LoginReader.name}</a></li>
 					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="<c:url value="assets/images/active_user.png" />"
+							<img src="<c:url value="/assets/images/active_user.png" />"
 							class="img-circle img-thumbnail" alt="User Img">
 					</a>
 						<ul class="dropdown-menu" style="color: black">
