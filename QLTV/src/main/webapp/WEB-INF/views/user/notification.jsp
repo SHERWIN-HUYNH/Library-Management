@@ -142,12 +142,14 @@
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value="/notification/page?page=1&month=${selectedMonth}" />">First</a>
+										href="<c:url value="/notification/page?page=1&month=${selectedMonth}" />"
+										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">First</a>
 									</li>
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.currentPage - 1}&month=${selectedMonth}' />">Previous</a>
+										href="<c:url value='/notification/page?page=${pagination.currentPage - 1}&month=${selectedMonth}' />"
+										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">Previous</a>
 									</li>
 									<c:forEach var="pageNumber" begin="1"
 										end="${pagination.totalPages}">
@@ -160,12 +162,14 @@
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.currentPage + 1}&month=${selectedMonth}' />">Next</a>
+										href="<c:url value='/notification/page?page=${pagination.currentPage + 1}&month=${selectedMonth}' />"
+										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">Next</a>
 									</li>
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.totalPages}&month=${selectedMonth}' />">Last</a>
+										href="<c:url value='/notification/page?page=${pagination.totalPages}&month=${selectedMonth}' />"
+										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">Last</a>
 									</li>
 								</ul>
 							</div>
