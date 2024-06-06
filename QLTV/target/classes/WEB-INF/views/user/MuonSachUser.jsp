@@ -153,8 +153,8 @@
 									</div>
 									<div class="col-12 col-md-9">
 										<form:input type="number" name="numberSoLuong"
-											class="form-control" step="1" required="required"
-											pattern="[1-5]" title="" min="1" path="amount" />
+											class="form-control" step="1" required="required" min="1"
+											max="5" path="amount" />
 									</div>
 								</div>
 								<div class="row form-group">
@@ -164,7 +164,7 @@
 									</div>
 									<div class="col-12 col-md-9">
 										<form:input type="text" path="readerId" name="name"
-											class="form-control"  readonly="readonly" 
+											class="form-control" readonly="readonly"
 											value="${sessionScope.LoginReader.id}" />
 									</div>
 								</div>

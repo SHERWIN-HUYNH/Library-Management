@@ -165,8 +165,7 @@ to {
 												<thead>
 													<tr class="col-sm-12">
 														<th>Mã thể loại</th>
-														<th>Tên thể loại &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Tên thể loại </th>
 														<th>Sửa và Xóa</th>
 													</tr>
 												</thead>
