@@ -149,9 +149,8 @@ to {
 														<th>Số Lượng</th>
 														<th>Ngày Mượn</th>
 														<th>Ngày Hẹn Trả</th>
-														
 														<th>Trạng Thái</th>
-														<th>Người đọc</th>
+														<th>Mã Người Đọc</th>
 														<th></th>
 													</tr>
 												</thead>
@@ -174,7 +173,7 @@ to {
                                                                         Unknown status
                                                                     </c:otherwise>
 																</c:choose></td>
-															<td><c:out value="${ctmt.readerName}" /></td>
+															<td><c:out value="${ctmt.readerId}" /></td>
 															<td
 																style="display: flex; justify-content: space-between;">
 																<button type="button" class="btn btn-info"

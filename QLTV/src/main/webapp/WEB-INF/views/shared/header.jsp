@@ -61,7 +61,7 @@
 					<li><a href="#gioithieu">Giới thiệu</a></li>
 					<li><a href="<c:url value="/notification/page" />">Thông
 							báo</a></li>
-					<li><a href="<c:url value="sach" />">Sách</a></li>
+					<li><a href="<c:url value="/sach" />">Sách</a></li>
 					<li><a href="<c:url value="/QuanLyThuVien"/>">Quản Lý Thư
 							Viện</a></li>
 					<li><a>${sessionScope.loginAdmin.name}</a></li>

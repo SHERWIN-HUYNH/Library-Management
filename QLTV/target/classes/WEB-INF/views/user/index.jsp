@@ -46,7 +46,7 @@
 </style>
 </head>
 
-<body >
+<body>
 	<header class="relative" id="sc1">
 		<!-- Header-background-markup -->
 
@@ -112,7 +112,7 @@
 		<!-- Header-jumbotron -->
 
 		<div class="space-100"></div>
-		<div class="header-text" >
+		<div class="header-text">
 			<div class="container">
 				<div class="row wow fadeInUp">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
@@ -174,7 +174,7 @@
 	</header>
 	<section class="gray-bg" id="sc2">
 		<div class="space-80"></div>
-		<div class="container" id="gioithieu">
+		<div class="container">
 			<div class="row">
 				<div
 					class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">

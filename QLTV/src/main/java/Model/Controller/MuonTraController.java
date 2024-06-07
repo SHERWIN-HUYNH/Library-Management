@@ -106,6 +106,9 @@ public class MuonTraController extends BaseController {
 	        else if(rs == -2) {
 	        	mv.addObject("message", "Mượn sách thất bại!Bạn hãy trả sách để mượn tiếp!");
 	        }
+	        else if (rs == -3) {
+				mv.addObject("message", "Số lượng sách cập nhật thất bại !");
+	        }
 	        else {
 	            mv.addObject("message", "Mượn sách thất bại!");
 	        }

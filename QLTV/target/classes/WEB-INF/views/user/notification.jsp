@@ -44,7 +44,7 @@
 			<img src="<c:url value='/assets/images/slide/slide1.jpg' />" alt="">
 		</div>
 		<!-- Mainmenu-markup-start -->
-		<div class="mainmenu-area navbar-fixed-top affix-top" data-spy="affix"
+		<div class="mainmenu-area navbar-fixed-top" data-spy="affix"
 			data-offset-top="10">
 			<!-- ============== HEADER ================= -->
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
@@ -93,7 +93,9 @@
 						<div class="space-20"></div>
 					</aside>
 				</div>
-				<div class="col-xs-12 col-md-9 pull-right">
+				<div class="col-xs-12 col-md-10 pull-right">
+					<div class="space-30"></div>
+					<hr>
 					<div class="space-20"></div>
 					<div class="row">
 						<div class="row event-list">
@@ -142,14 +144,12 @@
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value="/notification/page?page=1&month=${selectedMonth}" />"
-										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">First</a>
+										href="<c:url value="/notification/page?page=1&month=${selectedMonth}" />">First</a>
 									</li>
 									<li
 										class="page-item ${pagination.currentPage == 1 ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.currentPage - 1}&month=${selectedMonth}' />"
-										onclick="${pagination.currentPage == 1 ? 'event.preventDefault();' : ''}">Previous</a>
+										href="<c:url value='/notification/page?page=${pagination.currentPage - 1}&month=${selectedMonth}' />">Previous</a>
 									</li>
 									<c:forEach var="pageNumber" begin="1"
 										end="${pagination.totalPages}">
@@ -162,14 +162,12 @@
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.currentPage + 1}&month=${selectedMonth}' />"
-										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">Next</a>
+										href="<c:url value='/notification/page?page=${pagination.currentPage + 1}&month=${selectedMonth}' />">Next</a>
 									</li>
 									<li
 										class="page-item ${pagination.currentPage == pagination.totalPages ? 'disabled' : ''}">
 										<a class="page-link"
-										href="<c:url value='/notification/page?page=${pagination.totalPages}&month=${selectedMonth}' />"
-										onclick="${pagination.currentPage == pagination.totalPages ? 'event.preventDefault();' : ''}">Last</a>
+										href="<c:url value='/notification/page?page=${pagination.totalPages}&month=${selectedMonth}' />">Last</a>
 									</li>
 								</ul>
 							</div>
@@ -179,36 +177,6 @@
 			</div>
 		</div>
 		<div class="space-80"></div>
-			<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-			data-keyboard="false" tabindex="-1"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true"
-			style="z-index: 1055 !important">
-			<div class="modal-dialog" style="width: 500px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn đăng xuất </span>
-
-					</div>
-					<div class="modal-footer" style="display: flex;">
-						<button type="button" class="btn btn-warning  btn-secondary"
-							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
-							<button type="submit" class="btn btn-danger">Đăng xuất</button>
-
-						</form:form>
-					</div>
-				</div>
-			</div>
-
-		</div>
 	</section>
 	<!-- Footer-Area -->
 	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
