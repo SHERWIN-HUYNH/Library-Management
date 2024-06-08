@@ -51,8 +51,7 @@ public class AccountServiceImpl implements IAccountService{
 			if(BCrypt.checkpw(password, reader.getPassword()))
 			{
 				return reader;
-			} else
-				return null;
+			} 
 		}
 	return null;
 	}
@@ -73,7 +72,7 @@ public class AccountServiceImpl implements IAccountService{
 			return changePassword.ChangePassword(password, id,role);
 	}
 	public int checkOldPassword(String password, String role,String username) {
-		return changePassword.checkOldPassword(password, role, username);
+		return changePassword.checkOldPassword(password, role,username);
 	}
 	
 	// CEHCK EMAIL EXISTED ? 
