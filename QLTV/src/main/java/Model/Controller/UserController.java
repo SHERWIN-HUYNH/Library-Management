@@ -136,10 +136,10 @@ public class UserController extends BaseController {
     		   mv.addObject("message", "ĐỔI MẬT KHẨU THẤT BẠI");
        			return mv;
            }
-    	   mv.setViewName("user/index");
-    	    mv.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
-    	    mv.addObject("search", new SearchBook()); // Thêm đối tượng search vào model
-    	    return mv;
+    	   ModelAndView mv1 = new ModelAndView("user/index");
+    	   mv1.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
+    	   mv1.addObject("search", new SearchBook()); // Thêm đối tượng search vào model
+    	   return mv1;
 	}
 	
 	

@@ -116,11 +116,11 @@
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="image" class="form-control-label">Hình ảnh</form:label>
+													<form:label path="image" class="form-control-label">Hình ảnh </form:label>
 												</div>
 												<div class="col-12 col-md-10">
 													<form:input type="file" path="image" class="form-control"
-														accept="image/*" defaultValue="${selectedNoti.image}" id="image"/>
+														accept="image/*" id="image"/>
 														<span id="image_error" style="color: red;"></span>
 												</div>
 											</div>
