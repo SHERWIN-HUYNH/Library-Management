@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Admin;
 import Model.Entity.Readers;
+import Model.Entity.SearchBook;
 import Model.Service.AccountServiceImpl;
 
 @Controller
@@ -82,7 +83,7 @@ public class UserController extends BaseController {
 		
 	}
 	// DANG XUAT
-	@RequestMapping(value = "DangXuat")
+	@RequestMapping(value = "DangXuat", method= RequestMethod.POST)
 	public ModelAndView logout(HttpSession sesion) {
 		sesion.setAttribute("loginAdmin", null);
 		sesion.setAttribute("LoginReader", null);
@@ -95,16 +96,29 @@ public class UserController extends BaseController {
 	public ModelAndView UserChangePasswordGET() {
 		return new ModelAndView("user/UserChangePassword");
 	}
-	@RequestMapping(value = "UserChangePassword", method = RequestMethod.POST)
 	
+	@RequestMapping(value = "UserChangePassword", method = RequestMethod.POST)
 	public ModelAndView UserChangePasswordPOST(HttpServletRequest request, HttpSession session) {
-		ModelAndView mv =  new ModelAndView("user/login");
+		ModelAndView mv =  new ModelAndView("user/UserChangePassword");
         String newPassword = request.getParameter("new_password");
         String confirmPassword = request.getParameter("confirm_password");
         String oldPassword = request.getParameter("old_password");
         Readers loginReader = (Readers) session.getAttribute("LoginReader");
         Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
-       
+        String role = "";
+        int id ;
+        String username = "";
+        if(loginAdmin != null) {
+        	id = loginAdmin.getId();
+        	role = "admin";
+        	username = loginAdmin.getUsername();
+        }
+        else {
+        	id = loginReader.getId();
+        	role = "reader";
+        	username = loginReader.getUsername();
+        }
+        // TEST INPUT
         if(oldPassword.equals(newPassword)) {
         	mv.addObject("message", "MẬT KHẨU MỚI BỊ TRÙNG MẬT KHẨU CŨ");
         	return mv;
@@ -112,17 +126,20 @@ public class UserController extends BaseController {
         if(newPassword.equals(confirmPassword) == false) {
         	mv.addObject("message", "MẬT KHẨU KHÔNG TRÙNG KHỚP");
         	return mv;
-       } else {
-    	   if(loginAdmin != null) {
-          	 accountService.ChangePassword(newPassword,loginAdmin.getId());
-           }
-           if(loginReader != null) {
-        	   accountService.ChangePassword(newPassword,loginReader.getId());
-           }
        }
-        mv.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
-        
-        return mv;
+        if(accountService.checkOldPassword(oldPassword, role, username) == 0) {
+        	mv.addObject("message", "MẬT KHẨU CŨ KHÔNG CHÍNH XÁC");
+   			return mv;
+        }
+        // CHANGE PASSWORD
+    	   if( accountService.ChangePassword(newPassword, id, role) == 0) {
+    		   mv.addObject("message", "ĐỔI MẬT KHẨU THẤT BẠI");
+       			return mv;
+           }
+    	   ModelAndView mv1 = new ModelAndView("user/index");
+    	   mv1.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
+    	   mv1.addObject("search", new SearchBook()); // Thêm đối tượng search vào model
+    	   return mv1;
 	}
 	
 	

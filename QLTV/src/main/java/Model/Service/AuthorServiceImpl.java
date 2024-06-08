@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import Model.Dao.AuthorDao;
 import Model.Entity.Authors;
+import Model.Entity.Pagination;
 
 @Service
 public class AuthorServiceImpl {
@@ -27,5 +29,11 @@ public class AuthorServiceImpl {
 	}
 	public int deleteAuthor(int id) {
 		return authorDao.DeleteAuthor(id);
+	}
+	public List<Authors> SearchAuthor(String name) {
+		return authorDao.searchAuthor(name);
+	}
+	public Pagination<Authors> getAllByPage(int pageNo, int pageSize) {
+		return authorDao.getAllByPage(pageNo, pageSize);
 	}
 }

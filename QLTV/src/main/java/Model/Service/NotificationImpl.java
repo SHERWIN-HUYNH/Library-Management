@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Model.Dao.NotificationDao;
 import Model.Entity.Notification;
+import Model.Entity.Pagination;
 
 @Service
 public class NotificationImpl implements INotificationService{
@@ -27,5 +28,14 @@ public class NotificationImpl implements INotificationService{
 	}
 	public int DeleteNotification(int id) {
 		return notificationDao.DeleteNotification(id);
+	}
+	public List<Notification> GetDataNotificationByMonth(int month) {
+		return notificationDao.GetDataNotificationByMonth(month);
+	}
+	public Pagination<Notification> getNotificationsByPageAndMonth(int pageNo, int pageSize, int month) {
+		return notificationDao.getAllByPageAndMonth(pageNo, pageSize, month);
+	}
+	public Pagination<Notification> getAllByPage(int pageNo, int pageSize) {
+		return notificationDao.getAllByPage(pageNo, pageSize);
 	}
 }

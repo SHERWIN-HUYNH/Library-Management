@@ -7,63 +7,80 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import Model.Dto.BooksDto;
-import Model.Entity.Authors;
-import Model.Entity.AuthorsMapper;
-import Model.Entity.Categories;
-import Model.Entity.CategoriesMapper;
+import Model.Dto.BooksDtoMapper;
+import Model.Entity.Pagination;
+
 
 @Repository
 public class AddBookDao extends BaseDao {
 	@Autowired
 	public JdbcTemplate _jdbcTemplate;
 
+	// Admin: Insert book
 	public int insertBook(BooksDto books) {
-		StringBuffer sql1 = new StringBuffer();
-		if(GetCategoryId(books.getCategoryName()) == 0)
-			return 2;
-		if(GetAuthorId(books.getAuthorName()) == 0)
-			return 3;
-		sql1.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`) "+"VALUES('"+books.getBookName()+"','"+books.getBookAmount()+"','"+books.getBookDayCreated()+"','"+GetCategoryId(books.getCategoryName())+"','"+ books.getBookImage()+"','"+books.getBookDescription()+"','"+GetAuthorId(books.getAuthorName())+"')");
-		int book = _jdbcTemplate.update(sql1.toString());
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`) "
+				+ "VALUES('" + books.getBookName() + "','" + books.getBookAmount() + "','" + books.getBookDayCreated()
+				+ "','" + books.getCategoryId() + "','" + books.getBookImage() + "','" + books.getBookDescription()
+				+ "','" + books.getAuthorId() + "')");
+		int book = _jdbcTemplate.update(sql.toString());
 		return book;
 	}
 
-	public Authors GetAuthorByName(Authors author) {
-		String sql = "SELECT * FROM author WHERE name = ?";
-		List<Authors> authors = _jdbcTemplate.query(sql, new AuthorsMapper(), author.getName());
-		if (authors.isEmpty()) {
-			return null;
-		} else {
-			return authors.get(0);
-		}
+	// Admin: Update book
+	public int updateBook(int id, BooksDto booksDto) {
+		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ? WHERE id = ?";
+		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookImage(), booksDto.getBookAmount(),
+				booksDto.getBookDayCreated(), booksDto.getBookDescription(), booksDto.getAuthorId(),
+				booksDto.getCategoryId(), id);
+		return book;
 	}
 
-	public int insertAuthor(Authors authors) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO `author`(`name`, `image`, `description`) VALUES(" + authors.getName() + "','"
-				+ authors.getImage() + "','" + authors.getDescription() + "')");
-
-		int author = _jdbcTemplate.update(sql.toString());
-		return author;
+	// Admin: Delete book
+	public int deleteBook(int bookId) {
+		String sql = "DELETE FROM book WHERE id = ?";
+		int book = _jdbcTemplate.update(sql, bookId);
+		return book;
 	}
 
-	public int GetCategoryId(String categoryName) {
-		String sql = "SELECT * FROM category WHERE name = ?";
-		List<Categories> category = _jdbcTemplate.query(sql, new CategoriesMapper(), categoryName);
-		if (category.isEmpty()) {
-			return  0;
-		} else {
-			return category.get(0).getId();
-		}
+	// Method to get a book by its ID
+	public BooksDto getBooksDtoById(int bookId) {
+		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
+				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
+				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
+				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
+				+ "AND book.categoryId = category.id AND book.id = ?";
+		BooksDto booksDto = _jdbcTemplate.queryForObject(sql, new BooksDtoMapper(), bookId);
+		return booksDto;
 	}
 
-	public int GetAuthorId(String authorName) {
-		String sql = "SELECT * FROM author WHERE name = ?";
-		List<Authors> author = _jdbcTemplate.query(sql, new AuthorsMapper(), authorName);
-		if (author.isEmpty()) {
-			return 0;
-		} else {
-			return author.get(0).getId();
-		}
+	public Pagination<BooksDto> getBookByPage(int pageNo, int pageSize) {
+		int offset = (pageNo - 1) * pageSize;
+		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
+				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
+				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
+				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
+				+ "and book.categoryId = category.id LIMIT ? OFFSET ?";
+		List<BooksDto> books = _jdbcTemplate.query(sql, new BooksDtoMapper(), pageSize, offset);
+		String countSql = "SELECT COUNT(*) FROM book";
+		int totalItems = _jdbcTemplate.queryForObject(countSql, Integer.class);
+
+		return new Pagination<BooksDto>(books, pageNo, totalItems, pageSize);
+	}
+
+	public Pagination<BooksDto> searchBook(int pageNo, int pageSize, String name) {
+		int offset = (pageNo - 1) * pageSize;
+		String sql = "SELECT book.id as bookId,book.name AS bookName, book.image AS bookImage, book.amount AS bookAmount, "
+				+ "book.dayCreated AS bookDayCreated, book.description AS bookDescription, "
+				+ "author.id as authorId, author.name AS authorName, author.image AS authorImage, author.description AS authorDescription, "
+				+ "category.id as categoryId,category.name AS categoryName " + "FROM book "
+				+ "JOIN author ON book.authorId = author.id " + "JOIN category ON book.categoryId = category.id "
+				+ "WHERE book.name LIKE ? OR author.name LIKE ?" + "LIMIT ? OFFSET ?";
+		List<BooksDto> list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%",
+				pageSize, offset);
+		// Truy vấn để lấy tổng số sách
+		int totalBooks = _jdbcTemplate.queryForObject("SELECT COUNT(*) FROM book JOIN author ON book.authorId = author.id JOIN category ON book.categoryId = category.id WHERE book.name LIKE ? OR author.name LIKE ?",
+				Integer.class, "%" + name + "%", "%" + name + "%");
+		return new Pagination<BooksDto>(list, pageNo, totalBooks, pageSize);
 	}
 }

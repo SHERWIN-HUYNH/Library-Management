@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.Entity.Authors;
 import Model.Entity.AuthorsMapper;
+import Model.Entity.Pagination;
 
 @Repository
 public class AuthorDao {
@@ -49,4 +50,19 @@ public class AuthorDao {
 	    rs = _jdbcTemplate.update(sql, id);
 	    return rs;
 	}
+	
+	public List<Authors> searchAuthor(String name) {
+	    String sql = "SELECT * FROM author WHERE name LIKE ?";
+	    String searchPattern = "%" + name + "%";
+	    List<Authors> authors = _jdbcTemplate.query(sql, new Object[]{searchPattern}, new AuthorsMapper());
+	    return authors;
+	}
+	public Pagination<Authors> getAllByPage(int pageNo, int pageSize) {
+		int offset = (pageNo - 1) * pageSize;
+        String sql = "SELECT * FROM author LIMIT ?, ?";
+        List<Authors> authors = _jdbcTemplate.query(sql, new Object[]{offset, pageSize}, new AuthorsMapper());
+        int totalAuthors = _jdbcTemplate.queryForObject("SELECT COUNT(*) FROM author", Integer.class);
+
+        return new Pagination<Authors>(authors, pageNo, totalAuthors, pageSize);
+    }
 }

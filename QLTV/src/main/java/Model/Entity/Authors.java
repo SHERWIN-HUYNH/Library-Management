@@ -5,6 +5,20 @@ public class Authors {
 	private String name;
 	private String image;
 	private String description;
+	private int amount;
+	private String bookname;
+	public String getBookname() {
+		return bookname;
+	}
+	public void setBookname(String bookname) {
+		this.bookname = bookname;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
 	public Authors() {
 		super();
 		// TODO Auto-generated constructor stub
