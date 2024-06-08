@@ -1,6 +1,8 @@
 package Model.Service;
 
 
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import Model.Dao.ChangePasswordDao;
 import Model.Dao.ForgotPasswordDao;
 import Model.Dao.LoginDao;
+import Model.Dao.ReaderDao;
 import Model.Dao.RegisterDao;
 import Model.Entity.Admin;
 import Model.Entity.Readers;
@@ -17,13 +20,20 @@ import Model.Entity.Readers;
 public class AccountServiceImpl implements IAccountService{
 	@Autowired
 	LoginDao loginDao = new LoginDao();
+	
 	@Autowired
 	RegisterDao registerDao = new RegisterDao();
+	
 	@Autowired
 	ChangePasswordDao changePassword = new ChangePasswordDao();
+	
 	@Autowired
 	ForgotPasswordDao forgotPassword = new ForgotPasswordDao();
 	// REGISTER
+
+	@Autowired
+	private ReaderDao readerDao  ;
+	
 	public int AddAccount(Readers reader) {
 		reader.setPassword(BCrypt.hashpw(reader.getPassword(),BCrypt.gensalt(12)));
 		if(forgotPassword.CheckEmail(reader.getEmail()) == 1) {
@@ -74,4 +84,13 @@ public class AccountServiceImpl implements IAccountService{
 		Readers reader = loginDao.GetReaderByEmail(email);
 		return reader;
 	}
+	
+	public List<Readers> GetDataReader(){
+		return readerDao.GetDataReader();
+	}
+	
+	public List<Readers> GetDataSearchReader(String name){
+		return readerDao.GetDataSearchReader(name);
+	}
+	
 }
