@@ -98,8 +98,7 @@
 												</div>
 												<div class="col-12 col-md-4">
 													<form:input type="text" path="title" class="form-control"
-														required="required" defaultValue="${selectedNoti.title}" id="title" />
-													<span id="title_error" style="color: red;"></span>
+														required="required" defaultValue="${selectedNoti.title}" />
 												</div>
 											</div>
 											<div class="row form-group">
@@ -107,11 +106,10 @@
 													<form:label path="content" class="form-control-label">Nội dung</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:textarea rows="5" name="content"
+													<form:textarea rows="5" id="txtNoiDung" name="content"
 														path="content" class="col-md-12 form-control"
 														style="border: solid 1px green;"
-														defaultValue="${selectedNoti.content}" id="content"/>
-														<span id="content_error" style="color: red;"></span>
+														defaultValue="${selectedNoti.content}" />
 												</div>
 											</div>
 											<div class="row form-group">
@@ -122,11 +120,12 @@
 													<form:input type="file" path="image" class="form-control"
 														accept="image/*" id="image"/>
 														<span id="image_error" style="color: red;"></span>
+
 												</div>
 											</div>
 
 											<button type="button" class="btn btn-primary btn-danger"
-												data-toggle="modal" data-target="#staticBackdrop" id="register_form" disabled>Sửa</button>
+												data-toggle="modal" data-target="#staticBackdrop">Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"
 												data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -150,7 +149,7 @@
 															<button type="button"
 																class="btn btn-warning  btn-secondary"
 																data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-															<button type="submit" class="btn btn-danger " >
+															<button type="submit" class="btn btn-danger ">
 																 Sửa
 															</button>
 														</div>
@@ -209,7 +208,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_notification.js"/>"></script>
+
 
 	<script type="text/javascript">
 		var message = "${message}";

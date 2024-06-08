@@ -127,7 +127,7 @@ public class UserController extends BaseController {
         	mv.addObject("message", "MẬT KHẨU KHÔNG TRÙNG KHỚP");
         	return mv;
        }
-        if(accountService.checkOldPassword(oldPassword, role,username) == 0) {
+        if(accountService.checkOldPassword(oldPassword, role, username) == 0) {
         	mv.addObject("message", "MẬT KHẨU CŨ KHÔNG CHÍNH XÁC");
    			return mv;
         }

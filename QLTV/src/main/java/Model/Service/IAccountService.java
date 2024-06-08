@@ -13,5 +13,4 @@ import Model.Entity.Readers;
 public interface IAccountService {
 	public int AddAccount(Readers reader);
 	public Readers CheckAccount(Readers reader);
-	
 }
