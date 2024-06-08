@@ -58,6 +58,10 @@ public class NotificationController extends BaseController {
 			@ModelAttribute("selectedNoti") Notification notification) {
 		ModelAndView mv = new ModelAndView("admin/SuaThongBao");
 		mv.addObject("notifications", notificationImp.GetAllNotification());
+		Notification notifiOld =  notificationImp.GetNotiFromId(id);
+		if(notification.getImage().length() == 0) {
+			notification.setImage(notifiOld.getImage());
+		}
 		int rs = notificationImp.UpdateNotification(id, notification);
 		if (rs > 0) {
 			mv.addObject("message", "SỬA THÔNG BÁO THÀNH CÔNG");
