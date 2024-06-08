@@ -14,9 +14,9 @@ import Model.Entity.ReadersMapper;
 @Repository
 public class LoginDao extends BaseDao{
 
-	public Readers GetReaderByAccount(Readers user) {
+	public Readers GetReaderByAccount(String username) {
 		  String sql = "SELECT * FROM reader WHERE username = ?"; 
-		  List<Readers> reader = _jdbcTemplate.query(sql, new ReadersMapper(), user.getUsername());
+		  List<Readers> reader = _jdbcTemplate.query(sql, new ReadersMapper(), username);
 		  if (reader.isEmpty()) {
 		        return null;
 		    } else {

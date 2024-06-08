@@ -107,13 +107,16 @@ public class UserController extends BaseController {
         Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
         String role = "";
         int id ;
+        String username = "";
         if(loginAdmin != null) {
         	id = loginAdmin.getId();
         	role = "admin";
+        	username = loginAdmin.getUsername();
         }
         else {
         	id = loginReader.getId();
         	role = "reader";
+        	username = loginReader.getUsername();
         }
         // TEST INPUT
         if(oldPassword.equals(newPassword)) {
@@ -124,7 +127,7 @@ public class UserController extends BaseController {
         	mv.addObject("message", "MẬT KHẨU KHÔNG TRÙNG KHỚP");
         	return mv;
        }
-        if(accountService.checkOldPassword(oldPassword, role) == 0) {
+        if(accountService.checkOldPassword(oldPassword, role, username) == 0) {
         	mv.addObject("message", "MẬT KHẨU CŨ KHÔNG CHÍNH XÁC");
    			return mv;
         }
@@ -133,10 +136,10 @@ public class UserController extends BaseController {
     		   mv.addObject("message", "ĐỔI MẬT KHẨU THẤT BẠI");
        			return mv;
            }
-    	   mv.setViewName("user/index");
-    	    mv.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
-    	    mv.addObject("search", new SearchBook()); // Thêm đối tượng search vào model
-    	    return mv;
+    	   ModelAndView mv1 = new ModelAndView("user/index");
+    	   mv1.addObject("message", "ĐỔI MẬT KHẨU THÀNH CÔNG");
+    	   mv1.addObject("search", new SearchBook()); // Thêm đối tượng search vào model
+    	   return mv1;
 	}
 	
 	
