@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -127,7 +128,7 @@ to {
 
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
-				<div class="section__content section__content--p30">
+				<div class="section__content--p30">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-12 col-md-12">
@@ -136,88 +137,27 @@ to {
 										<strong>Thêm sách</strong>
 									</div>
 									<div class="card-body card-block">
-										<form:form action="dausach" method="POST"
-											modelAttribute="insertBook" class="form-horizontal">
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="bookName" class="form-control-label">Tên
-														sách</form:label>
-												</div>
-												<div class="col-12 col-md-4">
-													<form:input path="bookName" type="text"
-														class="form-control" />
-												</div>
-
-												<div class="col col-md-2">
-													<form:label path="categoryName">Thể Loại</form:label>
-												</div>
-												<div class="col-12 col-md-4">
-													<form:select path="categoryName" name="txtTenTheLoai"
-														id="txtTenTheLoai"
-														class="selectpicker show-tick form-control">
-														<c:forEach var="category" items="${categories}">
-															<form:option value="${category.name }" />
-														</c:forEach>
-													</form:select>
-												</div>
+										<div class="row form-group">
+											<div class="col col-md-5">
+												<input type="button" value="Thêm đầu sách"
+													class="btn btn-primary"
+													onclick="location.href='${pageContext.request.contextPath}/addBook'">
 											</div>
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
+											<div class="col-12 col-md-7">
+													<form
+														action="${pageContext.request.contextPath}/searchBook"
+														method="get">
+														<div class="input-group">
+															<input type="text" class="form-control"
+																placeholder="Nhập tên đầu sách hoặc tên tác giả" name="name" />
+															<div class="input-group-btn">
+																<input type="submit" value="Search"
+																	class="btn btn-primary icofont icofont-search-alt-2">
+															</div>
+														</div>
+													</form>
 												</div>
-												<div class="col-12 col-md-10">
-													<form:input path="bookAmount" type="text"
-														class="form-control" value="1" />
-												</div>
-											</div>
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="bookDescription"
-														class="form-control-label">Mô tả</form:label>
-												</div>
-												<div class="col-12 col-md-10">
-													<form:textarea path="bookDescription" id="txtMoTa"
-														name="txtMoTa" class="col-md-12 form-control"
-														style="border: solid 1px gray;" />
-												</div>
-											</div>
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="authorName">Tác Giả</form:label>
-												</div>
-
-												<div class="col-12 col-md-4">
-													<form:select path="authorName" name="txtTenTheLoai"
-														id="txtTenTheLoai"
-														class="selectpicker show-tick form-control">
-														<c:forEach var="author" items="${authors}">
-															<form:option path="authorName" value="${author.name }" />
-														</c:forEach>
-													</form:select>
-												</div>
-
-												<div class="col col-md-2">
-													<form:label path="bookDayCreated">Ngày xuất bản</form:label>
-												</div>
-												<div class="col-12 col-md-4">
-													<form:input path="bookDayCreated" type="date"
-														class="form-control " required="required" />
-												</div>
-											</div>
-											<div class="row form-group">
-												<div class="col col-md-2">
-													<form:label path="bookImage" class="form-control-label">Ảnh sách</form:label>
-
-												</div>
-												<div class="col-12 col-md-4">
-													<form:input path="bookImage" type="file"
-														class="form-control" />
-												</div>
-											</div>
-											<button type="submit" class="btn btn-success btn-sm">
-												<i class="fa fa-plus"></i> Thêm
-											</button>
-										</form:form>
+										</div>
 									</div>
 
 									<div class="col-12 col-md-12">
@@ -226,61 +166,108 @@ to {
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														
+
 														<th>Tên Sách</th>
 														<th>Số lượng</th>
 														<th>Thể loại&nbsp;&nbsp;&nbsp;</th>
-														
+
 														<th>Tác giả</th>
 														<th>Ngày xuất bản</th>
 														<th>Ảnh bìa</th>
-														
+
 														<th>Sửa và Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="book" items="${books}">
+													<c:forEach var="book" items="${bookspage.content}">
 														<tr>
-															
-															<td><c:out value="${book.name}" /></td>
-															<td><c:out value="${book.amount }"></c:out></td>
-															<c:forEach var="category" items="${categories }">
-																<c:if test="${category.id == book.categoryId }">
-																	<td><c:out value="${category.name}" /></td>
-																</c:if>
-															</c:forEach>
-															
-															<c:forEach var="author" items="${authors}">
-																<c:if test="${author.id == book.authorId }">
-																	<td><c:out value="${author.name}" /></td>
-																</c:if>
-															</c:forEach>
-															<td><c:out value="${book.dayCreated}" /></td>
-															<td><img src="<c:url value="/assets/images/book/${book.image}"/>" alt="Bìa sách"></td>
-															<%-- <c:forEach var="author" items="${authors}">
-																<c:if test="${author.id == book.authorId }">
-																	<td><c:out value="${author.image}" /></td>
-																</c:if>
-															</c:forEach> --%>
-
-															<td
-																style="display: flex; justify-content: space-between; gap: 10px; margin-top: 75px;"><a
+															<td><c:out value="${book.bookName}" /></td>
+															<td><c:out value="${book.bookAmount }"></c:out></td>
+															<td><c:out value="${book.categoryName }"></c:out></td>
+															<td><c:out value="${book.authorName }"></c:out></td>
+															<td><c:out value="${book.bookDayCreated}" /></td>
+															<td><img
+																src="<c:url value="/assets/images/book/${book.bookImage}"/>"
+																alt="Bìa sách"></td>
+															<td><a
+																style="display: inline-block; margin-right: 5px;"
 																class="btn btn-warning pull-left"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/edit?maMuonSach=<c:out value='${book.getId()}' />&pages=<c:out value="${ngayTra}" />">Sửa</a>
-																<a class="btn btn-danger"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/delete?maMuonSach=<c:out value='${book.getId()}' />&pages=<c:out value="${ngayTra}" />">Xóa</a>
-															</td>
+																href="<c:url value="/editBook/${book.bookId}"/>">Sửa</a>
+																<button type="button" class="btn btn-danger"
+																	data-toggle="modal" data-target="#staticBackdrop"
+																	onclick="updateFormAction(${book.bookId})">Xoá</button>
+
+																<div class="modal fade" id="staticBackdrop"
+																	data-backdrop="static" data-keyboard="false"
+																	tabindex="-1" aria-labelledby="staticBackdropLabel"
+																	aria-hidden="true" style="z-index: 1055 !important">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<h5 class="modal-title" id="staticBackdropLabel1">Chú
+																					ý</h5>
+																				<button type="button" class="close"
+																					data-dismiss="modal" aria-label="Close">
+																					<span aria-hidden="true">&times;</span>
+																				</button>
+																			</div>
+																			<div class="modal-body">
+																				<span class="text-danger"> Bạn có muốn xóa
+																					đầu sách này không?</span>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button"
+																					class="btn btn-warning  btn-secondary"
+																					data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+																				<form:form id="deleteForm" method="POST">
+																					<button type="submit" class="btn btn-danger">Xóa</button>
+																				</form:form>
+																			</div>
+																		</div>
+																	</div>
+																</div></td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
+
 										</div>
 										<div class="card-footer">
-											<!-- <button type="submit" class="btn btn-primary btn-sm">
-												<i class="fa fa-check"></i> Hoàn tất
-											</button> -->
+											<div class="row" style=" justify-content: flex-end;">
+												<div class="text-center" >
+													<ul class="pagination">
+														<li
+															class="page-item ${bookspage.currentPage == 1 ? 'disabled' : ''}">
+															<a class="page-link"
+															href="${pageContext.request.contextPath}/dausach	?page=1">First</a>
+														</li>
+														<li
+															class="page-item ${bookspage.currentPage == 1 ? 'disabled' : ''}">
+															<a class="page-link"
+															href="${pageContext.request.contextPath}/dausach?page=${bookspage.currentPage - 1}">Previous</a>
+														</li>
+														<c:forEach var="pageNumber" begin="1"
+															end="${bookspage.totalPages}">
+															<li
+																class="page-item ${bookspage.currentPage == pageNumber ? 'active' : ''}">
+																<a class="page-link"
+																href="${pageContext.request.contextPath}/dausach?page=${pageNumber}">${pageNumber}</a>
+															</li>
+														</c:forEach>
+														<li
+															class="page-item ${bookspage.currentPage == bookspage.totalPages ? 'disabled' : ''}">
+															<a class="page-link"
+															href="${pageContext.request.contextPath}/dausach?page=${bookspage.currentPage + 1}">Next</a>
+														</li>
+														<li
+															class="page-item ${bookspage.currentPage == bookspage.totalPages ? 'disabled' : ''}">
+															<a class="page-link"
+															href="${pageContext.request.contextPath}/dausach?page=${bookspage.totalPages}">Last</a>
+														</li>
+													</ul>
+												</div>
+											</div>
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -303,21 +290,21 @@ to {
 		src="<c:url value= "/assets/vendor/bootstrap-4.1/bootstrap.min.js"/>"></script>
 	<!-- Vendor JS       -->
 	<script src="<c:url value= "/assets/vendor/slick/slick.min.js"/>">
-		
-	</script>
+			
+		</script>
 	<script src="<c:url value= "/assets/vendor/wow/wow.min.js"/>"></script>
 	<script
 		src="<c:url value= "/assets/vendor/animsition/animsition.min.js"/>"></script>
 	<script
 		src="<c:url value= "/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"/>">
-		
-	</script>
+			
+		</script>
 	<script
 		src="<c:url value= "/assets/vendor/counter-up/jquery.waypoints.min.js"/>"></script>
 	<script
 		src="<c:url value= "/assets/vendor/counter-up/jquery.counterup.min.js"/>">
-		
-	</script>
+			
+		</script>
 	<script
 		src="<c:url value= "/assets/vendor/circle-progress/circle-progress.min.js"/>"></script>
 	<script
@@ -325,16 +312,20 @@ to {
 	<script
 		src="<c:url value= "/assets/vendor/chartjs/Chart.bundle.min.js"/>"></script>
 	<script src="<c:url value= "/assets/vendor/select2/select2.min.js"/>">
-		
-	</script>
+			
+		</script>
 	<!-- Main JS-->
 	<script src="<c:url value= "/assets/js/main_admin.js"/>"></script>
 	<script type="text/javascript">
-		var message = "${message}";
-		if (message && message.trim().length > 0) {
-			// Display an alert with the message content
-			alert(message);
-		}
-	</script>
+			var message = "${message}";
+			if (message && message.trim().length > 0) {
+				// Display an alert with the message content
+				alert(message);
+			}
+			function updateFormAction(id) {
+				var form = document.getElementById('deleteForm');
+				form.action = '${pageContext.request.contextPath}/deleteBook/' + id;
+			}
+		</script>
 </body>
 </html>

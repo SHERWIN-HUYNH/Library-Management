@@ -26,24 +26,24 @@
 								class="fas fa-tachometer-alt"></i>Mượn-trả sách
 						</a>
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li><a href="<c:url value="muontra"/>">Mượn sách</a></li>
-								<li><a href="<c:url value="traSach"/>">Trả sách</a></li>
+								<li><a href="<c:url value="/muontra"/>">Mượn sách</a></li>
+								<li><a href="<c:url value="/traSach"/>">Trả sách</a></li>
 								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
 								class="fas fas fa-table"></i>Quản lí
 						</a>
 							<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-								<li><a href="<c:url value="ThemThongBao"/>">Thông báo</a></li>
-								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
+								<li><a href="<c:url value="/ThemThongBao"/>">Thông báo</a></li>
+								<li><a href="<c:url value="/dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="/authors/page"/>">Tác giả</a></li>
-								<li><a href="<c:url value="category"/>">Thể loại</a></li>
+								<li><a href="<c:url value="/category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>
-								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+								<li><a href="<c:url value="/dsMuonTra"/>">Danh sách mượn-trả</a></li>
 
 							</ul></li>
-						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
+						<li><a href="<c:url value="/thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
 						</a></li>
 					</ul>
@@ -67,24 +67,24 @@
 								<i class="fas fa-tachometer-alt"></i>Nghiệp vụ thư viện
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="<c:url value="muontra"/>">Mượn sách</a></li>
-								<li><a href="<c:url value="traSach"/>">Trả sách</a></li>
+								<li><a href="<c:url value="/muontra"/>">Mượn sách</a></li>
+								<li><a href="<c:url value="/traSach"/>">Trả sách</a></li>
 								<li><a href="dangki.html">Đăng kí thẻ thư viện</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
 								class="fas fas fa-table"></i>Quản lí
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-									<li><a href="<c:url value="ThongBaoQuanLy"/>">Thông báo</a></li>
-								<li><a href="<c:url value="dausach"/>">Đầu sách</a></li>
+									<li><a href="<c:url value="/ThongBaoQuanLy"/>">Thông báo</a></li>
+								<li><a href="<c:url value="/dausach"/>">Đầu sách</a></li>
 								<li><a href="<c:url value="/authors/page"/>">Tác giả</a></li>
-								<li><a href="<c:url value="category"/>">Thể loại</a></li>
+								<li><a href="<c:url value="/category"/>">Thể loại</a></li>
 
 								<li><a href="index2.html">Tài khoản</a></li>
-								<li><a href="<c:url value="dsMuonTra"/>">Danh sách mượn-trả</a></li>
+								<li><a href="<c:url value="/dsMuonTra"/>">Danh sách mượn-trả</a></li>
 
 							</ul></li>
-						<li><a href="<c:url value="thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
+						<li><a href="<c:url value="/thongke"/>"> <i class="fas fa-chart-bar"></i>Thống
 								kê
 						</a></li>
 					</ul>

@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Dto.BooksDto;
 import Model.Entity.Categories;
@@ -23,32 +25,101 @@ public class BookController extends BaseController {
 	@Autowired
 	BookServiceImpl book = new BookServiceImpl();
 
-	@RequestMapping(value = "dausach", method = RequestMethod.GET)
-	public ModelAndView sachQuanLy() {
-		ModelAndView mv = new ModelAndView("admin/DauSachQuanLy");
-		mv.addObject("books", book.GetDataBooks());
-		mv.addObject("categories", book.getDataCategories());
-		mv.addObject("authors", book.getDataAuthor());
-		mv.addObject("insertBook", new BooksDto());
-		return mv;
+	// ADMIN
+//	@RequestMapping(value = "/dausach", method = RequestMethod.GET)
+//	public ModelAndView sachQuanLy() {
+//		ModelAndView mv = new ModelAndView("admin/DauSachQuanLy");
+//		mv.addObject("books", book.GetDataBooks());
+//		mv.addObject("categories", book.getDataCategories());
+//		mv.addObject("authors", book.getDataAuthor());
+//		mv.addObject("insertBook", new BooksDto());
+//		return mv;
+//	}
+
+	@RequestMapping(value = "/dausach")
+	public String sachQuanLy(@RequestParam(name = "page", defaultValue = "1") int pageNo,
+			@RequestParam(name = "size", defaultValue = "6") int pageSize, ModelMap model) {
+		Pagination<BooksDto> bookPage = book.getBookByPage(pageNo, pageSize);
+		model.addAttribute("bookspage", bookPage);
+		model.addAttribute("categories", book.getDataCategories());
+	    model.addAttribute("authors", book.getDataAuthor());
+	    model.addAttribute("insertBook", new BooksDto());
+		return "admin/DauSachQuanLy";
 	}
 
-	@RequestMapping(value = "dausach", method = RequestMethod.POST)
-	public ModelAndView addBook(@ModelAttribute("insertBook") BooksDto books) {
-		ModelAndView mv = new ModelAndView("admin/DauSachQuanLy");
+	@RequestMapping(value = "/addBook", method = RequestMethod.GET)
+	public String ThemDauSach(ModelMap model) {
+		model.addAttribute("books", book.GetDataBooks());
+		model.addAttribute("categories", book.getDataCategories());
+		model.addAttribute("authors", book.getDataAuthor());
+		model.addAttribute("insertBook", new BooksDto());
+		return "admin/ThemDauSach";
+	}
+
+	@RequestMapping(value = "/addBook", method = RequestMethod.POST)
+	public String ThemDauSach(@ModelAttribute("insertBook") BooksDto books, RedirectAttributes redirectAttributes) {
 		int rs = book.insertBook(books);
-		if (rs == 1) {
-			mv.addObject("message", "Thêm thành công");
-			mv.addObject("books", book.GetDataBooks());
-			mv.addObject("categories", book.getDataCategories());
-			mv.addObject("authors", book.getDataAuthor());
-			mv.addObject("insertBook", new BooksDto());
+		if (rs > 0) {
+			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			redirectAttributes.addFlashAttribute("books", book.GetDataBooks());
+			redirectAttributes.addFlashAttribute("categories", book.getDataCategories());
+			redirectAttributes.addFlashAttribute("authors", book.getDataAuthor());
 		} else {
-			mv.addObject("message", "Thêm thất bại");
+			redirectAttributes.addFlashAttribute("message", "Thêm thất bại");
 		}
-		return mv;
+		return "redirect:/dausach";
 	}
+	// ADMIN
+		// Delete book
+		@RequestMapping(value = "/deleteBook/{bookId}", method = RequestMethod.POST)
+		public String deleteBook(@PathVariable int bookId, RedirectAttributes redirectAttributes) {
+			int rs = book.deleteBook(bookId);
+			if (rs > 0) {
+				redirectAttributes.addFlashAttribute("message", "Xoá thành công");
+			} else {
+				redirectAttributes.addFlashAttribute("message", "Xoá thất bại");
+			}
+			return "redirect:/dausach";
+		}
 
+		// Show edit book form
+		@RequestMapping(value = "editBook/{bookId}", method = RequestMethod.GET)
+		public String updateBookGet(@PathVariable("bookId") int bookId, Model model) {
+			BooksDto booksDto = book.getBookById(bookId);
+			model.addAttribute("editBook", booksDto);
+			model.addAttribute("categories", book.getDataCategories());
+			model.addAttribute("authors", book.getDataAuthor());
+			return "admin/SuaDauSach";
+		}
+
+		// Update book
+		@RequestMapping(value = "/editBook/{id}", method = RequestMethod.POST)
+		public String updateBookPost(@PathVariable("id") int id, @ModelAttribute("editBook") BooksDto booksDto,
+				RedirectAttributes redirectAttributes) {
+			System.out.println("Updating book with ID: " + id);
+			int rs = book.updateBook(id, booksDto);
+			if (rs > 0) {
+				redirectAttributes.addFlashAttribute("message", "Sửa đầu sách thành công");
+			} else {
+				redirectAttributes.addFlashAttribute("message", "Sửa đầu sách thất bại");
+			}
+			return "redirect:/dausach";
+		}
+		@RequestMapping(value = "/searchBook", method = RequestMethod.GET)
+		public String searchBooks(@RequestParam(name = "page", defaultValue = "1") int pageNo,
+		                          @RequestParam(name = "size", defaultValue = "6") int pageSize,
+		                          @RequestParam(name = "name") String name,
+		                          ModelMap model) {
+		    Pagination<BooksDto> searchResult = book.searchBook(pageNo, pageSize, name);
+		    model.addAttribute("bookspage", searchResult);
+		    model.addAttribute("categories", book.getDataCategories());
+		    model.addAttribute("authors", book.getDataAuthor());
+		    model.addAttribute("insertBook", new BooksDto());
+		    return "admin/DauSachQuanLy";
+		}
+
+		
+		//USER
 //	@RequestMapping(value = "/sach")
 //	public ModelAndView Sach() {
 //		ModelAndView mv = new ModelAndView("user/sach");
@@ -79,14 +150,13 @@ public class BookController extends BaseController {
 
 	@RequestMapping(value = "timKiemSach", method = RequestMethod.POST)
 	public String timSach(@ModelAttribute("search") SearchBook search, Model model,
-	                      @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize) {
-	    Pagination<BooksDto> pagination = book.getDataSearchBookDto(search.getBookName(), page, pageSize);
-	    model.addAttribute("pagination", pagination);
-	    model.addAttribute("categories", book.getDataCategories());
-	    model.addAttribute("search", new SearchBook());
-	    return "user/sach";
+			@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize) {
+		Pagination<BooksDto> pagination = book.getDataSearchBookDto(search.getBookName(), page, pageSize);
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("categories", book.getDataCategories());
+		model.addAttribute("search", new SearchBook());
+		return "user/sach";
 	}
-
 
 //	@RequestMapping(value = "filterCategory/{categoryId}",method = RequestMethod.POST)
 //	public ModelAndView filterCategory(@PathVariable int categoryId) {
@@ -118,4 +188,5 @@ public class BookController extends BaseController {
 		return "user/sach";
 	}
 
+	
 }
