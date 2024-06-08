@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import Model.Entity.Notification;
 import Model.Entity.Pagination;
@@ -60,13 +58,13 @@ public class NotificationController extends BaseController {
 
 	@RequestMapping(value = "/SuaThongBao/{id}", method = RequestMethod.POST)
 	public ModelAndView SuaThongBaoPost(@PathVariable int id,
-			@ModelAttribute("selectedNoti") Notification notification,RedirectAttributes redirectAttributes) {
+			@ModelAttribute("selectedNoti") Notification notification) {
 		ModelAndView mv = new ModelAndView("admin/SuaThongBao");
 		mv.addObject("notifications", notificationImp.GetAllNotification());
 		int rs = notificationImp.UpdateNotification(id, notification);
 		if (rs > 0) {
-			redirectAttributes.addFlashAttribute("message", "SỬA THÔNG BÁO THÀNH CÔNG");
-	        return new ModelAndView(new RedirectView("/QLTV/ThongBaoQuanLy"));
+			mv.addObject("message", "SỬA THÔNG BÁO THÀNH CÔNG");
+
 		} else
 			mv.addObject("message", "SỬA THÔNG BÁO THẤT BẠI");
 

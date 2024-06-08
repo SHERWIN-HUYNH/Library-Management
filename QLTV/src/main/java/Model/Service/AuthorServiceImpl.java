@@ -30,8 +30,8 @@ public class AuthorServiceImpl {
 	public int deleteAuthor(int id) {
 		return authorDao.DeleteAuthor(id);
 	}
-	public Pagination<Authors> searchAuthor(String name, int pageNo, int pageSize) {
-		return authorDao.searchAuthor(name, pageNo, pageSize);
+	public List<Authors> SearchAuthor(String name) {
+		return authorDao.searchAuthor(name);
 	}
 	public Pagination<Authors> getAllByPage(int pageNo, int pageSize) {
 		return authorDao.getAllByPage(pageNo, pageSize);

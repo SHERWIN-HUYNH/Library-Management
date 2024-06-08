@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -124,7 +123,7 @@ to {
 						<div class="row">
 							<div class="col-sm-12 col-md-12">
 								<form
-									action="${pageContext.request.contextPath}/timKiemPhieuMuonTra"
+									action="${pageContext.request.contextPath}/timReader"
 									method="POST">
 									<div class="input-group">
 										<input type="text" class="form-control"
@@ -139,19 +138,17 @@ to {
 								<div class="col-sm-12 col-md-12">
 									<div class="row">
 										<p>
-											<strong>${ctmtDto.size()}</strong> phiếu mượn trả được tìm
+											<strong>${taiKhoan.size()}</strong> tài khoản người đọc được tìm
 											thấy
 										</p>
 										<div class="button-container" style="margin-left: auto">
 											<a class="btn btn-success" href="<c:url value='/muontra'/>">Thêm</a>
-											<a class="btn btn-info" href="<c:url value='/traSach'/>">Trả
-												Sách</a>
 										</div>
 									</div>
 								</div>
 								<div class="card">
 									<div class="card-header">
-										<strong>Danh Sách Mượn Trả</strong>
+										<strong>Danh Sách Tài Khoản Người Đọc</strong>
 									</div>
 
 									<div class="col-12 col-md-12">
@@ -160,35 +157,19 @@ to {
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														<th>Mã Mượn</th>
-														<th>Sách</th>
-														<th>Số lượng</th>
-														<th>Ngày Mượn</th>
-														<th>Ngày Hẹn Trả</th>
-														<th>Trạng Thái</th>
-														<th>Mã người đọc</th>
+														<th>Id</th>
+														<th>UserName</th>
+														<th>Name</th>
+														<th>Email</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="ctmt" items="${ctmtDto}">
+													<c:forEach var="tk" items="${taiKhoan}">
 														<tr>
-															<td><c:out value="${ctmt.ctmtId}" /></td>
-															<td><c:out value="${ctmt.bookName}" /></td>
-															<td><c:out value="${ctmt.ctmtAmount}" /></td>
-															<td><c:out value="${ctmt.ctmtNgayMuon}" /></td>
-															<td><c:out value="${ctmt.ctmtNgayTra}" /></td>
-															<td><c:choose>
-																	<c:when test="${ctmt.ctmtTrangThai == 0}">
-                                                                        Chưa trả
-                                                                    </c:when>
-																	<c:when test="${ctmt.ctmtTrangThai == 1}">
-                                                                        Đã trả
-                                                                    </c:when>
-																	<c:otherwise>
-                                                                        Unknown status
-                                                                    </c:otherwise>
-																</c:choose></td>
-															<td><c:out value="${ctmt.readerId}" /></td>
+															<td><c:out value="${tk.id}" /></td>
+															<td><c:out value="${tk.username}" /></td>
+															<td><c:out value="${tk.name}" /></td>
+															<td><c:out value="${tk.email}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>

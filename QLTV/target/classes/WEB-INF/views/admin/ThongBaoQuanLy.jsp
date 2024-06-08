@@ -101,18 +101,30 @@
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														
-														<th>Tên thông báo</th>
-														<th>Nội dung</th>
-														<th>Ngày tạo</th>
-														<th>Ảnh bìa</th>
-														<th>Sửa và Xóa</th>
+														<th>Mã thông báo</th>
+														<th>Tên thông báo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+
+														<th>Nội
+															dung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Ngày tạo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Ảnh bìa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Sửa và
+															Xóa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="noti" items="${notifications}">
 														<tr>
-															
+															<td><c:out value="${noti.id}" /></td>
 															<td><c:out value="${noti.title}" /></td>
 
 															<td><c:out value="${noti.content}" /></td>
