@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import Model.Dao.ChiTietMuonTraDao;
 import Model.Dao.ChiTietMuonTraDtoDao;
+import Model.Dao.ReaderDao;
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.ChiTietMuonTra;
+import Model.Entity.Readers;
 
 @Service
 public class ChiTietMuonTraServicelmpl {
@@ -20,6 +22,7 @@ public class ChiTietMuonTraServicelmpl {
 	
 	@Autowired
 	private ChiTietMuonTraDtoDao ctmtDtoDao;
+	
 	
 	public List<ChiTietMuonTra> getDataChiTietMuonTra() {
 		return ctmtsDao.GetDataChiTietMuonTra();
