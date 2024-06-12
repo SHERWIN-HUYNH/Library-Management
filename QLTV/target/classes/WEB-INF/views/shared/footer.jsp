@@ -35,23 +35,9 @@
 						<td><i class="icofont icofont-phone"></i></td>
 						<td>+62 582 528 527 21</td>
 					</tr>
-					<tr>
-						<td><i class="icofont icofont-globe-alt"></i></td>
-						<td><a href="www.susislibrary.html" target="_blank">www.susislibrary.com</a></td>
-					</tr>
 				</table>
 			</div>
-			<!-- <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
-					<h4 class="text-white">Useful Link</h4>
-					<div class="space-20"></div>
-					<ul class="list-unstyled menu-tip">
-						<li><a href="books.html">Costumer Service</a></li>
-						<li><a href="books.html">Help Desk</a></li>
-						<li><a href="books.html">Forum</a></li>
-						<li><a href="books.html">Staff Profile</a></li>
-						<li><a href="books.html">Live Chat</a></li>
-					</ul>
-				</div> -->
+			
 		</div>
 	</div>
 	<div class="space-60"></div>

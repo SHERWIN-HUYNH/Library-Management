@@ -63,6 +63,10 @@ public class NotificationController extends BaseController {
 			@ModelAttribute("selectedNoti") Notification notification,RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView("admin/SuaThongBao");
 		mv.addObject("notifications", notificationImp.GetAllNotification());
+		Notification notifiOld = notificationImp.GetNotiFromId(id);
+		if(notification.getImage().length() == 0 || notification.getImage() == null) {
+			notification.setImage(notifiOld.getImage());
+		}
 		int rs = notificationImp.UpdateNotification(id, notification);
 		if (rs > 0) {
 			redirectAttributes.addFlashAttribute("message", "SỬA THÔNG BÁO THÀNH CÔNG");

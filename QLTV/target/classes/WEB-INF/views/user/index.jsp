@@ -42,7 +42,22 @@
 	href="<c:url value= "/assets/css/responsive.css"/>">
 <script src="<c:url value= "/assets/css/responsive.css"/>"></script>
 
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Library-Management"
+  agent-id="26ece399-eaf2-425d-856b-68c9b2b68caa"
+  language-code="vi"
+></df-messenger>
 <style type="text/css" media="screen">
+	  df-messenger {
+    --df-messenger-bot-message: {
+      height: 500px !important;
+    };
+  }
+  df-messenger::part(chat-wrapper) {
+    height: 500px !important;
+  }
 </style>
 </head>
 

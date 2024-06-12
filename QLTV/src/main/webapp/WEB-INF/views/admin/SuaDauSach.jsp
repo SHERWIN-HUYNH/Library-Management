@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto'
 	rel='stylesheet'>
 <!-- Title Page-->
-<title>QUẢN LÝ THÔNG BÁO</title>
+<title>Sửa Đầu Sách</title>
 
 <!-- Fontfaces CSS-->
 <link href="<c:url value="/assets/css/font-face.css"/>" rel="stylesheet"
@@ -87,52 +87,94 @@
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Sửa thông báo</strong>
+										<strong>Sửa tác giả</strong>
 									</div>
 									<div class="card-body card-block">
-										<form:form method="POST" action="/QLTV/SuaThongBao/${id}"
-											modelAttribute="selectedNoti">
+										<form:form method="post" action="/QLTV/editBook/${bookId}"
+											modelAttribute="editBook">
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="title" class="form-control-label">Tên thông báo</form:label>
+													<form:label path="bookName" class="form-control-label">Tên
+														sách</form:label>
 												</div>
 												<div class="col-12 col-md-4">
-													<form:input type="text" path="title" class="form-control"
-														required="required" defaultValue="${selectedNoti.title}" id="title" />
-													<span id="title_error" style="color: red;"></span>
+													<form:input path="bookName" type="text"
+														class="form-control" id="nameBook" required="required" />
+													<span id="nameBook_error" style="color: red;"></span>
+												</div>
+
+												<div class="col col-md-2">
+													<form:label path="categoryName">Thể Loại</form:label>
+												</div>
+												<div class="col-12 col-md-4">
+													<form:select path="categoryName"
+														class="selectpicker show-tick form-control">
+														<c:forEach var="category" items="${categories}">
+															<form:option value="${category.name }" />
+														</c:forEach>
+													</form:select>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="content" class="form-control-label">Nội dung</form:label>
+													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:textarea rows="5" name="content"
-														path="content" class="col-md-12 form-control"
-														style="border: solid 1px green;"
-														defaultValue="${selectedNoti.content}" id="content"/>
-														<span id="content_error" style="color: red;"></span>
+													<form:input path="bookAmount" type="text"
+														class="form-control" value="1" id="amountBook" />
+													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col col-md-2">
-													<form:label path="image" class="form-control-label">Hình ảnh </form:label>
+													<form:label path="bookDescription"
+														class="form-control-label">Mô tả</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input type="file" path="image" class="form-control"
-<<<<<<< HEAD
-														accept="image/*" defaultValue="${selectedNoti.image}" id="image"/>
-														<span id="image_error" style="color: red;"></span>
-=======
-														accept="image/*" id="image"/>
-														<span id="image_error" style="color: red;"></span>
+													<form:textarea path="bookDescription"
+														class="col-md-12 form-control"
+														style="border: solid 1px gray;" id="descriptionBook" />
+													<span id="descriptionBook_error" style="color: red;"></span>
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col col-md-2">
+													<form:label path="authorName">Tác Giả</form:label>
+												</div>
 
->>>>>>> 2d2653ef2af12a3a8af6a846b5eadd4487c3dd07
+												<div class="col-12 col-md-4">
+													<form:select path="authorName"
+														class="selectpicker show-tick form-control">
+														<c:forEach var="author" items="${authors}">
+															<form:option path="authorName" value="${author.name }" />
+														</c:forEach>
+													</form:select>
+												</div>
+
+												<div class="col col-md-2">
+													<form:label path="bookDayCreated">Ngày xuất bản</form:label>
+												</div>
+												<div class="col-12 col-md-4">
+													<form:input path="bookDayCreated" type="date"
+														class="form-control " required="required" />
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col col-md-2">
+													<form:label path="bookImage" class="form-control-label">Ảnh sách</form:label>
+
+												</div>
+												<div class="col-12 col-md-4">
+													<form:input path="bookImage" type="file"
+														class="form-control" id="imageBook" />
+													<span id="imageBook_error" style="color: red;"></span>
 												</div>
 											</div>
 
-											<button type="button" class="btn btn-primary btn-danger"
-												data-toggle="modal" data-target="#staticBackdrop" id="register_form" disabled>Sửa</button>
+											<button id="book_form" type="button"
+												class="btn btn-primary btn-danger" data-toggle="modal"
+												data-target="#staticBackdrop" disabled="disabled">
+												Chỉnh Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"
 												data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -150,15 +192,14 @@
 														</div>
 														<div class="modal-body">
 															<span class="text-danger"> Bạn có muốn chắc sửa
-																thể loại </span>
+																đầu sách này không? </span>
 														</div>
 														<div class="modal-footer">
 															<button type="button"
 																class="btn btn-warning  btn-secondary"
 																data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-															<button type="submit" class="btn btn-danger " >
-																 Sửa
-															</button>
+															<button type="submit" class="btn btn-danger ">
+																Sửa</button>
 														</div>
 													</div>
 												</div>
@@ -214,8 +255,8 @@
 		
 	</script>
 	<!-- Main JS-->
-	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_notification.js"/>"></script>
+	<script src="<c:url value="/assets/js/main_admin.js"/>"></script>
+	<script src="<c:url value="/assets/js/validate_book.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";
