@@ -240,17 +240,17 @@
 	<%@include file="/WEB-INF/views/shared/footer.jsp"%>
 	<!-- Footer-Area-End -->
 	<!-- Vandor-JS -->
-	<script src="<c:url value='/assets/js/vendor/jquery-1.12.4.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/vendor/bootstrap.min.js'/>"></script>
+	<script src="<c:url value ="/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/vendor/bootstrap.min.js"/>"></script>
 	<!-- Plugin-JS -->
-	<script src="<c:url value='/assets/js/owl.carousel.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/responsiveslides.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/jquery.cardslider.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/pagination.js'/>"></script>
-	<script src="<c:url value='/assets/js/scrollUp.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/wow.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/plugins.js'/>"></script>
+	<script src="<c:url value ="/assets/js/owl.carousel.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/responsiveslides.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/jquery.cardslider.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/pagination.js"/>"></script>
+	<script src="<c:url value ="/assets/js/scrollUp.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/wow.min.js"/>"></script>
+	<script src="<c:url value ="/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
-	<script src="<c:url value='/assets/js/main.js'/>"></script>
+	<script src="<c:url value ="/assets/js/main.js"/>"></script>
 </body>
 </html>
