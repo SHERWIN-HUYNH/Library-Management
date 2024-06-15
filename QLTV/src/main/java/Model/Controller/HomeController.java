@@ -23,13 +23,4 @@ public class HomeController extends BaseController {
 		return _mvShare;
 	}
 
-
-	@RequestMapping(value = "/bookDetail/{id}")
-	public ModelAndView BookDetail(@PathVariable int id ) {
-		ModelAndView mv = new ModelAndView("user/book_detail");
-		mv.addObject("selectedId", _HomeService.GetAllFromId(id));
-		mv.addObject("categories", _HomeService.getDataCategories());
-		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
-		return mv;
-	}
 }

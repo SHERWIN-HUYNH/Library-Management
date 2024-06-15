@@ -109,7 +109,8 @@
 				<div class="modal-footer" style="display: flex;">
 					<button type="button" class="btn btn-warning  btn-secondary"
 						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-					<form:form id="deleteForm" action="${pageContext.request.contextPath}/DangXuat" method="POST">
+					<form:form id="deleteForm"
+						action="${pageContext.request.contextPath}/DangXuat" method="POST">
 						<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
 					</form:form>
@@ -186,12 +187,18 @@
 						<div class="sigle-sidebar">
 							<h4>Danh mục</h4>
 							<hr>
+							<form id="categoryFilterForm"
+								action="<c:url value="/filterCategory/page" />" method="GET"
+								style="display: none;">
+								<input type="hidden" id="selectedId" name="categoryId">
+							</form>
 							<ul class="list-unstyled menu-tip">
-								<c:forEach var="detail" items="${categories}">
-									<li><a href="#">${detail.name}</a></li>
+								<c:forEach var="category" items="${categories}">
+									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
-							<a href="#" class="btn btn-primary btn-xs">Xem thêm</a>
+							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem
+								thêm</a>
 						</div>
 						<div class="space-20"></div>
 					</aside>
@@ -217,5 +224,14 @@
 	<script src="<c:url value ="/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value ="/assets/js/main.js"/>"></script>
+
+	<script type="text/javascript">
+	function filterCategory(id) {
+	    var form = document.getElementById('categoryFilterForm');
+	    document.getElementById('selectedId').value = id;
+	    form.action = "${pageContext.request.contextPath}/filterCategory/page?page=1&categoryId=" + id;
+	    form.submit();
+	}
+	</script>
 </body>
 </html>

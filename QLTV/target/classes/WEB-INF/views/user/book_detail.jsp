@@ -143,7 +143,8 @@
 				<div class="modal-footer" style="display: flex;">
 					<button type="button" class="btn btn-warning  btn-secondary"
 						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-					<form:form id="deleteForm" action="${pageContext.request.contextPath}/DangXuat" method="POST">
+					<form:form id="deleteForm"
+						action="${pageContext.request.contextPath}/DangXuat" method="POST">
 						<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
 					</form:form>
@@ -158,40 +159,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-10 pull-right">
-					<h4>Tìm kiếm</h4>
-					<div class="space-5"></div>
-					<form action="#">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Nhập tên sách hoặc tên tác giả">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									<i class="icofont icofont-search-alt-2"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-					<div class="space-30"></div>
-					<div class="row">
-						<!-- sắp xếp(từ từ tính) -->
-						<!-- <div class="pull-right col-xs-12 col-sm-7 col-md-6">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-4" for="sort">Sắp xếp theo : </label>
-                                    <div class="col-xs-8">
-                                        <div class="form-group">
-                                            <select name="sort" id="sort" class="form-control">
-                                                <option value="">Năm xuất </option>
-                                                <option value="">Best Book</option>
-                                                <option value="">Latest Book</option>
-                                                <option value="">Old Book</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
@@ -255,12 +222,18 @@
 						<div class="sigle-sidebar">
 							<h4>Danh mục</h4>
 							<hr>
+							<form id="categoryFilterForm"
+								action="<c:url value="/filterCategory/page" />" method="GET"
+								style="display: none;">
+								<input type="hidden" id="selectedId" name="categoryId">
+							</form>
 							<ul class="list-unstyled menu-tip">
-								<c:forEach var="detail" items="${categories}">
-									<li><a href="#">${detail.name}</a></li>
+								<c:forEach var="category" items="${categories}">
+									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
-							<a href="#" class="btn btn-primary btn-xs">Xem thêm</a>
+							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem
+								thêm</a>
 						</div>
 						<div class="space-20"></div>
 					</aside>
@@ -286,5 +259,14 @@
 	<script src="<c:url value ="/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value ="/assets/js/main.js"/>"></script>
+
+	<script type="text/javascript">
+	function filterCategory(id) {
+	    var form = document.getElementById('categoryFilterForm');
+	    document.getElementById('selectedId').value = id;
+	    form.action = "${pageContext.request.contextPath}/filterCategory/page?page=1&categoryId=" + id;
+	    form.submit();
+	}
+	</script>
 </body>
 </html>
