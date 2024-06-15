@@ -125,8 +125,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-10 pull-right">
-					<div class="row">
-					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
@@ -200,7 +198,8 @@
 									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
-							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem thêm</a>
+							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem
+								thêm</a>
 						</div>
 						<div class="space-20"></div>
 					</aside>
