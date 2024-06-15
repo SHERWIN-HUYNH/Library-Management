@@ -204,7 +204,6 @@ to {
 			<!-- END MAIN CONTENT-->
 			<!-- END PAGE CONTAINER-->
 		</div>
-
 	</div>
 
 	<script src="<c:url value= "/assets/vendor/jquery-3.2.1.min.js"/>"></script>

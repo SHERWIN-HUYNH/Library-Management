@@ -45,4 +45,5 @@ public class TraSachServiceImpl {
 	public List<ChiTietMuonTraDto> GetDataSearchChiTietTraDto(String name){
 		return ctmtsDao.GetDataSearchChiTietTraDto(name);
 	}
+	
 }

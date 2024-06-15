@@ -80,6 +80,5 @@ public class TraSachDao {
            return -1 ;
         }
 		return rs;
-
 	}
 }
