@@ -18,6 +18,12 @@ public class AddBookDao extends BaseDao {
 
 	// Admin: Insert book
 	public int insertBook(BooksDto books) {
+		String sqlCheck = "SELECT COUNT(*) FROM book WHERE LOWER(name) = LOWER(?) AND authorId = ? AND dayCreated = ?";
+		int count = _jdbcTemplate.queryForObject(sqlCheck, Integer.class, books.getBookName(), books.getAuthorId(), books.getBookDayCreated());
+		if( count > 0 ) {
+			return -1;
+		}
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`) "
 				+ "VALUES('" + books.getBookName() + "','" + books.getBookAmount() + "','" + books.getBookDayCreated()

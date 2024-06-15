@@ -200,51 +200,6 @@ to {
 											</button>
 										</form:form>
 									</div>
-
-								<%-- 	<div class="col-12 col-md-12">
-										<div class="table-responsive table--no-card m-b-30">
-											<table style="width: 100%"
-												class="table  table-borderless table-striped table-earning">
-												<thead>
-													<tr class="col-sm-12">
-														<th>Mã Mượn</th>
-														<th>Mã Sách</th>
-														<th>Ngày Mượn</th>
-														<th>Ngày Hẹn Trả</th>
-														<th>Trạng Thái</th>
-														<th>Mã người đọc</th>
-														<th>Sửa và Xóa&nbsp;&nbsp;&nbsp;&nbsp;</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="ctmt" items="${ctmts}">
-														<tr>
-															<td><c:out value="${ctmt.getId()}" /></td>
-															<td><c:out value="${ctmt.getBookId()}" /></td>
-															<td><c:out value="${ctmt.getNgayMuon()}" /></td>
-															<td><c:out value="${ctmt.getNgayTra()}" /></td>
-															<td><c:out value="${ctmt.getTrangThai()}" /></td>
-															<td><c:out value="${ctmt.getReaderId()}" /></td>
-
-															<td
-																style="display: flex; justify-content: space-between; margin-top: 75px;"><a
-																class="btn btn-warning pull-left"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/edit?maMuonSach=<c:out value='${ctmt.getId()}' />&pages=<c:out value="${ngayTra}" />">Sửa</a>
-																<a class="btn btn-danger"
-																href="/QuanLyThuVien/MuonTraSachChiTiet/delete?maMuonSach=<c:out value='${ctmt.getId()}' />&pages=<c:out value="${ngayTra}" />">Xóa</a>
-															</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-										</div>
-										<!-- <div class="card-footer">
-											<button type="submit" class="btn btn-primary btn-sm">
-												<i class="fa fa-check"></i> Hoàn tất
-											</button>
-										</div> -->
-
-									</div> --%>
 								</div>
 							</div>
 						</div>

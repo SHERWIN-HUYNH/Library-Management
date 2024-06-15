@@ -22,7 +22,7 @@ import Model.Service.ChiTietMuonTraServicelmpl;
 @Controller
 public class MuonTraController extends BaseController {
 	@Autowired
-	ChiTietMuonTraServicelmpl chitietmuontra = new ChiTietMuonTraServicelmpl();
+	ChiTietMuonTraServicelmpl chitietmuontra;
 
 	@RequestMapping(value = "muontra", method = RequestMethod.GET)
 	public ModelAndView muonTra() {
@@ -37,6 +37,10 @@ public class MuonTraController extends BaseController {
 	@RequestMapping(value = "muontra", method = RequestMethod.POST)
 	public ModelAndView muonTraCT(@ModelAttribute("insert") ChiTietMuonTra ct) throws ParseException {
 		ModelAndView mv = new ModelAndView("admin/MuonTraCT");
+		 if (ct == null) {
+		        mv.addObject("message", "ChiTietMuonTra is null");
+		        return mv;
+		    }
 		mv.addObject("ctmts", _HomeService.getDataChiTietMuonTra());
 		mv.addObject("readers", _HomeService.GetDataReader());
 		mv.addObject("books", _HomeService.GetDataBooks());

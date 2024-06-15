@@ -31,7 +31,7 @@ public class ThongKeDao extends BaseDao {
 	}
 
 	public int SoLuongReader() {
-		String sql = "SELECT COUNT(id) FROM reader";
+		String sql = "SELECT COALESCE(COUNT(id), 0) FROM reader";
 		Integer count = _jdbcTemplate.queryForObject(sql, Integer.class);
 		return count != null ? count : 0;
 	}
@@ -42,13 +42,13 @@ public class ThongKeDao extends BaseDao {
 	}
 
 	public int TongsoSach() {
-		String sql = "SELECT COUNT(id) FROM book";
+		String sql = "SELECT COALESCE(COUNT(id), 0) FROM book";
 		Integer count = _jdbcTemplate.queryForObject(sql, Integer.class);
 		return count != null ? count : 0;
 	}
 
 	public int SoSachDangDuocMuon() {
-		String sql1 = "SELECT COUNT(id) FROM chitietmuontra WHERE trangThai = 0";
+		String sql1 = "SELECT COALESCE(COUNT(id),0) FROM chitietmuontra WHERE trangThai = 0";
 		Integer count1 = _jdbcTemplate.queryForObject(sql1, Integer.class);
 		return count1 != null ? count1 : 0;
 	}
@@ -62,14 +62,14 @@ public class ThongKeDao extends BaseDao {
 	}
 	public List<ThongKeDto> TheLoaiMax() {
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
-		String sql = "SELECT  category.name as categoryName, COUNT(book.id) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount DESC LIMIT 1;";
+		String sql = "SELECT  category.name as categoryName, COALESCE(COUNT(book.id), 0) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount DESC LIMIT 1;";
 		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
 		return list;
 	}
 	
 	public List<ThongKeDto> TheLoaiMin() {
 		List<ThongKeDto> list = new ArrayList<ThongKeDto>();
-		String sql = "SELECT category.name as categoryName, COUNT(book.id) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount ASC LIMIT 1;";
+		String sql = "SELECT category.name as categoryName, COALESCE(COUNT(book.id), 0) AS amount FROM category LEFT JOIN book ON category.id = book.categoryId GROUP BY category.id, category.name ORDER BY amount ASC LIMIT 1;";
 		list = _jdbcTemplate.query(sql, new ThongKeDtoMapper());
 		return list;
 	}
@@ -100,7 +100,7 @@ public class ThongKeDao extends BaseDao {
 		String sql = "SELECT \r\n" + 
 				"    r.id AS readerId, \r\n" + 
 				"    r.name as readerName, \r\n" + 
-				"    SUM(ct.amount) AS bookAmount,\r\n" + 
+				"   COALESCE( SUM(ct.amount), 0) AS bookAmount,\r\n" + 
 				"    SUM(CASE WHEN ct.trangThai = 0 THEN ct.amount ELSE 0 END) AS ctmtAmount\r\n" + 
 				"FROM \r\n" + 
 				"    reader r \r\n" + 
@@ -119,7 +119,7 @@ public class ThongKeDao extends BaseDao {
 				"    a.id AS id,\r\n" + 
 				"    a.name AS name,\r\n" + 
 				"    b.name AS bookname,\r\n" + 
-				"    COUNT(ctm.id) AS amount\r\n" + 
+				"    COALESCE(COUNT(ctm.id), 0)  AS amount\r\n" + 
 				"FROM\r\n" + 
 				"    chitietmuontra ctm\r\n" + 
 				"JOIN\r\n" + 

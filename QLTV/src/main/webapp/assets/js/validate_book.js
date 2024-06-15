@@ -73,7 +73,7 @@ $(function(){
 		}
 	}
 	function toggleSubmitButton() {
-	    if (!nameBook_error && !amountBook_error &&!imageBook_error && !descriptionBook_error) {
+	    if (!nameBook_error || !amountBook_error || !imageBook_error || !descriptionBook_error) {
 	        $("#book_form").prop("disabled", false);
 	    } else {
 	        $("#book_form").prop("disabled", true);

@@ -84,40 +84,39 @@
 	media="all">
 <link rel="stylesheet" href="<c:url value= "/assets/css/theme.css"/>">
 <script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-	 google.charts.load("current", {packages:["corechart"]});
-     google.charts.setOnLoadCallback(drawChart);
-     // Lấy dữ liệu JSON từ controller
-     var jsonData = '${pieChart}';
-     var parsedData = JSON.parse(jsonData);
-     function drawChart() {
-        
-        
-         
-         var data = new google.visualization.DataTable();
-         data.addColumn('string', 'Category');
-         data.addColumn('number', 'Amount');
-			
-         // Thêm dữ liệu vào DataTable
-         for (var i = 0; i < parsedData.length; i++) {
-        	
-             data.addRow([parsedData[i].categoryName, parsedData[i].amount]);
-         }
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load("current", {
+		packages : [ "corechart" ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+	// Lấy dữ liệu JSON từ controller
+	var jsonData = '${pieChart}';
+	var parsedData = JSON.parse(jsonData);
+	function drawChart() {
 
-         var options = {
-             title: 'Số lượng sách theo thể loại',
-             is3D: true // Enable 3D effect
-         };
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Category');
+		data.addColumn('number', 'Amount');
 
-         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-         chart.draw(data, options);
-         
-         
-       		
-     }
-     
-	</script>
+		// Thêm dữ liệu vào DataTable
+		for (var i = 0; i < parsedData.length; i++) {
+
+			data.addRow([ parsedData[i].categoryName, parsedData[i].amount ]);
+		}
+
+		var options = {
+			title : 'Số lượng sách theo thể loại',
+			is3D : true
+		// Enable 3D effect
+		};
+
+		var chart = new google.visualization.PieChart(document
+				.getElementById('piechart_3d'));
+		chart.draw(data, options);
+
+	}
+</script>
 
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -195,15 +194,15 @@
 					alt="library">
 			</div>
 			<div class="item">
-				<img src="<c:url value= "/assets/images/new-bg.jpg"/>"
-					alt="library">
+				<img src="<c:url value= "/assets/images/new-bg.jpg"/>" alt="library">
 			</div>
 			<div class="item">
 				<img src="<c:url value= "/assets/images/new-bg-2.jpg"/>"
 					alt="library">
 			</div>
 			<div class="item">
-				<img src="<c:url value= "/assets/images/new-bg-3.jpg"/>" alt="library">
+				<img src="<c:url value= "/assets/images/new-bg-3.jpg"/>"
+					alt="library">
 			</div>
 		</div>
 
@@ -264,10 +263,10 @@
 						<div class="space-40"></div>
 					</div>
 				</div>
-				
-		</div>
-		<div class="space-100"></div>
-		<!-- Header-jumbotron-end -->
+
+			</div>
+			<div class="space-100"></div>
+			<!-- Header-jumbotron-end -->
 	</header>
 	<div class="space-100"></div>
 	<!-- END HEADER  -->
@@ -316,11 +315,19 @@
 								<i class="material-icons">info_outline</i>
 							</div>
 							<p class="card-category">Mức độ mượn sách</p>
-							<h3 class="card-title">${borrowedRate }</h3>
+							<h3 class="card-title">${borrowedRate}%</h3>
 						</div>
 						<div class="card-footer">
-							<div class="stats">
-								<i class="material-icons">local_offer</i> Tracked from Github
+							<div class="stats d-flex align-items-center">
+								<i class="material-icons">local_offer</i>
+								<c:choose>
+									<c:when test="${borrowedRate * 100 < 20}">
+										<p>Mật độ mượn sách thấp</p>
+									</c:when>
+									<c:otherwise>
+										<p>Mật độ mượn sách tốt</p>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
@@ -343,35 +350,35 @@
 				</div>
 			</div>
 			<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-			data-keyboard="false" tabindex="-1"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true"
-			style="z-index: 1055 !important">
-			<div class="modal-dialog" style="width: 500px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+			<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+				data-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true"
+				style="z-index: 1055 !important">
+				<div class="modal-dialog" style="width: 500px;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<span class="text-danger"> Bạn có muốn đăng xuất </span>
 
-					</div>
-					<div class="modal-footer" style="display: flex;" >
-						<button type="button" class="btn btn-warning  btn-secondary"
-							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
-							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+						</div>
+						<div class="modal-footer" style="display: flex;">
+							<button type="button" class="btn btn-warning  btn-secondary"
+								data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+							<form:form id="deleteForm" action="DangXuat" method="POST">
+								<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
-						</form:form>
+							</form:form>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</div>
+			</div>
 			<div class="row">
 
 				<!-- PIE CHART -->
@@ -498,7 +505,7 @@
 	<script src="<c:url value="/assets/js/material-dashboard.js?v=2.1.1"/>"
 		type="text/javascript"></script>
 	<script src="<c:url value="/assets/js/ThongKe.js"/>"></script>
-<script src="<c:url value= "/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
+	<script src="<c:url value= "/assets/js/vendor/jquery-1.12.4.min.js"/>"></script>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script
