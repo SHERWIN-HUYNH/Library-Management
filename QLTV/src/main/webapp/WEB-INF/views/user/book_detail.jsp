@@ -163,7 +163,7 @@
 							<h4 class="tip-left">Mô tả</h4>
 							<p>${selectedId.bookDescription}</p>
 							<div class="space-20"></div>
-							<%-- <h4 class="tip-left">Xếp hạng</h4>
+							<h4 class="tip-left">Xếp hạng</h4>
 								<ul class="list-inline list-unstyled rating-star">
 									<li class="active"><i class="icofont icofont-star"></i></li>
 									<li class="active"><i class="icofont icofont-star"></i></li>
