@@ -20,7 +20,7 @@ public class BooksDtoMapper implements RowMapper<BooksDto> {
         booksDto.setAuthorImage(rs.getString("authorImage"));
         booksDto.setAuthorDescription(rs.getString("authorDescription"));
         booksDto.setCategoryName(rs.getString("categoryName"));
-        
+        booksDto.setPdf(rs.getString("pdf"));
 		return booksDto;
 	}
 

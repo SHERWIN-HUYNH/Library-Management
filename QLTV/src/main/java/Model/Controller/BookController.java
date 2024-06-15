@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,7 +83,7 @@ public class BookController extends BaseController {
 
 		// Show edit book form
 		@RequestMapping(value = "editBook/{bookId}", method = RequestMethod.GET)
-		public String updateBookGet(@PathVariable("bookId") int bookId, Model model) {
+		public String updateBookGet(@PathVariable("bookId") int bookId, ModelMap model) {
 			BooksDto booksDto = book.getBookById(bookId);
 			model.addAttribute("editBook", booksDto);
 			model.addAttribute("categories", book.getDataCategories());
@@ -119,7 +118,8 @@ public class BookController extends BaseController {
 		}
 
 		
-		//USER
+//USER
+		
 //	@RequestMapping(value = "/sach")
 //	public ModelAndView Sach() {
 //		ModelAndView mv = new ModelAndView("user/sach");
@@ -131,7 +131,7 @@ public class BookController extends BaseController {
 //	}
 	@RequestMapping(value = "/sach", method = RequestMethod.GET)
 	public String Sach(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize,
-			@RequestParam(required = false) Integer categoryId, Model model) {
+			@RequestParam(required = false) Integer categoryId, ModelMap model) {
 		Pagination<BooksDto> pagination;
 		List<Categories> categories = book.getDataCategories();
 
@@ -149,7 +149,7 @@ public class BookController extends BaseController {
 	}
 
 	@RequestMapping(value = "timKiemSach", method = RequestMethod.POST)
-	public String timSach(@ModelAttribute("search") SearchBook search, Model model,
+	public String timSach(@ModelAttribute("search") SearchBook search, ModelMap model,
 			@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize) {
 		Pagination<BooksDto> pagination = book.getDataSearchBookDto(search.getBookName(), page, pageSize);
 		model.addAttribute("pagination", pagination);
@@ -170,7 +170,7 @@ public class BookController extends BaseController {
 	@RequestMapping(value = "/filterCategory/page", method = RequestMethod.GET)
 	public String filterCategory(@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "4") int pageSize, @RequestParam(required = false) Integer categoryId,
-			Model model) {
+			ModelMap model) {
 		Pagination<BooksDto> pagination;
 
 		List<Categories> categories = book.getDataCategories();
@@ -187,6 +187,13 @@ public class BookController extends BaseController {
 		model.addAttribute("search", new SearchBook());
 		return "user/sach";
 	}
-
-	
+//Book Detail
+	@RequestMapping(value = "/bookDetail/{id}")
+	public ModelAndView BookDetail(@PathVariable int id ) {
+		ModelAndView mv = new ModelAndView("user/book_detail");
+		mv.addObject("selectedId", _HomeService.GetAllFromId(id));
+		mv.addObject("categories", _HomeService.getDataCategories());
+		mv.addObject("booksDto", _HomeService.GetDataBooksDto());
+		return mv;
+	}
 }

@@ -25,20 +25,20 @@ public class AddBookDao extends BaseDao {
 		}
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`) "
+		sql.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`,`pdf`) "
 				+ "VALUES('" + books.getBookName() + "','" + books.getBookAmount() + "','" + books.getBookDayCreated()
 				+ "','" + books.getCategoryId() + "','" + books.getBookImage() + "','" + books.getBookDescription()
-				+ "','" + books.getAuthorId() + "')");
+				+ "','" + books.getAuthorId() + "','" + books.getPdf() + "')");
 		int book = _jdbcTemplate.update(sql.toString());
 		return book;
 	}
 
 	// Admin: Update book
 	public int updateBook(int id, BooksDto booksDto) {
-		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ? WHERE id = ?";
+		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ?, pdf = ? WHERE id = ?";
 		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookImage(), booksDto.getBookAmount(),
 				booksDto.getBookDayCreated(), booksDto.getBookDescription(), booksDto.getAuthorId(),
-				booksDto.getCategoryId(), id);
+				booksDto.getCategoryId(), booksDto.getPdf(), id);
 		return book;
 	}
 
@@ -54,7 +54,7 @@ public class AddBookDao extends BaseDao {
 		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
 				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
 				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
-				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
+				+ "category.id as categoryId, category.name as categoryName,, book.pdf as pdf FROM book,author,category WHERE book.authorId=author.id "
 				+ "AND book.categoryId = category.id AND book.id = ?";
 		BooksDto booksDto = _jdbcTemplate.queryForObject(sql, new BooksDtoMapper(), bookId);
 		return booksDto;
@@ -65,7 +65,7 @@ public class AddBookDao extends BaseDao {
 		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
 				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
 				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
-				+ "category.id as categoryId, category.name as categoryName FROM book,author,category WHERE book.authorId=author.id "
+				+ "category.id as categoryId, category.name as categoryName, book.pdf as pdf FROM book,author,category WHERE book.authorId=author.id "
 				+ "and book.categoryId = category.id LIMIT ? OFFSET ?";
 		List<BooksDto> books = _jdbcTemplate.query(sql, new BooksDtoMapper(), pageSize, offset);
 		String countSql = "SELECT COUNT(*) FROM book";
@@ -79,7 +79,7 @@ public class AddBookDao extends BaseDao {
 		String sql = "SELECT book.id as bookId,book.name AS bookName, book.image AS bookImage, book.amount AS bookAmount, "
 				+ "book.dayCreated AS bookDayCreated, book.description AS bookDescription, "
 				+ "author.id as authorId, author.name AS authorName, author.image AS authorImage, author.description AS authorDescription, "
-				+ "category.id as categoryId,category.name AS categoryName " + "FROM book "
+				+ "category.id as categoryId,category.name AS categoryName, book.pdf as pdf " + "FROM book "
 				+ "JOIN author ON book.authorId = author.id " + "JOIN category ON book.categoryId = category.id "
 				+ "WHERE book.name LIKE ? OR author.name LIKE ?" + "LIMIT ? OFFSET ?";
 		List<BooksDto> list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%",

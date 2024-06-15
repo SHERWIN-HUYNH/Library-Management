@@ -109,7 +109,8 @@
 				<div class="modal-footer" style="display: flex;">
 					<button type="button" class="btn btn-warning  btn-secondary"
 						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-					<form:form id="deleteForm" action="${pageContext.request.contextPath}/DangXuat" method="POST">
+					<form:form id="deleteForm"
+						action="${pageContext.request.contextPath}/DangXuat" method="POST">
 						<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
 					</form:form>
@@ -162,7 +163,7 @@
 							<h4 class="tip-left">Mô tả</h4>
 							<p>${selectedId.bookDescription}</p>
 							<div class="space-20"></div>
-							<%-- <h4 class="tip-left">Xếp hạng</h4>
+							<h4 class="tip-left">Xếp hạng</h4>
 								<ul class="list-inline list-unstyled rating-star">
 									<li class="active"><i class="icofont icofont-star"></i></li>
 									<li class="active"><i class="icofont icofont-star"></i></li>
@@ -170,12 +171,11 @@
 									<li class=""><i class="icofont icofont-star"></i></li>
 									<li><i class="icofont icofont-star"></i></li>
 								</ul>
+								
 								<div class="space-20"></div>
-								<a href="books.html" class="btn btn-primary hover-btn-default">Download</a>
-								<div class="space-20"></div>
-								<embed src="<c:url value ="/assets/pdf/ILAssemblyProg.pdf"/>"
-									type="application/pdf" width="100%" height="700px"></embed> --%>
-						</div>
+								<embed src="<c:url value="/assets/images/sach_pdf/${selectedId.pdf}"/>" type="application/pdf" width="100%" height="700px"></embed>
+							</div>
+
 					</div>
 					<div class="space-60"></div>
 				</div>
@@ -186,12 +186,18 @@
 						<div class="sigle-sidebar">
 							<h4>Danh mục</h4>
 							<hr>
+							<form id="categoryFilterForm"
+								action="<c:url value="/filterCategory/page" />" method="GET"
+								style="display: none;">
+								<input type="hidden" id="selectedId" name="categoryId">
+							</form>
 							<ul class="list-unstyled menu-tip">
-								<c:forEach var="detail" items="${categories}">
-									<li><a href="#">${detail.name}</a></li>
+								<c:forEach var="category" items="${categories}">
+									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
-							<a href="#" class="btn btn-primary btn-xs">Xem thêm</a>
+							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem
+								thêm</a>
 						</div>
 						<div class="space-20"></div>
 					</aside>
@@ -217,5 +223,14 @@
 	<script src="<c:url value ="/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value ="/assets/js/main.js"/>"></script>
+
+	<script type="text/javascript">
+	function filterCategory(id) {
+	    var form = document.getElementById('categoryFilterForm');
+	    document.getElementById('selectedId').value = id;
+	    form.action = "${pageContext.request.contextPath}/filterCategory/page?page=1&categoryId=" + id;
+	    form.submit();
+	}
+	</script>
 </body>
 </html>

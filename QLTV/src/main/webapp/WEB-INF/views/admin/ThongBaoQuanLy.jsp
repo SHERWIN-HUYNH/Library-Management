@@ -101,6 +101,7 @@
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
+
 														
 														<th>Tên thông báo</th>
 														<th>Nội dung</th>
