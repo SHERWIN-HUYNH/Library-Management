@@ -18,9 +18,9 @@ public class ChiTietMuonTraDtoDao {
 
 	public List<ChiTietMuonTraDto> GetDataChiTietMuonTraDto() {
 		List<ChiTietMuonTraDto> list = new ArrayList<ChiTietMuonTraDto>();
-		String sql = "SELECT " + "ctmt.id AS ctmtId," + "ctmt.bookId," + "ctmt.ngayMuon AS ctmtNgayMuon," + "ctmt.trangThai AS ctmtTrangThai," + 
-				"ctmt.ngayTra AS ctmtNgayTra," + "ctmt.amount AS ctmtAmount," + "b.name AS bookName," + "b.amount AS bookAmount," + 
-				"r.id AS readerId," + "r.name AS readerName" + "FROM " + "chitietmuontra ctmt" + "JOIN " + "book b ON ctmt.bookId = b.id" + 
+		String sql = "SELECT " + "ctmt.id AS ctmtId, " + "ctmt.bookId, " + "ctmt.ngayMuon AS ctmtNgayMuon, " + "ctmt.trangThai AS ctmtTrangThai, " + 
+				"ctmt.ngayTra AS ctmtNgayTra, " + "ctmt.amount AS ctmtAmount, " + "b.name AS bookName, " + "b.amount AS bookAmount, " + 
+				"r.id AS readerId, " + "r.name AS readerName " + "FROM " + "chitietmuontra ctmt " + "JOIN " + "book b ON ctmt.bookId = b.id " + 
 				"JOIN " + "reader r ON ctmt.readerId = r.id";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper());
 		return list;
