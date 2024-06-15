@@ -22,7 +22,7 @@ public class ChiTietMuonTraDtoDao {
 				+ "chitietmuontra.trangThai as ctmtTrangThai,chitietmuontra.ngayTra as ctmtNgayTra,chitietmuontra.amount as ctmtAmount,"
 				+ "book.name as bookName,book.amount as bookAmount,reader.id as readerId,reader.name as readerName"
 				+ " FROM chitietmuontra, book, reader"
-				+ " WHERE chitietmuontra.bookId = book.id and chitietmuontra.readerId  = reader.id and trangThai = 0";
+				+ " WHERE chitietmuontra.bookId = book.id and chitietmuontra.readerId  = reader.id";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper());
 		return list;
 	}
@@ -33,7 +33,7 @@ public class ChiTietMuonTraDtoDao {
 				+ "cmt.trangThai AS ctmtTrangThai," + "cmt.ngayTra AS ctmtNgayTra," + "cmt.amount AS ctmtAmount,"
 				+ "b.name AS bookName," + "b.amount AS bookAmount," + "r.id AS readerId," + "r.name AS readerName "
 				+ "FROM " + "chitietmuontra cmt " + "JOIN " + "book b ON cmt.bookId = b.id " + "JOIN "
-				+ "reader r ON cmt.readerId = r.id " + "WHERE " + "cmt.trangThai = 0 " + "AND r.name LIKE ?";
+				+ "reader r ON cmt.readerId = r.id " + "WHERE " + "r.name LIKE ?";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(), "%" + name + "%");
 		return list;
 	}

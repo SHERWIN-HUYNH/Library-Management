@@ -166,7 +166,7 @@ to {
 														<th>Ngày Mượn</th>
 														<th>Ngày Hẹn Trả</th>
 														<th>Trạng Thái</th>
-														<th>Mã người đọc</th>
+														<th>Tên người đọc</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -188,7 +188,7 @@ to {
                                                                         Unknown status
                                                                     </c:otherwise>
 																</c:choose></td>
-															<td><c:out value="${ctmt.readerId}" /></td>
+															<td><c:out value="${ctmt.readerName}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>
