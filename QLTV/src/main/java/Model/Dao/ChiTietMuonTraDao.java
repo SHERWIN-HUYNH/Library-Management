@@ -33,6 +33,9 @@ public class ChiTietMuonTraDao {
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
 		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
+		if (daMuon == null) {
+            daMuon = 0;
+        }
 		if ((daMuon + ct.getAmount()) > 5) {
 			return -2;
 		} else if( amount >= ct.getAmount()) { 
@@ -53,50 +56,4 @@ public class ChiTietMuonTraDao {
 		
 	}
 	
-	public Books timBookTheoId(int id) {
-		String sql ="SELECT * FROM book WHERE id = ?";
-		Books b = _jdbcTemplate.queryForObject(sql, new Object[]{id}, new BooksMapper());
-		return b;
-	}
-	
-	public int updateAmount(int id,int amount) {
-		String sql = "UPDATE book set amount = ? where book.id = ?";
-		Books b = timBookTheoId(id);
-		int temp = b.getAmount() - amount;
-		if(temp <= 0) {
-			return 0;
-		}
-		else {
-			int ctmt = _jdbcTemplate.update(sql, temp,id);
-			return ctmt;
-		}
-	}
-	
-    public int muonSachUser(ChiTietMuonTra ct, int readerId) {
-    	String sql = "SELECT amount FROM book WHERE id = ?"; // dem so sách còn lại
-		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
-		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
-		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
-		if (daMuon == null) {
-	        daMuon = 0; 
-	    }
-		if (daMuon + ct.getAmount() > 5) {
-			return -2;
-		}
-		else if(amount >= ct.getAmount() ) {
-			String sql1 = "UPDATE book SET amount =  ? WHERE id = ?"; // cập nhật lại số lượng sách còn lại
-			int soluong = amount - ct.getAmount();
-			int rs1 = _jdbcTemplate.update(sql1,soluong,ct.getBookId());
-			if(rs1 < 0) {
-				return -3;
-			}
-			String sqlInsert = "INSERT INTO chitietmuontra(bookId, ngayMuon, ngayTra, readerId, amount) VALUES (?, ?, ?, ?, ?)";
-	        LocalDate ngayMuon = LocalDate.now();
-	        LocalDate ngayTra = ngayMuon.plusDays(30);
-
-	        int ctmtInsert = _jdbcTemplate.update(sqlInsert, ct.getBookId(), ngayMuon, ngayTra, readerId, ct.getAmount());
-	        return ctmtInsert;
-		}
-        return -1;
-    }
 }
