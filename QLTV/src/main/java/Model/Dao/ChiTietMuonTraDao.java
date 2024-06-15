@@ -29,9 +29,9 @@ public class ChiTietMuonTraDao {
 		/* KIEM TRA SO LUONG -> GIAM -> INSERT */
 		/*-1: Sach khong du 
 		-2: Vuot so luong muon*/
-		String sql = "SELECT amount FROM book WHERE id = ?"; // dem so sách còn lại
+		String sql = "SELECT COALESCE(amount,0) FROM book WHERE id = ?"; // dem so sách còn lại
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
-		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
+		String sql0 = "SELECT COALESCE(SUM(amount), 0) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
 		if ((daMuon + ct.getAmount()) > 5) {
 			return -2;
@@ -75,7 +75,7 @@ public class ChiTietMuonTraDao {
     public int muonSachUser(ChiTietMuonTra ct, int readerId) {
     	String sql = "SELECT amount FROM book WHERE id = ?"; // dem so sách còn lại
 		Integer amount = _jdbcTemplate.queryForObject(sql, Integer.class, ct.getBookId());
-		String sql0 = "SELECT SUM(amount) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
+		String sql0 = "SELECT COALESCE(SUM(amount), 0) FROM chitietmuontra WHERE readerId = ? AND trangThai = 0"; // dem so sách da muon chua tra
 		Integer daMuon = _jdbcTemplate.queryForObject(sql0, Integer.class, ct.getReaderId());
 		if (daMuon == null) {
 	        daMuon = 0; 
