@@ -51,5 +51,4 @@ public class TraSachController {
 		mv.addObject("ctmtDto", searchResults);
 		return mv;
 	}
-
 }

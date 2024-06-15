@@ -37,4 +37,5 @@ public class ChiTietMuonTraDtoDao {
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(), "%" + name + "%");
 		return list;
 	}
+	
 }

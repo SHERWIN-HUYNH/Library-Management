@@ -48,6 +48,7 @@ public class TraSachDao {
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(), "%" + name + "%");
 		return list;
 	} 
+	
 	public ChiTietMuonTra getCTMTFromId(int id) {
 		String sql = "SELECT * FROM chitietmuontra WHERE id = ?";
 		ChiTietMuonTra c = _jdbcTemplate.queryForObject(sql, new MapperChiTietMuonTra(), id);

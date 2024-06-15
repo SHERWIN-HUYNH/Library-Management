@@ -227,7 +227,6 @@ to {
 		src="<c:url value= "/assets/vendor/counter-up/jquery.waypoints.min.js"/>"></script>
 	<script
 		src="<c:url value= "/assets/vendor/counter-up/jquery.counterup.min.js"/>">
-		
 	</script>
 	<!-- date-range-picker -->
 	<script
