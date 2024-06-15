@@ -211,11 +211,9 @@
 									<li class=""><i class="icofont icofont-star"></i></li>
 									<li><i class="icofont icofont-star"></i></li>
 								</ul>
+								
 								<div class="space-20"></div>
-								<a href="books.html" class="btn btn-primary hover-btn-default">Download</a>
-								<div class="space-20"></div>
-								<%-- <embed src="<c:url value ="/assets/pdf/ILAssemblyProg.pdf"/>"
-									type="application/pdf" width="100%" height="700px"></embed> --%>
+								<embed src="<c:url value="/assets/images/sach_pdf/${selectedId.pdf}"/>" type="application/pdf" width="100%" height="700px"></embed>
 							</div>
 					</div>
 					<div class="space-60"></div>

@@ -102,23 +102,16 @@
 												<thead>
 													<tr class="col-sm-12">
 														<th>Mã thông báo</th>
-														<th>Tên thông báo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+														<th>Tên thông báo
+															</th>
 
 														<th>Nội
-															dung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-														<th>Ngày tạo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-														<th>Ảnh bìa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+															dung
+															</th>
+														<th>Ngày tạo</th>
+														<th>Ảnh bìa</th>
 														<th>Sửa và
-															Xóa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+															Xóa</th>
 													</tr>
 												</thead>
 												<tbody>
