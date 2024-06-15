@@ -8,16 +8,10 @@
 				<a href="#"><img src="<c:url value ="/assets/images/logo.png"/>"
 					alt="library"></a>
 				<div class="space-20"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-					gravida, quam vitae est Sed non eros elementum nulla sodales
-					ullamcorper.</p>
-				<div class="space-10"></div>
-				<ul class="list-inline list-unstyled social-list">
-					<li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
-					<li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
-					<li><a href="#"><i class="icofont icofont-social-behance"></i></a></li>
-					<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
-				</ul>
+				<p>Thư viện của chúng tôi là nơi lý tưởng cho mọi người muốn
+					khám phá và tiếp cận tri thức. Với bộ sưu tập đa dạng và các hoạt
+					động văn hóa, chúng tôi mang đến một môi trường học tập và giải trí
+					độc đáo cho cộng đồng.</p>
 				<div class="space-10"></div>
 				<ul class="list-unstyled list-inline tip yellow">
 					<li><i class="icofont icofont-square"></i></li>
@@ -31,12 +25,11 @@
 				<table class="table border-none addr-dt">
 					<tr>
 						<td><i class="icofont icofont-social-google-map"></i></td>
-						<td><address>3050 Universal Blvd #190 Fort
-								Lauderdale, FL, 33331, Sydney New York City</address></td>
+						<td><address>11 Nguyễn Đình Chiểu, phường Đa Kao, quận 1, TP Hồ Chí Minh</address></td>
 					</tr>
 					<tr>
 						<td><i class="icofont icofont-email"></i></td>
-						<td>susislibrary@domain.com</td>
+						<td>ngduyen946@gmail.com</td>
 					</tr>
 					<tr>
 						<td><i class="icofont icofont-phone"></i></td>
