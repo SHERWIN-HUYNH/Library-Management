@@ -16,6 +16,7 @@ public class BooksMapper implements RowMapper<Books>{
 		books.setImage(rs.getString("image"));
 		books.setDescription(rs.getString("description"));
 		books.setAuthorId(rs.getInt("authorId"));
+		books.setPdf(rs.getString("pdf"));
 		return books;
 	}
 }
