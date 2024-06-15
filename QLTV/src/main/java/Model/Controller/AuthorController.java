@@ -99,13 +99,21 @@ public class AuthorController {
 		return "redirect:/authors/page";
 	}
 
-	@PostMapping("/authors/search")
-	public ModelAndView searchAuthor(@RequestParam("name") String name) {
-		ModelAndView mv = new ModelAndView("admin/author");
+	@RequestMapping(value = "/searchAuthors", method = RequestMethod.GET)
+	public String searchAuthors(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "5") int pageSize, @RequestParam("name") String name, Model model) {
+		if (page < 1) {
+			return "redirect:/searchAuthors?page=1&name=" + name;
+		}
 
-		List<Authors> authors = authorImpl.SearchAuthor(name);
-		mv.addObject("authors", authors);
-		mv.addObject("name", name);
-		return mv;
+		Pagination<Authors> pagination = authorImpl.searchAuthor(name, page, pageSize);
+		if (page > pagination.getTotalPages()) {
+			return "redirect:/searchAuthors?page=" + pagination.getTotalPages() + "&name=" + name;
+		}
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("name", name);
+		return "admin/author";
 	}
+
 }

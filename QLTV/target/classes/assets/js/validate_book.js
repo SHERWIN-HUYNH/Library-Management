@@ -3,12 +3,13 @@ $(function(){
 	$("#amountBook_error").hide();
 	$("#descriptionBook_error").hide();
 	$("#imageBook_error").hide();
-	
+	$("#filePDF_error").hide();
 	
 	var nameBook_error = false;
 	var amountBook_error = false;
 	var imageBook_error = false;
 	var descriptionBook_error = false ;
+	var filePDF_error = false;
 	
 	$("#nameBook").focusout(function(){
 		checkNameBook();
@@ -24,6 +25,10 @@ $(function(){
 	});
 	$("#descriptionBook").focusout(function(){
 		checkDescriptionBook();
+		toggleSubmitButton();
+	});
+	$("#filePDF").focusout(function(){
+		checkFilePDF();
 		toggleSubmitButton();
 	});
 	
@@ -61,6 +66,17 @@ $(function(){
 			$("#imageBook_error").hide();
 		}
 	}
+	function checkFilePDF(){
+		if($("#filePDF").val().length == 0){
+			$("#filePDF_error").html("Vui lòng chọn ảnh bìa sách");
+			filePDF_error = true;
+			$("#filePDF_error").show();     
+		}
+		else{
+			filePDF_error = false;
+			$("#imageBook_error").hide();
+		}
+	}
 	function checkDescriptionBook(){
 		if($("#descriptionBook").val().length == 0){
 			$("#descriptionBook_error").html("Vui lòng nhập vào mô tả cuốn sách.");
@@ -73,10 +89,10 @@ $(function(){
 		}
 	}
 	function toggleSubmitButton() {
-	    if (!nameBook_error && !amountBook_error &&!imageBook_error && !descriptionBook_error) {
-	        $("#book_form").prop("disabled", false);
-	    } else {
+	    if (nameBook_error||amountBook_error || imageBook_error ||descriptionBook_error ||filePDF_error) { // TH NHAP THIEU
 	        $("#book_form").prop("disabled", true);
+	    } else {
+	        $("#book_form").prop("disabled", false);
 	    }
 	}
 	$("#book_form").submit(function() {
@@ -84,11 +100,11 @@ $(function(){
 		checkAmountBook
 		checkImageBook();
 		checkDescriptionBook();
-		if(nameBook_error || amountBook_error || imageBook_error || descriptionBook_error){
-			return false;
+		if(nameBook_error || amountBook_error || imageBook_error || descriptionBook_error ||filePDF_error){
+			return true;
 		}
 		else{
-			return true;
+			return false;
 		}
 	});
 });
