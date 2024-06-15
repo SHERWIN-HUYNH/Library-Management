@@ -131,8 +131,8 @@ to {
 											</div>
 											<div class="col-12 col-md-7">
 												<form
-													action="${pageContext.request.contextPath}/authors/search"
-													method="post">
+													action="${pageContext.request.contextPath}/searchAuthors"
+													method="get">
 													<div class="input-group">
 														<input type="text" class="form-control"
 															placeholder="Nhập tên tác giả" name="name" />

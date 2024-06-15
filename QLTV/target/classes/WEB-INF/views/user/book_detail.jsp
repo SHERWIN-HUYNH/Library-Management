@@ -65,6 +65,7 @@
 			</nav>
 		</div>
 		<div class="space-100"></div>
+		
 		<!-- Mainmenu-markup-end -->
 		<!-- Header-jumbotron -->
 		<div class="space-100"></div>
@@ -89,6 +90,38 @@
 		<div class="space-100"></div>
 		<!-- Header-jumbotron-end -->
 	</header>
+<<<<<<< HEAD
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+			data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true"
+			style="z-index: 1055 !important">
+			<div class="modal-dialog" style="width: 500px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+
+					</div>
+					<div class="modal-footer" style="display: flex;">
+						<button type="button" class="btn btn-warning  btn-secondary"
+							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+						<form:form id="deleteForm" action="DangXuat" method="POST">
+							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+
+						</form:form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+=======
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
 		data-keyboard="false" tabindex="-1"
@@ -119,6 +152,7 @@
 		</div>
 
 	</div>
+>>>>>>> 9880e4e01dec9c44201b9f578bdaf5d2c452c497
 	<section>
 		<div class="space-80"></div>
 		<div class="container">

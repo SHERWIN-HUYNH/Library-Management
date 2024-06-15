@@ -59,7 +59,6 @@
 						<!-- <a href="#sc1" class="navbar-left show"><img src="images/logo.png" alt="library"></a> -->
 						<div class="space-10"></div>
 					</div>
-					<!--Mainmenu list-->
 					<%@include file="/WEB-INF/views/shared/header.jsp"%>
 				</div>
 			</nav>
@@ -124,40 +123,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-10 pull-right">
-					<h4>Tìm kiếm</h4>
-					<div class="space-5"></div>
-					<form action="#">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Nhập tên sách hoặc tên tác giả">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									<i class="icofont icofont-search-alt-2"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-					<div class="space-30"></div>
-					<div class="row">
-						<!-- sắp xếp(từ từ tính) -->
-						<!-- <div class="pull-right col-xs-12 col-sm-7 col-md-6">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-4" for="sort">Sắp xếp theo : </label>
-                                    <div class="col-xs-8">
-                                        <div class="form-group">
-                                            <select name="sort" id="sort" class="form-control">
-                                                <option value="">Năm xuất </option>
-                                                <option value="">Best Book</option>
-                                                <option value="">Latest Book</option>
-                                                <option value="">Old Book</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">

@@ -35,10 +35,6 @@
 						<td><i class="icofont icofont-phone"></i></td>
 						<td>+62 582 528 527 21</td>
 					</tr>
-					<tr>
-						<td><i class="icofont icofont-globe-alt"></i></td>
-						<td><a href="www.susislibrary.html" target="_blank">www.susislibrary.com</a></td>
-					</tr>
 				</table>
 			</div>
 			
