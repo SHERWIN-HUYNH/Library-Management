@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,47 +59,7 @@
 						<!-- <a href="#sc1" class="navbar-left show"><img src="images/logo.png" alt="library"></a> -->
 						<div class="space-10"></div>
 					</div>
-					<!--Toggle-button-->
-					<!--Active User-->
-					<div class="nav navbar-right">
-						<div class="active-user navbar-left active">
-							<ul class="list-unstyled">
-								<li><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown"> <img
-										src="<c:url value ="/assets/images/active_user.png"/>"
-										class="img-circle img-thumbnail" alt="library" />
-								</a>
-									<ul class="dropdown-menu">
-										<li><a href="#"> <span><i
-													class="icofont icofont-user"></i></span> Thông tin cá nhân
-										</a></li>
-										<!-- <li>
-                                            <a href="#"> <span><i class="icofont icofont-notification"></i></span> Notifications</a>
-                                        </li> -->
-										<li><a href="#"> <span><i
-													class="icofont icofont-ui-password"></i></span> Đổi mật khẩu
-										</a></li>
-										<li><a href="#"> <span><i
-													class="icofont icofont-read-book"></i></span> Sách của tôi
-										</a></li>
-										<li><a href="#"> <span><i
-													class="icofont icofont-logout"></i></span> Đăng xuất
-										</a></li>
-									</ul></li>
-							</ul>
-						</div>
-					</div>
-					<!--Mainmenu list-->
-					<div class="navbar-right in fade" id="mainmenu">
-						<ul class="nav navbar-nav nav-white text-uppercase">
-							<li><a href="<c:url value = "/trang-chu"/>">Trang chủ</a></li>
-							<li><a href="#">Giới thiệu</a></li>
-							<li><a href="<c:url value = "/notification"/>">Thông báo</a></li>
-							<!-- <li><a href="room.html">Phòng đọc</a></li>
-							<li><a href="feedback.html">Phản hồi</a></li> -->
-							<li class="active"><a href="<c:url value = "/sach"/>">Sách</a></li>
-						</ul>
-					</div>
+					<%@include file="/WEB-INF/views/shared/header.jsp"%>
 				</div>
 			</nav>
 		</div>
@@ -127,83 +88,82 @@
 		<div class="space-100"></div>
 		<!-- Header-jumbotron-end -->
 	</header>
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true"
+		style="z-index: 1055 !important">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-danger"> Bạn có muốn đăng xuất </span>
+
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning  btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+					<form:form id="deleteForm"
+						action="${pageContext.request.contextPath}/DangXuat" method="POST">
+						<button type="submit" class="btn btn-danger">Đăng xuất</button>
+
+					</form:form>
+				</div>
+			</div>
+		</div>
+
+	</div>
 	<section>
 		<div class="space-80"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-10 pull-right">
-					<h4>Tìm kiếm</h4>
-					<div class="space-5"></div>
-					<form action="#">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Nhập tên sách hoặc tên tác giả">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									<i class="icofont icofont-search-alt-2"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-					<div class="space-30"></div>
-					<div class="row">
-						<!-- sắp xếp(từ từ tính) -->
-						<!-- <div class="pull-right col-xs-12 col-sm-7 col-md-6">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="control-label col-xs-4" for="sort">Sắp xếp theo : </label>
-                                    <div class="col-xs-8">
-                                        <div class="form-group">
-                                            <select name="sort" id="sort" class="form-control">
-                                                <option value="">Năm xuất </option>
-                                                <option value="">Best Book</option>
-                                                <option value="">Latest Book</option>
-                                                <option value="">Old Book</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-					</div>
 					<hr>
 					<div class="space-20"></div>
 					<div class="row">
-							<div class="book-details-item">
-								<h4 class="tip-left">Tiêu đề</h4>
-								<div class="media-left">
-									<img src="<c:url value ="/assets/images/book/${selectedId.bookImage}"/>"
-										class="media-object author-photo img-thumbnail" alt="library">
-								</div>
+						<div class="book-details-item">
+							<h4 class="tip-left">Tiêu đề</h4>
+							<div class="media-left">
+								<img
+									src="<c:url value ="/assets/images/book/${selectedId.bookImage}"/>"
+									class="media-object author-photo img-thumbnail" alt="library">
+							</div>
 
-								<div class="media-body">
-									<p class="lead">${selectedId.bookName}</p>
-								</div>
-								<div class="space-10"></div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-8">
-										<h4 class="tip-left">Tác giả</h4>
-										<div class="media">
-											<div class="media-left">
-												<img src="<c:url value ="/assets/images/author/${selectedId.authorImage}"/>"
-													class="media-object author-photo img-thumbnail"
-													alt="library">
-											</div>
-											<div class="media-body">
-												<h5>${selectedId.authorName}</h5>
-											</div>
+							<div class="media-body">
+								<p class="lead">${selectedId.bookName}</p>
+							</div>
+							<div class="space-10"></div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-8">
+									<h4 class="tip-left">Tác giả</h4>
+									<div class="media">
+										<div class="media-left">
+											<img
+												src="<c:url value ="/assets/images/author/${selectedId.authorImage}"/>"
+												class="media-object author-photo img-thumbnail"
+												alt="library">
+										</div>
+										<div class="media-body">
+											<h5>${selectedId.authorName}</h5>
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-4">
-										<h4>Thể loại</h4>
-										<p>${selectedId.categoryName}</p>
-									</div>
 								</div>
-								<div class="space-30"></div>
-								<h4 class="tip-left">Mô tả</h4>
-								<p>${selectedId.bookDescription}</p>
-								<div class="space-20"></div>
-								<h4 class="tip-left">Xếp hạng</h4>
+								<div class="col-xs-12 col-sm-4">
+									<h4>Thể loại</h4>
+									<p>${selectedId.categoryName}</p>
+								</div>
+							</div>
+							<div class="space-30"></div>
+							<h4 class="tip-left">Mô tả</h4>
+							<p>${selectedId.bookDescription}</p>
+							<div class="space-20"></div>
+							<%-- <h4 class="tip-left">Xếp hạng</h4>
 								<ul class="list-inline list-unstyled rating-star">
 									<li class="active"><i class="icofont icofont-star"></i></li>
 									<li class="active"><i class="icofont icofont-star"></i></li>
@@ -215,6 +175,7 @@
 								<div class="space-20"></div>
 								<embed src="<c:url value="/assets/images/sach_pdf/${selectedId.pdf}"/>" type="application/pdf" width="100%" height="700px"></embed>
 							</div>
+
 					</div>
 					<div class="space-60"></div>
 				</div>
@@ -225,12 +186,18 @@
 						<div class="sigle-sidebar">
 							<h4>Danh mục</h4>
 							<hr>
+							<form id="categoryFilterForm"
+								action="<c:url value="/filterCategory/page" />" method="GET"
+								style="display: none;">
+								<input type="hidden" id="selectedId" name="categoryId">
+							</form>
 							<ul class="list-unstyled menu-tip">
-								<c:forEach var="detail" items="${categories}">
-									<li><a href="#">${detail.name}</a></li>
+								<c:forEach var="category" items="${categories}">
+									<li><a href="#" onclick="filterCategory(${category.id})">${category.name}</a></li>
 								</c:forEach>
 							</ul>
-							<a href="#" class="btn btn-primary btn-xs">Xem thêm</a>
+							<a href="<c:url value = "/sach"/>" class="btn btn-primary btn-xs">Xem
+								thêm</a>
 						</div>
 						<div class="space-20"></div>
 					</aside>
@@ -256,5 +223,14 @@
 	<script src="<c:url value ="/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
 	<script src="<c:url value ="/assets/js/main.js"/>"></script>
+
+	<script type="text/javascript">
+	function filterCategory(id) {
+	    var form = document.getElementById('categoryFilterForm');
+	    document.getElementById('selectedId').value = id;
+	    form.action = "${pageContext.request.contextPath}/filterCategory/page?page=1&categoryId=" + id;
+	    form.submit();
+	}
+	</script>
 </body>
 </html>

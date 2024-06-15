@@ -17,6 +17,7 @@ public class TraSachServiceImpl {
 	
 	@Autowired
 	private ChiTietMuonTraDtoDao ctmtDtoDao;
+	
 	public List<ChiTietMuonTra> getDataChiTietTra() {
 		return ctmtsDao.GetDataChiTietTra();
 	}
@@ -35,5 +36,13 @@ public class TraSachServiceImpl {
 	
 	public List<ChiTietMuonTraDto> GetDataSearchChiTietMuonTraDto(String name){
 		return ctmtDtoDao.GetDataSearchChiTietMuonTraDto(name);
+	}
+	
+	public List<ChiTietMuonTraDto> GetDataChiTietTraDto(){
+		return ctmtsDao.GetDataChiTietTraDto();
+	}
+	
+	public List<ChiTietMuonTraDto> GetDataSearchChiTietTraDto(String name){
+		return ctmtsDao.GetDataSearchChiTietTraDto(name);
 	}
 }

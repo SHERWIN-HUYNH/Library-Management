@@ -101,23 +101,19 @@
 												class="table  table-borderless table-striped table-earning">
 												<thead>
 													<tr class="col-sm-12">
-														<th>Mã thông báo</th>
-														<th>Tên thông báo
-															</th>
 
-														<th>Nội
-															dung
-															</th>
+														
+														<th>Tên thông báo</th>
+														<th>Nội dung</th>
 														<th>Ngày tạo</th>
 														<th>Ảnh bìa</th>
-														<th>Sửa và
-															Xóa</th>
+														<th>Sửa và Xóa</th>
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="noti" items="${notifications}">
 														<tr>
-															<td><c:out value="${noti.id}" /></td>
+															
 															<td><c:out value="${noti.title}" /></td>
 
 															<td><c:out value="${noti.content}" /></td>
