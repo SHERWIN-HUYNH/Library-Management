@@ -109,7 +109,7 @@
 												<div class="col-12 col-md-10">
 													<form:textarea rows="5"  name="content"
 														path="content" class="col-md-12 form-control"
-														style="border: solid 1px green;" id="content"/>
+														style="border: solid 1px green;" id="content" required="required"/>
 													<span id="content_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -119,13 +119,13 @@
 												</div>
 												<div class="col-12 col-md-10">
 													<form:input type="file" path="image" class="form-control"
-														accept="image/*" value="${notification.image}" id="image"/>
+														accept="image/*" value="${notification.image}" id="image" required="required"/>
 													<span id="image_error" style="color: red;"></span>
 												</div>
 											</div>
 
 
-											<button type="submit" id="register_form" class="btn btn-success btn-sm" disabled>
+											<button type="submit" id="register_form" class="btn btn-success btn-sm" >
 												<i class="fa fa-plus"></i> Thêm
 											</button>
 										</form:form>
@@ -176,7 +176,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_notification.js"/>"></script>
+
 
 	<script type="text/javascript">
 		var message = "${message}";

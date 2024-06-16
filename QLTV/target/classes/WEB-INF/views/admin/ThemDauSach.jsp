@@ -121,7 +121,7 @@
 												</div>
 												<div class="col-12 col-md-10">
 													<form:input path="bookAmount" type="text"
-														class="form-control" value="1" id="amountBook" required="required"/>
+														class="form-control" value="1" id="amountBook" />
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -133,7 +133,7 @@
 												<div class="col-12 col-md-10">
 													<form:textarea path="bookDescription"
 														class="col-md-12 form-control"
-														style="border: solid 1px gray;" id="descriptionBook" required="required"/>
+														style="border: solid 1px gray;" id="descriptionBook" />
 													<span id="descriptionBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -179,7 +179,7 @@
 													<span id="filePDF_error" style="color: red;"></span>
 												</div>
 											</div>
-											<button id="book_form" type="submit" class="btn btn-success btn-sm" >
+											<button id="book_form" type="submit" class="btn btn-success btn-sm" disabled="disabled">
 												<i class="fa fa-plus"></i> Thêm
 											</button>
 										</form:form>
@@ -233,7 +233,7 @@
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="/assets/js/main_admin.js"/>"></script>
-	 <script src="<c:url value="/assets/js/validate_book.js"/>"></script> 
+	<script src="<c:url value="/assets/js/validate_book.js"/>"></script>
 
 	<script type="text/javascript">
 		var message = "${message}";
