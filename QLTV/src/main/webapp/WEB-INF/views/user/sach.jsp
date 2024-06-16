@@ -100,35 +100,62 @@
 		<!-- Header-jumbotron-end -->
 	</header>
 	<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-			data-keyboard="false" tabindex="-1"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true"
-			style="z-index: 1055 !important">
-			<div class="modal-dialog" style="width: 500px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true"
+		style="z-index: 1055 !important">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-danger"> Bạn có muốn đăng xuất </span>
 
-					</div>
-					<div class="modal-footer" style="display: flex;">
-						<button type="button" class="btn btn-warning  btn-secondary"
-							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
-							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning  btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+					<form:form id="deleteForm" action="DangXuat" method="POST">
+						<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
-						</form:form>
-					</div>
+					</form:form>
 				</div>
 			</div>
-
 		</div>
+
+	</div>
+
+	<!-- Modal cho chi tiết sách-->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="loginModalLabel" aria-hidden="true"
+		style="z-index: 1055 !important;">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger" id="loginModalLabel">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-light"> Vui lòng đăng nhập để xem chi
+						tiết sách </span>
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Đóng</button>
+					<a href="${pageContext.request.contextPath}/dang-nhap"
+						class="btn btn-success">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<section>
 		<div class="space-80"></div>
 		<div class="container">
@@ -205,8 +232,19 @@
 												<h6>Thể loại: ${book.categoryName}</h6>
 												<div class="space-10"></div>
 												<p>Đọc để hiểu, thư giãn tâm hồn</p>
-												<a href="<c:url value = "/bookDetail/${book.bookId}"/>"
-													class="text-primary">See the Book</a>
+
+												<!-- Kiểm tra xem người dùng đã đăng nhập chưa nếu chưa thì không cho xem chi tiết sách -->
+												<c:choose>
+													<c:when
+														test="${not empty sessionScope.LoginReader or not empty sessionScope.loginAdmin}">
+														<a href="<c:url value="/bookDetail/${book.bookId}"/>">See
+															the Book</a>
+													</c:when>
+													<c:otherwise>
+														<a href="#" data-toggle="modal" data-target="#loginModal">See
+															the Book</a>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 									</div>
