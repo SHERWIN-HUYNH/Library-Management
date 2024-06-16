@@ -163,6 +163,7 @@
 							<h4 class="tip-left">Mô tả</h4>
 							<p>${selectedId.bookDescription}</p>
 							<div class="space-20"></div>
+
 								<embed src="<c:url value="/assets/images/sach_pdf/${selectedId.pdf}"/>" type="application/pdf" width="100%" height="700px"></embed>
 							</div>
 

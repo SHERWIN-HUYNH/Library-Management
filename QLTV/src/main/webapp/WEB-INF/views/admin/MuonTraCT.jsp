@@ -138,7 +138,7 @@ to {
 												</div>
 												<div class="col-12 col-md-9">
 													<form:input type="date" class="form-control"
-														path="ngayMuon" id="ngayMuon"/>
+														path="ngayMuon" id="ngayMuon" required="required" readonly="true"/>
 													<span id="ngayMuon_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -149,7 +149,7 @@ to {
 														
 												</div>
 												<div class="col-12 col-md-9">
-													<form:input type="date" class="form-control" path="ngayTra" id="ngayTra"/>
+													<form:input type="date" class="form-control" path="ngayTra" id="ngayTra" readonly="true"/>
 													<span id="ngayTra_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -192,10 +192,10 @@ to {
 													<form:input type="number" name="numberSoLuong" id="numberSoLuong"
 														class="form-control" step="1" required="required"
 														pattern="[0-9]" title="" min="1"  path="amount" />
-														<span id="amount_error" style="color: red;"></span>
+														<span id="amount_error" style="color: green;"></span>
 												</div>
 											</div>
-											<button type="submit" class="btn btn-success btn-sm" id="register_form" disabled>
+											<button type="submit" class="btn btn-success btn-sm" id="register_form" >
 												<i class="fa fa-check"></i> Thêm
 											</button>
 										</form:form>
@@ -249,7 +249,6 @@ to {
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value= "/assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_ctmuon.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/assets/vendor/jquery-ui-1.13.3.custom"/>"></script>
 	<script type="text/javascript">
@@ -257,14 +256,15 @@ to {
 		if (message && message.trim().length > 0) {
 			alert(message);
 		}
-		
+
 		 document.addEventListener("DOMContentLoaded", function() {
 		        const bookSelect = document.getElementById("selectBookId");
 		        const amountInput = document.getElementById("numberSoLuong");
-
+		        const amount_error = document.getElementById("amount_error");
 		        bookSelect.addEventListener("change", function() {
 		            const selectedOption = bookSelect.options[bookSelect.selectedIndex];
 		            const maxAmount = selectedOption.getAttribute("data-amount");
+		            amount_error.textContent = "Số lượng sách còn lại là " + maxAmount;
 		            if (maxAmount) {
 		                amountInput.setAttribute("max", maxAmount);
 		                console.log("Max attribute set to:", amountInput.getAttribute("max"));
@@ -277,15 +277,26 @@ to {
 		        
 		       
 		    });
-		 document.getElementById('ngayMuon').addEventListener('change', function() {
-		        var ngayMuon = new Date(this.value);
+		 document.addEventListener("DOMContentLoaded", function() {
+			    // Ngay muon - ngay tra 
+	            var ngayMuonInput = document.getElementById("ngayMuon");
+	            var today = new Date();
+	            var year = today.getFullYear();
+	            var month = ("0" + (today.getMonth() + 1)).slice(-2);
+	            var day = ("0" + today.getDate()).slice(-2);
+	            var todayStr = year + "-" + month + "-" + day;
+
+	            // Đặt giá trị của thẻ input là ngày hiện tại
+	            ngayMuonInput.value = todayStr;
+	            // Đặt giá trị ngày trả là ngày mượn + 30 ngày
+	            var ngayMuon = new Date(ngayMuonInput.value);
 		        var ngayTra = new Date(ngayMuon.getTime() + 30 * 24 * 60 * 60 * 1000);
 		        var dd = String(ngayTra.getDate()).padStart(2, '0');
 		        var mm = String(ngayTra.getMonth() + 1).padStart(2, '0'); 
 		        var yyyy = ngayTra.getFullYear();
 		        var formattedNgayTra = yyyy + '-' + mm + '-' + dd;
 		        document.getElementById('ngayTra').value = formattedNgayTra;
-		    });
+	        });
 		
 	</script>
 </body>
