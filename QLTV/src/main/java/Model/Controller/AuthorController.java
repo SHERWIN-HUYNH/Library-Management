@@ -23,13 +23,6 @@ public class AuthorController {
 	@Autowired
 	AuthorServiceImpl authorImpl = new AuthorServiceImpl();
 
-//	@RequestMapping(value = "authors", method = RequestMethod.GET)
-//	public ModelAndView TacGiaQuanLy() {
-//		ModelAndView mv = new ModelAndView("admin/author");
-//		mv.addObject("authors", authorImpl.getDataAuthor());
-//		return mv;
-//	}
-
 	@RequestMapping(value = "authors/page", method = RequestMethod.GET)
 	public String TacGiaQuanLy(@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "5") int pageSize, Model model) {
@@ -90,13 +83,22 @@ public class AuthorController {
 
 	@RequestMapping(value = "/deleteAuthor/{id}", method = RequestMethod.POST)
 	public String deleteAuthor(@PathVariable int id, RedirectAttributes redirectAttributes) {
-		int rs = authorImpl.deleteAuthor(id);
-		if (rs > 0) {
-			redirectAttributes.addFlashAttribute("message", "Xoá thành công");
-		} else {
-			redirectAttributes.addFlashAttribute("message", "Xoá thất bại");
-		}
-		return "redirect:/authors/page";
+		// Kiểm tra xem tác giả có sách hay không
+	    boolean hasBooks = authorImpl.checkAuthorHasBooks(id);
+	    
+	    if (hasBooks) {
+	        // Trả về trang và hiển thị modal khi tác giả có sách
+	        redirectAttributes.addFlashAttribute("message", "Tác giả đang có sách. Không thể xóa.");
+	    } else {
+	        // Nếu không có sách, tiến hành xóa
+	        int rs = authorImpl.deleteAuthor(id);
+	        if (rs > 0) {
+	            redirectAttributes.addFlashAttribute("message", "Xoá thành công");
+	        } else {
+	            redirectAttributes.addFlashAttribute("message", "Xoá thất bại");
+	        }
+	    }
+	    return "redirect:/authors/page";
 	}
 
 	@RequestMapping(value = "/searchAuthors", method = RequestMethod.GET)

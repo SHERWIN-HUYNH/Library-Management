@@ -28,7 +28,11 @@ public class AuthorServiceImpl {
 		return authorDao.UpdateAuthor(id, authors);
 	}
 	public int deleteAuthor(int id) {
-		return authorDao.DeleteAuthor(id);
+		return authorDao.deleteAuthor(id);
+	}
+	
+	public boolean checkAuthorHasBooks(int authorId) {
+		return authorDao.checkAuthorHasBooks(authorId);
 	}
 	public Pagination<Authors> searchAuthor(String name, int pageNo, int pageSize) {
 		return authorDao.searchAuthor(name, pageNo, pageSize);

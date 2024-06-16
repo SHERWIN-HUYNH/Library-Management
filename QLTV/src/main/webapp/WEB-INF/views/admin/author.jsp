@@ -111,7 +111,6 @@ to {
 				</div>
 			</header>
 			<!-- HEADER DESKTOP-->
-
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content--p30" style="margin: 0 auto;">

@@ -44,12 +44,23 @@ public class AuthorDao {
 		return rs;
 	}
 
-	public int DeleteAuthor(int id) {
-		int rs = 0;
-	    String sql = "DELETE FROM author WHERE id = ?";
-	    rs = _jdbcTemplate.update(sql, id);
-	    return rs;
-	}
+	 public int deleteAuthor(int id) {
+	        // Kiểm tra xem tác giả có sách không
+	        boolean authorHasBooks = checkAuthorHasBooks(id);
+	        if (authorHasBooks) {
+	            // Nếu tác giả có sách, không thực hiện xóa và trả về 0
+	            return 0;
+	        } else {
+	            // Nếu không có sách, thực hiện xóa tác giả
+	            String sql = "DELETE FROM author WHERE id = ?";
+	            return _jdbcTemplate.update(sql, id);
+	        }
+	    }
+
+	    public boolean checkAuthorHasBooks(int authorId) {
+	        String sql = "SELECT EXISTS(SELECT 1 FROM book WHERE authorId = ?)";
+	        return _jdbcTemplate.queryForObject(sql, Boolean.class, authorId);
+	    }
 	
 	public Pagination<Authors> searchAuthor(String name, int pageNo, int pageSize) {
 	    int offset = (pageNo - 1) * pageSize;
