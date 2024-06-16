@@ -121,7 +121,7 @@
 												</div>
 												<div class="col-12 col-md-10">
 													<form:input path="bookAmount" type="text"
-														class="form-control" value="1" id="amountBook" />
+														class="form-control" value="1" id="amountBook" required="required"/>
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -133,7 +133,7 @@
 												<div class="col-12 col-md-10">
 													<form:textarea path="bookDescription"
 														class="col-md-12 form-control"
-														style="border: solid 1px gray;" id="descriptionBook" />
+														style="border: solid 1px gray;" id="descriptionBook" required="required"/>
 													<span id="descriptionBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -166,8 +166,18 @@
 												</div>
 												<div class="col-12 col-md-4">
 													<form:input path="bookImage" type="file"
-														class="form-control" id="imageBook" />
+														class="form-control" id="imageBook" required="required"/>
 													<span id="imageBook_error" style="color: red;"></span>
+												</div>
+												
+												<div class="col col-md-2">
+													<form:label path="bookImage" class="form-control-label">File PDF</form:label>
+
+												</div>
+												<div class="col-12 col-md-4">
+													<form:input path="pdf" type="file"
+														class="form-control" id="filePDF" required="required"/>
+													<span id="filePDF_error" style="color: red;"></span>
 												</div>
 											</div>
 
