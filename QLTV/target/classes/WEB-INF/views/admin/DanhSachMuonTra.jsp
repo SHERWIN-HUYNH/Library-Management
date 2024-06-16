@@ -166,7 +166,7 @@ to {
 														<th>Ngày Mượn</th>
 														<th>Ngày Hẹn Trả</th>
 														<th>Trạng Thái</th>
-														<th>Mã người đọc</th>
+														<th>Tên người đọc</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -188,7 +188,7 @@ to {
                                                                         Unknown status
                                                                     </c:otherwise>
 																</c:choose></td>
-															<td><c:out value="${ctmt.readerId}" /></td>
+															<td><c:out value="${ctmt.readerName}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -204,7 +204,6 @@ to {
 			<!-- END MAIN CONTENT-->
 			<!-- END PAGE CONTAINER-->
 		</div>
-
 	</div>
 
 	<script src="<c:url value= "/assets/vendor/jquery-3.2.1.min.js"/>"></script>
@@ -228,7 +227,6 @@ to {
 		src="<c:url value= "/assets/vendor/counter-up/jquery.waypoints.min.js"/>"></script>
 	<script
 		src="<c:url value= "/assets/vendor/counter-up/jquery.counterup.min.js"/>">
-		
 	</script>
 	<!-- date-range-picker -->
 	<script

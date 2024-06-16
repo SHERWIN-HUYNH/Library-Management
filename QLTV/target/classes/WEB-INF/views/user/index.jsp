@@ -42,22 +42,20 @@
 	href="<c:url value= "/assets/css/responsive.css"/>">
 <script src="<c:url value= "/assets/css/responsive.css"/>"></script>
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  intent="WELCOME"
-  chat-title="Library-Management"
-  agent-id="26ece399-eaf2-425d-856b-68c9b2b68caa"
-  language-code="vi"
-></df-messenger>
+<script
+	src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="Library-Management"
+	agent-id="26ece399-eaf2-425d-856b-68c9b2b68caa" language-code="vi"></df-messenger>
 <style type="text/css" media="screen">
-	  df-messenger {
-    --df-messenger-bot-message: {
-      height: 500px !important;
-    };
-  }
-  df-messenger::part(chat-wrapper) {
-    height: 500px !important;
-  }
+df-messenger { -
+	-df-messenger-bot-message: { height : 500px !important;
+}
+
+;
+}
+df-messenger::part(chat-wrapper) {
+	height: 500px !important;
+}
 </style>
 </head>
 
@@ -91,38 +89,7 @@
 			<%@include file="/WEB-INF/views/shared/header.jsp"%>
 
 		</div>
-		<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-			data-keyboard="false" tabindex="-1"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true"
-			style="z-index: 1055 !important">
-			<div class="modal-dialog" style="width: 500px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn đăng xuất </span>
-
-					</div>
-					<div class="modal-footer" style="display: flex;">
-						<button type="button" class="btn btn-warning  btn-secondary"
-							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
-							<button type="submit" class="btn btn-danger">Đăng xuất</button>
-
-						</form:form>
-					</div>
-				</div>
-			</div>
-
-		</div>
 		<div class="space-100"></div>
-
 		<!-- Mainmenu-markup-end -->
 		<!-- Header-jumbotron -->
 
@@ -187,9 +154,65 @@
 		<div class="space-100"></div>
 		<!-- Header-jumbotron-end -->
 	</header>
+	<!-- Modal Logout-->
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true"
+		style="z-index: 1055 !important">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-danger"> Bạn có muốn đăng xuất </span>
+
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning  btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+					<form:form id="deleteForm" action="DangXuat" method="POST">
+						<button type="submit" class="btn btn-danger">Đăng xuất</button>
+
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal cho chi tiết sách-->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="loginModalLabel" aria-hidden="true"
+		style="z-index: 1055 !important;">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger" id="loginModalLabel">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-light"> Vui lòng đăng nhập để xem chi tiết
+						sách </span>
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Đóng</button>
+					<a href="${pageContext.request.contextPath}/dang-nhap"
+						class="btn btn-success">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<section class="gray-bg" id="sc2">
 		<div class="space-80"></div>
-		<div class="container">
+		<div class="container" id="gioithieu">
 			<div class="row">
 				<div
 					class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
@@ -404,19 +427,18 @@
 									<h4 class="tip-left">Mô tả</h4>
 									<p>${bookDto.bookDescription}</p>
 									<div class="space-20"></div>
-									<h4 class="tip-left">Xếp hạng</h4>
-									<ul class="list-inline list-unstyled rating-star">
-										<li class="active"><i class="icofont icofont-star"></i></li>
-										<li class="active"><i class="icofont icofont-star"></i></li>
-										<li class="active"><i class="icofont icofont-star"></i></li>
-										<li class=""><i class="icofont icofont-star"></i></li>
-										<li><i class="icofont icofont-star"></i></li>
-									</ul>
-									<div class="space-20"></div>
-									<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
-										class="btn btn-primary hover-btn-default">Xem sách</a>
-									<!-- <a href="books.html"
-										class="btn btn-primary hover-btn-default">Đọc sau</a> -->
+									<!-- Kiểm tra xem người dùng đã đăng nhập chưa nếu chưa thì không cho xem chi tiết sách -->
+									<c:choose>
+										<c:when
+											test="${not empty sessionScope.LoginReader or not empty sessionScope.loginAdmin}">
+											<a href="<c:url value = "/bookDetail/${bookDto.bookId}"/>"
+												class="btn btn-primary hover-btn-default">Đọc Thêm</a>
+										</c:when>
+										<c:otherwise>
+											<a href="#" data-toggle="modal" data-target="#loginModal"
+												class="btn btn-primary hover-btn-default">Đọc Thêm</a>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</c:forEach>
 
@@ -543,7 +565,6 @@
 				showMore = !showMore;
 			});
 		});
-
 	</script>
 </body>
 </html>

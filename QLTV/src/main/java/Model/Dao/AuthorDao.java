@@ -51,12 +51,18 @@ public class AuthorDao {
 	    return rs;
 	}
 	
-	public List<Authors> searchAuthor(String name) {
-	    String sql = "SELECT * FROM author WHERE name LIKE ?";
+	public Pagination<Authors> searchAuthor(String name, int pageNo, int pageSize) {
+	    int offset = (pageNo - 1) * pageSize;
+	    String sql = "SELECT * FROM author WHERE name LIKE ? LIMIT ?, ?";
 	    String searchPattern = "%" + name + "%";
-	    List<Authors> authors = _jdbcTemplate.query(sql, new Object[]{searchPattern}, new AuthorsMapper());
-	    return authors;
+	    List<Authors> authors = _jdbcTemplate.query(sql, new Object[]{searchPattern, offset, pageSize}, new AuthorsMapper());
+	    
+	    // Count total matching authors
+	    int totalAuthors = _jdbcTemplate.queryForObject("SELECT COUNT(*) FROM author WHERE name LIKE ?", Integer.class, searchPattern);
+
+	    return new Pagination<Authors>(authors, pageNo, totalAuthors, pageSize);
 	}
+
 	public Pagination<Authors> getAllByPage(int pageNo, int pageSize) {
 		int offset = (pageNo - 1) * pageSize;
         String sql = "SELECT * FROM author LIMIT ?, ?";
