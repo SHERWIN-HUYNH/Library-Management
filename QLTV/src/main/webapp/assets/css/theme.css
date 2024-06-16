@@ -340,8 +340,8 @@ html {
 }
 
 .category-item.well {
+    height: 250px;
     background-color: #ffffff;
-    padding: 30px 20px;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
