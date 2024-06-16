@@ -191,7 +191,7 @@ to {
 												<div class="col-12 col-md-9">
 													<form:input type="number" name="numberSoLuong" id="numberSoLuong"
 														class="form-control" step="1" required="required"
-														pattern="[0-9]" title="" min="1"  path="amount" />
+														pattern="[0-9]" title="" min="1" max="5" path="amount" />
 														<span id="amount_error" style="color: red;"></span>
 												</div>
 											</div>
