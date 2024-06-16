@@ -40,7 +40,7 @@ public class BooksDtoDao extends BaseDao {
 		List<BooksDto> list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%",
 				pageSize, offset);
 		// Truy vấn để lấy tổng số sách
-		int totalBooks = _jdbcTemplate.queryForObject("SELECT COUNT(id) FROM book JOIN author ON book.authorId = author.id JOIN category ON book.categoryId = category.id WHERE book.name LIKE ? OR author.name LIKE ?",
+		int totalBooks = _jdbcTemplate.queryForObject("SELECT COUNT(*) FROM book JOIN author ON book.authorId = author.id JOIN category ON book.categoryId = category.id WHERE book.name LIKE ? OR author.name LIKE ?",
 				Integer.class, "%" + name + "%", "%" + name + "%");
 		return new Pagination<BooksDto>(list, pageNo, totalBooks, pageSize);
 	}
