@@ -32,9 +32,6 @@
 <link
     href="<c:url value='/assets/vendor/font-awesome-5/css/fontawesome-all.min.css'/>"
     rel="stylesheet" media="all">
-<link
-    href="<c:url value='/assets/vendor/mdi-font/css/material-design-iconic-font.min.css'/>"
-    rel="stylesheet" media="all">
 
 <!-- Bootstrap CSS-->
 <link
@@ -46,16 +43,7 @@
     href="<c:url value='/assets/vendor/animsition/animsition.min.css'/>"
     rel="stylesheet" media="all">
 <link
-    href="<c:url value='/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css'/>"
-    rel="stylesheet" media="all">
-<link href="<c:url value='/assets/vendor/wow/animate.css'/>"
-    rel="stylesheet" media="all">
-<link
     href="<c:url value='/assets/vendor/css-hamburgers/hamburgers.min.css'/>"
-    rel="stylesheet" media="all">
-<link href="<c:url value='/assets/vendor/slick/slick.css'/>"
-    rel="stylesheet" media="all">
-<link href="<c:url value='/assets/vendor/select2/select2.min.css'/>"
     rel="stylesheet" media="all">
 <link
     href="<c:url value='/assets/vendor/perfect-scrollbar/perfect-scrollbar.css'/>"
@@ -66,30 +54,7 @@
     media="all">
 
 <style type="text/css">
-@
--webkit-keyframes chartjs-render-animation {from { opacity:0.99;
-    
-}
 
-to {
-    opacity: 1;
-}
-
-}
-@
-keyframes chartjs-render-animation {from { opacity:0.99;
-    
-}
-
-to {
-    opacity: 1;
-}
-
-}
-.chartjs-render-monitor {
-    -webkit-animation: chartjs-render-animation 0.001s;
-    animation: chartjs-render-animation 0.001s;
-}
 </style>
 <script></script>
 </head>

@@ -126,7 +126,7 @@ to {
 												placeholder="Nhập tên thể loại muốn tìm " name="name" />
 											<div class="input-group-btn">
 												<input type="submit" value="Search"
-													class="btn btn-primary icofont icofont-search-alt-2">
+													class="btn btn-primary icofont icofont-search-alt-2" >
 											</div>
 										</div>
 									</form>
@@ -150,11 +150,11 @@ to {
 												</div>
 												<div class="col-12 col-md-9">
 													<form:input path="name" id="nameCategory" type="text"
-														class="form-control" />
-													<span id="nameCategory_error" style="color: red;"></span>
+														class="form-control" required="required"/>
+													<span id="nameCategory_error" style="color: red;" ></span>
 												</div>
 
-												<button id="register_form" type="submit" disabled
+												<button id="register_form" type="submit" 
 													class="btn btn-success btn-sm">
 													<i class="fa fa-check"></i> Thêm
 												</button>
@@ -268,7 +268,7 @@ to {
 	</script>
 	<!-- Main JS-->
 	<script src="<c:url value="assets/js/main_admin.js"/>"></script>
-	<script src="<c:url value= "/assets/js/validate_category.js"/>"></script>
+
 
 	<script type="text/javascript">
 	var message = "${message}";
