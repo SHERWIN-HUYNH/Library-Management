@@ -56,6 +56,20 @@ df-messenger { -
 df-messenger::part(chat-wrapper) {
 	height: 500px !important;
 }
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+article,aside,details,figcaption,figure,footer ,header,hgroup,main,menu,nav,section,summary {
+    display: block
+}
+
 </style>
 </head>
 
