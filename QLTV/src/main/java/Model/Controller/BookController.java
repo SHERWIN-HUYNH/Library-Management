@@ -130,7 +130,7 @@ public class BookController extends BaseController {
 //		return mv;
 //	}
 	@RequestMapping(value = "/sach", method = RequestMethod.GET)
-	public String Sach(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize,
+	public String Sach(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "6") int pageSize,
 			@RequestParam(required = false) Integer categoryId, ModelMap model) {
 		Pagination<BooksDto> pagination;
 		List<Categories> categories = book.getDataCategories();
@@ -150,7 +150,7 @@ public class BookController extends BaseController {
 
 	@RequestMapping(value = "timKiemSach", method = RequestMethod.POST)
 	public String timSach(@ModelAttribute("search") SearchBook search, ModelMap model,
-			@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int pageSize) {
+			@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "6") int pageSize) {
 		Pagination<BooksDto> pagination = book.getDataSearchBookDto(search.getBookName(), page, pageSize);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("categories", book.getDataCategories());
@@ -169,7 +169,7 @@ public class BookController extends BaseController {
 
 	@RequestMapping(value = "/filterCategory/page", method = RequestMethod.GET)
 	public String filterCategory(@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "4") int pageSize, @RequestParam(required = false) Integer categoryId,
+			@RequestParam(defaultValue = "6") int pageSize, @RequestParam(required = false) Integer categoryId,
 			ModelMap model) {
 		Pagination<BooksDto> pagination;
 
