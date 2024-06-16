@@ -183,7 +183,7 @@
 
 											<button id="book_form" type="button"
 												class="btn btn-primary btn-danger" data-toggle="modal"
-												data-target="#staticBackdrop" disabled="disabled">
+												data-target="#staticBackdrop">
 												Chỉnh Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"

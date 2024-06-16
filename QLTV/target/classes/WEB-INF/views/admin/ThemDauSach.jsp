@@ -179,7 +179,7 @@
 													<span id="filePDF_error" style="color: red;"></span>
 												</div>
 											</div>
-											<button id="book_form" type="submit" class="btn btn-success btn-sm" disabled="disabled">
+											<button id="book_form" type="submit" class="btn btn-success btn-sm">
 												<i class="fa fa-plus"></i> Thêm
 											</button>
 										</form:form>
