@@ -10,7 +10,6 @@ import Model.Dto.BooksDto;
 import Model.Dto.BooksDtoMapper;
 import Model.Entity.Pagination;
 
-
 @Repository
 public class AddBookDao extends BaseDao {
 	@Autowired
@@ -19,16 +18,19 @@ public class AddBookDao extends BaseDao {
 	// Admin: Insert book
 	public int insertBook(BooksDto books) {
 		String sqlCheck = "SELECT COUNT(*) FROM book WHERE LOWER(name) = LOWER(?) AND authorId = ? AND dayCreated = ?";
-		int count = _jdbcTemplate.queryForObject(sqlCheck, Integer.class, books.getBookName(), books.getAuthorId(), books.getBookDayCreated());
-		if( count > 0 ) {
+		int count = _jdbcTemplate.queryForObject(sqlCheck, Integer.class, books.getBookName(), books.getAuthorId(),
+				books.getBookDayCreated());
+		if (count > 0) {
 			return -1;
 		}
-		
+
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`,`pdf`) "
-				+ "VALUES('" + books.getBookName() + "','" + books.getBookAmount() + "','" + books.getBookDayCreated()
-				+ "','" + books.getCategoryId() + "','" + books.getBookImage() + "','" + books.getBookDescription()
-				+ "','" + books.getAuthorId() + "','" + books.getPdf() + "')");
+		sql.append(
+				"INSERT INTO `book`(`name`,`amount`,`dayCreated`,`categoryId`,`image`,`description`,`authorId`,`pdf`) "
+						+ "VALUES('" + books.getBookName() + "','" + books.getBookAmount() + "','"
+						+ books.getBookDayCreated() + "','" + books.getCategoryId() + "','" + books.getBookImage()
+						+ "','" + books.getBookDescription() + "','" + books.getAuthorId() + "','" + books.getPdf()
+						+ "')");
 		int book = _jdbcTemplate.update(sql.toString());
 		return book;
 	}
@@ -36,9 +38,9 @@ public class AddBookDao extends BaseDao {
 	// Admin: Update book
 	public int updateBook(int id, BooksDto booksDto) {
 		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ?, pdf = ? WHERE id = ?";
-		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookImage(), booksDto.getBookAmount(),
-				booksDto.getBookDayCreated(), booksDto.getBookDescription(), booksDto.getAuthorId(),
-				booksDto.getCategoryId(), booksDto.getPdf(), id);
+		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookAmount(),
+				booksDto.getBookDayCreated(), booksDto.getCategoryId(), booksDto.getBookImage(),
+				booksDto.getBookDescription(), booksDto.getAuthorId(), booksDto.getPdf(), id);
 		return book;
 	}
 
@@ -85,7 +87,8 @@ public class AddBookDao extends BaseDao {
 		List<BooksDto> list = _jdbcTemplate.query(sql, new BooksDtoMapper(), "%" + name + "%", "%" + name + "%",
 				pageSize, offset);
 		// Truy vấn để lấy tổng số sách
-		int totalBooks = _jdbcTemplate.queryForObject("SELECT COUNT(*) FROM book JOIN author ON book.authorId = author.id JOIN category ON book.categoryId = category.id WHERE book.name LIKE ? OR author.name LIKE ?",
+		int totalBooks = _jdbcTemplate.queryForObject(
+				"SELECT COUNT(*) FROM book JOIN author ON book.authorId = author.id JOIN category ON book.categoryId = category.id WHERE book.name LIKE ? OR author.name LIKE ?",
 				Integer.class, "%" + name + "%", "%" + name + "%");
 		return new Pagination<BooksDto>(list, pageNo, totalBooks, pageSize);
 	}

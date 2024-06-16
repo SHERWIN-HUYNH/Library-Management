@@ -104,13 +104,13 @@
 												</div>
 
 												<div class="col col-md-2">
-													<form:label path="categoryName">Thể Loại</form:label>
+													<form:label path="categoryId">Thể Loại</form:label>
 												</div>
 												<div class="col-12 col-md-4">
 													<form:select path="categoryName"
 														class="selectpicker show-tick form-control">
 														<c:forEach var="category" items="${categories}">
-															<form:option value="${category.name }" />
+															<form:option value="${category.id}">${category.name}</form:option>
 														</c:forEach>
 													</form:select>
 												</div>
@@ -120,7 +120,7 @@
 													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input path="bookAmount" type="text"
+													<form:input path="bookAmount" type="number"
 														class="form-control" value="1" id="amountBook" required="required"/>
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
@@ -143,10 +143,10 @@
 												</div>
 
 												<div class="col-12 col-md-4">
-													<form:select path="authorName"
+													<form:select path="authorId"
 														class="selectpicker show-tick form-control">
 														<c:forEach var="author" items="${authors}">
-															<form:option path="authorName" value="${author.name }" />
+															<form:option value="${author.id}">${author.name}</form:option>
 														</c:forEach>
 													</form:select>
 												</div>

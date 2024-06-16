@@ -14,16 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Dto.BooksDto;
+import Model.Entity.Authors;
 import Model.Entity.Categories;
 import Model.Entity.Pagination;
 import Model.Entity.SearchBook;
+import Model.Service.AuthorServiceImpl;
 import Model.Service.BookServiceImpl;
 
 @Controller
 public class BookController extends BaseController {
 	@Autowired
 	BookServiceImpl book = new BookServiceImpl();
-
+	AuthorServiceImpl authorImpl = new AuthorServiceImpl();
 	// ADMIN
 //	@RequestMapping(value = "/dausach", method = RequestMethod.GET)
 //	public ModelAndView sachQuanLy() {
@@ -95,7 +97,6 @@ public class BookController extends BaseController {
 		@RequestMapping(value = "/editBook/{id}", method = RequestMethod.POST)
 		public String updateBookPost(@PathVariable("id") int id, @ModelAttribute("editBook") BooksDto booksDto,
 				RedirectAttributes redirectAttributes) {
-			System.out.println("Updating book with ID: " + id);
 			int rs = book.updateBook(id, booksDto);
 			if (rs > 0) {
 				redirectAttributes.addFlashAttribute("message", "Sửa đầu sách thành công");
