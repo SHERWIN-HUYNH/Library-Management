@@ -87,7 +87,7 @@
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Sửa tác giả</strong>
+										<strong>Sửa đầu sách</strong>
 									</div>
 									<div class="card-body card-block">
 										<form:form method="post" action="/QLTV/editBook/${bookId}"
