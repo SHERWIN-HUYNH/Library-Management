@@ -36,9 +36,9 @@ public class AddBookDao extends BaseDao {
 	// Admin: Update book
 	public int updateBook(int id, BooksDto booksDto) {
 		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ?, pdf = ? WHERE id = ?";
-		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookImage(), booksDto.getBookAmount(),
-				booksDto.getBookDayCreated(), booksDto.getBookDescription(), booksDto.getAuthorId(),
-				booksDto.getCategoryId(), booksDto.getPdf(), id);
+		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookAmount(),
+				booksDto.getBookDayCreated(), booksDto.getCategoryId(), booksDto.getBookImage(),
+				booksDto.getBookDescription(), booksDto.getAuthorId(), booksDto.getPdf(), id);
 		return book;
 	}
 
@@ -54,7 +54,7 @@ public class AddBookDao extends BaseDao {
 		String sql = "SELECT  book.id as bookId, book.name as bookName, book.image as bookImage, book.amount as bookAmount, "
 				+ "book.dayCreated as bookDayCreated, book.description as bookDescription,"
 				+ "author.id as authorId, author.name as authorName, author.image as authorImage, author.description as authorDescription,"
-				+ "category.id as categoryId, category.name as categoryName,, book.pdf as pdf FROM book,author,category WHERE book.authorId=author.id "
+				+ "category.id as categoryId, category.name as categoryName, book.pdf as pdf FROM book,author,category WHERE book.authorId=author.id "
 				+ "AND book.categoryId = category.id AND book.id = ?";
 		BooksDto booksDto = _jdbcTemplate.queryForObject(sql, new BooksDtoMapper(), bookId);
 		return booksDto;
