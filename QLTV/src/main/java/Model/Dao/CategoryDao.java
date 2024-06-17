@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -40,8 +41,12 @@ public class CategoryDao {
 	
 	public int deleteCategory(int id) {
 		String sql = "DELETE FROM category WHERE id =?";
-		int affectedRows = _jdbcTemplate.update(sql, new Object[]{id});
-	    return affectedRows;
+		try {
+	        int affectedRows = _jdbcTemplate.update(sql, new Object[]{id});
+	        return affectedRows;
+	    } catch (DataIntegrityViolationException e) {
+	        return 0; 
+	    }
 	}
 	
 	public Categories getCateFromId(int id) {

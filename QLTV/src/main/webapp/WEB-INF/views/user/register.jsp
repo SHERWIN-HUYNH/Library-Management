@@ -80,7 +80,7 @@
 										<div class="form-group">
 											<form:label path="name">Họ và tên</form:label>
 											<form:input type="text" class="form-control bg-none"
-												placeholder="Họ và tên..." path="name" id="name" />
+												placeholder="Họ và tên..." path="name" id="name" required="required" />
 											<span id="name_error" style="color: red;"></span>
 										</div>
 									</div>
@@ -91,7 +91,7 @@
 										<div class="form-group">
 											<form:label path="">Username</form:label>
 											<form:input type="text" class="form-control bg-none"
-												placeholder="Username..." path="username" id="username" />
+												placeholder="Username..." path="username" id="username" required="required" />
 											<span id="username_error" style="color: red;"></span>
 										</div>
 									</div>
@@ -102,7 +102,7 @@
 										<div class="form-group">
 											<form:label path="email">Email</form:label>
 											<form:input type="text" class="form-control bg-none"
-												placeholder="Email..." path="email" id="mail"/>
+												placeholder="Email..." path="email" id="mail" required="required"/>
 											<span id="mail_error" style="color: red;"></span>
 										</div>
 									</div>
@@ -113,7 +113,7 @@
 										<div class="form-group">
 											<form:label path="password">Password</form:label>
 											<form:input type="password" class="form-control bg-none"
-												placeholder="Mật khẩu..." path="password" />
+												placeholder="Mật khẩu..." path="password" required="required"/>
 											<span id="password_error" style="color: red;"></span>
 										</div>
 									</div>

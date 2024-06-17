@@ -120,8 +120,8 @@
 													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input path="bookAmount" type="text"
-														class="form-control" value="1" id="amountBook" />
+													<form:input path="bookAmount" type="number"
+														class="form-control" value="1" id="amountBook" required="required"/>
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -179,7 +179,7 @@
 													<span id="filePDF_error" style="color: red;"></span>
 												</div>
 											</div>
-											<button id="book_form" type="submit" class="btn btn-success btn-sm" disabled="disabled">
+											<button id="book_form" type="submit" class="btn btn-success btn-sm" >
 												<i class="fa fa-plus"></i> Thêm
 											</button>
 										</form:form>
