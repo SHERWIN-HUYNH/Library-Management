@@ -120,7 +120,7 @@
 													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input path="bookAmount" type="text"
+													<form:input path="bookAmount" type="number"
 														class="form-control" value="1" id="amountBook" />
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
