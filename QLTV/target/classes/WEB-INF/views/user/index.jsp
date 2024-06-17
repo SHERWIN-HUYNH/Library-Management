@@ -374,7 +374,7 @@ article,aside,details,figcaption,figure,footer ,header,hgroup,main,menu,nav,sect
 					<div class="book-list-photo">
 						<div class="book-list">
 							<!-- book list -->
-							<c:forEach var="bookDto" items="${booksDto}" end="4">
+							<c:forEach var="bookDto" items="${booksDto}" end="3">
 								<div class="book_item">
 									<div class="book_item">
 										<img
@@ -410,7 +410,7 @@ article,aside,details,figcaption,figure,footer ,header,hgroup,main,menu,nav,sect
 					<div class="book-content">
 						<!-- book details -->
 						<div class="book-details">
-							<c:forEach var="bookDto" items="${booksDto}" end="4">
+							<c:forEach var="bookDto" items="${booksDto}" end="3">
 								<div class="book-details-item">
 									<h4 class="tip-left">Tiêu đề</h4>
 									<p class="lead">${bookDto.bookName}</p>
@@ -485,7 +485,7 @@ article,aside,details,figcaption,figure,footer ,header,hgroup,main,menu,nav,sect
 			<div class="row event-list">
 
 				<div class="col-xs-12 col-md-7 col-md-offset-2">
-					<c:forEach var="notification" items="${notifications}" end="2">
+					<c:forEach var="notification" items="${notifications}" end="1">
 						<div class="event-item wow fadeInRight">
 							<h4 class="show tip-left">${notification.dayCreated}</h4>
 							<div class="well">

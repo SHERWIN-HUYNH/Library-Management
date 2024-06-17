@@ -3,6 +3,7 @@ package Model.Dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -45,8 +46,12 @@ public class AddBookDao extends BaseDao {
 	// Admin: Delete book
 	public int deleteBook(int bookId) {
 		String sql = "DELETE FROM book WHERE id = ?";
-		int book = _jdbcTemplate.update(sql, bookId);
-		return book;
+		try {
+	        int affectedRows = _jdbcTemplate.update(sql, new Object[]{bookId});
+	        return affectedRows;
+	    } catch (DataIntegrityViolationException e) {
+	        return 0; 
+	    }
 	}
 
 	// Method to get a book by its ID

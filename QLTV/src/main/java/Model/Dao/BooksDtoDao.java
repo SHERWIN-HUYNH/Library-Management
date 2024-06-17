@@ -83,8 +83,8 @@ public class BooksDtoDao extends BaseDao {
 
 		return new Pagination<BooksDto>(books, pageNo, totalBooks, pageSize);
 	}
-	/*
-	 * public int BookAmount(int i){ List<Integer> list=new ArrayList<Integer>();
-	 * String sql = "SELECT amount FROM book WHERE id = ?"; list return list; }
-	 */
+	public int DeleteBook(int bookId) {
+		String sql = "SELECT 1 FROM chitietmuontra WHERE bookId = ?";
+		return bookId;
+	}
 }

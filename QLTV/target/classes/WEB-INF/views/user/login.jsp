@@ -80,7 +80,7 @@
 										<div class="form-group">
 											<form:label path="name">Tên đăng nhập</form:label>
 											<form:input type="text" class="form-control bg-none"
-												placeholder="Tên đăng nhập..." path="username" id="name" />
+												placeholder="Tên đăng nhập..." path="username" id="name" required="required" />
 											<span id="errorName" style="color: red;"></span>
 										</div>
 									</div>
@@ -91,7 +91,7 @@
 										<div class="form-group">
 											<form:label path="password">Password</form:label>
 											<form:input type="password" class="form-control bg-none"
-												placeholder="Mật khẩu..." path="password" id="password" />
+												placeholder="Mật khẩu..." path="password" id="password" required="required" />
 											<span id="errorPassword" style="color: red;"></span>
 										</div>
 									</div>

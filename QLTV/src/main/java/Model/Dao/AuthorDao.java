@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -47,8 +48,12 @@ public class AuthorDao {
 	public int DeleteAuthor(int id) {
 		int rs = 0;
 	    String sql = "DELETE FROM author WHERE id = ?";
-	    rs = _jdbcTemplate.update(sql, id);
-	    return rs;
+	    try {
+	        int affectedRows = _jdbcTemplate.update(sql, new Object[]{id});
+	        return affectedRows;
+	    } catch (DataIntegrityViolationException e) {
+	        return 0; 
+	    }
 	}
 	
 	public Pagination<Authors> searchAuthor(String name, int pageNo, int pageSize) {
