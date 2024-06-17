@@ -87,7 +87,7 @@
 							<div class="col-sm-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Sửa tác giả</strong>
+										<strong>Sửa đầu sách</strong>
 									</div>
 									<div class="card-body card-block">
 										<form:form method="post" action="/QLTV/editBook/${bookId}"
@@ -104,13 +104,13 @@
 												</div>
 
 												<div class="col col-md-2">
-													<form:label path="categoryName">Thể Loại</form:label>
+													<form:label path="categoryId">Thể Loại</form:label>
 												</div>
 												<div class="col-12 col-md-4">
 													<form:select path="categoryName"
 														class="selectpicker show-tick form-control">
 														<c:forEach var="category" items="${categories}">
-															<form:option value="${category.name }" />
+															<form:option value="${category.id}">${category.name}</form:option>
 														</c:forEach>
 													</form:select>
 												</div>
@@ -120,8 +120,8 @@
 													<form:label path="bookAmount" class="form-control-label">Số lượng</form:label>
 												</div>
 												<div class="col-12 col-md-10">
-													<form:input path="bookAmount" type="text"
-														class="form-control" value="1" id="amountBook" />
+													<form:input path="bookAmount" type="number"
+														class="form-control" value="1" id="amountBook" required="required"/>
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -133,7 +133,7 @@
 												<div class="col-12 col-md-10">
 													<form:textarea path="bookDescription"
 														class="col-md-12 form-control"
-														style="border: solid 1px gray;" id="descriptionBook" />
+														style="border: solid 1px gray;" id="descriptionBook" required="required"/>
 													<span id="descriptionBook_error" style="color: red;"></span>
 												</div>
 											</div>
@@ -143,10 +143,10 @@
 												</div>
 
 												<div class="col-12 col-md-4">
-													<form:select path="authorName"
+													<form:select path="authorId"
 														class="selectpicker show-tick form-control">
 														<c:forEach var="author" items="${authors}">
-															<form:option path="authorName" value="${author.name }" />
+															<form:option value="${author.id}">${author.name}</form:option>
 														</c:forEach>
 													</form:select>
 												</div>
@@ -166,14 +166,24 @@
 												</div>
 												<div class="col-12 col-md-4">
 													<form:input path="bookImage" type="file"
-														class="form-control" id="imageBook" />
+														class="form-control" id="imageBook" required="required"/>
 													<span id="imageBook_error" style="color: red;"></span>
+												</div>
+												
+												<div class="col col-md-2">
+													<form:label path="bookImage" class="form-control-label">File PDF</form:label>
+
+												</div>
+												<div class="col-12 col-md-4">
+													<form:input path="pdf" type="file"
+														class="form-control" id="filePDF" required="required"/>
+													<span id="filePDF_error" style="color: red;"></span>
 												</div>
 											</div>
 
 											<button id="book_form" type="button"
 												class="btn btn-primary btn-danger" data-toggle="modal"
-												data-target="#staticBackdrop" disabled="disabled">
+												data-target="#staticBackdrop">
 												Chỉnh Sửa</button>
 
 											<div class="modal fade" id="staticBackdrop"
