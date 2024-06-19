@@ -32,7 +32,7 @@ public class UserInfoController {
 	public ModelAndView userInfo(HttpSession session) {
 		ModelAndView mv = new ModelAndView("user/UserProfile");
 		Users reader = (Users) session.getAttribute("LoginReader");
-		Admin admin = (Admin) session.getAttribute("loginAdmin");
+		Users admin = (Users) session.getAttribute("loginAdmin");
 		if (reader != null) {
 			mv.addObject("user", reader);
 		} else if (admin != null) {
@@ -45,7 +45,7 @@ public class UserInfoController {
 	public ModelAndView updateUserInfo(HttpSession session, @ModelAttribute("user") Users user,
 			RedirectAttributes redirectAttributes) {
 		Users sessionUser = (Users) session.getAttribute("LoginReader");
-		Admin sessionAdmin = (Admin) session.getAttribute("loginAdmin");
+		Users sessionAdmin = (Users) session.getAttribute("loginAdmin");
 
 		try {
 			if (sessionUser != null) {
