@@ -13,7 +13,7 @@ import Model.Dao.LoginDao;
 import Model.Dao.ReaderDao;
 import Model.Dao.RegisterDao;
 import Model.Entity.Admin;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 
 @Service
@@ -34,61 +34,51 @@ public class AccountServiceImpl implements IAccountService{
 	@Autowired
 	private ReaderDao readerDao  ;
 	
-	public int AddAccount(Readers reader) {
-		reader.setPassword(BCrypt.hashpw(reader.getPassword(),BCrypt.gensalt(12)));
-		if(forgotPassword.CheckEmail(reader.getEmail()) == 1) {
+	public int AddAccount(Users user) {
+		user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(12)));
+		if(forgotPassword.CheckEmail(user.getEmail()) == 1) {
 			return 3;
 		}
-		return registerDao.AddAccount(reader);
+		return registerDao.AddAccount(user);
 	}
 	
 	// LOGIN
-	public Readers CheckAccount(Readers reader) {
-		String password = reader.getPassword();
-		reader = loginDao.GetReaderByAccount(reader.getUsername());
-		if(reader != null)
+	public Users CheckAccount(Users user) {
+		String password = user.getPassword();
+		user = loginDao.GetUserByAccount(user.getUsername());
+		if(user != null)
 		{
-			if(BCrypt.checkpw(password, reader.getPassword()))
+			if(BCrypt.checkpw(password, user.getPassword()))
 			{
-				return reader;
+				return user;
 			} 
 		}
 	return null;
 	}
 	
-	public Admin CheckAdminAcc(String password,String username) {
-		Admin admin = loginDao.GetAdminByAccount(username,password);
-		if(admin != null ) {
-			return admin;
-		}
-		return null;
-	}
 	
 	// CHANGE PASSWORD
-	public int ChangePassword(String password, int id,String role) {
-		if(role.equals("reader"))
-			return changePassword.ChangePassword(BCrypt.hashpw(password,BCrypt.gensalt(12)), id,role);
-		else 
-			return changePassword.ChangePassword(password, id,role);
+	public int ChangePassword(String password, int id) {
+			return changePassword.ChangePassword(BCrypt.hashpw(password,BCrypt.gensalt(12)), id);
 	}
-	public int checkOldPassword(String password, String role,String username) {
-		return changePassword.checkOldPassword(password, role,username);
+	public int checkOldPassword(String password,String username) {
+		return changePassword.checkOldPassword(password, username);
 	}
 	
 	// CEHCK EMAIL EXISTED ? 
 	public int Checkemail(String email) {
 		return forgotPassword.CheckEmail(email);
 	}
-	public Readers CheckAccByEmail(String email) {
-		Readers reader = loginDao.GetReaderByEmail(email);
-		return reader;
+	public Users CheckAccByEmail(String email) {
+		Users user = loginDao.GetUserByEmail(email);
+		return user;
 	}
 	
-	public List<Readers> GetDataReader(){
+	public List<Users> GetDataReader(){
 		return readerDao.GetDataReader();
 	}
 	
-	public List<Readers> GetDataSearchReader(String name){
+	public List<Users> GetDataSearchReader(String name){
 		return readerDao.GetDataSearchReader(name);
 	}
 	

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 
 import Model.Entity.Books;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 @Service
 public interface IAccountService {
-	public int AddAccount(Readers reader);
-	public Readers CheckAccount(Readers reader);
+	public int AddAccount(Users reader);
+	public Users CheckAccount(Users reader);
 }
