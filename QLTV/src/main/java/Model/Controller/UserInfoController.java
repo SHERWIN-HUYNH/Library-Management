@@ -43,58 +43,78 @@ public class UserInfoController {
 
 	@RequestMapping(value = "updateUserInfo", method = RequestMethod.POST)
 	public ModelAndView updateUserInfo(HttpSession session, @ModelAttribute("user") Users user,
-			RedirectAttributes redirectAttributes) {
-		Users sessionUser = (Users) session.getAttribute("LoginReader");
-		Users sessionAdmin = (Users) session.getAttribute("loginAdmin");
+	                                  RedirectAttributes redirectAttributes) {
+	    // Retrieve logged-in user from session
+	    Users sessionUser = (Users) session.getAttribute("LoginReader");
+	    if (sessionUser == null) {
+	        sessionUser = (Users) session.getAttribute("loginAdmin");
+	    }
 
-		try {
-			if (sessionUser != null) {
-				userInfoService.updateUserInfo(sessionUser.getId(), user);
-				session.setAttribute("LoginReader", user);
-			} else if (sessionAdmin != null) {
-				Users updatedAdmin = new Users();
-				updatedAdmin.setId(sessionAdmin.getId());
-				updatedAdmin.setName(user.getName());
-				updatedAdmin.setUsername(user.getUsername());
-				updatedAdmin.setEmail(user.getEmail());
-				userInfoService.updateAdminInfo(sessionAdmin.getId(), updatedAdmin);
-				session.setAttribute("loginAdmin", updatedAdmin);
-			}
-			redirectAttributes.addFlashAttribute("messages", "Sửa thông tin thành công!");
-		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("messages", "Sửa thông tin thất bại!");
-		}
+	    if (sessionUser == null || sessionUser.getId() == 0) {
+	        redirectAttributes.addFlashAttribute("messages", "Người dùng không hợp lệ!");
+	        return new ModelAndView("redirect:/userInfo");
+	    }
 
-		return new ModelAndView("redirect:/userInfo");
+	    try {
+	        int updateResult = userInfoService.updateUserInfo(sessionUser.getId(), user);
+	        if (updateResult == -1) {
+	            // Tên người dùng đã tồn tại
+	            redirectAttributes.addFlashAttribute("messages", "Tên người dùng đã tồn tại cho người dùng khác!");
+	        } else if (updateResult == -2) {
+	            // Email đã tồn tại
+	            redirectAttributes.addFlashAttribute("messages", "Email đã tồn tại cho người dùng khác!");
+	        } else if (updateResult == -3) {
+	            // Lỗi không xác định
+	            redirectAttributes.addFlashAttribute("messages", "Cập nhật thất bại!");
+	        } else {
+	            // Cập nhật thành công
+	            redirectAttributes.addFlashAttribute("messages", "Cập nhật thành công!");
+	            // Cập nhật lại thông tin trong session
+	            user.setId(sessionUser.getId()); // Đảm bảo ID không bị mất
+	            if (session.getAttribute("LoginReader") != null) {
+	                session.setAttribute("LoginReader", user);
+	            }
+	            if (session.getAttribute("loginAdmin") != null) {
+	                session.setAttribute("loginAdmin", user);
+	            }
+	        }
+	    } catch (Exception e) {
+	        redirectAttributes.addFlashAttribute("messages", "Cập nhật thất bại!");
+	        System.err.println("Error in updateUserInfo: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+
+	    return new ModelAndView("redirect:/userInfo");
 	}
 
 	@RequestMapping(value = "userbook", method = RequestMethod.GET)
-    public ModelAndView userBook(HttpSession session) {
-        ModelAndView mv = new ModelAndView("user/MyBook");
-        Users reader = (Users) session.getAttribute("LoginReader");
-        if (reader != null) {
-            List<ChiTietMuonTraDto> list = userInfoService.GetBookBorrowedByReaderId(reader.getId());
-            mv.addObject("ctmtDtos", list);
-            mv.addObject("bookDtos", bookService.GetDataBooksDto());
-            System.out.println("Fetched book details for reader ID: " + reader.getId());
-        } else {
-            System.out.println("Reader is null");
-        }
-        return mv;
-    }
+	public ModelAndView userBook(HttpSession session) {
+		ModelAndView mv = new ModelAndView("user/MyBook");
+		Users reader = (Users) session.getAttribute("LoginReader");
+		if (reader != null) {
+			List<ChiTietMuonTraDto> list = userInfoService.GetBookBorrowedByReaderId(reader.getId());
+			mv.addObject("ctmtDtos", list);
+			mv.addObject("bookDtos", bookService.GetDataBooksDto());
+			System.out.println("Fetched book details for reader ID: " + reader.getId());
+		} else {
+			System.out.println("Reader is null");
+		}
+		return mv;
+	}
+
 	@RequestMapping(value = "searchBorrowedBook", method = RequestMethod.POST)
 	public ModelAndView searchBorrowedBook(HttpSession session, @RequestParam("searchKeyword") String searchKeyword) {
-	    ModelAndView mv = new ModelAndView("user/MyBook");
-	    Users reader = (Users) session.getAttribute("LoginReader");
-	    if (reader != null) {
-	        List<ChiTietMuonTraDto> list = userInfoService.SearchBorrowedBooks(reader.getId(), searchKeyword);
-	        mv.addObject("ctmtDtos", list);
-	        mv.addObject("bookDtos", bookService.GetDataBooksDto());
-	        System.out.println("Searched borrowed books for reader ID: " + reader.getId());
-	    } else {
-	        System.out.println("Reader is null");
-	    }
-	    return mv;
+		ModelAndView mv = new ModelAndView("user/MyBook");
+		Users reader = (Users) session.getAttribute("LoginReader");
+		if (reader != null) {
+			List<ChiTietMuonTraDto> list = userInfoService.SearchBorrowedBooks(reader.getId(), searchKeyword);
+			mv.addObject("ctmtDtos", list);
+			mv.addObject("bookDtos", bookService.GetDataBooksDto());
+			System.out.println("Searched borrowed books for reader ID: " + reader.getId());
+		} else {
+			System.out.println("Reader is null");
+		}
+		return mv;
 	}
-	
+
 }
