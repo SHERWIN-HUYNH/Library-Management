@@ -9,7 +9,7 @@ import Model.Dao.UserInfoDao;
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.Admin;
 import Model.Entity.Books;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 @Service
 public class UserInfoServiceImpl {
@@ -17,11 +17,11 @@ public class UserInfoServiceImpl {
 	private UserInfoDao userInfoDao;
 
 	
-	public int updateUserInfo(int id, Readers reader) {
+	public int updateUserInfo(int id, Users reader) {
 		return userInfoDao.updateInfoUser(id, reader);
 	}
 
-	public int updateAdminInfo(int id, Admin admin) {
+	public int updateAdminInfo(int id, Users admin) {
 		return userInfoDao.updateInfoAdmin(id, admin);
 	}
 	

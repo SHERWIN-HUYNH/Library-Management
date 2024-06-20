@@ -9,20 +9,20 @@ import org.springframework.stereotype.Repository;
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.Admin;
 import Model.Entity.ChiTietMuonTraDtoMapper;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 @Repository
 public class UserInfoDao {
 	@Autowired
 	private JdbcTemplate _jdbcTemplate;
 
-	public int updateInfoUser(int id, Readers reader) {
-		String sql = "UPDATE reader SET name = ?, username = ?, email = ? WHERE id = ?";
+	public int updateInfoUser(int id, Users reader) {
+		String sql = "UPDATE user SET name = ?, username = ?, email = ? WHERE id = ?";
 		return _jdbcTemplate.update(sql, reader.getName(), reader.getUsername(), reader.getEmail(), id);
 	}
 
-	public int updateInfoAdmin(int id, Admin admin) {
-		String sql = "UPDATE admin SET name = ?, username = ?, email = ? WHERE id = ?";
+	public int updateInfoAdmin(int id, Users admin) {
+		String sql = "UPDATE user SET name = ?, username = ?, email = ? WHERE id = ?";
 		return _jdbcTemplate.update(sql, admin.getName(), admin.getUsername(), admin.getEmail(), id);
 	}
 
@@ -39,7 +39,7 @@ public class UserInfoDao {
 				+ "r.name AS readerName "
 				+ "FROM chitietmuontra ctm " 
 				+ "JOIN book b ON ctm.bookId = b.id "
-				+ "JOIN reader r ON ctm.readerId = r.id " 
+				+ "JOIN (SELECT id,name FROM user WHERE isAdmin = 0) r ON ctm.readerId = r.id " 
 				+ "WHERE ctm.readerId = ? AND ctm.trangThai = 0";
 		System.out.println("Executing SQL: " + sql + " with readerId: " + readerId); // Dòng kiểm tra
 		List<ChiTietMuonTraDto> list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(), readerId);
@@ -63,7 +63,7 @@ public class UserInfoDao {
 	            + "FROM chitietmuontra ctm "
 	            + "JOIN book b ON ctm.bookId = b.id "
 	            + "JOIN author a ON b.authorId = a.id "
-	            + "JOIN reader r ON ctm.readerId = r.id "
+	            + "JOIN (SELECT id,name FROM user WHERE isAdmin = 0) r ON ctm.readerId = r.id "
 	            + "WHERE ctm.readerId = ? "
 	            + "AND ctm.trangThai = 0 "
 	            + "AND (b.name LIKE ? OR a.name LIKE ?)"; // Thêm điều kiện tìm kiếm cho tên sách hoặc tác giả

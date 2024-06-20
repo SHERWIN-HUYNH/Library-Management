@@ -8,25 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import Model.Entity.Readers;
-import Model.Entity.ReadersMapper;
+import Model.Entity.Users;
+import Model.Entity.UsersMapper;
 
 @Repository
 public class ReaderDao extends BaseDao {
 	@Autowired
 	public JdbcTemplate _jdbcTemplate;
 
-	public List<Readers> GetDataReader() {
-		List<Readers> list = new ArrayList<Readers>();
-		String sql = "SELECT * FROM reader";
-		list = _jdbcTemplate.query(sql, new ReadersMapper());
+	public List<Users> GetDataReader() {
+		List<Users> list = new ArrayList<Users>();
+		String sql = "SELECT * FROM user WHERE isAdmin = 0";
+		list = _jdbcTemplate.query(sql, new UsersMapper());
 		return list;
 	}
 	
-	public List<Readers> GetDataSearchReader(String name) {
-		List<Readers> list = new ArrayList<Readers>();
-		String sql = "SELECT * FROM reader WHERE name LIKE ?";
-		list = _jdbcTemplate.query(sql, new ReadersMapper(),"%" + name + "%");
+	public List<Users> GetDataSearchReader(String name) {
+		List<Users> list = new ArrayList<Users>();
+		String sql = "SELECT * FROM user WHERE isAdmin = 0 AND name LIKE ?";
+		list = _jdbcTemplate.query(sql, new UsersMapper(),"%" + name + "%");
 		return list;
 	}
 }

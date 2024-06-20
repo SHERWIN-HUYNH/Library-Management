@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.ChiTietMuonTra;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.ChiTietMuonTraServicelmpl;
 
 @Controller

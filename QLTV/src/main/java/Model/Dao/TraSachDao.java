@@ -32,7 +32,7 @@ public class TraSachDao {
 		String sql = "SELECT chitietmuontra.id as ctmtId, chitietmuontra.bookId, chitietmuontra.ngayMuon as ctmtNgayMuon,"
 				+ "chitietmuontra.trangThai as ctmtTrangThai,chitietmuontra.ngayTra as ctmtNgayTra,chitietmuontra.amount as ctmtAmount,"
 				+ "book.name as bookName,book.amount as bookAmount,reader.id as readerId,reader.name as readerName"
-				+ " FROM chitietmuontra, book, reader"
+				+ " FROM chitietmuontra, book,(SELECT id,name FROM user WHERE isAdmin = 0) reader"
 				+ " WHERE chitietmuontra.bookId = book.id and chitietmuontra.readerId  = reader.id and trangThai = 0";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper());
 		return list;
@@ -44,7 +44,7 @@ public class TraSachDao {
 				+ "cmt.trangThai AS ctmtTrangThai," + "cmt.ngayTra AS ctmtNgayTra," + "cmt.amount AS ctmtAmount,"
 				+ "b.name AS bookName," + "b.amount AS bookAmount," + "r.id AS readerId," + "r.name AS readerName "
 				+ "FROM " + "chitietmuontra cmt " + "JOIN " + "book b ON cmt.bookId = b.id " + "JOIN "
-				+ "reader r ON cmt.readerId = r.id " + "WHERE " + "cmt.trangThai = 0 AND r.name LIKE ?";
+				+ "(SELECT id,name FROM user WHERE isAdmin = 0) r ON cmt.readerId = r.id " + "WHERE " + "cmt.trangThai = 0 AND r.name LIKE ?";
 		list = _jdbcTemplate.query(sql, new ChiTietMuonTraDtoMapper(), "%" + name + "%");
 		return list;
 	} 

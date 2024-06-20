@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Admin;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Entity.SearchBook;
 import Model.Service.AccountServiceImpl;
 
@@ -24,12 +24,12 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "dang-ky", method = RequestMethod.GET)
 	public ModelAndView DangKy() {
 		_mvShare.setViewName("user/register");
-		_mvShare.addObject("user", new Readers());
+		_mvShare.addObject("user", new Users());
 		return _mvShare;
 	}
 // modelAttribute controller = modelAttribute view 
 	@RequestMapping(value = "dang-ky", method = RequestMethod.POST)
-	public ModelAndView createAccount(@ModelAttribute("user")Readers reader) {
+	public ModelAndView createAccount(@ModelAttribute("user")Users reader) {
 		ModelAndView mv = new ModelAndView("user/register");
 		int count = accountService.AddAccount(reader);
 		if (count == 1) {
@@ -57,30 +57,25 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "dang-nhap", method = RequestMethod.GET)
 	public ModelAndView showLoginForm() {
 		ModelAndView mv = new ModelAndView("user/login");
-		mv.addObject("user", new Readers());
+		mv.addObject("user", new Users());
 		return mv;
 	}
 
 	@RequestMapping(value = "dang-nhap", method = RequestMethod.POST)
-	public ModelAndView login(HttpSession session, @ModelAttribute("user") Readers user) {
-		// Check admin 
-		Admin ad = accountService.CheckAdminAcc(user.getPassword(), user.getUsername());
-		if (ad != null) {
-			session.setAttribute("loginAdmin", ad);
-			return new ModelAndView("redirect:trang-chu");
-		} else {
-			// Check Reader
+	public ModelAndView login(HttpSession session, @ModelAttribute("user") Users user){
+			// Check user
 			user = accountService.CheckAccount(user);
 			if (user != null) { // THANH CONG
-				session.setAttribute("LoginReader", user);
+				if(user.getIsAdmin() == 0)
+				{session.setAttribute("LoginReader", user);} // role: 0-reader, 1-admin
+				else 
+				{session.setAttribute("loginAdmin", user);}
 				return new ModelAndView("redirect:trang-chu");
 			} else { // THAT BAI ModelAndView
 				ModelAndView modelAndView = new ModelAndView("user/login");
 				modelAndView.addObject("statusLG", "ĐĂNG NHẬP THẤT BẠI");
 				return modelAndView;
 			}
-		}
-		
 	}
 	// DANG XUAT
 	@RequestMapping(value = "DangXuat", method= RequestMethod.POST)
@@ -103,19 +98,16 @@ public class UserController extends BaseController {
         String newPassword = request.getParameter("new_password");
         String confirmPassword = request.getParameter("confirm_password");
         String oldPassword = request.getParameter("old_password");
-        Readers loginReader = (Readers) session.getAttribute("LoginReader");
-        Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
-        String role = "";
+        Users loginReader =  (Users) session.getAttribute("LoginReader");
+        Users loginAdmin =  (Users) session.getAttribute("loginAdmin");
         int id ;
         String username = "";
         if(loginAdmin != null) {
         	id = loginAdmin.getId();
-        	role = "admin";
         	username = loginAdmin.getUsername();
         }
         else {
         	id = loginReader.getId();
-        	role = "reader";
         	username = loginReader.getUsername();
         }
         // TEST INPUT
@@ -128,12 +120,12 @@ public class UserController extends BaseController {
         	return mv;
        }
 
-        if(accountService.checkOldPassword(oldPassword, role,username) == 0) {
+        if(accountService.checkOldPassword(oldPassword, username) == 0) {
         	mv.addObject("message", "MẬT KHẨU CŨ KHÔNG CHÍNH XÁC");
    			return mv;
         }
         // CHANGE PASSWORD
-    	   if( accountService.ChangePassword(newPassword, id, role) == 0) {
+    	   if( accountService.ChangePassword(newPassword, id) == 0) {
     		   mv.addObject("message", "ĐỔI MẬT KHẨU THẤT BẠI");
        			return mv;
            }

@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ThongKeDto;
 import Model.Entity.Authors;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.ThongKeServiceImpl;
 
 @Controller

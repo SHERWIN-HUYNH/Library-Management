@@ -167,7 +167,7 @@
 		}
 
 		var options = {
-			title : 'THỐNG KÊ SỐ SÁCH ĐƯỢC MƯỢN THEO TỪNG THÁNG',
+			title : 'THỐNG KÊ SỐ SÁCH ĐƯỢC MƯỢN THEO TỪNG THÁNG TRONG NĂM 2024',
 			vAxis : {
 				title : 'Tổng số sách',
 				format : '#'
@@ -303,7 +303,7 @@
 						</div>
 						<div class="card-footer">
 							<div class="stats">
-								<i class="material-icons">date_range</i> Trong tháng này
+								<i class="material-icons">date_range</i>Just Updated
 							</div>
 						</div>
 					</div>

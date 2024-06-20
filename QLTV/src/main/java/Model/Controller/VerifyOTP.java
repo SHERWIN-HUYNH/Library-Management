@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Admin;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.AccountServiceImpl;
 
 @Controller
@@ -30,8 +30,8 @@ public class VerifyOTP {
 		 ModelAndView mv = new ModelAndView("user/login");
 		 String newPassword = request.getParameter("new_password");
 	     String confirmPassword = request.getParameter("confirm_password");
-	     Readers loginReader = (Readers) session.getAttribute("LoginReader");
-	     Admin loginAdmin = (Admin)session.getAttribute("LoginAdmin");
+	     Users loginReader = (Users) session.getAttribute("LoginReader");
+	     Users loginAdmin = (Users)session.getAttribute("LoginAdmin");
 	     String role = "";
 	        int id ;
 	        if(loginAdmin != null) {
@@ -44,10 +44,11 @@ public class VerifyOTP {
 	        }
 	     if(newPassword.equals(confirmPassword) == false) {
 	        	mv.addObject("message", "MẬT KHẨU KHÔNG TRÙNG KHỚP");
+	        	mv.addObject("user", new Users());
 	        	return mv;
 	       } else {
 	           if(loginReader != null) {
-	        	   accountService.ChangePassword(newPassword,id,role);
+	        	   accountService.ChangePassword(newPassword,id);
 	           }
 	      return new ModelAndView("redirect:trang-chu");
 	}

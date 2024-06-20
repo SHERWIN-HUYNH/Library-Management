@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Dto.ChiTietMuonTraDto;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.AccountServiceImpl;
 
 @Controller
@@ -30,7 +30,7 @@ public class TaiKhoanController extends BaseController {
 	@RequestMapping(value = "timReader", method = RequestMethod.POST)
 	public ModelAndView searchReader(@RequestParam("name") String name) {
 		ModelAndView mv = new ModelAndView("admin/DanhSachTaiKhoan");
-		List<Readers> searchResults = taiKhoan.GetDataSearchReader(name);
+		List<Users> searchResults = taiKhoan.GetDataSearchReader(name);
 		mv.addObject("taiKhoan", searchResults);
 		return mv;
 	}
@@ -38,12 +38,12 @@ public class TaiKhoanController extends BaseController {
 	@RequestMapping(value = "themTaiKhoan", method = RequestMethod.GET)
 	public ModelAndView DangKy() {
 		_mvShare.setViewName("admin/ThemTaiKhoan");
-		_mvShare.addObject("user", new Readers());
+		_mvShare.addObject("user", new Users());
 		return _mvShare;
 	}
 // modelAttribute controller = modelAttribute view 
 	@RequestMapping(value = "themTaiKhoan", method = RequestMethod.POST)
-	public ModelAndView createAccount(@ModelAttribute("user")Readers reader) {
+	public ModelAndView createAccount(@ModelAttribute("user")Users reader) {
 		ModelAndView mv = new ModelAndView("admin/ThemTaiKhoan");
 		int count = taiKhoan.AddAccount(reader);
 		if (count == 1) {

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Entity.Admin;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.BookServiceImpl;
 import Model.Service.UserInfoServiceImpl;
 
@@ -31,8 +31,8 @@ public class UserInfoController {
 	@RequestMapping(value = "userInfo", method = RequestMethod.GET)
 	public ModelAndView userInfo(HttpSession session) {
 		ModelAndView mv = new ModelAndView("user/UserProfile");
-		Readers reader = (Readers) session.getAttribute("LoginReader");
-		Admin admin = (Admin) session.getAttribute("loginAdmin");
+		Users reader = (Users) session.getAttribute("LoginReader");
+		Users admin = (Users) session.getAttribute("loginAdmin");
 		if (reader != null) {
 			mv.addObject("user", reader);
 		} else if (admin != null) {
@@ -42,17 +42,17 @@ public class UserInfoController {
 	}
 
 	@RequestMapping(value = "updateUserInfo", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo(HttpSession session, @ModelAttribute("user") Readers user,
+	public ModelAndView updateUserInfo(HttpSession session, @ModelAttribute("user") Users user,
 			RedirectAttributes redirectAttributes) {
-		Readers sessionUser = (Readers) session.getAttribute("LoginReader");
-		Admin sessionAdmin = (Admin) session.getAttribute("loginAdmin");
+		Users sessionUser = (Users) session.getAttribute("LoginReader");
+		Users sessionAdmin = (Users) session.getAttribute("loginAdmin");
 
 		try {
 			if (sessionUser != null) {
 				userInfoService.updateUserInfo(sessionUser.getId(), user);
 				session.setAttribute("LoginReader", user);
 			} else if (sessionAdmin != null) {
-				Admin updatedAdmin = new Admin();
+				Users updatedAdmin = new Users();
 				updatedAdmin.setId(sessionAdmin.getId());
 				updatedAdmin.setName(user.getName());
 				updatedAdmin.setUsername(user.getUsername());
@@ -71,7 +71,7 @@ public class UserInfoController {
 	@RequestMapping(value = "userbook", method = RequestMethod.GET)
     public ModelAndView userBook(HttpSession session) {
         ModelAndView mv = new ModelAndView("user/MyBook");
-        Readers reader = (Readers) session.getAttribute("LoginReader");
+        Users reader = (Users) session.getAttribute("LoginReader");
         if (reader != null) {
             List<ChiTietMuonTraDto> list = userInfoService.GetBookBorrowedByReaderId(reader.getId());
             mv.addObject("ctmtDtos", list);
@@ -85,7 +85,7 @@ public class UserInfoController {
 	@RequestMapping(value = "searchBorrowedBook", method = RequestMethod.POST)
 	public ModelAndView searchBorrowedBook(HttpSession session, @RequestParam("searchKeyword") String searchKeyword) {
 	    ModelAndView mv = new ModelAndView("user/MyBook");
-	    Readers reader = (Readers) session.getAttribute("LoginReader");
+	    Users reader = (Users) session.getAttribute("LoginReader");
 	    if (reader != null) {
 	        List<ChiTietMuonTraDto> list = userInfoService.SearchBorrowedBooks(reader.getId(), searchKeyword);
 	        mv.addObject("ctmtDtos", list);

@@ -13,7 +13,7 @@ import Model.Dao.ThongKeDao;
 import Model.Dto.ChiTietMuonTraDto;
 import Model.Dto.ThongKeDto;
 import Model.Entity.Authors;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 @Service
 public class ThongKeServiceImpl {

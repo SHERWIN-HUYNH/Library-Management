@@ -21,7 +21,7 @@ import Model.Entity.Books;
 import Model.Entity.Categories;
 import Model.Entity.ChiTietMuonTra;
 import Model.Entity.Notification;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 
 
 @Service
@@ -52,7 +52,7 @@ public class HomeServiceImpl implements IHomeService{
 		return booksDao.GetDataBooks();
 	}
 	
-	public List<Readers> GetDataReader() {
+	public List<Users> GetDataReader() {
 		return readerDao.GetDataReader();
 	}
 	

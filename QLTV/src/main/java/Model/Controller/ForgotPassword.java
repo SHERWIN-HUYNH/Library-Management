@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import Model.Entity.Mailer;
-import Model.Entity.Readers;
+import Model.Entity.Users;
 import Model.Service.AccountServiceImpl;
 
 @Controller
@@ -44,7 +44,7 @@ public class ForgotPassword {
                     "</body>" +
                     "</html>";
 			// LOGIN BY EMAIL
-			Readers user = accountService.CheckAccByEmail(to);
+			Users user = accountService.CheckAccByEmail(to);
 			session.setAttribute("LoginReader", user);
 			try {
 				//mailer.send(from, to, subject, body);
