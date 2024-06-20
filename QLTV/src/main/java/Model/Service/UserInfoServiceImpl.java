@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import Model.Dao.UserInfoDao;
 import Model.Dto.ChiTietMuonTraDto;
-import Model.Entity.Admin;
 import Model.Entity.Books;
 import Model.Entity.Users;
 
@@ -17,12 +16,8 @@ public class UserInfoServiceImpl {
 	private UserInfoDao userInfoDao;
 
 	
-	public int updateUserInfo(int id, Users reader) {
-		return userInfoDao.updateInfoUser(id, reader);
-	}
-
-	public int updateAdminInfo(int id, Users admin) {
-		return userInfoDao.updateInfoAdmin(id, admin);
+	public int updateUserInfo(int id, Users user) {
+		return userInfoDao.updateInfoUser(id, user);
 	}
 	
 	public List<ChiTietMuonTraDto>  GetBookBorrowedByReaderId(int readerId) {
