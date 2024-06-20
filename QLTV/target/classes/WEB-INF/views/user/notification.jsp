@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +116,7 @@
 													<div class="media-left">
 														<img
 															src="<c:url value="/assets/images/event/${notification.image}" />"
-															class="media-object" alt="library">
+															class="media-object" style="width: 150px; height: 150px;" alt="library">
 													</div>
 													<div class="media-body">
 														<div class="space-10"></div>
