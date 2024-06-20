@@ -48,7 +48,7 @@ public class ThongKeDao extends BaseDao {
 	}
 
 	public int SoSachDangDuocMuon() {
-		String sql1 = "SELECT COALESCE(COUNT(id),0) FROM chitietmuontra WHERE trangThai = 0";
+		String sql1 = "SELECT COALESCE(SUM(amount),0) FROM chitietmuontra WHERE trangThai = 0";
 		Integer count1 = _jdbcTemplate.queryForObject(sql1, Integer.class);
 		return count1 != null ? count1 : 0;
 	}
@@ -103,7 +103,7 @@ public class ThongKeDao extends BaseDao {
 				"   COALESCE( SUM(ct.amount), 0) AS bookAmount,\r\n" + 
 				"    SUM(CASE WHEN ct.trangThai = 0 THEN ct.amount ELSE 0 END) AS ctmtAmount\r\n" + 
 				"FROM \r\n" + 
-				"    (SELECT id,name FROM reader WHERE isAdmin = 0) r \r\n" + 
+				"    (SELECT id,name FROM user WHERE isAdmin = 0) r \r\n" + 
 				"JOIN \r\n" + 
 				"    chitietmuontra ct ON r.id = ct.readerId \r\n" + 
 				"GROUP BY \r\n" + 
