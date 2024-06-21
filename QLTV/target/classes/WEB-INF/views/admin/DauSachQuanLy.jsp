@@ -186,7 +186,7 @@ to {
 															<td><c:out value="${book.categoryName }"></c:out></td>
 															<td><c:out value="${book.authorName }"></c:out></td>
 															<td><c:out value="${book.bookDayCreated}" /></td>
-															<td><img
+															<td style="width:150px"><img
 																src="<c:url value="/assets/images/book/${book.bookImage}"/>"
 																alt="Bìa sách"></td>
 															<td><a

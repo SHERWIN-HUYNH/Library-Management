@@ -109,7 +109,7 @@
 													<form:textarea rows="5" id="txtNoiDung" name="content"
 														path="content" class="col-md-12 form-control"
 														style="border: solid 1px green;"
-														defaultValue="${selectedNoti.content}" />
+														defaultValue="${selectedNoti.content}" required="required"/>
 												</div>
 											</div>
 											<div class="row form-group">
@@ -118,7 +118,7 @@
 												</div>
 												<div class="col-12 col-md-10">
 													<form:input type="file" path="image" class="form-control"
-														accept="image/*" id="image"/>
+														accept="image/*" id="image" required="required"/>
 														<span id="image_error" style="color: red;"></span>
 
 												</div>

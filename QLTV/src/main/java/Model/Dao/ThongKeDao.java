@@ -130,7 +130,7 @@ public class ThongKeDao extends BaseDao {
 				"    a.id, a.name\r\n" + 
 				"ORDER BY\r\n" + 
 				"    amount DESC\r\n" + 
-				"LIMIT 1;";
+				";";
 		list = _jdbcTemplate.query(sql, new ThongKeAuthorMapper());
 		return list;
 	}
