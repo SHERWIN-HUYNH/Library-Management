@@ -119,7 +119,7 @@
 															<td><c:out value="${noti.content}" /></td>
 
 															<td><c:out value="${noti.dayCreated}" /></td>
-															<td><img alt="Hinh anh event"
+															<td style="width:150px"><img alt="Hinh anh event"
 																src="<c:url value = "/assets/images/event/${noti.image}"/>"></td>
 
 															<td><a
