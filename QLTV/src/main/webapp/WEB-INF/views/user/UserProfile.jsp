@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -87,35 +86,35 @@
 		<!-- Header-jumbotron-end -->
 	</header>
 	<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-			data-keyboard="false" tabindex="-1"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true"
-			style="z-index: 1055 !important">
-			<div class="modal-dialog" style="width: 500px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<span class="text-danger"> Bạn có muốn đăng xuất </span>
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true"
+		style="z-index: 1055 !important">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span class="text-danger"> Bạn có muốn đăng xuất </span>
 
-					</div>
-					<div class="modal-footer" style="display: flex;">
-						<button type="button" class="btn btn-warning  btn-secondary"
-							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
-							<button type="submit" class="btn btn-danger">Đăng xuất</button>
+				</div>
+				<div class="modal-footer" style="display: flex;">
+					<button type="button" class="btn btn-warning  btn-secondary"
+						data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
+					<form:form id="deleteForm" action="DangXuat" method="POST">
+						<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
-						</form:form>
-					</div>
+					</form:form>
 				</div>
 			</div>
-
 		</div>
+
+	</div>
 	<section>
 		<div class="space-80"></div>
 		<div class="container">
@@ -131,7 +130,7 @@
 							<ul class="list-unstyled menu-tip">
 								<li><a class="active" href="<c:url value="userInfo"/>">Thông
 										tin cá nhân</a></li>
-								<li><a href="<c:url value="UserChangePassword"/>">Đổi
+								<li><a href="<c:url value="/UserChangePassword"/>">Đổi
 										mật khẩu</a></li>
 								<c:if test="${not empty sessionScope.LoginReader}">
 									<!-- Hiển thị danh mục "Sách của tôi" chỉ khi người dùng không phải là admin -->
@@ -149,28 +148,28 @@
 					<div class="row">
 						<div class="col-md-10 col-xs-12 col-md-offset-1">
 							<form:form method="POST" action="updateUserInfo"
-								modelAttribute="user">
+								modelAttribute="user" onsubmit="return validateForm()">
 								<div class="form-group">
 									<label for="name">Họ và tên</label>
 									<form:input path="name" id="nameUser" type="text"
-										class="form-control" />
+										class="form-control" required="required" />
 									<span id="nameUser_error" style="color: red;"></span>
 								</div>
 								<div class="form-group">
 									<label for="username">Username</label>
 									<form:input path="username" type="text" class="form-control"
-										id="usernameUser" />
+										id="usernameUser" required="required" />
 									<span id="usernameUser_error" style="color: red;"></span>
 								</div>
 								<div class="form-group">
 									<label for="email">Email</label>
 									<form:input path="email" type="email" class="form-control"
-										id="emailUser" />
+										id="emailUser" required="required" />
 									<span id="emailUser_error" style="color: red;"></span>
 								</div>
 								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#editInfoModal"
-									id="userProfile_form" disabled>Chỉnh sửa</button>
+									data-toggle="modal" data-target="#editInfoModal">Chỉnh
+									sửa</button>
 
 								<!-- Modal -->
 								<div class="modal fade" id="editInfoModal"
@@ -222,13 +221,28 @@
 	<script src="<c:url value = "/assets/js/wow.min.js"/>"></script>
 	<script src="<c:url value = "/assets/js/plugins.js"/>"></script>
 	<!-- Active-JS -->
-	<script src="<c:url value="assets/js/validate_userprofile.js"/>"></script>
 	<script type="text/javascript">
 		var message = "${messages}";
 		if (message && message.trim().length > 0) {
 			// Display an alert with the message content
 			alert(message);
 		}
+	</script>
+	<script>
+		function validateForm() {
+			let username = document.getElementById("usernameUser").value;
+			let isValid = true;
+			//Bắt lỗi khoảng trắng cho username
+			if (/\s/.test(username)) {
+				document.getElementById("usernameUser_error").innerText = "Username không được chứa khoảng trắng.";
+				isValid = false;
+			} else {
+				document.getElementById("usernameUser_error").innerText = "";
+			}
+			return isValid;
+		}
+		// Thêm sự kiện input để kiểm tra giá trị mỗi khi người dùng nhập
+		document.getElementById("usernameUser").addEventListener("input", validateForm);
 	</script>
 	<script src="<c:url value = "/assets/js/main.js"/>"></script>
 
