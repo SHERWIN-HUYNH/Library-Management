@@ -122,6 +122,7 @@
 												<div class="col-12 col-md-10">
 													<form:input path="bookAmount" type="number"
 														class="form-control" value="1" id="amountBook" required="required"/>
+
 													<span id="amountBook_error" style="color: red;"></span>
 												</div>
 											</div>

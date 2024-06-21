@@ -37,8 +37,9 @@ public class AddBookDao extends BaseDao {
 	// Admin: Update book
 	public int updateBook(int id, BooksDto booksDto) {
 		String sql = "UPDATE book SET name = ?, amount = ?, dayCreated = ?, categoryId = ?, image = ?, description = ?, authorId = ?, pdf = ? WHERE id = ?";
-		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookAmount(),
-				booksDto.getBookDayCreated(), booksDto.getCategoryId(), booksDto.getBookImage(),
+		int book = _jdbcTemplate.update(sql, booksDto.getBookName(), booksDto.getBookAmount()
+				,booksDto.getBookDayCreated(),
+				booksDto.getCategoryId(), booksDto.getBookImage(),
 				booksDto.getBookDescription(), booksDto.getAuthorId(), booksDto.getPdf(), id);
 		return book;
 	}
