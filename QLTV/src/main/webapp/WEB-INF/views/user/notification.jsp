@@ -200,7 +200,7 @@
 					<div class="modal-footer" style="display: flex;">
 						<button type="button" class="btn btn-warning  btn-secondary"
 							data-dismiss="modal" style="margin-right: 10px;">Hủy</button>
-						<form:form id="deleteForm" action="DangXuat" method="POST">
+						<form:form id="deleteForm" action="${pageContext.request.contextPath}/DangXuat" method="POST">
 							<button type="submit" class="btn btn-danger">Đăng xuất</button>
 
 						</form:form>
