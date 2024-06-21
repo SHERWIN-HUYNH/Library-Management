@@ -36,6 +36,52 @@
 <link rel="stylesheet"
 	href="<c:url value="/assets/css/responsive.css"/>">
 <script src="<c:url value="/assets/js/vendor/modernizr-2.8.3.min.js"/>"></script>
+	<script type="text/javascript">
+		
+	  document.addEventListener("DOMContentLoaded", function() {
+	        const form = document.querySelector("form[action='dang-ky']");
+	        const registerButton = document.getElementById("register_form");
+
+	        function validateInput(input) {
+	            const trimmedValue = input.value.trim();
+	            if (trimmedValue === "") {
+	                document.getElementById(input.id + "_error").innerText = "This field cannot be empty or only spaces";
+	                return false;
+	            } else {
+	                document.getElementById(input.id + "_error").innerText = "";
+	                return true;
+	            }
+	        }
+
+	        form.addEventListener("input", function() {
+	            let isValid = true;
+
+	            // Select all input elements
+	            const inputs = form.querySelectorAll("input[type='text'], input[type='password'],input[type='email']");
+	            inputs.forEach(input => {
+	                if (!validateInput(input)) {
+	                    isValid = false;
+	                }
+	            });
+
+	            registerButton.disabled = !isValid;
+	        });
+
+	        form.addEventListener("submit", function(event) {
+	            let isFormValid = true;
+	            const inputs = form.querySelectorAll("input[type='text'], input[type='password'],input[type='email']");
+	            inputs.forEach(input => {
+	                input.value = input.value.trim();
+	                if (!validateInput(input)) {
+	                    isFormValid = false;
+	                }
+	            });
+	            if (!isFormValid) {
+	                event.preventDefault();
+	            }
+	        });
+	    });
+	</script>
 
 </head>
 
@@ -101,7 +147,7 @@
 									<div class="col-xs-12 col-md-7">
 										<div class="form-group">
 											<form:label path="email">Email</form:label>
-											<form:input type="text" class="form-control bg-none"
+											<form:input type="email" class="form-control bg-none"
 												placeholder="Email..." path="email" id="mail" required="required"/>
 											<span id="mail_error" style="color: red;"></span>
 										</div>
