@@ -107,7 +107,7 @@
 													<form:label path="categoryId">Thể Loại</form:label>
 												</div>
 												<div class="col-12 col-md-4">
-													<form:select path="categoryName"
+													<form:select path="categoryId"
 														class="selectpicker show-tick form-control">
 														<c:forEach var="category" items="${categories}">
 															<form:option value="${category.id}">${category.name}</form:option>
